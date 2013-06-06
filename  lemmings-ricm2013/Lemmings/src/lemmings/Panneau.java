@@ -43,8 +43,8 @@ public class Panneau extends JPanel {
 			posY=posY+tailleRY;
 		}
 
-		//g.setColor(Color.red);
-		//g.drawRect(posX, posY, tailleRX, tailleRY);
+		posX=0;
+		posY=0;
 
 
 	}
