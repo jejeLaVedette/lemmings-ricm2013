@@ -2,22 +2,24 @@ package lemmings;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import javax.swing.JPanel;
 
 public class Panneau extends JPanel { 
 
 	private int posX = 0;
 	private int posY = 0;
+	private Image img;
 	private int tailleRX = Fenetre.tailleFX/Carte.HAUTEUR_CARTE;
 	private int tailleRY = Fenetre.tailleFY/Carte.LARGEUR_CARTE;
 
 	public void paintComponent(Graphics g)
 	{
-		
+
 		for(int i=0; i<Carte.HAUTEUR_CARTE; i++){
-			
+
 			for(int j=0; j<Carte.LARGEUR_CARTE; j++){ 
-				
+
 				//si c'est un sol je colori en rouge et je créer le rectangle adéquoit
 				if (Carte.map[i][j] < 50){
 					g.setColor(new Color(102,51,0));
