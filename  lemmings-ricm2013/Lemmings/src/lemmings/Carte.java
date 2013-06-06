@@ -5,7 +5,7 @@ public class Carte {
 	public static int LARGEUR_CARTE = 50;
 	public static int HAUTEUR_CARTE = 20;
 	
-	public static int[][] map;
+	public static int[][] map = new int[HAUTEUR_CARTE][LARGEUR_CARTE];
 	public static int taille = LARGEUR_CARTE * HAUTEUR_CARTE;
 	
 	public static void initialiser()
