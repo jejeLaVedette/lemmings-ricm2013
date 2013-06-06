@@ -17,7 +17,7 @@ public class Carte {
 		 */
 		for(int i=0; i<Carte.HAUTEUR_CARTE; i++)
 		{
-			for(int j=0; j<Carte.LARGEUR_CARTE; i++)
+			for(int j=0; j<Carte.LARGEUR_CARTE; j++)
 			{
 				if (i>Carte.HAUTEUR_CARTE/4)
 					Carte.map[i][j] = 0;
