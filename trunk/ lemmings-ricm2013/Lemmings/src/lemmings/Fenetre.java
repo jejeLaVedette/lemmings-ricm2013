@@ -1,10 +1,13 @@
 package lemmings;
 
-import java.awt.Color;
-
 import javax.swing.JFrame;
 
 public class Fenetre extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Panneau pan = new Panneau();
 
 	public static int tailleFX = 500;
