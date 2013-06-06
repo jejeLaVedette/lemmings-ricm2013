@@ -1,11 +1,9 @@
 package lemmings;
 
-public class Automate {
+public abstract class Automate {
 	
-	private int type;
 	public Automate()
 	{
-		this.type = 0;
 	}
 
 }
