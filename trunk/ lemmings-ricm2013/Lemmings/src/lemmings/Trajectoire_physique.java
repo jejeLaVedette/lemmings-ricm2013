@@ -27,39 +27,42 @@ public class Trajectoire_physique {
 	
 	private double get_d(){
 		int calculnorme=vect_x*vect_x+vect_y*vect_y;
-		if(vect_y<0)
-		{
-			return -Math.sqrt(calculnorme);	
-		}
-		else{
-		return Math.sqrt(-calculnorme);
-		}
+		
+			return Math.sqrt(calculnorme);	
+		
 	}
 	
 	
 	
 	private Point get_s(){
-		int x =(int)get_f().getX();
-		int y =(int)((get_f().getY())+get_d())/2;
+		int x =(int)this.get_f().getX();
+		int y =(int)((this.get_f().getY())+this.get_d())/2;
 		Point s=new Point(x,y);
 		return s;
 	}
 	
 	private double get_p(){
-		double rep= get_f().getY()-Math.abs(get_d());
+		double rep= this.get_f().getY()-this.get_d();
 		return rep;		
 	}
 	
 	private int get_XpourS (int x){
-	return	x-(int)get_s().getX();
+	return	x-(int)this.get_s().getX();
 		
 	}
 	
 	public int get_trajectoireY(int x){
-		int xrel=get_XpourS(x);
-		int yrel=(xrel*xrel)/(2*(int)get_p());
-		int ydepart=(int)get_s().getY()+yrel;
-		return ydepart+(int)base_y;
+		int xrel=this.get_XpourS(x);
+		int temp=(int)this.get_p();
+		int yrel;
+		if(temp==0){
+		yrel=(xrel*xrel)/2;
+		}
+		else{
+			yrel=(xrel*xrel)/(2*temp);		
+		}
+		int ydepart=(int)this.get_s().getY()-yrel;
+		return -ydepart+(int)base_y;
 		
 	}
 	
