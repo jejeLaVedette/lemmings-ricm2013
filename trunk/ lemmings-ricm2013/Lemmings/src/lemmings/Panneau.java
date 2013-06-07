@@ -2,14 +2,17 @@ package lemmings;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import javax.swing.JPanel;
 
 public class Panneau extends JPanel { 
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
 	private int posX = 0;
 	private int posY = 0;
-	private Image img;
 	private int tailleRX = Fenetre.tailleFX/Carte.HAUTEUR_CARTE;
 	private int tailleRY = Fenetre.tailleFY/Carte.LARGEUR_CARTE;
 
