@@ -69,18 +69,18 @@ public class Carte {
 			Color c; int r,v,b;
 			for(int i=0;i<maCarte.getHeight();i++) {
 				for(int j=0;j<maCarte.getWidth();j++) {
-					System.out.println("a");
+					
 					c = new Color(maCarte.getRGB(j,i));
-					System.out.println("b");
+					
 					r = c.getRed();
 					v = c.getGreen();
 					b = c.getBlue();
-					System.out.println("c");
-					// Si pixel noir
-					if(r==0 && v==0 && b==0)
-						map[j][i] = new Sol();
-					else if (r==255 && v == 255 && b == 255)
-						map[j][i] = new Air();					
+					
+					// Si blanc ---> air
+					if (r==255 && v == 255 && b == 255)
+						map[j][i] = new Air();		
+					else
+						map[j][i] = new Sol(new Color(r,v,b));
 					
 				}
 			}

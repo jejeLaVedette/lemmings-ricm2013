@@ -15,7 +15,8 @@ public class Jeu {
 	
 	public static void main(String[] args) throws InterruptedException, IOException{
 		
-		listeAutomates.add(new AutoLemmings(5));
+		listeAutomates.add(new AutoLemmingBasique(5));
+		listeAutomates.add(new AutoLemmingStop(2));
 		//Carte.initialiser();
 		Carte.charger("Images/Carte.png");
 		Carte.setEntree(new Point(120, 20));
@@ -25,6 +26,9 @@ public class Jeu {
 		
 		Fenetre f = new Fenetre();
 		f.afficher();
+		
+		// Lemmings bloqueurs
+		Carte.obs.add(new Lemming(150,20,1));
 		
 		while(true) {
 			

@@ -6,7 +6,7 @@ public class Lemming extends Observable {
 	private int etat;
 	
 	public Lemming() {
-		super.type = 2;
+		super.type = 0;
 		this.direction = 1;
 		this.etat = 0;
 		super.x = Carte.getEntree().x;
@@ -14,7 +14,15 @@ public class Lemming extends Observable {
 	}
 	
 	public Lemming(int x,int y) {
-		super.type = 2;
+		super.type = 0;
+		this.direction = 1;
+		this.etat = 0;
+		super.x = x;
+		super.y = y;
+	}
+	
+	public Lemming(int x,int y, int type) {
+		super.type = type;
 		this.direction = 1;
 		this.etat = 0;
 		super.x = x;
