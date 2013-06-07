@@ -35,14 +35,13 @@ public class Fenetre extends JFrame {
 		//pan.add(bouton);
 		this.setContentPane(container);
 		this.setVisible(true);
+		afficher();
 	}
 
 
 
 	public void afficher(){
-		//ne pas enlever --> je ne sais pas vraiment ce que ça fais mais sans ça sa bug... ^^
-		//this.setContentPane(pan);
-
+		
 		container.setLayout(new BorderLayout());
 		container.add(pan, BorderLayout.CENTER);
 		JPanel south = new JPanel();
@@ -50,6 +49,11 @@ public class Fenetre extends JFrame {
 		south.add(bouton2);
 		south.add(bouton3);
 		container.add(south, BorderLayout.SOUTH);
-		
+		pan.repaint(); 
+		try {
+			Thread.sleep(10); // a une certaine vitesse --> 1000 = 1sec
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }
