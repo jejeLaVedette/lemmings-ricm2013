@@ -12,7 +12,7 @@ public class Panneau extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	 
 	private Image img = new ImageIcon("Images/sol.png").getImage();
 	private Image perso = new ImageIcon("Images/perso.png").getImage();
 	private int posX = 0;
