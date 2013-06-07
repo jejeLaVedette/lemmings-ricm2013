@@ -3,9 +3,9 @@ package lemmings;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Lemmings extends Automate {
+public class AutoLemmings extends Automate {
 
-	public Lemmings(int nbTransitions) {
+	public AutoLemmings(int nbTransitions) {
 		
 		super(nbTransitions);
 		List<String> l = new LinkedList<String>();

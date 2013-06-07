@@ -9,7 +9,7 @@ public class Jeu {
 	
 	public static void main(String[] args){
 		
-		listeAutomates.add(new Lemmings(5));
+		listeAutomates.add(new AutoLemmings(5));
 		Carte.initialiser();
 		Fenetre f = new Fenetre();
 	}
