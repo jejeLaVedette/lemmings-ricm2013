@@ -26,8 +26,7 @@ public class AutoLemmings extends Automate {
 		
 		l = new ArrayList<String>();
 		l.add("tomber");
-		listeTransitions.add(new Transition(1, 1, "vide", l));
-		
+		listeTransitions.add(new Transition(1, 1, "vide", l));		
 		
 		identifiant = 2;
 		

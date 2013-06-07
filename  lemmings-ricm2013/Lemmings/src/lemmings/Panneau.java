@@ -27,14 +27,14 @@ public class Panneau extends JPanel {
 
 			for(int j=0; j<Carte.LARGEUR_CARTE; j++){ 
 
-				//si c'est un sol je colori en rouge et je créer le rectangle adéquoit
+				//si c'est un sol je colori en rouge et je crï¿½er le rectangle adï¿½quoit
 				if (Carte.map[i][j].type == 0){
 					g.setColor(new Color(102,51,0));
 					//g.drawImage(img, posX, posY, null);
 					g.fillRect(posX, posY, tailleRX, tailleRY);
 				}
 
-				//si c'est air je colori en noir et je créer le rectangle adéquoit
+				//si c'est air je colori en noir et je crï¿½er le rectangle adï¿½quoit
 				else if (Carte.map[i][j].type ==1){
 					g.setColor(new Color(153,153,153));
 					g.fillRect(posX, posY, tailleRX, tailleRY);
@@ -44,7 +44,7 @@ public class Panneau extends JPanel {
 				posX=posX+tailleRX;
 
 			}
-			//on se replace tout a gauche de l'écran
+			//on se replace tout a gauche de l'ï¿½cran
 			posX=0;
 			//et on diminue d'un rang en hauteur
 			posY=posY+tailleRY;
@@ -57,7 +57,7 @@ public class Panneau extends JPanel {
 		for(int k =0;k<Carte.obs.size();k++){
 			g.setColor(new Color(51,204,0));
 			//g.drawImage(perso, Carte.obs.get(k).getX()*tailleRX, Carte.obs.get(k).getY()*tailleRY, null);
-			g.fillRect(Carte.obs.get(k).getX()*tailleRX, Carte.obs.get(k).getY()*tailleRY, tailleRX, tailleRY);
+			g.fillRect(Carte.obs.get(k).getY()*tailleRX, Carte.obs.get(k).getX()*tailleRY, tailleRX, tailleRY);
 		}
 		
 	}

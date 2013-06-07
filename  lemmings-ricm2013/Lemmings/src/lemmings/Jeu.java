@@ -11,13 +11,19 @@ public class Jeu {
 	private int vectx;
 	private int vecty;
 	
-	public static void main(String[] args){
+	public static void main(String[] args) throws InterruptedException{
 		
 		listeAutomates.add(new AutoLemmings(5));
 		Carte.initialiser();
+		System.out.println("Nombre de Lemmings : "+Carte.obs.size());
 		Fenetre f = new Fenetre();
-		//Carte.map[1][1]=new Lemming();
 		f.afficher();
+		while(true) {
+			Moteur.miseAJourObservables();
+			Thread.sleep(100);
+			f.afficher();
+		}
+		
 		/*
 		Trajectoire_physique tp = new Trajectoire_physique(0, 0, 10, 10);
 		for(int i = 0 ; i<Fenetre.tailleFX/Carte.LARGEUR_CARTE;i++){

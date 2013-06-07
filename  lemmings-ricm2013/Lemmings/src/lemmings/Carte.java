@@ -32,8 +32,12 @@ public class Carte {
 		// On place 2 lemmings sur le sol
 		Lemming bob = new Lemming(Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4,10);
 		obs.add(bob);
-		bob = new Lemming(Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4,12);
-		obs.add(bob);
+		//bob = new Lemming(Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4,12);
+		//obs.add(bob);
+		
+		// On place un mur
+		Carte.map[Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4][40] = new Sol();
+		
 	}
 
 }

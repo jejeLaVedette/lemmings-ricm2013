@@ -47,7 +47,7 @@ public class Moteur {
 						System.out.println("Automate non-déterministe !");
 					// On applique les actions associées
 					for(int l=0;l<aut.listeTransitions.get(k).getActions().size();l++) {
-						appliquerAction(aut.listeTransitions.get(k).getActions().get(l),x,y,lem.getDirection());
+						appliquerAction(aut.listeTransitions.get(k).getActions().get(l),lem);
 					}
 					
 					
@@ -59,34 +59,37 @@ public class Moteur {
 		} // Fin for(i)
 	}
 	
-	private static void appliquerAction(String s, int x, int y, int direction) {
+	private static void appliquerAction(String s, Lemming l) {
 		
 		if(s=="marcher")
-			marcher(x,y,direction);
+			marcher(l);
 		else if(s=="retourner")
-			retourner(x,y,direction);
+			retourner(l);
 		else if(s=="tomber")
-			tomber(x,y);
+			tomber(l);
 		else
 			System.out.println("Action invalide !");
 	}
 	
-	private static void marcher(int x,int y,int direction) {
-		if(direction==0)
-			Carte.map[x][y-1] = Carte.map[x][y];
-		if(direction==1) 
-			Carte.map[x][y+1] = Carte.map[x][y];
+	private static void marcher(Lemming l) {
+		if(l.getDirection()==0)
+			l.setY(l.getY()-1);
+		if(l.getDirection()==1) 
+			l.setY(l.getY()+1);
 		
-		Carte.map[x][y] = new Air();
-		System.out.println("Lemming marche : x: "+x+" y: "+y); 
-		
-	}
-	
-	private static void retourner(int x, int y, int direction) {
+		System.out.println("Lemming marche : x: "+l.getX()+" y: "+l.getY()); 
 		
 	}
 	
-	private static void tomber(int x, int y) {
+	private static void retourner(Lemming l) {
+		System.out.println("Demi-tour ! Marche !");
+		if(l.getDirection()==0)
+			l.setDirection(1);
+		if(l.getDirection()==1)
+			l.setDirection(0);
+	}
+	
+	private static void tomber(Lemming l) {
 		
 	}
 	
