@@ -32,11 +32,20 @@ public class Carte {
 		// On place 2 lemmings sur le sol
 		Lemming bob = new Lemming(Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4,10);
 		obs.add(bob);
-		//bob = new Lemming(Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4,12);
-		//obs.add(bob);
+		bob = new Lemming(Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4,12);
+		obs.add(bob);
+		bob = new Lemming(9,20);
+		obs.add(bob);
+		bob = new Lemming(9,27);
+		bob.setDirection(0);
+		obs.add(bob);
 		
-		// On place un mur
+		
+		// On place des murs
 		Carte.map[Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4][40] = new Sol();
+		Carte.map[Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4][5] = new Sol();
+		for(int u=20;u<28;u++) 
+			Carte.map[10][u] = new Sol();
 		
 	}
 

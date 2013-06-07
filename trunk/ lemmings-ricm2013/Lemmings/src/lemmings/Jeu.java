@@ -15,9 +15,12 @@ public class Jeu {
 		
 		listeAutomates.add(new AutoLemmings(5));
 		Carte.initialiser();
-		System.out.println("Nombre de Lemmings : "+Carte.obs.size());
+		
 		Fenetre f = new Fenetre();
 		f.afficher();
+		
+		Lemming lem = (Lemming)Carte.obs.get(0);
+		
 		while(true) {
 			Moteur.miseAJourObservables();
 			Thread.sleep(100);
