@@ -30,8 +30,8 @@ public class Panneau extends JPanel {
 				//si c'est un sol je colori en rouge et je créer le rectangle adéquoit
 				if (Carte.map[i][j].type == 0){
 					g.setColor(new Color(102,51,0));
-					g.drawImage(img, posX, posY, null);
-					//g.fillRect(posX, posY, tailleRX, tailleRY);
+					//g.drawImage(img, posX, posY, null);
+					g.fillRect(posX, posY, tailleRX, tailleRY);
 				}
 
 				//si c'est air je colori en noir et je créer le rectangle adéquoit
@@ -53,10 +53,11 @@ public class Panneau extends JPanel {
 		//si on repaint, on repart de 0
 		posX=0;
 		posY=0;
+			
 		for(int k =0;k<Carte.obs.size();k++){
 			g.setColor(new Color(51,204,0));
-			//g.drawImage(perso, posX, posY, null);
-			g.fillRect(Carte.obs.get(k).getX(), Carte.obs.get(k).getY(), tailleRX, tailleRY);
+			//g.drawImage(perso, Carte.obs.get(k).getX()*tailleRX, Carte.obs.get(k).getY()*tailleRY, null);
+			g.fillRect(Carte.obs.get(k).getX()*tailleRX, Carte.obs.get(k).getY()*tailleRY, tailleRX, tailleRY);
 		}
 		
 	}
