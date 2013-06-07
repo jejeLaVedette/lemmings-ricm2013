@@ -9,13 +9,13 @@ public class Moteur {
 				
 				// Analyse de l'element courant
 				
-				// Si on a un Lemming de base
-				if(Carte.map[i][j]==100) {
+				// Si on a un Lemming
+				if(Carte.map[i][j].type==2) {
 					// Analyse de l'environnement du lemming courant
 					String cond;
-					if(j==0 || Carte.map[i][j-1]<50)
+					if(j==0 || Carte.map[i][j-1].type==0)
 						cond = "mur";
-					else if(Carte.map[i-1][j-1]>50)
+					else if(Carte.map[i-1][j-1].type==1)
 						cond = "vide";
 					else cond = "sol";
 					

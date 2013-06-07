@@ -12,23 +12,25 @@ public class Carte {
 	{
 		/* Convention :
 		 * 0 : sols
-		 * 1: air
-		 * 2: lemmings
+		 * 1 : air
+		 * 2 : lemmings
 		 */
 		for(int i=0; i<Carte.HAUTEUR_CARTE; i++)
 		{
 			for(int j=0; j<Carte.LARGEUR_CARTE; j++)
 			{
 				if (i>3*Carte.HAUTEUR_CARTE/4)
-					Carte.map[i][j].type = 0;
+					Carte.map[i][j] = new Sol();
 				else
-					Carte.map[i][j].type = 1;
+					Carte.map[i][j] = new Air();
 			}
 		}
 
 		// On place 2 lemmings sur le sol
-		map[Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4][10].type = 2;
-		map[Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4][15].type = 2;
+		Lemming bob = new Lemming();
+	
+		map[Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4][10] = bob;
+		map[Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4][15] = bob;
 
 	}
 
