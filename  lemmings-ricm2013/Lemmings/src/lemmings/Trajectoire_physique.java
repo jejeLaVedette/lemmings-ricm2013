@@ -7,32 +7,32 @@ import java.awt.Point;
 
 
 public class Trajectoire_physique {
-	private double base_x;
-	private double base_y;
-	private double vect_x;
-	private double vect_y;
+	private int base_x;
+	private int base_y;
+	private int vect_x;
+	private int vect_y;
 	
 	public Trajectoire_physique(int x,int y,int vx,int vy){
-		this.base_x=(double)x;
-		this.base_y=(double)y;
-		this.vect_x=(double)vx;
-		this.vect_y=(double)vy;
+		this.base_x=x;
+		this.base_y=y;
+		this.vect_x=vx;
+		this.vect_y=vy;
 	}
 	
 	private Point get_f(){
-		 Point a=new Point((int)(vect_x+base_x),(int)base_y);
+		 Point a=new Point((vect_x+base_x),base_y);
 		 
 		 return a;
 	}
 	
 	private double get_d(){
-		double calculnorme=vect_x*vect_x+vect_y*vect_y;
-		if(calculnorme>=0)
+		int calculnorme=vect_x*vect_x+vect_y*vect_y;
+		if(vect_y<0)
 		{
-			return Math.sqrt(calculnorme);	
+			return -Math.sqrt(calculnorme);	
 		}
 		else{
-		return -Math.sqrt(-calculnorme);
+		return Math.sqrt(-calculnorme);
 		}
 	}
 	
@@ -46,7 +46,7 @@ public class Trajectoire_physique {
 	}
 	
 	private double get_p(){
-		double rep= get_f().getY()-get_d();
+		double rep= get_f().getY()-Math.abs(get_d());
 		return rep;		
 	}
 	
