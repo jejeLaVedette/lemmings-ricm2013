@@ -42,6 +42,8 @@ public class Fenetre extends JFrame {
 
 	public void afficher(){
 		
+		pan.repaint(); 
+
 		container.setLayout(new BorderLayout());
 		container.add(pan, BorderLayout.CENTER);
 		JPanel south = new JPanel();
@@ -49,7 +51,7 @@ public class Fenetre extends JFrame {
 		south.add(bouton2);
 		south.add(bouton3);
 		container.add(south, BorderLayout.SOUTH);
-		pan.repaint(); 
+		
 		try {
 			Thread.sleep(10); // a une certaine vitesse --> 1000 = 1sec
 		} catch (InterruptedException e) {
