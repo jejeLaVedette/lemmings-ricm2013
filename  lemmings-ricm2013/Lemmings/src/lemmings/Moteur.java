@@ -11,34 +11,73 @@ public class Moteur {
 				
 				// Si on a un Lemming
 				if(Carte.map[i][j].type==2) {
+					Lemming lem = (Lemming) Carte.map[i][j];
 					// Analyse de l'environnement du lemming courant
 					String cond;
-					if(j==0 || Carte.map[i][j-1].type==0)
+					// Présence d'un mur
+					if( (j==0 && lem.getDirection()==0) || 
+						(j==Carte.LARGEUR_CARTE-1 && lem.getDirection()==1) ||
+						(lem.getDirection()==0 && Carte.map[i][j-1].type==0) ||
+						(lem.getDirection()==1 && Carte.map[i][j+1].type==0) )
 						cond = "mur";
-					else if(Carte.map[i-1][j-1].type==1)
+					// Présence d'un vide
+					else if( (lem.getDirection()==0 && Carte.map[i-1][j-1].type==1) ||
+							 (lem.getDirection()==1 && Carte.map[i+1][j+1].type==1) )
 						cond = "vide";
 					else cond = "sol";
 					
+					// Recherche de l'automate correspondant (ici, un seul...)
+					Automate aut = Jeu.listeAutomates.get(0);
+										
+					// Recherche de la transition dans l'automate
+					int k=0;
+					while(k<aut.listeTransitions.size()) {
+						if( aut.listeTransitions.get(k).getEtatInitial()==lem.getEtat() && 
+								aut.listeTransitions.get(k).getCondition()==cond)
+							break;
+								
+						k++;
+					}
+					
+					// On applique les actions associées
+					for(int l=0;l<aut.listeTransitions.get(k).getActions().size();l++) {
+						appliquerAction(aut.listeTransitions.get(k).getActions().get(l),i,j,lem.getDirection());
+					}
 					
 					
 					
-					
-					
-					
-				}
-			}
-		}
+				} // fin if(Lemmings)
+				
+				
+				
+			} // Fin for(j)
+		} // Fin for(i)
 	}
 	
-	private void marcher(int x,int y) {
+	private static void appliquerAction(String s, int x, int y, int direction) {
+		
+		if(s=="marcher")
+			marcher(x,y,direction);
+		if(s=="retourner")
+			retourner(x,y,direction);
+		if(s=="tomber")
+			tomber(x,y);
+	}
+	
+	private static void marcher(int x,int y,int direction) {
+		if(direction==0)
+			Carte.map[x][y-1] = Carte.map[x][y];
+		if(direction==1) 
+			Carte.map[x][y+1] = Carte.map[x][y];
+		
+		Carte.map[x][y] = new Air();
+	}
+	
+	private static void retourner(int x, int y, int direction) {
 		
 	}
 	
-	private void retourner(int x, int y) {
-		
-	}
-	
-	private void tomber(int x, int y) {
+	private static void tomber(int x, int y) {
 		
 	}
 	
