@@ -53,11 +53,13 @@ public class Fenetre extends JFrame {
 
 		container.setLayout(new BorderLayout());
 		container.add(pan, BorderLayout.CENTER);
+		/*
 		JPanel south = new JPanel();
 		south.add(bouton);
 		south.add(bouton2);
 		south.add(bouton3);
-		container.add(south, BorderLayout.SOUTH);
+		container.add(south, BorderLayout.SOUTH);*/
+		
 		
 		try {
 			Thread.sleep(10); // a une certaine vitesse --> 1000 = 1sec
