@@ -10,7 +10,7 @@ public class Moteur {
 			// Analyse de l'element courant
 				
 			// Si on a un Lemming
-			if(Carte.obs.get(i).type==2) {
+			//if(Carte.obs.get(i).type==2) {
 				
 				Lemming lem = (Lemming) Carte.obs.get(i);
 				int x = lem.getX();
@@ -21,17 +21,21 @@ public class Moteur {
 				// Présence d'un mur
 				if( (x==0 && lem.getDirection()==0) || 
 					(x==Carte.LARGEUR_CARTE-1 && lem.getDirection()==1) ||
-					(lem.getDirection()==0 && Carte.map[x-1][y].type==0) ||
-					(lem.getDirection()==1 && Carte.map[x+1][y].type==0) )
+					(lem.getDirection()==0 && Carte.map[x-1][y].type<10) ||
+					(lem.getDirection()==1 && Carte.map[x+1][y].type<10) )
 					cond = "mur";
 				// Présence d'un vide
-				else if( (lem.getDirection()==0 && Carte.map[x][y+1].type==1) ||
-						 (lem.getDirection()==1 && Carte.map[x][y+1].type==1) )
+				else if( (lem.getDirection()==0 && Carte.map[x][y+1].type>9 && Carte.map[x][y+1].type<20) ||
+						 (lem.getDirection()==1 && Carte.map[x][y+1].type>9 && Carte.map[x][y+1].type<20) )
 					cond = "vide";
 				else cond = "sol";
-					
-				// Recherche de l'automate correspondant (ici, un seul...)
+				
+				// Recherche de l'automate correspondant
 				Automate aut = Jeu.listeAutomates.get(0);
+				for(int m=0;m<Jeu.listeAutomates.size();m++)
+					if(Jeu.listeAutomates.get(m).identifiant == lem.type) {
+						aut = Jeu.listeAutomates.get(m); break;
+					}
 										
 				// Recherche de la transition dans l'automate
 				int k=0;
@@ -53,7 +57,7 @@ public class Moteur {
 				lem.setEtat(aut.listeTransitions.get(k).getEtatFinal());
 					
 					
-			} // fin if(Lemmings)
+			//} // fin if(Lemmings)
 				
 				
 				
@@ -68,6 +72,8 @@ public class Moteur {
 			retourner(l);
 		else if(s=="tomber")
 			tomber(l);
+		else if(s=="bloquer")
+			bloquer(l);
 		else
 			System.out.println("Action invalide !");
 	}
@@ -94,6 +100,10 @@ public class Moteur {
 		else if(l.getDirection()==1) {
 			l.setY(l.getY()+1);
 		}
+	}
+	
+	private static void bloquer(Lemming l) {
+		Carte.map[l.getX()][l.getY()].type = 1;
 	}
 	
 

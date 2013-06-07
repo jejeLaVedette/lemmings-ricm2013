@@ -11,7 +11,7 @@ public class Test_trajectoire {
 public static void main(String[] args){
 	
 		
-		listetoto.add(new AutoLemmings(5));
+		listetoto.add(new AutoLemmingBasique(5));
 		Carte.initialiser();
 		Fenetre f = new Fenetre();
 		f.afficher();
