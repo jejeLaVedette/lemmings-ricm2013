@@ -2,6 +2,9 @@ package lemmings;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Panneau extends JPanel { 
@@ -10,7 +13,7 @@ public class Panneau extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
+	private Image img = new ImageIcon("Images/sol.png").getImage();
 	private int posX = 0;
 	private int posY = 0;
 	private int tailleRX = Fenetre.tailleFX/Carte.HAUTEUR_CARTE;
@@ -26,7 +29,8 @@ public class Panneau extends JPanel {
 				//si c'est un sol je colori en rouge et je créer le rectangle adéquoit
 				if (Carte.map[i][j].type == 0){
 					g.setColor(new Color(102,51,0));
-					g.fillRect(posX, posY, tailleRX, tailleRY);
+					g.drawImage(img, posX, posY, null);
+					//g.fillRect(posX, posY, tailleRX, tailleRY);
 				}
 
 				//si c'est air je colori en blanc et je créer le rectangle adéquoit
