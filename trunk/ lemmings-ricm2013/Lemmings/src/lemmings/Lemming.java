@@ -1,8 +1,18 @@
 package lemmings;
 
-public class Lemming extends Element {
+public class Lemming extends Observable {
 	
 	private int direction;
+	private int etat;
+	
+	public Lemming(int x,int y) {
+		super.type = 2;
+		this.direction = 1;
+		this.etat = 0;
+		super.x = x;
+		super.y = y;
+	}
+	
 	public int getDirection() {
 		return direction;
 	}
@@ -17,12 +27,6 @@ public class Lemming extends Element {
 
 	public void setEtat(int etat) {
 		this.etat = etat;
-	}
-
-	private int etat;
-	
-	public Lemming() {
-		super.type = 2;
 	}
 
 }
