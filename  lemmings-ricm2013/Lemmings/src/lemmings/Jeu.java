@@ -8,10 +8,10 @@ import java.util.List;
 public class Jeu {
 	
 	public static List<Automate>listeAutomates = new ArrayList<Automate>();
-	private int x;
+	/*private int x;
 	private int y;
 	private int vectx;
-	private int vecty;
+	private int vecty;*/
 	
 	public static void main(String[] args) throws InterruptedException, IOException{
 		
@@ -21,7 +21,6 @@ public class Jeu {
 		Carte.setEntree(new Point(120, 20));
 		Carte.setNbLemmings(20);
 		
-		int restant = Carte.getNbLemmings();
 		int wait = 51;
 		
 		Fenetre f = new Fenetre();
@@ -29,16 +28,16 @@ public class Jeu {
 		
 		while(true) {
 			
-			if(restant>0 && wait>50) {
-				Lemming lem = new Lemming(20,120);
-				Carte.obs.add(lem); restant--; wait = 0;
+			if(wait>50) {
+				Carte.popLemmings();
+				wait = 0;
 			}
 			
 			Moteur.miseAJourObservables();
 			Thread.sleep(50);
 			f.afficher();
 			
-			if(restant!=0)
+			if(Carte.getNbLemmings()!=0)
 				wait++;
 		}
 		
