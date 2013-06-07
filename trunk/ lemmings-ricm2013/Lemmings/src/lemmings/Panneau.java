@@ -19,7 +19,7 @@ public class Panneau extends JPanel {
 	private int posY = 0;
 	private int tailleRX = Fenetre.tailleFX/Carte.LARGEUR_CARTE;
 	private int tailleRY = Fenetre.tailleFY/Carte.HAUTEUR_CARTE;
-
+	public static final int coeff = 10;
 	public void paintComponent(Graphics g)
 	{
 
@@ -57,7 +57,9 @@ public class Panneau extends JPanel {
 		for(int k =0;k<Carte.obs.size();k++){
 			g.setColor(new Color(51,204,0));
 			setOpaque(false);
-			g.drawImage(perso, Carte.obs.get(k).getY()*tailleRX, Carte.obs.get(k).getX()*tailleRY,tailleRX,tailleRY, null);
+			g.drawImage(perso, Carte.obs.get(k).getY()*tailleRX-tailleRX*coeff/2, 
+							   (Carte.obs.get(k).getX()-coeff)*tailleRY,
+							   tailleRX*coeff,tailleRY*coeff, null);
 			//g.fillRect(Carte.obs.get(k).getY()*tailleRX, Carte.obs.get(k).getX()*tailleRY, tailleRX, tailleRY);
 		}
 		
