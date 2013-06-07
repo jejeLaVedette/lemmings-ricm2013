@@ -14,7 +14,7 @@ public class Panneau extends JPanel {
 	private static final long serialVersionUID = 1L;
 	 
 	private Image img = new ImageIcon("Images/sol.png").getImage();
-	private Image perso = new ImageIcon("Images/perso.png").getImage();
+	private Image perso = new ImageIcon("Images/perso2.png").getImage();
 	private int posX = 0;
 	private int posY = 0;
 	private int tailleRX = Fenetre.tailleFX/Carte.LARGEUR_CARTE;
@@ -56,9 +56,9 @@ public class Panneau extends JPanel {
 			
 		for(int k =0;k<Carte.obs.size();k++){
 			g.setColor(new Color(51,204,0));
-			
-			//g.drawImage(perso, Carte.obs.get(k).getX()*tailleRX, Carte.obs.get(k).getY()*tailleRY, null);
-			g.fillRect(Carte.obs.get(k).getY()*tailleRX, Carte.obs.get(k).getX()*tailleRY, tailleRX, tailleRY);
+			setOpaque(false);
+			g.drawImage(perso, Carte.obs.get(k).getY()*tailleRX, Carte.obs.get(k).getX()*tailleRY,tailleRX,tailleRY, null);
+			//g.fillRect(Carte.obs.get(k).getY()*tailleRX, Carte.obs.get(k).getX()*tailleRY, tailleRX, tailleRY);
 		}
 		
 	}
