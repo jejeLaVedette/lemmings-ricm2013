@@ -24,18 +24,18 @@ public class Panneau extends JPanel {
 			for(int j=0; j<Carte.LARGEUR_CARTE; j++){ 
 
 				//si c'est un sol je colori en rouge et je créer le rectangle adéquoit
-				if (Carte.map[i][j] < 50){
+				if (Carte.map[i][j].type == 0){
 					g.setColor(new Color(102,51,0));
 					g.fillRect(posX, posY, tailleRX, tailleRY);
 				}
 
 				//si c'est air je colori en blanc et je créer le rectangle adéquoit
-				else if ((Carte.map[i][j] >= 50)&&(Carte.map[i][j] <100)){
+				else if (Carte.map[i][j].type ==1){
 					g.setColor(new Color(153,153,153));
 					g.fillRect(posX, posY, tailleRX, tailleRY);
 				}
 
-				else if (Carte.map[i][j]==100||Carte.map[i][j]==101){
+				else if (Carte.map[i][j].type==2){
 					g.setColor(new Color(51,204,0));
 					g.fillRect(posX, posY, tailleRX, tailleRY);
 				}
