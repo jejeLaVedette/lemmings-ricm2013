@@ -39,7 +39,7 @@ public class Panneau extends JPanel {
 					g.setColor(new Color(153,153,153));
 					g.fillRect(posX, posY, tailleRX, tailleRY);
 				}
-								
+				
 				// on avance en longueur
 				posX=posX+tailleRX;
 
@@ -53,6 +53,12 @@ public class Panneau extends JPanel {
 		//si on repaint, on repart de 0
 		posX=0;
 		posY=0;
+		for(int k =0;k<Carte.obs.size();k++){
+			g.setColor(new Color(51,204,0));
+			//g.drawImage(perso, posX, posY, null);
+			g.fillRect(Carte.obs.get(k).getX(), Carte.obs.get(k).getY(), tailleRX, tailleRY);
+		}
+		
 	}
 	
 	public void paintLemmings(Graphics g, int x, int y){
