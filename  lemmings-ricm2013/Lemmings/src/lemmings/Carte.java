@@ -1,11 +1,14 @@
 package lemmings;
 
+import java.util.ArrayList;
+
 public class Carte {
 
 	public static int LARGEUR_CARTE = 50;
 	public static int HAUTEUR_CARTE = 20;
 
 	public static Element[][] map = new Element[HAUTEUR_CARTE][LARGEUR_CARTE];
+	public static ArrayList<Observable> obs = new ArrayList<Observable>();
 	public static int taille = LARGEUR_CARTE * HAUTEUR_CARTE;
 
 	public static void initialiser()
@@ -27,11 +30,10 @@ public class Carte {
 		}
 
 		// On place 2 lemmings sur le sol
-		Lemming bob = new Lemming();
-	
-		map[Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4][10] = bob;
-		map[Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4][15] = bob;
-
+		Lemming bob = new Lemming(Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4,10);
+		obs.add(bob);
+		bob = new Lemming(Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4,12);
+		obs.add(bob);
 	}
 
 }
