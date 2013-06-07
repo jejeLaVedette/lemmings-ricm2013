@@ -1,5 +1,7 @@
 package lemmings;
 
+import java.awt.Point;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,20 +13,33 @@ public class Jeu {
 	private int vectx;
 	private int vecty;
 	
-	public static void main(String[] args) throws InterruptedException{
+	public static void main(String[] args) throws InterruptedException, IOException{
 		
 		listeAutomates.add(new AutoLemmings(5));
-		Carte.initialiser();
+		//Carte.initialiser();
+		Carte.charger("Images/Carte.png");
+		Carte.setEntree(new Point(120, 20));
+		Carte.setNbLemmings(20);
+		
+		int restant = Carte.getNbLemmings();
+		int wait = 51;
 		
 		Fenetre f = new Fenetre();
 		f.afficher();
 		
-		Lemming lem = (Lemming)Carte.obs.get(0);
-		
 		while(true) {
+			
+			if(restant>0 && wait>50) {
+				Lemming lem = new Lemming(20,120);
+				Carte.obs.add(lem); restant--; wait = 0;
+			}
+			
 			Moteur.miseAJourObservables();
-			Thread.sleep(100);
+			Thread.sleep(50);
 			f.afficher();
+			
+			if(restant!=0)
+				wait++;
 		}
 		
 		/*
