@@ -14,10 +14,11 @@ public class Panneau extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private Image img = new ImageIcon("Images/sol.png").getImage();
+	private Image perso = new ImageIcon("Images/perso.png").getImage();
 	private int posX = 0;
 	private int posY = 0;
-	private int tailleRX = Fenetre.tailleFX/Carte.HAUTEUR_CARTE;
-	private int tailleRY = Fenetre.tailleFY/Carte.LARGEUR_CARTE;
+	private int tailleRX = Fenetre.tailleFX/Carte.LARGEUR_CARTE;
+	private int tailleRY = Fenetre.tailleFY/Carte.HAUTEUR_CARTE;
 
 	public void paintComponent(Graphics g)
 	{
@@ -41,7 +42,8 @@ public class Panneau extends JPanel {
 
 				else if (Carte.map[i][j].type==2){
 					g.setColor(new Color(51,204,0));
-					g.fillRect(posX, posY, tailleRX, tailleRY);
+					g.drawImage(perso, posX, posY, null);
+					//g.fillRect(posX, posY, tailleRX, tailleRY);
 				}
 				posX=posX+tailleRX;
 
