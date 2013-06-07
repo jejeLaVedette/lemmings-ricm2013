@@ -1,9 +1,15 @@
 package lemmings;
 
 import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import com.sun.media.sound.Toolkit;
 
 public class Fenetre extends JFrame {
 	/**
@@ -24,18 +30,20 @@ public class Fenetre extends JFrame {
 	public Fenetre() {
 		this.setTitle("Lemmings");
 		this.setSize(tailleFX, tailleFY);
+		//empeche le redimentionnement de la fenetre
 		this.setResizable(false);
 		//Positionne l'objet au centre
 		this.setLocationRelativeTo(null);
 		//Termine le processus lorsqu'on clique sur la croix rouge
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 
-
+		//modifie le logo en haut a gauche
+		Image icone = new ImageIcon("Images/Logo.jpg").getImage();
+		setIconImage(icone);
 
 		//pan.add(bouton);
 		this.setContentPane(container);
 		this.setVisible(true);
-		afficher();
 	}
 
 
@@ -59,4 +67,18 @@ public class Fenetre extends JFrame {
 			e.printStackTrace();
 		}
 	}
+	
+	public void afficheLemming(){
+
+		for (int i=0;i<Carte.obs.size();i++){
+			Panneau.paintLemmings(azerty, getX(), getY());
+		}
+		
+		/*else if (Carte.map[i][j].type==2){
+		g.setColor(new Color(51,204,0));
+		g.drawImage(perso, posX, posY, null);
+		//g.fillRect(posX, posY, tailleRX, tailleRY);
+	}*/
+	}
+	
 }
