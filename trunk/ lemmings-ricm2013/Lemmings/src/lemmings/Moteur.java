@@ -19,14 +19,14 @@ public class Moteur {
 				String cond;
 				
 				// Présence d'un mur
-				if( (y==0 && lem.getDirection()==0) || 
-					(y==Carte.LARGEUR_CARTE-1 && lem.getDirection()==1) ||
-					(lem.getDirection()==0 && Carte.map[x][y-1].type==0) ||
-					(lem.getDirection()==1 && Carte.map[x][y+1].type==0) )
+				if( (x==0 && lem.getDirection()==0) || 
+					(x==Carte.LARGEUR_CARTE-1 && lem.getDirection()==1) ||
+					(lem.getDirection()==0 && Carte.map[x-1][y].type==0) ||
+					(lem.getDirection()==1 && Carte.map[x+1][y].type==0) )
 					cond = "mur";
 				// Présence d'un vide
-				else if( (lem.getDirection()==0 && Carte.map[x+1][y].type==1) ||
-						 (lem.getDirection()==1 && Carte.map[x+1][y].type==1) )
+				else if( (lem.getDirection()==0 && Carte.map[x][y+1].type==1) ||
+						 (lem.getDirection()==1 && Carte.map[x][y+1].type==1) )
 					cond = "vide";
 				else cond = "sol";
 					
@@ -74,9 +74,9 @@ public class Moteur {
 	
 	private static void marcher(Lemming l) {
 		if(l.getDirection()==0)
-			l.setY(l.getY()-1);
+			l.setX(l.getX()-1);
 		else if(l.getDirection()==1) 
-			l.setY(l.getY()+1);		
+			l.setX(l.getX()+1);		
 	}
 	
 	private static void retourner(Lemming l) {
@@ -89,10 +89,10 @@ public class Moteur {
 	
 	private static void tomber(Lemming l) {
 		if(l.getDirection()==0) {
-			l.setX(l.getX()+1);
+			l.setY(l.getY()+1);
 		}			
 		else if(l.getDirection()==1) {
-			l.setX(l.getX()+1);
+			l.setY(l.getY()+1);
 		}
 	}
 	

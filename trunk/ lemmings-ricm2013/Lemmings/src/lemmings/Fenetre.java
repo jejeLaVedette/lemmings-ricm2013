@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
+//import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -16,9 +16,9 @@ public class Fenetre extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private Panneau pan = new Panneau();
-	private JButton bouton = new Bouton("Creuser");
+	/*private JButton bouton = new Bouton("Creuser");
 	private JButton bouton2 = new Bouton("Parapluie");
-	private JButton bouton3 = new Bouton("tombe");
+	private JButton bouton3 = new Bouton("tombe");*/
 	private JPanel container = new JPanel();
 
 

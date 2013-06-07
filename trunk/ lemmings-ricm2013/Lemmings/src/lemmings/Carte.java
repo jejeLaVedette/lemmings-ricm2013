@@ -17,7 +17,7 @@ public class Carte {
 	public static Point entree;
 	public static int nbLemmings;
 
-	public static Element[][] map = new Element[HAUTEUR_CARTE][LARGEUR_CARTE];
+	public static Element[][] map = new Element[LARGEUR_CARTE][HAUTEUR_CARTE];
 	public static ArrayList<Observable> obs = new ArrayList<Observable>();
 	public static int taille = LARGEUR_CARTE * HAUTEUR_CARTE;
 
@@ -33,9 +33,9 @@ public class Carte {
 			for(int j=0; j<Carte.LARGEUR_CARTE; j++)
 			{
 				if (i>3*Carte.HAUTEUR_CARTE/4)
-					Carte.map[i][j] = new Sol();
+					Carte.map[j][i] = new Sol();
 				else
-					Carte.map[i][j] = new Air();
+					Carte.map[j][i] = new Air();
 			}
 		}
 
@@ -55,7 +55,7 @@ public class Carte {
 		Carte.map[Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4][40] = new Sol();
 		Carte.map[Carte.HAUTEUR_CARTE-Carte.HAUTEUR_CARTE/4][5] = new Sol();
 		for(int u=50;u<78;u++) 
-			Carte.map[30][u] = new Sol();
+			Carte.map[u][30] = new Sol();
 		
 	}
 
@@ -78,9 +78,9 @@ public class Carte {
 					System.out.println("c");
 					// Si pixel noir
 					if(r==0 && v==0 && b==0)
-						map[i][j] = new Sol();
+						map[j][i] = new Sol();
 					else if (r==255 && v == 255 && b == 255)
-						map[i][j] = new Air();					
+						map[j][i] = new Air();					
 					
 				}
 			}
@@ -88,6 +88,15 @@ public class Carte {
 			
 	}
 
+	public static void popLemmings ()
+	{
+		if(nbLemmings>0) {
+			Lemming lem = new Lemming(entree.x,entree.y);
+			obs.add(lem);
+			nbLemmings--;
+		}
+	}
+	
 	public static Point getEntree() {
 		return entree;
 	}

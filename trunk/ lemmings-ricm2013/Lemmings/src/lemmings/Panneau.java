@@ -13,7 +13,7 @@ public class Panneau extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	 
-	private Image img = new ImageIcon("Images/sol.png").getImage();
+	//private Image img = new ImageIcon("Images/sol.png").getImage();
 	private Image perso = new ImageIcon("Images/perso2.png").getImage();
 	private int posX = 0;
 	private int posY = 0;
@@ -28,14 +28,14 @@ public class Panneau extends JPanel {
 			for(int j=0; j<Carte.LARGEUR_CARTE; j++){ 
 
 				//si c'est un sol je colori en rouge et je cr�er le rectangle ad�quoit
-				if (Carte.map[i][j].type == 0){
+				if (Carte.map[j][i].type == 0){
 					g.setColor(new Color(102,51,0));
 					//g.drawImage(img, posX, posY, null);
 					g.fillRect(posX, posY, tailleRX, tailleRY);
 				}
 
 				//si c'est air je colori en noir et je cr�er le rectangle ad�quoit
-				else if (Carte.map[i][j].type ==1){
+				else if (Carte.map[j][i].type ==1){
 					g.setColor(new Color(153,153,153));
 					g.fillRect(posX, posY, tailleRX, tailleRY);
 				}
@@ -57,8 +57,8 @@ public class Panneau extends JPanel {
 		for(int k =0;k<Carte.obs.size();k++){
 			g.setColor(new Color(51,204,0));
 			setOpaque(false);
-			g.drawImage(perso, Carte.obs.get(k).getY()*tailleRX-tailleRX*coeff/2, 
-							   (Carte.obs.get(k).getX()-coeff)*tailleRY,
+			g.drawImage(perso, Carte.obs.get(k).getX()*tailleRX-tailleRX*coeff/2, 
+							   (Carte.obs.get(k).getY()-coeff)*tailleRY,
 							   tailleRX*coeff,tailleRY*coeff, null);
 			//g.fillRect(Carte.obs.get(k).getY()*tailleRX, Carte.obs.get(k).getX()*tailleRY, tailleRX, tailleRY);
 		}
