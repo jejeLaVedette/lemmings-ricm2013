@@ -43,6 +43,7 @@ public class Fenetre extends JFrame {
 	public void afficher(){
 		
 		pan.repaint(); 
+		container.repaint();
 
 		container.setLayout(new BorderLayout());
 		container.add(pan, BorderLayout.CENTER);
