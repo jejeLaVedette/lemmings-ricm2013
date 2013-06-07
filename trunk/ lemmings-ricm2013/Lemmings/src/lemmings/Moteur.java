@@ -5,31 +5,33 @@ public class Moteur {
 	public static void miseAJourObservables()
 	{
 		
-		for(int i=0;i<Carte.HAUTEUR_CARTE;i++) {
-			for(int j=0;j<Carte.LARGEUR_CARTE;j++) {
+		for(int i=0;i<Carte.obs.size();i++) {
 				
-				// Analyse de l'element courant
+			// Analyse de l'element courant
 				
-				// Si on a un Lemming
-				if(Carte.map[i][j].type==2) {
-					System.out.println("i: "+i+" j: "+j);
-					Lemming lem = (Lemming) Carte.map[i][j];
-					// Analyse de l'environnement du lemming courant
-					String cond;
-					// Présence d'un mur
-					if( (j==0 && lem.getDirection()==0) || 
-						(j==Carte.LARGEUR_CARTE-1 && lem.getDirection()==1) ||
-						(lem.getDirection()==0 && Carte.map[i][j-1].type==0) ||
-						(lem.getDirection()==1 && Carte.map[i][j+1].type==0) )
-						cond = "mur";
-					// Présence d'un vide
-					else if( (lem.getDirection()==0 && Carte.map[i-1][j-1].type==1) ||
-							 (lem.getDirection()==1 && Carte.map[i+1][j+1].type==1) )
-						cond = "vide";
-					else cond = "sol";
+			// Si on a un Lemming
+			if(Carte.obs.get(i).type==2) {
+				
+				Lemming lem = (Lemming) Carte.obs.get(i);
+				int x = lem.getX();
+				int y = lem.getY();
+				// Analyse de l'environnement du lemming courant
+				String cond;
+				
+				// Présence d'un mur
+				if( (y==0 && lem.getDirection()==0) || 
+					(y==Carte.LARGEUR_CARTE-1 && lem.getDirection()==1) ||
+					(lem.getDirection()==0 && Carte.map[x][y-1].type==0) ||
+					(lem.getDirection()==1 && Carte.map[x][y+1].type==0) )
+					cond = "mur";
+				// Présence d'un vide
+				else if( (lem.getDirection()==0 && Carte.map[x-1][y-1].type==1) ||
+						 (lem.getDirection()==1 && Carte.map[x+1][y+1].type==1) )
+					cond = "vide";
+				else cond = "sol";
 					
 					// Recherche de l'automate correspondant (ici, un seul...)
-					Automate aut = Jeu2.listeAutomates.get(0);
+					Automate aut = Jeu.listeAutomates.get(0);
 										
 					// Recherche de la transition dans l'automate
 					int k=0;
@@ -45,7 +47,7 @@ public class Moteur {
 						System.out.println("Automate non-déterministe !");
 					// On applique les actions associées
 					for(int l=0;l<aut.listeTransitions.get(k).getActions().size();l++) {
-						appliquerAction(aut.listeTransitions.get(k).getActions().get(l),i,j,lem.getDirection());
+						appliquerAction(aut.listeTransitions.get(k).getActions().get(l),x,y,lem.getDirection());
 					}
 					
 					
@@ -54,7 +56,6 @@ public class Moteur {
 				
 				
 				
-			} // Fin for(j)
 		} // Fin for(i)
 	}
 	
