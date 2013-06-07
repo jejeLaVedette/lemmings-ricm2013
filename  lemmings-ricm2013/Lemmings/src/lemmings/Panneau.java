@@ -56,6 +56,7 @@ public class Panneau extends JPanel {
 			
 		for(int k =0;k<Carte.obs.size();k++){
 			g.setColor(new Color(51,204,0));
+			
 			//g.drawImage(perso, Carte.obs.get(k).getX()*tailleRX, Carte.obs.get(k).getY()*tailleRY, null);
 			g.fillRect(Carte.obs.get(k).getY()*tailleRX, Carte.obs.get(k).getX()*tailleRY, tailleRX, tailleRY);
 		}
