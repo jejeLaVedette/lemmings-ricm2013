@@ -34,28 +34,30 @@ public class Panneau extends JPanel {
 					//g.fillRect(posX, posY, tailleRX, tailleRY);
 				}
 
-				//si c'est air je colori en blanc et je créer le rectangle adéquoit
+				//si c'est air je colori en noir et je créer le rectangle adéquoit
 				else if (Carte.map[i][j].type ==1){
 					g.setColor(new Color(153,153,153));
 					g.fillRect(posX, posY, tailleRX, tailleRY);
 				}
-
-				else if (Carte.map[i][j].type==2){
-					g.setColor(new Color(51,204,0));
-					g.drawImage(perso, posX, posY, null);
-					//g.fillRect(posX, posY, tailleRX, tailleRY);
-				}
+								
+				// on avance en longueur
 				posX=posX+tailleRX;
 
 			}
+			//on se replace tout a gauche de l'écran
 			posX=0;
+			//et on diminue d'un rang en hauteur
 			posY=posY+tailleRY;
 		}
-
+		
+		//si on repaint, on repart de 0
 		posX=0;
 		posY=0;
-
-
+	}
+	
+	public void paintLemmings(Graphics g, int x, int y){
+		g.setColor(new Color(51,204,0));
+		g.drawImage(perso, x, y, null);
 	}
 
 
