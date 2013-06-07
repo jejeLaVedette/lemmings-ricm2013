@@ -25,34 +25,35 @@ public class Moteur {
 					(lem.getDirection()==1 && Carte.map[x][y+1].type==0) )
 					cond = "mur";
 				// Présence d'un vide
-				else if( (lem.getDirection()==0 && Carte.map[x-1][y-1].type==1) ||
-						 (lem.getDirection()==1 && Carte.map[x+1][y+1].type==1) )
+				else if( (lem.getDirection()==0 && Carte.map[x+1][y].type==1) ||
+						 (lem.getDirection()==1 && Carte.map[x+1][y].type==1) )
 					cond = "vide";
 				else cond = "sol";
 					
-					// Recherche de l'automate correspondant (ici, un seul...)
-					Automate aut = Jeu.listeAutomates.get(0);
+				// Recherche de l'automate correspondant (ici, un seul...)
+				Automate aut = Jeu.listeAutomates.get(0);
 										
-					// Recherche de la transition dans l'automate
-					int k=0;
-					while(k<aut.listeTransitions.size()) {
-						if( aut.listeTransitions.get(k).getEtatInitial()==lem.getEtat() && 
-								aut.listeTransitions.get(k).getCondition()==cond)
-							break;
+				// Recherche de la transition dans l'automate
+				int k=0;
+				while(k<aut.listeTransitions.size()) {
+					if( aut.listeTransitions.get(k).getEtatInitial()==lem.getEtat() && 
+							aut.listeTransitions.get(k).getCondition()==cond)
+						break;
 								
-						k++;
-					}
+					k++;
+				}
 					
-					if(k==aut.listeTransitions.size())
-						System.out.println("Automate non-déterministe !");
-					// On applique les actions associées
-					for(int l=0;l<aut.listeTransitions.get(k).getActions().size();l++) {
-						appliquerAction(aut.listeTransitions.get(k).getActions().get(l),lem);
-					}
+				if(k==aut.listeTransitions.size())
+					System.out.println("Automate non-déterministe !");
+				// On applique les actions associées
+				for(int l=0;l<aut.listeTransitions.get(k).getActions().size();l++) {
+					appliquerAction(aut.listeTransitions.get(k).getActions().get(l),lem);
+				}
+				
+				lem.setEtat(aut.listeTransitions.get(k).getEtatFinal());
 					
 					
-					
-				} // fin if(Lemmings)
+			} // fin if(Lemmings)
 				
 				
 				
@@ -74,23 +75,25 @@ public class Moteur {
 	private static void marcher(Lemming l) {
 		if(l.getDirection()==0)
 			l.setY(l.getY()-1);
-		if(l.getDirection()==1) 
-			l.setY(l.getY()+1);
-		
-		System.out.println("Lemming marche : x: "+l.getX()+" y: "+l.getY()); 
-		
+		else if(l.getDirection()==1) 
+			l.setY(l.getY()+1);		
 	}
 	
 	private static void retourner(Lemming l) {
-		System.out.println("Demi-tour ! Marche !");
+		
 		if(l.getDirection()==0)
 			l.setDirection(1);
-		if(l.getDirection()==1)
+		else if(l.getDirection()==1)
 			l.setDirection(0);
 	}
 	
 	private static void tomber(Lemming l) {
-		
+		if(l.getDirection()==0) {
+			l.setX(l.getX()+1);
+		}			
+		else if(l.getDirection()==1) {
+			l.setX(l.getX()+1);
+		}
 	}
 	
 
