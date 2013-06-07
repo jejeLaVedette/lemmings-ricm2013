@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Carte {
 
-	public static int LARGEUR_CARTE = 50;
-	public static int HAUTEUR_CARTE = 20;
+	public static int LARGEUR_CARTE = 500;
+	public static int HAUTEUR_CARTE = 200;
 
 	public static Element[][] map = new Element[HAUTEUR_CARTE][LARGEUR_CARTE];
 	public static ArrayList<Observable> obs = new ArrayList<Observable>();
