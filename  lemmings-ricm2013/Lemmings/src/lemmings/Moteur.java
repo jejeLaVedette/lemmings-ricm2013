@@ -79,31 +79,37 @@ public class Moteur {
 	}
 	
 	private static void marcher(Lemming l) {
-		if(l.getDirection()==0)
+		if(l.getDirection()==0) {
+			l.image = "Images/lemming2.png";
 			l.setX(l.getX()-1);
-		else if(l.getDirection()==1) 
-			l.setX(l.getX()+1);		
+		}			
+		else if(l.getDirection()==1) {
+			l.setX(l.getX()+1);	
+			l.image = "Images/lemming1.png";
+		}
 	}
 	
 	private static void retourner(Lemming l) {
 		
-		if(l.getDirection()==0)
+		if(l.getDirection()==0) {
 			l.setDirection(1);
-		else if(l.getDirection()==1)
+			l.image = "Images/lemming1.png";
+		}
+		else if(l.getDirection()==1) {
 			l.setDirection(0);
+			l.image = "Images/lemming2.png";
+		}
 	}
 	
 	private static void tomber(Lemming l) {
-		if(l.getDirection()==0) {
-			l.setY(l.getY()+1);
-		}			
-		else if(l.getDirection()==1) {
-			l.setY(l.getY()+1);
-		}
+		l.setY(l.getY()+1);
+		l.image = "Images/lemming4.png";
+		
 	}
 	
 	private static void bloquer(Lemming l) {
 		Carte.map[l.getX()][l.getY()].type = 1;
+		l.image = "Images/lemming3.png";
 	}
 	
 

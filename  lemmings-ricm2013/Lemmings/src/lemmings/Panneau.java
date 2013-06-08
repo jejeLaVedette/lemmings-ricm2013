@@ -60,12 +60,13 @@ public class Panneau extends JPanel {
 			
 		for(int k =0;k<Carte.obs.size();k++){
 			// Recherche de l'image à afficher
-			int indiceAutomate=0;
+			/*int indiceAutomate=0;
 			while (indiceAutomate<Jeu.listeAutomates.size() && Jeu.listeAutomates.get(indiceAutomate).identifiant != Carte.obs.get(k).type) {
 				indiceAutomate++;
-			}
+			}*/
+			
 				
-			perso = new ImageIcon(Jeu.listeAutomates.get(indiceAutomate).image).getImage();
+			perso = new ImageIcon(Carte.obs.get(k).image).getImage();
 			g.setColor(new Color(51,204,0));
 			setOpaque(false);
 			g.drawImage(perso, Carte.obs.get(k).getX()*tailleRX-tailleRX*coeff/2, 

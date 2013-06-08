@@ -19,7 +19,7 @@ public class Jeu {
 		listeAutomates.add(new AutoLemmingStop(2));
 		//Carte.initialiser();
 		Carte.charger("Images/Carte.png");
-		Carte.setEntree(new Point(120, 20));
+		Carte.setEntree(new Point(120, 30));
 		Carte.setNbLemmings(20);
 		
 		int wait = 51;
@@ -28,7 +28,7 @@ public class Jeu {
 		f.afficher();
 		
 		// Lemmings bloqueurs
-		Carte.obs.add(new Lemming(150,20,1));
+		Carte.obs.add(new Lemming(150,30,1));
 		
 		while(true) {
 			
