@@ -4,6 +4,7 @@ public class Observable {
 	protected int type;
 	protected int x;
 	protected int y;
+	protected String image;
 	
 	public int getX() {
 		return x;
