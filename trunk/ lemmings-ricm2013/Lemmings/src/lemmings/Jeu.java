@@ -38,7 +38,7 @@ public class Jeu {
 			}
 			
 			Moteur.miseAJourObservables();
-			Thread.sleep(50);
+			Thread.sleep(10);
 			f.afficher();
 			
 			if(Carte.getNbLemmings()!=0)
