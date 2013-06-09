@@ -54,7 +54,7 @@ public class Moteur {
 					if(Carte.map[x+1][y+2].type>9 && Carte.map[x+1][y+2].type<20) relief++;
 				}
 			}
-			System.out.println(cond+relief);
+			
 			// S'il est mort, et ben... il est mort !
 			if(lem.getEtat()==-1 && cond=="sol") {
 				Carte.obs.remove(i);
