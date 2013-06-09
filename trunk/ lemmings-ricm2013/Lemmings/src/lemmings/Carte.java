@@ -76,9 +76,9 @@ public class Carte {
 					v = c.getGreen();
 					b = c.getBlue();
 					
-					// Si blanc ---> air
-					if (r==255 && v == 255 && b == 255)
-						map[j][i] = new Air();		
+					// Si rose ---> air
+					if (r==255 && v == 0 && b == 255)
+						map[j][i] = new Air(new Color(50,50,50));		
 					else
 						map[j][i] = new Sol(new Color(r,v,b));
 					
@@ -91,7 +91,11 @@ public class Carte {
 	public static void popLemmings ()
 	{
 		if(nbLemmings>0) {
-			Lemming lem = new Lemming(entree.x,entree.y);
+			Lemming lem;
+			if((nbLemmings%2)==0)
+				lem = new Lemming(entree.x,entree.y);
+			else
+				lem = new Lemming(entree.x,entree.y,2);
 			obs.add(lem);
 			nbLemmings--;
 		}

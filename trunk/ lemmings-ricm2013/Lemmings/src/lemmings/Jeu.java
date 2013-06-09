@@ -17,6 +17,7 @@ public class Jeu {
 		
 		listeAutomates.add(new AutoLemmingBasique(5));
 		listeAutomates.add(new AutoLemmingStop(2));
+		listeAutomates.add(new AutoLemmingParapluie(5));
 		//Carte.initialiser();
 		Carte.charger("Images/Carte.png");
 		Carte.setEntree(new Point(120, 30));

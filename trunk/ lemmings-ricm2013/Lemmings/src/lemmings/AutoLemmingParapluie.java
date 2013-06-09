@@ -3,11 +3,11 @@ package lemmings;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AutoLemmingBasique extends Automate {
+public class AutoLemmingParapluie extends Automate {
 
-	public AutoLemmingBasique(int nbTransitions) {
+	public AutoLemmingParapluie(int nbTransitions) {
 		
-		super(nbTransitions,0);
+		super(nbTransitions, 2);
 		List<String> l = new ArrayList<String>();
 		
 		l.add("marcher");
@@ -40,18 +40,17 @@ public class AutoLemmingBasique extends Automate {
 		v--;
 		l = new ArrayList<String>();
 		l.add("tomber");
-		listeTransitions.add(new Transition(v, -1, "vide", l));
+		listeTransitions.add(new Transition(v, v+1, "vide", l));
 		
 		l = new ArrayList<String>();
-		listeTransitions.add(new Transition(v, -1, "sol", l));
+		listeTransitions.add(new Transition(v, v+1, "sol", l));
 		
 		l = new ArrayList<String>();
-		listeTransitions.add(new Transition(-1, -1, "sol", l));
+		listeTransitions.add(new Transition(v+1, 0, "sol", l));
 		
 		l = new ArrayList<String>();
-		l.add("tomber");
-		listeTransitions.add(new Transition(-1, -1, "vide", l));
-		
+		l.add("tomberParapluie");
+		listeTransitions.add(new Transition(v+1, v+1, "vide", l));
 	}
 
 }
