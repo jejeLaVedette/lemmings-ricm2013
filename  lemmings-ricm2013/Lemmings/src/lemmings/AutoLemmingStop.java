@@ -6,7 +6,7 @@ import java.util.List;
 public class AutoLemmingStop extends Automate {
 
 	public AutoLemmingStop (int nbTransitions) {
-		super(nbTransitions,1,"Images/perso3.png");
+		super(nbTransitions,1);
 		List<String> l = new ArrayList<String>();
 		
 		l.add("tomber");
