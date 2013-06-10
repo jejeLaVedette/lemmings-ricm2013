@@ -15,8 +15,10 @@ public class Moteur implements Constantes {
 			Lemming lem = (Lemming) Carte.obs.get(i);
 			
 			// Si l'état est -2 : on "convertit" le lemming en lemming de base
-			if(lem.getEtat()==etatReinit)
+			if(lem.getEtat()==etatReinit) {
 				lem.type = lemmingBase;
+				lem.setEtat(etatInitial);
+			}
 			
 			// Cas du lemmings catapulté
 			if(lem.type == 5) {
@@ -49,7 +51,6 @@ public class Moteur implements Constantes {
 				}
 			}
 			
-			System.out.println(cond);
 			// Calcul du relief
 			if(cond=="sol") {
 				relief = 0;
