@@ -29,41 +29,23 @@ public class Trajectoire_physique {
 	//Calcul les coordonnées du foyer de l'ellipse
 	private Point get_f(){
 		 Point a=new Point((this.vect_x+this.base_x),this.base_y);
-		 System.out.println("valeur de f");
-		 System.out.println("x");
-		 System.out.println(this.vect_x+this.base_x);
-		 System.out.println("y");
-		 System.out.println(this.base_y);
-		 
-		 
 		 return a;
 	}
 	
 	//Renvoit la coordonnées y de la directrice D
 	private double get_d(){
-		
 		int calculnorme;
 		calculnorme=this.base_y-this.vect_y-30;
 		System.out.println("d");
 		 System.out.println(calculnorme);
-		return calculnorme;	
-		/* calculnorme=vect_x*vect_x+vect_y*vect_y;
-		
-		return Math.sqrt(calculnorme);*/
-		
+		return calculnorme;			
 	}
 	
 	//Calcul des coordonnées du point O,projeté orthogonal de F sur D
-	private Point get_o(){
-		
+	private Point get_o(){		
 		int x= (int)this.get_f().getX();
 		int y=(int)this.get_d();
 		Point o=new Point(x,y);
-		System.out.println("valeur de o");
-		 System.out.println("x");
-		 System.out.println(x);
-		 System.out.println("y");
-		 System.out.println(y);
 		return o;
 	}
 	
@@ -71,23 +53,14 @@ public class Trajectoire_physique {
 	private Point get_s(){
 		int x =(int)this.get_f().getX();
 		int y;
-		
-		 y =(int)(((this.get_f().getY())+(this.get_o().getY()))/2);
-		
+		y =(int)(((this.get_f().getY())+(this.get_o().getY()))/2);
 		Point s=new Point(x,y);
-		System.out.println("valeur de s");
-		 System.out.println("x");
-		 System.out.println(x);
-		 System.out.println("y");
-		 System.out.println(y);
 		return s;
 	}
 	
 	//Calcul de p,distance OF
 	private double get_p(){
 		double rep= this.get_f().getY()-this.get_o().getY();
-		 System.out.println("p");
-		 System.out.println(rep);
 		return Math.abs((int)rep);		
 	}
 	
@@ -109,18 +82,11 @@ public class Trajectoire_physique {
 			}
 		if(this.sens_courbe)
 		{
-			System.out.println("valeur de y dans S");
-			 System.out.println("y");
-			 System.out.println(yrel);
 		return yrel;
 		}
 		else{
-			System.out.println("valeur de y dans S");
-			 System.out.println("y");
-			 System.out.println(-yrel);
 			return -yrel;
-		}
-		
+		}		
 	}
 	
 	
@@ -129,8 +95,6 @@ public class Trajectoire_physique {
 		int rep;
 		yrel=this.get_YpourS(this.get_XpourS(x));
 		rep=((int)this.get_s().getY())+yrel;
-		System.out.println("valeur de y final ");
-		 System.out.println(rep);
 		return rep+constante;
 		
 	}
