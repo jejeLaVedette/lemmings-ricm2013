@@ -17,7 +17,7 @@ public class Moteur implements Constantes {
 			// Si l'état est -2 : on "convertit" le lemming en lemming de base
 			if(lem.getEtat()==etatReinit) {
 				lem.type = lemmingBase;
-				lem.setEtat(etatInitial);
+				lem.setEtat(etatInitial); System.out.println("SALUT");
 			}
 			
 			// Cas du lemmings catapulté
@@ -147,7 +147,7 @@ public class Moteur implements Constantes {
 	}
 	
 	private static void tomber(Lemming l) {
-		l.setY(l.getY()+1);
+		l.setY(l.getY()+2);
 		l.image = "Images/lemming5.png";
 		
 	}
@@ -164,7 +164,7 @@ public class Moteur implements Constantes {
 	}
 	
 	private static void tomberParapluie(Lemming l) {
-		l.setY(l.getY()+2);
+		l.setY(l.getY()+1);
 		l.image = "Images/lemming6.png";
 	}
 	
