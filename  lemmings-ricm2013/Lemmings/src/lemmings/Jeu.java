@@ -36,10 +36,13 @@ public class Jeu implements Constantes {
 		
 		// Lemmings creuseurs
 		Carte.obs.add(new Lemming(80,120,lemmingCreuseur));
+		Carte.obs.add(new Lemming(80,80,lemmingStop));
 		
 		// Lemmings catapulte
-		//Carte.obs.add(new Lemming(80,170,5));
-		traj = new Trajectoire_physique(170, 80, 50, 30);
+
+		Carte.obs.add(new Lemming(0,80,5));
+		traj = new Trajectoire_physique(0,80 , 100, 100,false);
+
 		
 		while(true) {
 			
