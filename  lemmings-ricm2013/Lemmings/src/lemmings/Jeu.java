@@ -35,7 +35,7 @@ public class Jeu {
 		
 		// Lemmings catapulte
 		Carte.obs.add(new Lemming(80,170,5));
-		traj = new Trajectoire_physique(80, 170, 0, 0);
+		traj = new Trajectoire_physique(80, 170, 50, 60);
 		
 		while(true) {
 			
