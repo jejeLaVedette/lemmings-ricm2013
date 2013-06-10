@@ -21,15 +21,19 @@ public interface Constantes {
 	// Constantes des Lemmings
 	public final static int droite = 1;
 	public final static int gauche = 0;
+	public final static int profondeurCreuser = 10;
 	
 	// Constantes de la fenêtre
+	public final static int coeff = 10;
 	
 	// Constantes Automates
 	public final static int etatInitial = 0;
 	public final static int etatMort = -1;
+	public final static int etatReinit = -2;
 	public final static int lemmingBase = 0;
 	public final static int lemmingStop = 1;
 	public final static int lemmingParapluie = 2;
+	public final static int lemmingCreuseur = 3;
 	
 	// Constantes de Jeu
 	public final static int delaiAttente = 10;
