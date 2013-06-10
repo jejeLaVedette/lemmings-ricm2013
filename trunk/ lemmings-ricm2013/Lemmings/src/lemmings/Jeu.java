@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Jeu {
+public class Jeu implements Constantes {
 	
 	public static List<Automate>listeAutomates = new ArrayList<Automate>();
 	/*private int x;
@@ -17,21 +17,21 @@ public class Jeu {
 	
 	public static void main(String[] args) throws InterruptedException, IOException{
 		
-		listeAutomates.add(new AutoLemmingBasique(5));
-		listeAutomates.add(new AutoLemmingStop(2));
-		listeAutomates.add(new AutoLemmingParapluie(5));
+		listeAutomates.add(new AutoLemmingBasique(lemmingBase));
+		listeAutomates.add(new AutoLemmingStop(lemmingStop));
+		listeAutomates.add(new AutoLemmingParapluie(lemmingParapluie));
 		//Carte.initialiser();
 		Carte.charger("Images/Carte.png");
 		Carte.setEntree(new Point(120, 30));
 		Carte.setNbLemmings(20);
 		
-		int wait = 51;
+		int wait = delaiPop + 1;
 		
 		Fenetre f = new Fenetre();
 		f.afficher();
 		
 		// Lemmings bloqueurs
-		Carte.obs.add(new Lemming(150,30,1));
+		Carte.obs.add(new Lemming(150,30,lemmingStop));
 		
 		// Lemmings catapulte
 		Carte.obs.add(new Lemming(80,170,5));
@@ -39,13 +39,13 @@ public class Jeu {
 		
 		while(true) {
 			
-			if(wait>50) {
+			if(wait>delaiPop) {
 				Carte.popLemmings();
 				wait = 0;
 			}
 			
 			Moteur.miseAJourObservables();
-			Thread.sleep(10);
+			Thread.sleep(delaiAttente);
 			f.afficher();
 			
 			if(Carte.getNbLemmings()!=0)

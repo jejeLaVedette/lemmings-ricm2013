@@ -1,33 +1,33 @@
 package lemmings;
 
-public class Lemming extends Observable {
+public class Lemming extends Observable implements Constantes {
 	
 	private int direction;
 	private int etat;
 	
 	public Lemming() {
-		super.type = 0;
-		this.direction = 1;
+		super.type = lemmingBase;
+		this.direction = droite;
 		this.image = "Images/lemming1.png";
-		this.etat = 0;
+		this.etat = etatInitial;
 		super.x = Carte.getEntree().x;
 		super.y = Carte.getEntree().y;
 	}
 	
 	public Lemming(int x,int y) {
-		super.type = 0;
-		this.direction = 1;
+		super.type = lemmingBase;
+		this.direction = droite;
 		this.image = "Images/lemming1.png";
-		this.etat = 0;
+		this.etat = etatInitial;
 		super.x = x;
 		super.y = y;
 	}
 	
 	public Lemming(int x,int y, int type) {
 		super.type = type;
-		this.direction = 1;
+		this.direction = droite;
 		this.image = "Images/lemming1.png";
-		this.etat = 0;
+		this.etat = etatInitial;
 		super.x = x;
 		super.y = y;
 	}
