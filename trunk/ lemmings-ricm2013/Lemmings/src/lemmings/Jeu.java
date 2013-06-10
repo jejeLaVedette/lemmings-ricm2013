@@ -24,7 +24,7 @@ public class Jeu implements Constantes {
 		//Carte.initialiser();
 		Carte.charger("Images/Carte.png");
 		Carte.setEntree(new Point(120, 30));
-		Carte.setNbLemmings(0);
+		Carte.setNbLemmings(20);
 		
 		int wait = delaiPop + 1;
 		
@@ -32,11 +32,11 @@ public class Jeu implements Constantes {
 		f.afficher();
 		
 		// Lemmings bloqueurs
-		//Carte.obs.add(new Lemming(150,30,lemmingStop));
+		Carte.obs.add(new Lemming(150,30,lemmingStop));
+		Carte.obs.add(new Lemming(80,80,lemmingStop));
 		
 		// Lemmings creuseurs
-		Carte.obs.add(new Lemming(80,120,lemmingCreuseur));
-		Carte.obs.add(new Lemming(80,80,lemmingStop));
+		Carte.obs.add(new Lemming(45,80,lemmingCreuseur));
 		
 		// Lemmings catapulte
 

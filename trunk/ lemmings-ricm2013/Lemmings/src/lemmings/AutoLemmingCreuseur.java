@@ -18,16 +18,16 @@ public class AutoLemmingCreuseur extends Automate implements Constantes {
 		l = new ArrayList<String>();
 		l.add("creuser");
 		int i=1;
-		while(i<profondeurCreuser) {
+		while(i<profondeurCreuser+1) {
 			listeTransitions.add(new Transition(i, i+1, "sol", l));
 			listeTransitions.add(new Transition(i, etatReinit, "vide", l));
 			i++;
 		}
 		
 		l = new ArrayList<String>();
-		listeTransitions.add(new Transition(i+1, etatReinit, "sol", l));
-		listeTransitions.add(new Transition(i+1, etatReinit, "vide", l));
-		listeTransitions.add(new Transition(i+1, etatReinit, "mur", l));
+		listeTransitions.add(new Transition(i, etatReinit, "sol", l));
+		listeTransitions.add(new Transition(i, etatReinit, "vide", l));
+		listeTransitions.add(new Transition(i, etatReinit, "mur", l));
 	}
 
 }
