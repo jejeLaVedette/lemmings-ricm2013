@@ -3,11 +3,11 @@ package lemmings;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AutoLemmingBasique extends Automate {
+public class AutoLemmingBasique extends Automate implements Constantes {
 
 	public AutoLemmingBasique(int nbTransitions) {
 		
-		super(nbTransitions,0);
+		super(nbTransitions,lemmingBase);
 		List<String> l = new ArrayList<String>();
 		
 		l.add("marcher");

@@ -17,13 +17,14 @@ public class Jeu implements Constantes {
 	
 	public static void main(String[] args) throws InterruptedException, IOException{
 		
-		listeAutomates.add(new AutoLemmingBasique(lemmingBase));
-		listeAutomates.add(new AutoLemmingStop(lemmingStop));
-		listeAutomates.add(new AutoLemmingParapluie(lemmingParapluie));
+		listeAutomates.add(new AutoLemmingBasique(5));
+		listeAutomates.add(new AutoLemmingStop(5));
+		listeAutomates.add(new AutoLemmingParapluie(5));
+		listeAutomates.add(new AutoLemmingCreuseur(5));
 		//Carte.initialiser();
 		Carte.charger("Images/Carte.png");
 		Carte.setEntree(new Point(120, 30));
-		Carte.setNbLemmings(20);
+		Carte.setNbLemmings(0);
 		
 		int wait = delaiPop + 1;
 		
@@ -31,11 +32,14 @@ public class Jeu implements Constantes {
 		f.afficher();
 		
 		// Lemmings bloqueurs
-		Carte.obs.add(new Lemming(150,30,lemmingStop));
+		//Carte.obs.add(new Lemming(150,30,lemmingStop));
+		
+		// Lemmings creuseurs
+		Carte.obs.add(new Lemming(80,120,lemmingCreuseur));
 		
 		// Lemmings catapulte
-		Carte.obs.add(new Lemming(80,170,5));
-		traj = new Trajectoire_physique(80, 170, 50, 60);
+		//Carte.obs.add(new Lemming(80,170,5));
+		traj = new Trajectoire_physique(170, 80, 50, 30);
 		
 		while(true) {
 			

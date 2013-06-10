@@ -3,10 +3,10 @@ package lemmings;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AutoLemmingStop extends Automate {
+public class AutoLemmingStop extends Automate implements Constantes {
 
 	public AutoLemmingStop (int nbTransitions) {
-		super(nbTransitions,1);
+		super(nbTransitions,lemmingStop);
 		List<String> l = new ArrayList<String>();
 		
 		l.add("tomber");

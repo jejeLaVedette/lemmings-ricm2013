@@ -12,8 +12,11 @@ public class Moteur implements Constantes {
 			// Analyse de l'element courant
 				
 			// Si on a un Lemming
-				
 			Lemming lem = (Lemming) Carte.obs.get(i);
+			
+			// Si l'état est -2 : on "convertit" le lemming en lemming de base
+			if(lem.getEtat()==etatReinit)
+				lem.type = lemmingBase;
 			
 			// Cas du lemmings catapulté
 			if(lem.type == 5) {
@@ -45,6 +48,8 @@ public class Moteur implements Constantes {
 					cond = "sol";
 				}
 			}
+			
+			System.out.println(cond);
 			// Calcul du relief
 			if(cond=="sol") {
 				relief = 0;
@@ -109,6 +114,8 @@ public class Moteur implements Constantes {
 			bloquer(l);
 		else if(s=="tomberParapluie")
 			tomberParapluie(l);
+		else if(s=="creuser")
+			creuser(l);
 		else
 			System.out.println("Action invalide !");
 	}
@@ -156,8 +163,16 @@ public class Moteur implements Constantes {
 	}
 	
 	private static void tomberParapluie(Lemming l) {
-		l.setY(l.getY()+1);
+		l.setY(l.getY()+2);
 		l.image = "Images/lemming6.png";
+	}
+	
+	private static void creuser(Lemming l) {
+		for(int i=0;i<(coeff/2);i++) {
+			Carte.map[l.getX()+i][l.getY()] = new Air();
+			Carte.map[l.getX()-i][l.getY()] = new Air();
+		}
+		l.setY(l.getY()+1);
 	}
 	
 
