@@ -15,9 +15,12 @@ public static void main(String[] args){
 		Carte.initialiser();
 		Fenetre f = new Fenetre();
 		f.afficher();
-		Trajectoire_physique tp = new Trajectoire_physique(80, 170, 50, 60);
-		for(int i = 0 ; i<250;i++){
+		CopyOfTrajectoire_physique tp = new CopyOfTrajectoire_physique(80, 80, 50, -100,true);
+		for(int i = 0 ; i<20;i++){
 			int y = tp.get_trajectoireY(i);
+			System.out.println("valeur de y finale");
+			 
+			
 			System.out.println(y);}
 	}
 
