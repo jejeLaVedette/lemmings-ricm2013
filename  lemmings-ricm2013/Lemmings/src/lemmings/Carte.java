@@ -9,10 +9,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-public class Carte {
-
-	public static int LARGEUR_CARTE = 500;
-	public static int HAUTEUR_CARTE = 200;
+public class Carte implements Constantes {
 	
 	public static Point entree;
 	public static int nbLemmings;
@@ -66,21 +63,19 @@ public class Carte {
 		if(maCarte.getHeight() != HAUTEUR_CARTE || maCarte.getWidth() != LARGEUR_CARTE)
 			System.out.println("Carte invalide : erreur de dimension");
 		else {
-			Color c; int r,v,b;
+			Color c;
 			for(int i=0;i<maCarte.getHeight();i++) {
 				for(int j=0;j<maCarte.getWidth();j++) {
 					
 					c = new Color(maCarte.getRGB(j,i));
 					
-					r = c.getRed();
-					v = c.getGreen();
-					b = c.getBlue();
-					
-					// Si rose ---> air
-					if (r==255 && v == 0 && b == 255)
-						map[j][i] = new Air(new Color(50,50,50));		
+					// Test : air ou pas air ?
+					if (c.getBlue() == pixelAir.getBlue() &&
+						c.getRed() == pixelAir.getRed() &&
+						c.getGreen() == pixelAir.getGreen())
+						map[j][i] = new Air();		
 					else
-						map[j][i] = new Sol(new Color(r,v,b));
+						map[j][i] = new Sol(c);
 					
 				}
 			}

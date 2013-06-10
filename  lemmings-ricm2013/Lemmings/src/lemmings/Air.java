@@ -2,15 +2,15 @@ package lemmings;
 
 import java.awt.Color;
 
-public class Air extends Element {
+public class Air extends Element implements Constantes {
 	
 	public Air () {
-		super.type = 10;
-		super.couleur = new Color(255,255,255);
+		super.type = typeAirInf;
+		super.couleur = defautAir;
 	}
 	
 	public Air (Color c) {
-		super.type = 10;
+		super.type = typeAirInf;
 		super.couleur = c;
 	}
 
