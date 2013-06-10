@@ -13,6 +13,8 @@ public class Jeu {
 	private int vectx;
 	private int vecty;*/
 	
+	public static Trajectoire_physique traj;
+	
 	public static void main(String[] args) throws InterruptedException, IOException{
 		
 		listeAutomates.add(new AutoLemmingBasique(5));
@@ -30,6 +32,10 @@ public class Jeu {
 		
 		// Lemmings bloqueurs
 		Carte.obs.add(new Lemming(150,30,1));
+		
+		// Lemmings catapulte
+		Carte.obs.add(new Lemming(80,170,5));
+		traj = new Trajectoire_physique(80, 170, 0, 0);
 		
 		while(true) {
 			
