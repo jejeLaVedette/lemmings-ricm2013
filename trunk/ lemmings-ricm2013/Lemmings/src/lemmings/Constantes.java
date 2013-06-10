@@ -15,6 +15,7 @@ public interface Constantes {
 	public final static int typeSolSup = 9;
 	public final static int typeAirInf = 10;
 	public final static int typeAirSup = 19;
+	public final static int typeSolInvisible = 1;
 	
 	// Constantes des Lemmings
 	public final static int droite = 1;

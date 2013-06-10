@@ -1,6 +1,6 @@
 package lemmings;
 
-public class Moteur {
+public class Moteur implements Constantes {
 	
 	private static int relief=0;
 	
@@ -29,16 +29,16 @@ public class Moteur {
 			
 			
 			// Présence d'un mur
-			if( (x==0 && lem.getDirection()==0) || 
+			if( (x==0 && lem.getDirection()==gauche) || 
 				(x==Carte.LARGEUR_CARTE-1 && lem.getDirection()==1) ||
-				(lem.getDirection()==0 && Carte.map[x-1][y].type<10 && Carte.map[x-1][y-1].type<10 && Carte.map[x-1][y-2].type<10)||
-				(lem.getDirection()==1 && Carte.map[x+1][y].type<10 && Carte.map[x+1][y-1].type<10 && Carte.map[x+1][y-2].type<10) ) {
+				(lem.getDirection()==gauche && Carte.map[x-1][y].type<=typeSolSup && Carte.map[x-1][y-1].type<=typeSolSup && Carte.map[x-1][y-2].type<=typeSolSup)||
+				(lem.getDirection()==droite && Carte.map[x+1][y].type<=typeSolSup && Carte.map[x+1][y-1].type<=typeSolSup && Carte.map[x+1][y-2].type<=typeSolSup) ) {
 					cond = "mur";
 			}
 			// Présence d'un vide
 			else { 
-				if( ( lem.getDirection()==0 && Carte.map[x][y+1].type>9 && Carte.map[x][y+1].type<20 ) ||
-					( lem.getDirection()==1 && Carte.map[x][y+1].type>9 && Carte.map[x][y+1].type<20 )	) {
+				if( ( lem.getDirection()==gauche && Carte.map[x][y+1].type>=typeAirInf && Carte.map[x][y+1].type<=typeAirSup ) ||
+					( lem.getDirection()==droite && Carte.map[x][y+1].type>=typeAirInf && Carte.map[x][y+1].type<=typeAirSup )	) {
 					cond = "vide";
 				}
 				else {
@@ -48,22 +48,22 @@ public class Moteur {
 			// Calcul du relief
 			if(cond=="sol") {
 				relief = 0;
-				if(lem.getDirection()==0) {
-					if(Carte.map[x-1][y-1].type<10) relief--;
-					if(Carte.map[x-1][y-2].type<10) relief--;
-					if(Carte.map[x-1][y+1].type>9 && Carte.map[x-1][y+1].type<20) relief++;
-					if(Carte.map[x-1][y+2].type>9 && Carte.map[x-1][y+2].type<20) relief++;
+				if(lem.getDirection()==gauche) {
+					if(Carte.map[x-1][y-1].type<=typeSolSup) relief--;
+					if(Carte.map[x-1][y-2].type<=typeSolSup) relief--;
+					if(Carte.map[x-1][y+1].type>=typeAirInf && Carte.map[x-1][y+1].type<=typeAirSup) relief++;
+					if(Carte.map[x-1][y+2].type>=typeAirInf && Carte.map[x-1][y+2].type<=typeAirSup) relief++;
 				}
 				else {
-					if(Carte.map[x+1][y-1].type<10) relief--;
-					if(Carte.map[x+1][y-2].type<10) relief--;
-					if(Carte.map[x+1][y+1].type>9 && Carte.map[x+1][y+1].type<20) relief++;
-					if(Carte.map[x+1][y+2].type>9 && Carte.map[x+1][y+2].type<20) relief++;
+					if(Carte.map[x+1][y-1].type<=typeSolSup) relief--;
+					if(Carte.map[x+1][y-2].type<=typeSolSup) relief--;
+					if(Carte.map[x+1][y+1].type>=typeAirInf && Carte.map[x+1][y+1].type<=typeAirSup) relief++;
+					if(Carte.map[x+1][y+2].type>=typeAirInf && Carte.map[x+1][y+2].type<=typeAirSup) relief++;
 				}
 			}
 			
 			// S'il est mort, et ben... il est mort !
-			if(lem.getEtat()==-1 && cond=="sol") {
+			if(lem.getEtat()==etatMort && cond=="sol") {
 				Carte.obs.remove(i);
 				break;
 			}
@@ -150,9 +150,9 @@ public class Moteur {
 		else if(l.getDirection()==1)
 			l.image = "Images/lemming3.png";
 		
-		Carte.map[l.getX()][l.getY()].type = 1;
-		Carte.map[l.getX()][l.getY()-1].type = 1;
-		Carte.map[l.getX()][l.getY()-2].type = 1;
+		Carte.map[l.getX()][l.getY()].type = typeSolInvisible;
+		Carte.map[l.getX()][l.getY()-1].type = typeSolInvisible;
+		Carte.map[l.getX()][l.getY()-2].type = typeSolInvisible;
 	}
 	
 	private static void tomberParapluie(Lemming l) {
