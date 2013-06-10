@@ -25,7 +25,7 @@ public class AutoLemmingBasique extends Automate implements Constantes {
 		//listeTransitions.add(new Transition(1, 0, "sol", l));
 		
 		int v = 2;
-		for(int u=1;u<40;u++)
+		for(int u=1;u<hauteurLetale;u++)
 		{
 			// Tombe et atterit
 			l = new ArrayList<String>();
