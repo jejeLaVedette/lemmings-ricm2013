@@ -8,12 +8,19 @@ public class Moteur {
 	{
 		
 		for(int i=0;i<Carte.obs.size();i++) {
-				
+			
 			// Analyse de l'element courant
 				
 			// Si on a un Lemming
 				
 			Lemming lem = (Lemming) Carte.obs.get(i);
+			
+			// Cas du lemmings catapulté
+			if(lem.type == 5) {
+				lem.setY(Jeu.traj.get_trajectoireY(lem.getX()));
+				lem.setX(lem.getX()+1);
+				continue;			
+			}
 			
 			int x = lem.getX();
 			int y = lem.getY();
