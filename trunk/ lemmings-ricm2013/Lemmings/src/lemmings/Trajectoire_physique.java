@@ -36,8 +36,6 @@ public class Trajectoire_physique {
 	private double get_d(){
 		int calculnorme;
 		calculnorme=this.base_y-this.vect_y-30;
-		System.out.println("d");
-		 System.out.println(calculnorme);
 		return calculnorme;			
 	}
 	
