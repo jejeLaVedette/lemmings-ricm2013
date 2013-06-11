@@ -14,6 +14,7 @@ public class Jeu implements Constantes {
 	private int vecty;*/
 	
 	public static Trajectoire_physiqueH traj;
+	public static Trajectoire_physiqueV traj2;
 	
 	public static void main(String[] args) throws InterruptedException, IOException{
 		
@@ -42,8 +43,8 @@ public class Jeu implements Constantes {
 		// Lemmings catapulte
 
 		Carte.obs.add(new Lemming(120,150,lemmingCatapulte));
-		traj = new Trajectoire_physiqueH(120,150,40,20,true);
-
+		traj = new Trajectoire_physiqueH(120,150,20,50,true);
+		traj2 = new Trajectoire_physiqueV();
 		
 		while(true) {
 			

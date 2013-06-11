@@ -7,8 +7,11 @@ public class Trajectoire_physiqueV {
 	private int vect_y;
 	boolean sens;
 	private int constante;
-
+	public boolean init;
 	//sens true-> va vers la gauche
+	public Trajectoire_physiqueV() {
+		init = false;
+	}
 	
 	public Trajectoire_physiqueV(int x,int y,int vx,int vy,boolean s){
 		this.base_x=x;
@@ -17,6 +20,7 @@ public class Trajectoire_physiqueV {
 		this.vect_y=(int)(vy/3);	
 		this.sens=s;
 		this.constante=x-get_trajectoireX(base_y);
+		this.init = true;
 		
 		
 	}
