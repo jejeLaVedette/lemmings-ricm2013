@@ -36,7 +36,14 @@ public class Trajectoire_physiqueH {
 	//Renvoit la coordonnées y de la directrice D
 	private double get_d(){
 		int calculnorme;
-		calculnorme=this.base_y-this.vect_y-30;
+		if(this.vect_y==30)
+		{
+		calculnorme=this.base_y-this.vect_y-40;
+		}
+		else{
+			calculnorme=this.base_y-this.vect_y-30;
+			
+		}
 		return calculnorme;			
 	}
 	
@@ -74,7 +81,7 @@ public class Trajectoire_physiqueH {
 		int temp=(int)this.get_p();
 	
 		if(temp==0){
-			yrel=(x*x)/2;
+			yrel=this.base_y;
 			}
 			else{
 				yrel=(x*x)/(2*temp);		
