@@ -31,6 +31,7 @@ public interface Constantes {
 	public final static int etatInitial = 0;
 	public final static int etatMort = -1;
 	public final static int etatReinit = -2;
+	public final static int etatReinitParapluie = -3;
 	public final static int lemmingBase = 0;
 	public final static int lemmingStop = 1;
 	public final static int lemmingParapluie = 2;

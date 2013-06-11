@@ -19,7 +19,10 @@ public class Moteur implements Constantes {
 				lem.type = lemmingBase;
 				lem.setEtat(etatInitial);
 			}
-			
+			if(lem.getEtat()==etatReinitParapluie) {
+				lem.type = lemmingParapluie;
+				lem.setEtat(etatInitial);
+			}
 			int x = lem.getX();
 			int y = lem.getY();
 			// Analyse de l'environnement du lemming courant
@@ -30,7 +33,9 @@ public class Moteur implements Constantes {
 			if( (x==0 && lem.getDirection()==gauche) || 
 				(x==Carte.LARGEUR_CARTE-1 && lem.getDirection()==1) ||
 				(lem.getDirection()==gauche && Carte.map[x-1][y].type<=typeSolSup && Carte.map[x-1][y-1].type<=typeSolSup && Carte.map[x-1][y-2].type<=typeSolSup)||
-				(lem.getDirection()==droite && Carte.map[x+1][y].type<=typeSolSup && Carte.map[x+1][y-1].type<=typeSolSup && Carte.map[x+1][y-2].type<=typeSolSup) ) {
+				(lem.getDirection()==droite && Carte.map[x+1][y].type<=typeSolSup && Carte.map[x+1][y-1].type<=typeSolSup && Carte.map[x+1][y-2].type<=typeSolSup)||
+				(lem.type == lemmingCatapulte && Carte.map[x][y-1-coeff*3/4].type<=typeSolSup && Carte.map[x-1][y-1-coeff*3/4].type<=typeSolSup && Carte.map[x+1][y-1-coeff*3/4].type<=typeSolSup )
+					) {
 					cond = "mur";
 			}
 			// Présence d'un vide
@@ -112,6 +117,8 @@ public class Moteur implements Constantes {
 			creuser(l);
 		else if(s=="voler")
 			voler(l);
+		else if(s=="rebondir")
+			rebondir(l);
 		else
 			System.out.println("Action invalide !");
 	}
@@ -177,6 +184,14 @@ public class Moteur implements Constantes {
 	private static void voler(Lemming l) {
 		l.setY(Jeu.traj.get_trajectoireY(l.getX()));
 		l.setX(l.getX()+1);
+	}
+	
+	private static void rebondir(Lemming l) {
+		if(!Jeu.traj2.init) {
+			Jeu.traj2 = new Trajectoire_physiqueV(l.getX(),l.getY(),Jeu.traj.get_vect_x(),Jeu.traj.get_vect_y(),false);
+		}
+		l.setX(Jeu.traj2.get_trajectoireX(l.getY()));
+		l.setY(l.getY()+1);
 	}
 	
 
