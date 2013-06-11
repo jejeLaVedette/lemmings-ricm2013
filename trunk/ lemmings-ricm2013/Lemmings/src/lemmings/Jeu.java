@@ -35,11 +35,12 @@ public class Jeu implements Constantes {
 		//Carte.obs.add(new Lemming(80,80,lemmingStop));
 		
 		// Lemmings creuseurs
-		//Carte.obs.add(new Lemming(45,80,lemmingCreuseur));
+		//Carte.obs.add(new Lemming(90,40,lemmingCreuseur));
 		
 		// Lemmings catapulte
-		Carte.obs.add(new Lemming(100,150,lemmingCatapulte));
-		
+		//Carte.obs.add(new Lemming(100,150,lemmingCatapulte));
+		Carte.obs.add(new Lemming(150,150,lemmingCatapulte));
+		((Lemming) Carte.obs.get(0)).direction = gauche;
 		while(true) {
 			
 			if(wait>delaiPop) {

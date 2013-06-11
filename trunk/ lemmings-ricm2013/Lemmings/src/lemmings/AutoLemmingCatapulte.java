@@ -26,7 +26,7 @@ public class AutoLemmingCatapulte extends Automate implements Constantes {
 		
 		l = new ArrayList<String>();
 		l.add("initTrajectoire");
-		l.add("tomber");
+		l.add("retourner"); l.add("marcher"); l.add("retourner");
 		listeTransitions.add(new Transition(2, 3, "sol", l));
 		listeTransitions.add(new Transition(2, 3, "mur", l));
 		
