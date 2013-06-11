@@ -10,9 +10,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 
-public class Fenetre extends JFrame implements MouseListener, ActionListener{
+public class Fenetre extends JFrame implements MouseListener, ActionListener, KeyListener{
 	/**
 	 * 
 	 */
@@ -29,8 +31,8 @@ public class Fenetre extends JFrame implements MouseListener, ActionListener{
 	//private JPanel container = new JPanel();
 
 
-	public static int tailleFX = 1000;
-	public static int tailleFY = 500;
+	public static int tailleFX = 1350;
+	public static int tailleFY = 1080;
 	public static int restey = tailleFY%Carte.HAUTEUR_CARTE;
 	public static int restex = tailleFX%Carte.LARGEUR_CARTE;
 
@@ -38,7 +40,7 @@ public class Fenetre extends JFrame implements MouseListener, ActionListener{
 		this.setTitle("Lemmings");
 		this.setSize(tailleFX, tailleFY);
 		//empeche le redimentionnement de la fenetre
-		this.setResizable(false);
+		//this.setResizable(false);
 		//Positionne l'objet au centre
 		this.setLocationRelativeTo(null);
 		//Termine le processus lorsqu'on clique sur la croix rouge
@@ -50,7 +52,7 @@ public class Fenetre extends JFrame implements MouseListener, ActionListener{
 		setIconImage(icone);
 
 		//Nos boutons sont en attente de cliques
-		bouton1.addActionListener(this);
+		/*bouton1.addActionListener(this);
 		bouton2.addActionListener(this);
 		bouton3.addActionListener(this);
 		bouton4.addActionListener(this);
@@ -64,9 +66,10 @@ public class Fenetre extends JFrame implements MouseListener, ActionListener{
 
 		panel.add(bouton3);
 
-		panel.add(bouton4);
+		panel.add(bouton4);*/
 
-		pan.addMouseListener(this);
+		//pan.addMouseListener(this);
+		addKeyListener(this);
 		this.setVisible(true);
 	}
 
@@ -84,7 +87,7 @@ public class Fenetre extends JFrame implements MouseListener, ActionListener{
 		}
 	}
 
-	public void actionPerformed(ActionEvent arg0) {
+	/*public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource() == bouton1){
 			knowButton = 1;
 		}
@@ -102,45 +105,51 @@ public class Fenetre extends JFrame implements MouseListener, ActionListener{
 			knowButton = 4;
 			this.addMouseListener(this);
 		}
-	}
-
+	}*/
 
 
 	//Méthode appelée lors du clic de souris
 	public void mouseClicked(MouseEvent event) { 
 		if(knowButton==3){
 			//on récupère les coordonnée X de la souris	
-			int newCx = (event.getX()*Carte.LARGEUR_CARTE)/(tailleFX-restex);
+			int newCx = ((event.getX()-8)*Carte.LARGEUR_CARTE)/(tailleFX-restex);
 			//on réccupère les coordonnée Y de la souris
-			int newCy = ((event.getY()*(Carte.HAUTEUR_CARTE))/(tailleFY-restey));
-			Carte.obs.add( new Lemming(newCx , newCy));
+			int newCy = ((event.getY()-20)*Carte.HAUTEUR_CARTE)/(tailleFY-restey);
+			System.out.println("coord x souris in map "+newCx);
+			System.out.println("coord y souris in map "+newCy);
+			System.out.println("coord x souris in fen "+event.getX());
+			System.out.println("coord y souris in fen "+event.getY());
+			System.out.println("modulo x "+restex);
+			System.out.println("modulo y "+restey);
+			
+			Carte.obs.add( new Lemming(newCx , newCy) );
 		}
-		
+
 		if(knowButton==4){
-			
+
 			//on récupère les coordonnée X de la souris	
-			int newCx = (event.getX()*Carte.LARGEUR_CARTE)/(tailleFX-restex);
+			int newCx = ((event.getX()-8)*Carte.LARGEUR_CARTE)/(tailleFX-restex);
 			//on réccupère les coordonnée Y de la souris
-			int newCy = ((event.getY()*(Carte.HAUTEUR_CARTE))/(tailleFY-restey));
-			
-			
+			int newCy = ((event.getY()-20)*Carte.HAUTEUR_CARTE)/(tailleFY-restey);
+
+
 			Observable lem;
 			System.out.println("tentative de suppr lemmings#######1");
 			for (int i =0;i<Carte.obs.size();i++){
 				lem = Carte.obs.get(i);
 				System.out.println("tentative de suppr lemmings#######1.2");
 				if((newCy<lem.getY() && newCy>lem.getY() - Panneau.coeff) && ((newCx<lem.getX()+3/2*Panneau.coeff && newCx > lem.getX()-3/2*Panneau.coeff))){
-						System.out.println("tentative de suppr lemmings#######2");
-						Carte.obs.remove(i);
-					}
+					System.out.println("tentative de suppr lemmings#######2");
+					Carte.obs.remove(i);
 				}
-				
 			}
-			System.out.println("tentative de suppr lemmings#######3");
 
 		}
-	
-	
+		System.out.println("tentative de suppr lemmings#######3");
+
+	}
+
+
 
 	//Méthode appelée lors du survol de; la souris
 	public void mouseEntered(MouseEvent event) { 
@@ -166,5 +175,46 @@ public class Fenetre extends JFrame implements MouseListener, ActionListener{
 	}
 
 
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getKeyChar()=='p'){
+			knowButton=3;
+			System.out.println("click p");
+			this.addMouseListener(this);
+		}
+		
+		if(e.getKeyChar()=='r'){
+			knowButton=4;
+			System.out.println("click r");
+			this.addMouseListener(this);
+		}
+		
+	}
+
+
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
