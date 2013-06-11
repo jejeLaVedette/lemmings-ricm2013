@@ -41,5 +41,7 @@ public interface Constantes {
 	// Constantes de Jeu
 	public final static int delaiAttente = 10;
 	public final static int delaiPop = 50;
+	
+	// Constantes trajectoires
 
 }
