@@ -83,10 +83,10 @@ public class Trajectoire_physiqueV implements Constantes {
 			}
 		if(this.sens==gauche)
 		{
-		return -yrel;
+		return yrel;
 		}
 		else{
-			return yrel;
+			return -yrel;
 		}		
 	}
 	
