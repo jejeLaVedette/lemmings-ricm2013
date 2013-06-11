@@ -20,7 +20,7 @@ public class Trajectoire_physiqueV implements Constantes {
 		this.base_x=x;
 		this.base_y=y;
 		this.vect_x=(int)(vx*coeffreductionx);
-		this.vect_y=(int)(-vy*coeffreductiony);	
+		this.vect_y=(int)(vy*coeffreductiony);	
 		this.sens=s;
 		this.constante=x-get_trajectoireX(base_y);
 		this.init = true;
@@ -99,7 +99,7 @@ public class Trajectoire_physiqueV implements Constantes {
 		
 	}
 	public boolean doit_tomber(int y){
-		if (y<get_oV().getY())
+		if (y>get_oV().getY())
 		{
 			return true;
 		}
