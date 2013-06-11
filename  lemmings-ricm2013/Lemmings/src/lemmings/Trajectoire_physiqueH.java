@@ -25,6 +25,20 @@ public class Trajectoire_physiqueH implements Constantes {
 	public int get_vect_y(){
 		return this.vect_y;
 	}
+	//Renvoit le sommet max atteint
+	public int get_sommet(){
+		if(this.sens_courbe==true){
+		return (int)this.get_s().getY();
+		}
+		else
+		{
+			return (int)((-this.get_s().getY()+this.get_f().getY())+this.get_f().getY());			
+		}
+	}
+	//Renvoit le x ou le lemming reatterit sur un sol horizontal
+	public int get_atterissage(){
+		return (int) this.get_f().getX()+this.vect_x;
+	}
 	
 	//Calcul les coordonnées du foyer de l'ellipse
 	private Point get_f(){
