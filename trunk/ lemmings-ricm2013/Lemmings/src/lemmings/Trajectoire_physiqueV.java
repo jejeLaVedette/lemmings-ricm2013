@@ -8,7 +8,7 @@ public class Trajectoire_physiqueV implements Constantes {
 	private int base_y;
 	private int vect_x;
 	private int vect_y;
-	boolean sens;
+	private int sens;
 	private int constante;
 	public boolean init;
 	//sens true-> va vers la gauche
@@ -16,7 +16,7 @@ public class Trajectoire_physiqueV implements Constantes {
 		init = false;
 	}
 	
-	public Trajectoire_physiqueV(int x,int y,int vx,int vy,boolean s){
+	public Trajectoire_physiqueV(int x,int y,int vx,int vy,int s){
 		this.base_x=x;
 		this.base_y=y;
 		this.vect_x=(int)(vx*coeffreductionx);
@@ -81,7 +81,7 @@ public class Trajectoire_physiqueV implements Constantes {
 			else{
 				yrel=(xrel*xrel)/(2*temp);		
 			}
-		if(this.sens)
+		if(this.sens==gauche)
 		{
 		return -yrel;
 		}
