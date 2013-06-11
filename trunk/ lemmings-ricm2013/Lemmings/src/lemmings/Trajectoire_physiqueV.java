@@ -3,7 +3,7 @@ import java.awt.Point;
 
 //Mode d'emploi: passer en base_x base_y les coordonnées des points de colisions
 //en vect_x et vect_y les coordonnées du vecteur de départ avant colision
-public class Trajectoire_physiqueV {
+public class Trajectoire_physiqueV implements Constantes {
 	private int base_x;
 	private int base_y;
 	private int vect_x;
@@ -19,8 +19,8 @@ public class Trajectoire_physiqueV {
 	public Trajectoire_physiqueV(int x,int y,int vx,int vy,boolean s){
 		this.base_x=x;
 		this.base_y=y;
-		this.vect_x=(int)(-vx/4);
-		this.vect_y=(int)(-vy/4);	
+		this.vect_x=(int)(vx*coeffreductionx);
+		this.vect_y=(int)(-vy*coeffreductiony);	
 		this.sens=s;
 		this.constante=x-get_trajectoireX(base_y);
 		this.init = true;
@@ -38,7 +38,7 @@ public class Trajectoire_physiqueV {
 	//Renvoit la coordonnées y de la directrice D
 	private double get_dV(){
 		int calculnorme;
-		calculnorme=this.base_x+this.vect_x-30;
+		calculnorme=this.base_x+this.vect_x-coeffdecalagedirectrice;
 		return calculnorme;			
 	}
 	
