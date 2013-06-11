@@ -15,7 +15,6 @@ public class Jeu implements Constantes {
 	
 	public static Trajectoire_physiqueH traj;
 	public static Trajectoire_physiqueV traj2;
-	
 	public static void main(String[] args) throws InterruptedException, IOException{
 		
 		listeAutomates.add(new AutoLemmingBasique(5));
@@ -43,7 +42,9 @@ public class Jeu implements Constantes {
 		// Lemmings catapulte
 
 		Carte.obs.add(new Lemming(120,150,lemmingCatapulte));
+
 		traj = new Trajectoire_physiqueH(120,150,200,200,true);
+
 		traj2 = new Trajectoire_physiqueV();
 		
 		while(true) {
