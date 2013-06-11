@@ -19,6 +19,8 @@ public interface Constantes {
 	public final static int typeSolInvisible = 1;
 	
 	// Constantes des Lemmings
+	public final static int haut =1;
+	public final static int bas =0;
 	public final static int droite = 1;
 	public final static int gauche = 0;
 	public final static int profondeurCreuser = 10;

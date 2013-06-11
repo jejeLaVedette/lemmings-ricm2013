@@ -7,9 +7,9 @@ public class Trajectoire_physiqueH implements Constantes {
 	private int vect_y;
 	private int constante;
 
-	private boolean sens_courbe;//True=courbe vers le haut
+	private int sens_courbe;//True=courbe vers le haut
 	
-	public Trajectoire_physiqueH(int x,int y,int vx,int vy,boolean sens){
+	public Trajectoire_physiqueH(int x,int y,int vx,int vy,int sens){
 		this.base_x=x;
 		this.base_y=y;
 		this.vect_x=vx;
@@ -27,7 +27,7 @@ public class Trajectoire_physiqueH implements Constantes {
 	}
 	//Renvoit le sommet max atteint
 	public int get_sommet(){
-		if(this.sens_courbe==true){
+		if(this.sens_courbe==haut){
 		return (int)this.get_s().getY();
 		}
 		else
@@ -100,7 +100,7 @@ public class Trajectoire_physiqueH implements Constantes {
 			else{
 				yrel=(x*x)/(2*temp);		
 			}
-		if(this.sens_courbe)
+		if(this.sens_courbe==haut)
 		{
 		return yrel;
 		}
