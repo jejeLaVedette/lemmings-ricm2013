@@ -195,13 +195,21 @@ public class Moteur implements Constantes {
 			signe = -1;
 		else
 			signe = 1;
-		l.setTrajH(new Trajectoire_physiqueH(l.getX(), l.getY(), signe*vx, vy, haut));
-		l.setTrajV(new Trajectoire_physiqueV(l.getX(), l.getY(), vx, vy, l.getDirection()));
+		
+		int x = l.getX();
+		int y = l.getY();
+		
+		l.setTrajH(new Trajectoire_physiqueH(x, y, signe*vx, vy, haut));
+		
+		if(Carte.map[x][y-1-coeff*3/4].type<=typeSolSup && Carte.map[x-1][y-1-coeff*3/4].type<=typeSolSup && Carte.map[x+1][y-1-coeff*3/4].type<=typeSolSup)
+			l.setTrajV(new Trajectoire_physiqueV(l.getX(), l.getY(), vx, vy, 1-l.getDirection()));
+		else
+			l.setTrajV(new Trajectoire_physiqueV(l.getX(), l.getY(), vx, vy, l.getDirection()));
 	}
 	
 	private static void voler(Lemming l) {
 		l.setY(l.getTrajH().get_trajectoireY(l.getX()));
-		//Carte.map[l.getX()][l.getY()].couleur = new Color(255,255,255);
+		Carte.map[l.getX()][l.getY()].couleur = new Color(255,0,0);
 		if(l.getDirection()==droite)
 			l.setX(l.getX()+1);
 		else
@@ -213,7 +221,7 @@ public class Moteur implements Constantes {
 			l.setX(l.getTrajV().get_trajectoireX(l.getY()));
 			l.setY(l.getY()+1);
 			System.out.println("x:"+l.getX()+" y:"+l.getY());
-			//Carte.map[l.getX()][l.getY()].couleur = new Color(255,255,255);
+			Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
 		}
 		else {
 			l.type = lemmingParapluie;
@@ -222,6 +230,7 @@ public class Moteur implements Constantes {
 	}
 	
 	private static void grimper(Lemming l) {
+		System.out.println("TOTO");
 		l.setY(l.getY()-1);
 	}
 

@@ -39,6 +39,7 @@ public interface Constantes {
 	public final static int lemmingParapluie = 2;
 	public final static int lemmingCreuseur = 3;
 	public final static int lemmingCatapulte = 4;
+	public final static int lemmingGrimpeur = 5;
 	
 	// Constantes de Jeu
 	public final static int delaiAttente = 10;
@@ -48,6 +49,6 @@ public interface Constantes {
 	public final static  double coeffreductionx= 0.4;
 	public final static  double coeffreductiony= 0.2;
 	public final static  int coeffdecalagedirectrice = 30;
-	public final static int vx = 200;
-	public final static int vy = 200;
+	public static int vx = 50;
+	public static int vy = 50;
 }
