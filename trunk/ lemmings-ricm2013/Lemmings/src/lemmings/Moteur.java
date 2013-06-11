@@ -17,14 +17,7 @@ public class Moteur implements Constantes {
 			// Si l'état est -2 : on "convertit" le lemming en lemming de base
 			if(lem.getEtat()==etatReinit) {
 				lem.type = lemmingBase;
-				lem.setEtat(etatInitial); System.out.println("SALUT");
-			}
-			
-			// Cas du lemmings catapulté
-			if(lem.type == 5) {
-				lem.setY(Jeu.traj.get_trajectoireY(lem.getX()));
-				lem.setX(lem.getX()+1);
-				continue;			
+				lem.setEtat(etatInitial);
 			}
 			
 			int x = lem.getX();
@@ -117,6 +110,8 @@ public class Moteur implements Constantes {
 			tomberParapluie(l);
 		else if(s=="creuser")
 			creuser(l);
+		else if(s=="voler")
+			voler(l);
 		else
 			System.out.println("Action invalide !");
 	}
@@ -153,10 +148,13 @@ public class Moteur implements Constantes {
 	}
 	
 	private static void bloquer(Lemming l) {
-		if(l.getDirection()==0)
+		
+		if(l.getDirection()==0) {
 			l.image = "Images/lemming4.png";
-		else if(l.getDirection()==1)
-			l.image = "Images/lemming3.png";
+		}
+		else if(l.getDirection()==1) {
+			l.image = "Imageset /lemming3.png";
+		}
 		
 		Carte.map[l.getX()][l.getY()].type = typeSolInvisible;
 		Carte.map[l.getX()][l.getY()-1].type = typeSolInvisible;
@@ -174,6 +172,11 @@ public class Moteur implements Constantes {
 			Carte.map[l.getX()-i][l.getY()] = new Air();
 		}
 		l.setY(l.getY()+1);
+	}
+	
+	private static void voler(Lemming l) {
+		l.setY(Jeu.traj.get_trajectoireY(l.getX()));
+		l.setX(l.getX()+1);
 	}
 	
 

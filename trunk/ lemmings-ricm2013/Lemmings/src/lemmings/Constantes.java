@@ -35,6 +35,7 @@ public interface Constantes {
 	public final static int lemmingStop = 1;
 	public final static int lemmingParapluie = 2;
 	public final static int lemmingCreuseur = 3;
+	public final static int lemmingCatapulte = 4;
 	
 	// Constantes de Jeu
 	public final static int delaiAttente = 10;
