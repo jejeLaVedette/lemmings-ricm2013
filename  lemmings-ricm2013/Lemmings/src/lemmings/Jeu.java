@@ -13,7 +13,7 @@ public class Jeu implements Constantes {
 	private int vectx;
 	private int vecty;*/
 	
-	public static Trajectoire_physique traj;
+	public static Trajectoire_physiqueH traj;
 	
 	public static void main(String[] args) throws InterruptedException, IOException{
 		
@@ -21,10 +21,11 @@ public class Jeu implements Constantes {
 		listeAutomates.add(new AutoLemmingStop(5));
 		listeAutomates.add(new AutoLemmingParapluie(5));
 		listeAutomates.add(new AutoLemmingCreuseur(5));
+		listeAutomates.add(new AutoLemmingCatapulte(5));
 		//Carte.initialiser();
 		Carte.charger("Images/Carte.png");
 		Carte.setEntree(new Point(120, 30));
-		Carte.setNbLemmings(20);
+		Carte.setNbLemmings(0);
 		
 		int wait = delaiPop + 1;
 		
