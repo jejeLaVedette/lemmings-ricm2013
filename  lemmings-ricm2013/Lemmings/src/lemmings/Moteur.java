@@ -1,5 +1,7 @@
 package lemmings;
 
+import java.awt.Color;
+
 public class Moteur implements Constantes {
 	
 	private static int relief=0;
@@ -48,6 +50,8 @@ public class Moteur implements Constantes {
 					cond = "sol";
 				}
 			}
+			
+			System.out.println(cond+lem.getEtat()+" de type "+lem.type);
 			
 			// Calcul du relief
 			if(cond=="sol") {
@@ -186,13 +190,22 @@ public class Moteur implements Constantes {
 	}
 	
 	private static void initTrajectoire(Lemming l) {
-		l.setTrajH(new Trajectoire_physiqueH(l.getX(), l.getY(), vx, vy, haut));
+		int signe = 0;
+		if(l.getDirection()==gauche)
+			signe = -1;
+		else
+			signe = 1;
+		l.setTrajH(new Trajectoire_physiqueH(l.getX(), l.getY(), signe*vx, vy, haut));
 		l.setTrajV(new Trajectoire_physiqueV(l.getX(), l.getY(), vx, vy, l.getDirection()));
 	}
 	
 	private static void voler(Lemming l) {
 		l.setY(l.getTrajH().get_trajectoireY(l.getX()));
-		l.setX(l.getX()+1);
+		//Carte.map[l.getX()][l.getY()].couleur = new Color(255,255,255);
+		if(l.getDirection()==droite)
+			l.setX(l.getX()+1);
+		else
+			l.setX(l.getX()-1);
 	}
 	
 	private static void rebondir(Lemming l) {
@@ -200,6 +213,7 @@ public class Moteur implements Constantes {
 			l.setX(l.getTrajV().get_trajectoireX(l.getY()));
 			l.setY(l.getY()+1);
 			System.out.println("x:"+l.getX()+" y:"+l.getY());
+			//Carte.map[l.getX()][l.getY()].couleur = new Color(255,255,255);
 		}
 		else {
 			l.type = lemmingParapluie;
