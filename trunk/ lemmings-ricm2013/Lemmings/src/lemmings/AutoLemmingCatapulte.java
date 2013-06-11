@@ -21,12 +21,14 @@ public class AutoLemmingCatapulte extends Automate implements Constantes {
 		listeTransitions.add(new Transition(1, 1, "vide", l));
 		
 		l = new ArrayList<String>();
-		listeTransitions.add(new Transition(1, 2, "sol", l));
+		listeTransitions.add(new Transition(1, 4, "sol", l));
 		listeTransitions.add(new Transition(1, 2, "mur", l));
 		
 		l = new ArrayList<String>();
+		l.add("retourner");
 		l.add("initTrajectoire");
-		l.add("retourner"); l.add("marcher"); l.add("retourner");
+		//l.add("retourner"); l.add("marcher");
+		l.add("tomber");
 		listeTransitions.add(new Transition(2, 3, "sol", l));
 		listeTransitions.add(new Transition(2, 3, "mur", l));
 		
@@ -37,6 +39,22 @@ public class AutoLemmingCatapulte extends Automate implements Constantes {
 		l = new ArrayList<String>();
 		listeTransitions.add(new Transition(3, etatReinitParapluie, "sol", l));
 		listeTransitions.add(new Transition(3, etatReinitParapluie, "mur", l));
+		
+		// Rebond au sol
+		l = new ArrayList<String>();
+		
+		l.add("grimper");
+		l.add("initTrajectoire");
+		listeTransitions.add(new Transition(4, 1, "sol", l));
+		/*//listeTransitions.add(new Transition(4, 5, "mur", l));
+		
+		l = new ArrayList<String>();
+		l.add("voler");
+		listeTransitions.add(new Transition(5, 5, "vide", l));
+		
+		l = new ArrayList<String>();
+		listeTransitions.add(new Transition(5, etatReinitParapluie, "sol", l));
+		listeTransitions.add(new Transition(5, etatReinitParapluie, "mur", l));*/
 	}
 
 }

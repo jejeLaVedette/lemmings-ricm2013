@@ -83,17 +83,10 @@ public class Carte implements Constantes {
 			
 	}
 
-	public static void popLemmings ()
+	public static void popLemmings (int type)
 	{
-		if(nbLemmings>0) {
-			Lemming lem;
-			if((nbLemmings%2)==0)
-				lem = new Lemming(entree.x,entree.y);
-			else
-				lem = new Lemming(entree.x,entree.y,2);
-			obs.add(lem);
-			nbLemmings--;
-		}
+		obs.add(new Lemming(entree.x,entree.y,type));
+		nbLemmings--;
 	}
 	
 	public static Point getEntree() {
