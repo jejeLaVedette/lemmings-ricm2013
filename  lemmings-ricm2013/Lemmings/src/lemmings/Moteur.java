@@ -186,8 +186,8 @@ public class Moteur implements Constantes {
 	}
 	
 	private static void initTrajectoire(Lemming l) {
-		l.setTrajH(new Trajectoire_physiqueH(l.getX(), l.getY(), vx, vy, (l.getDirection()==droite)));
-		l.setTrajV(new Trajectoire_physiqueV(l.getX(), l.getY(), vx, vy, (l.getDirection()==gauche)));
+		l.setTrajH(new Trajectoire_physiqueH(l.getX(), l.getY(), vx, vy, haut));
+		l.setTrajV(new Trajectoire_physiqueV(l.getX(), l.getY(), vx, vy, l.getDirection()));
 	}
 	
 	private static void voler(Lemming l) {
