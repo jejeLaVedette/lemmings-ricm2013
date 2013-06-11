@@ -136,8 +136,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="lemmings.Trajectoire_physique" project="Lemmings" 
-    file="/Lemmings/src/lemmings/Trajectoire_physique.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="16" language="java" name="lemmings.Trajectoire_physiqueH" project="Lemmings" 
+    file="/Lemmings/src/lemmings/Trajectoire_physiqueH.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="824" y="734"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      

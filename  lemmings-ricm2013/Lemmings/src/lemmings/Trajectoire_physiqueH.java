@@ -1,12 +1,6 @@
 package lemmings;
 import java.awt.Point;
-
-
-
-
-
-
-public class Trajectoire_physique {
+public class Trajectoire_physiqueH {
 	private int base_x;
 	private int base_y;
 	private int vect_x;
@@ -15,7 +9,7 @@ public class Trajectoire_physique {
 
 	private boolean sens_courbe;//True=courbe vers le haut
 	
-	public Trajectoire_physique(int x,int y,int vx,int vy,boolean sens){
+	public Trajectoire_physiqueH(int x,int y,int vx,int vy,boolean sens){
 		this.base_x=x;
 		this.base_y=y;
 		this.vect_x=vx;
@@ -25,12 +19,19 @@ public class Trajectoire_physique {
 		
 		
 	}
+	public int get_vect_x(){
+		return this.vect_x;
+		}
+	public int get_vect_y(){
+		return this.vect_y;
+	}
 	
 	//Calcul les coordonnées du foyer de l'ellipse
 	private Point get_f(){
 		 Point a=new Point((this.vect_x+this.base_x),this.base_y);
 		 return a;
 	}
+	
 	
 	//Renvoit la coordonnées y de la directrice D
 	private double get_d(){
@@ -86,7 +87,6 @@ public class Trajectoire_physique {
 			return -yrel;
 		}		
 	}
-	
 	
 	public int get_trajectoireY(int x){
 		int yrel;
