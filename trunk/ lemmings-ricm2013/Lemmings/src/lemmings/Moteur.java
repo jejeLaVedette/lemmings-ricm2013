@@ -1,5 +1,7 @@
 package lemmings;
 
+import java.awt.Color;
+
 public class Moteur implements Constantes {
 	
 	private static int relief=0;
@@ -119,6 +121,8 @@ public class Moteur implements Constantes {
 			voler(l);
 		else if(s=="rebondir")
 			rebondir(l);
+		else if(s=="grimper")
+			grimper(l);
 		else
 			System.out.println("Action invalide !");
 	}
@@ -188,11 +192,21 @@ public class Moteur implements Constantes {
 	
 	private static void rebondir(Lemming l) {
 		if(!Jeu.traj2.init) {
-			Jeu.traj2 = new Trajectoire_physiqueV(l.getX(),l.getY(),Jeu.traj.get_vect_x(),Jeu.traj.get_vect_y(),false);
+			Jeu.traj2 = new Trajectoire_physiqueV(l.getX(),l.getY(),Jeu.traj.get_vect_x(),Jeu.traj.get_vect_y(),true);
 		}
-		l.setX(Jeu.traj2.get_trajectoireX(l.getY()));
-		l.setY(l.getY()+1);
+		if(Jeu.traj2.doit_tomber(l.getY())) {
+			l.setX(Jeu.traj2.get_trajectoireX(l.getY()));
+			l.setY(l.getY()+1);
+			System.out.println("x:"+l.getX()+" y:"+l.getY());
+		}
+		else {
+			l.type = lemmingParapluie;
+			l.setEtat(hauteurLetale);
+		}
 	}
 	
+	private static void grimper(Lemming l) {
+		l.setY(l.getY()+1);
+	}
 
 }

@@ -43,7 +43,7 @@ public class Jeu implements Constantes {
 
 		Carte.obs.add(new Lemming(120,150,lemmingCatapulte));
 
-		traj = new Trajectoire_physiqueH(120,150,200,200,true);
+		traj = new Trajectoire_physiqueH(120,150,50,50,true);
 
 		traj2 = new Trajectoire_physiqueV();
 		
