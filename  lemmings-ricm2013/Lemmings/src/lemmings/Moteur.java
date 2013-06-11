@@ -1,7 +1,5 @@
 package lemmings;
 
-import java.awt.Color;
-
 public class Moteur implements Constantes {
 	
 	private static int relief=0;
@@ -123,6 +121,8 @@ public class Moteur implements Constantes {
 			rebondir(l);
 		else if(s=="grimper")
 			grimper(l);
+		else if(s=="initTrajectoire")
+			initTrajectoire(l);
 		else
 			System.out.println("Action invalide !");
 	}
@@ -185,17 +185,19 @@ public class Moteur implements Constantes {
 		l.setY(l.getY()+1);
 	}
 	
+	private static void initTrajectoire(Lemming l) {
+		l.setTrajH(new Trajectoire_physiqueH(l.getX(), l.getY(), vx, vy, (l.getDirection()==droite)));
+		l.setTrajV(new Trajectoire_physiqueV(l.getX(), l.getY(), vx, vy, (l.getDirection()==gauche)));
+	}
+	
 	private static void voler(Lemming l) {
-		l.setY(Jeu.traj.get_trajectoireY(l.getX()));
+		l.setY(l.getTrajH().get_trajectoireY(l.getX()));
 		l.setX(l.getX()+1);
 	}
 	
 	private static void rebondir(Lemming l) {
-		if(!Jeu.traj2.init) {
-			Jeu.traj2 = new Trajectoire_physiqueV(l.getX(),l.getY(),Jeu.traj.get_vect_x(),Jeu.traj.get_vect_y(),true);
-		}
-		if(Jeu.traj2.doit_tomber(l.getY())) {
-			l.setX(Jeu.traj2.get_trajectoireX(l.getY()));
+		if(!l.getTrajV().doit_tomber(l.getY())) {
+			l.setX(l.getTrajV().get_trajectoireX(l.getY()));
 			l.setY(l.getY()+1);
 			System.out.println("x:"+l.getX()+" y:"+l.getY());
 		}
@@ -206,7 +208,7 @@ public class Moteur implements Constantes {
 	}
 	
 	private static void grimper(Lemming l) {
-		l.setY(l.getY()+1);
+		l.setY(l.getY()-1);
 	}
 
 }
