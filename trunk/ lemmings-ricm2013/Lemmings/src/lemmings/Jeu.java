@@ -13,8 +13,6 @@ public class Jeu implements Constantes {
 	private int vectx;
 	private int vecty;*/
 	
-	public static Trajectoire_physiqueH traj;
-	public static Trajectoire_physiqueV traj2;
 	public static void main(String[] args) throws InterruptedException, IOException{
 		
 		listeAutomates.add(new AutoLemmingBasique(5));
@@ -22,8 +20,8 @@ public class Jeu implements Constantes {
 		listeAutomates.add(new AutoLemmingParapluie(5));
 		listeAutomates.add(new AutoLemmingCreuseur(5));
 		listeAutomates.add(new AutoLemmingCatapulte(5));
-		//Carte.initialiser();
-		Carte.charger("Images/Carte.png");
+		
+		Carte.charger("Images/Carte2.png");
 		Carte.setEntree(new Point(120, 30));
 		Carte.setNbLemmings(0);
 		
@@ -40,12 +38,7 @@ public class Jeu implements Constantes {
 		//Carte.obs.add(new Lemming(45,80,lemmingCreuseur));
 		
 		// Lemmings catapulte
-
-		Carte.obs.add(new Lemming(120,150,lemmingCatapulte));
-
-		traj = new Trajectoire_physiqueH(120,150,50,50,true);
-
-		traj2 = new Trajectoire_physiqueV();
+		Carte.obs.add(new Lemming(100,150,lemmingCatapulte));
 		
 		while(true) {
 			

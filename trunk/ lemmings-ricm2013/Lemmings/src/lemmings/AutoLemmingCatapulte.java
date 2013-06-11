@@ -11,26 +11,32 @@ public class AutoLemmingCatapulte extends Automate implements Constantes {
 		
 		List<String> l = new ArrayList<String>();
 		
-		l.add("voler");
-		listeTransitions.add(new Transition(0, 0, "vide", l));
-		
-		l = new ArrayList<String>();
-		l.add("grimper)");
+		l.add("initTrajectoire");
+		listeTransitions.add(new Transition(0, 1, "vide", l));
 		listeTransitions.add(new Transition(0, 1, "sol", l));
-		l = new ArrayList<String>();
-		l.add("tomber");
 		listeTransitions.add(new Transition(0, 1, "mur", l));
 		
 		l = new ArrayList<String>();
-		l.add("rebondir");
+		l.add("voler");
 		listeTransitions.add(new Transition(1, 1, "vide", l));
 		
 		l = new ArrayList<String>();
-		listeTransitions.add(new Transition(1, etatReinitParapluie, "sol", l));
-		l = new ArrayList<String>();
-		l.add("tomber");
-		listeTransitions.add(new Transition(1, etatReinitParapluie, "mur", l));
+		listeTransitions.add(new Transition(1, 2, "sol", l));
+		listeTransitions.add(new Transition(1, 2, "mur", l));
 		
+		l = new ArrayList<String>();
+		l.add("initTrajectoire");
+		l.add("tomber");
+		listeTransitions.add(new Transition(2, 3, "sol", l));
+		listeTransitions.add(new Transition(2, 3, "mur", l));
+		
+		l = new ArrayList<String>();
+		l.add("rebondir");
+		listeTransitions.add(new Transition(3, 3, "vide", l));
+		
+		l = new ArrayList<String>();
+		listeTransitions.add(new Transition(3, etatReinitParapluie, "sol", l));
+		listeTransitions.add(new Transition(3, etatReinitParapluie, "mur", l));
 	}
 
 }
