@@ -31,8 +31,8 @@ public class Fenetre extends JFrame implements MouseListener, ActionListener, Ke
 	//private JPanel container = new JPanel();
 
 
-	public static int tailleFX = 1350;
-	public static int tailleFY = 1080;
+	public static int tailleFX = 1000;
+	public static int tailleFY = 500;
 	public static int restey = tailleFY%Carte.HAUTEUR_CARTE;
 	public static int restex = tailleFX%Carte.LARGEUR_CARTE;
 
@@ -108,12 +108,12 @@ public class Fenetre extends JFrame implements MouseListener, ActionListener, Ke
 	}*/
 
 
-	//Méthode appelée lors du clic de souris
+	//Mï¿½thode appelï¿½e lors du clic de souris
 	public void mouseClicked(MouseEvent event) { 
 		if(knowButton==3){
-			//on récupère les coordonnée X de la souris	
+			//on rï¿½cupï¿½re les coordonnï¿½e X de la souris	
 			int newCx = ((event.getX()-8)*Carte.LARGEUR_CARTE)/(tailleFX-restex);
-			//on réccupère les coordonnée Y de la souris
+			//on rï¿½ccupï¿½re les coordonnï¿½e Y de la souris
 			int newCy = ((event.getY()-20)*Carte.HAUTEUR_CARTE)/(tailleFY-restey);
 			System.out.println("coord x souris in map "+newCx);
 			System.out.println("coord y souris in map "+newCy);
@@ -127,9 +127,9 @@ public class Fenetre extends JFrame implements MouseListener, ActionListener, Ke
 
 		if(knowButton==4){
 
-			//on récupère les coordonnée X de la souris	
+			//on rï¿½cupï¿½re les coordonnï¿½e X de la souris	
 			int newCx = ((event.getX()-8)*Carte.LARGEUR_CARTE)/(tailleFX-restex);
-			//on réccupère les coordonnée Y de la souris
+			//on rï¿½ccupï¿½re les coordonnï¿½e Y de la souris
 			int newCy = ((event.getY()-20)*Carte.HAUTEUR_CARTE)/(tailleFY-restey);
 
 
@@ -151,24 +151,24 @@ public class Fenetre extends JFrame implements MouseListener, ActionListener, Ke
 
 
 
-	//Méthode appelée lors du survol de; la souris
+	//Mï¿½thode appelï¿½e lors du survol de; la souris
 	public void mouseEntered(MouseEvent event) { 
 
 	}
 
-	//Méthode appelée lorsque la souris sort de la zone du bouton
+	//Mï¿½thode appelï¿½e lorsque la souris sort de la zone du bouton
 	public void mouseExited(MouseEvent event) { 
 
 
 	}
 
-	//Méthode appelée lorsque l'on presse le bouton gauche de la souris
+	//Mï¿½thode appelï¿½e lorsque l'on presse le bouton gauche de la souris
 	public void mousePressed(MouseEvent event) {
 
 
 	}
 
-	//Méthode appelée lorsque l'on relâche le clic de souris
+	//Mï¿½thode appelï¿½e lorsque l'on relï¿½che le clic de souris
 	public void mouseReleased(MouseEvent event) { 
 
 
