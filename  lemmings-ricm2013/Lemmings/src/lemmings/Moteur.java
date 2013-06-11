@@ -153,7 +153,7 @@ public class Moteur implements Constantes {
 			l.image = "Images/lemming4.png";
 		}
 		else if(l.getDirection()==1) {
-			l.image = "Imageset /lemming3.png";
+			l.image = "Images/lemming3.png";
 		}
 		
 		Carte.map[l.getX()][l.getY()].type = typeSolInvisible;

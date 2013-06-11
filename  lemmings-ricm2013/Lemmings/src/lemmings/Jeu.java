@@ -33,7 +33,7 @@ public class Jeu implements Constantes {
 		f.afficher();
 		
 		// Lemmings bloqueurs
-		Carte.obs.add(new Lemming(150,30,lemmingStop));
+		//Carte.obs.add(new Lemming(150,30,lemmingStop));
 		//Carte.obs.add(new Lemming(80,80,lemmingStop));
 		
 		// Lemmings creuseurs
@@ -41,8 +41,8 @@ public class Jeu implements Constantes {
 		
 		// Lemmings catapulte
 
-		//Carte.obs.add(new Lemming(200,80,5));
-		//traj = new Trajectoire_physique(200,80,100,100,false);
+		Carte.obs.add(new Lemming(120,150,lemmingCatapulte));
+		traj = new Trajectoire_physiqueH(120,150,40,20,true);
 
 		
 		while(true) {
