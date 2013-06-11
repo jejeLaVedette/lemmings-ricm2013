@@ -1,5 +1,8 @@
 package lemmings;
 import java.awt.Point;
+
+//Mode d'emploi: passer en base_x base_y les coordonnées des points de colisions
+//en vect_x et vect_y les coordonnées du vecteur de départ avant colision
 public class Trajectoire_physiqueV {
 	private int base_x;
 	private int base_y;
@@ -16,8 +19,8 @@ public class Trajectoire_physiqueV {
 	public Trajectoire_physiqueV(int x,int y,int vx,int vy,boolean s){
 		this.base_x=x;
 		this.base_y=y;
-		this.vect_x=(int)(-vx/3);
-		this.vect_y=(int)(vy/3);	
+		this.vect_x=(int)(-vx/4);
+		this.vect_y=(int)(-vy/4);	
 		this.sens=s;
 		this.constante=x-get_trajectoireX(base_y);
 		this.init = true;
