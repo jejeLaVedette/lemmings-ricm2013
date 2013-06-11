@@ -43,5 +43,7 @@ public interface Constantes {
 	public final static int delaiPop = 50;
 	
 	// Constantes trajectoires
-
+	public final static  double coeffreductionx= 0.25;
+	public final static  double coeffreductiony= 0.25;
+	public final static  int coeffdecalagedirectrice = 30;
 }

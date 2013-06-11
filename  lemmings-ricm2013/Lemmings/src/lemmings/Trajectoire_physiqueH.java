@@ -1,6 +1,6 @@
 package lemmings;
 import java.awt.Point;
-public class Trajectoire_physiqueH {
+public class Trajectoire_physiqueH implements Constantes {
 	private int base_x;
 	private int base_y;
 	private int vect_x;
@@ -36,12 +36,12 @@ public class Trajectoire_physiqueH {
 	//Renvoit la coordonnées y de la directrice D
 	private double get_d(){
 		int calculnorme;
-		if(this.vect_y==30)
+		if(this.vect_y==coeffdecalagedirectrice)
 		{
-		calculnorme=this.base_y-this.vect_y-40;
+		calculnorme=this.base_y-this.vect_y-coeffdecalagedirectrice-10;
 		}
 		else{
-			calculnorme=this.base_y-this.vect_y-30;
+			calculnorme=this.base_y-this.vect_y-coeffdecalagedirectrice;
 			
 		}
 		return calculnorme;			
