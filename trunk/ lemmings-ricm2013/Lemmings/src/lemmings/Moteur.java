@@ -12,7 +12,7 @@ public class Moteur implements Constantes {
 			// Analyse de l'element courant
 				
 			// Si on a un Lemming
-			Lemming lem = (Lemming) Carte.obs.get(i);
+			Lemming  lem = (Lemming) Carte.obs.get(i);
 			
 			// Si l'état est -2 : on "convertit" le lemming en lemming de base
 			if(lem.getEtat()==etatReinit) {
