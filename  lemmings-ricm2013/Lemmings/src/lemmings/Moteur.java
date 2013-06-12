@@ -209,7 +209,7 @@ public class Moteur implements Constantes {
 	
 	private static void voler(Lemming l) {
 		l.setY(l.getTrajH().get_trajectoireY(l.getX()));
-		Carte.map[l.getX()][l.getY()].couleur = new Color(255,0,0);
+		//Carte.map[l.getX()][l.getY()].couleur = new Color(255,0,0);
 		if(l.getDirection()==droite)
 			l.setX(l.getX()+1);
 		else
@@ -221,7 +221,7 @@ public class Moteur implements Constantes {
 			l.setX(l.getTrajV().get_trajectoireX(l.getY()));
 			l.setY(l.getY()+1);
 			System.out.println("x:"+l.getX()+" y:"+l.getY());
-			Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
+			//Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
 		}
 		else {
 			l.type = lemmingParapluie;

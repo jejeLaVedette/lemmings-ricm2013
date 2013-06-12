@@ -29,10 +29,9 @@ public class AutoLemmingParapluie extends Automate implements Constantes {
 		{
 			// Tombe et atterit
 			l = new ArrayList<String>();
-			listeTransitions.add(new Transition(u, 0, "sol", l));
-			// Tombe et tombe encore
-			l = new ArrayList<String>();
 			l.add("tomber");
+			listeTransitions.add(new Transition(u, 0, "sol", l));
+			// Tombe et tombe encore			
 			listeTransitions.add(new Transition(u, v, "vide", l));
 			v++;
 		}
