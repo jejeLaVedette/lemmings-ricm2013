@@ -23,35 +23,37 @@ public class Jeu implements Constantes {
 		listeAutomates.add(new AutoLemmingGrimpeur(5));
 		
 		
-		//Carte.charger("Images/Carte.png");
-		Carte.charger("Images/Carte2.png");
+		Carte.charger("Images/Carte.png");
+		//Carte.charger("Images/Carte2.png");
 		Carte.setEntree(new Point(120, 30));
 		//Carte.setEntree(new Point(100, 150));
-		//Carte.setNbLemmings(20);
-		Carte.setNbLemmings(0);
+		Carte.setNbLemmings(5);
 		
 		int wait = delaiPop + 1;
 		
 		Fenetre f = new Fenetre();
 		f.afficher();
-		/*
+		
 		// Lemmings bloqueurs
-		Carte.obs.add(new Lemming(150,30,lemmingStop));
-		//Carte.obs.add(new Lemming(80,80,lemmingStop));
+		Carte.obs.add(new Lemming(80,80,lemmingStop));
+		//Carte.obs.add(new Lemming(90,80,lemmingStop));
+		//Carte.obs.add(new Lemming(80,50,lemmingStop));
+		//Carte.obs.add(new Lemming(160,30,lemmingStop));
 		
 		// Lemmings creuseurs
-		Carte.obs.add(new Lemming(80,80,lemmingCreuseur));
-		*/
+		//Carte.obs.add(new Lemming(80,80,lemmingCreuseur));
+		//Carte.obs.add(new Lemming(330,80,lemmingCreuseur));
 		
 		
 		// Lemmings catapultes
+		/*
 		Carte.obs.add(new Lemming(250,150,lemmingCatapulte));
 		Carte.obs.add(new Lemming(350,150,lemmingCatapulte));
 		Carte.obs.add(new Lemming(250,150,lemmingCatapulte));
 		Carte.obs.add(new Lemming(350,150,lemmingCatapulte));
 		((Lemming) Carte.obs.get(0)).setDirection(gauche);
 		((Lemming) Carte.obs.get(1)).setDirection(gauche);
-		//Carte.obs.add(new Lemming(70,150,lemmingCatapulte));
+		Carte.obs.add(new Lemming(70,150,lemmingCatapulte));*/
 		
 		
 		while(true) {
@@ -71,14 +73,6 @@ public class Jeu implements Constantes {
 			if(Carte.getNbLemmings()!=0)
 				wait++;
 		}
-		
-		/*
-		Trajectoire_physique tp = new Trajectoire_physique(0, 0, 10, 10);
-		for(int i = 0 ; i<Fenetre.tailleFX/Carte.LARGEUR_CARTE;i++){
-			int y = tp.get_trajectoireY(0);
-			System.out.println(y);
-		}
-		*/
 		
 		
 	}

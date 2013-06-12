@@ -20,6 +20,7 @@ public class AutoLemmingStop extends Automate implements Constantes {
 		l = new ArrayList<String>();
 		l.add("bloquer");
 		listeTransitions.add(new Transition(0, 0, "sol", l));
+		listeTransitions.add(new Transition(0, 0, "mur", l));
 			
 		
 	}
