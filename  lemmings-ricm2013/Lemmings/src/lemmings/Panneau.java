@@ -21,7 +21,6 @@ public class Panneau extends JPanel {
 	public static final int coeff = 10;
 	public void paintComponent(Graphics g)
 	{
-
 		for(int i=0; i<Carte.HAUTEUR_CARTE; i++){
 
 			for(int j=0; j<Carte.LARGEUR_CARTE; j++){ 
@@ -33,7 +32,7 @@ public class Panneau extends JPanel {
 				posX=posX+tailleRX;
 
 			}
-			//on se replace tout a gauche de l'�cran
+			//on se replace tout a gauche de l'écran
 			posX=0;
 			//et on diminue d'un rang en hauteur
 			posY=posY+tailleRY;

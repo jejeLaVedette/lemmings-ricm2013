@@ -13,11 +13,14 @@ public class Carte implements Constantes {
 	
 	public static Point entree;
 	public static int nbLemmings;
+	
+	public static int LARGEUR_CARTE;
+	public static int HAUTEUR_CARTE;
 
-	public static Element[][] map = new Element[LARGEUR_CARTE][HAUTEUR_CARTE];
+	public static Element[][] map;// = new Element[LARGEUR_CARTE][HAUTEUR_CARTE];
 	public static ArrayList<Observable> obs = new ArrayList<Observable>();
-	public static int taille = LARGEUR_CARTE * HAUTEUR_CARTE;
-
+	public static int taille;
+	
 	public static void initialiser()
 	{
 		/* Convention :
@@ -60,26 +63,28 @@ public class Carte implements Constantes {
 		
 		BufferedImage maCarte=ImageIO.read(new File(input));
 		
-		if(maCarte.getHeight() != HAUTEUR_CARTE || maCarte.getWidth() != LARGEUR_CARTE)
-			System.out.println("Carte invalide : erreur de dimension");
-		else {
-			Color c;
-			for(int i=0;i<maCarte.getHeight();i++) {
-				for(int j=0;j<maCarte.getWidth();j++) {
+		Carte.map = new Element[maCarte.getWidth()][maCarte.getHeight()];
+		HAUTEUR_CARTE = maCarte.getHeight();
+		LARGEUR_CARTE = maCarte.getWidth();
+		taille = LARGEUR_CARTE * HAUTEUR_CARTE;
+		
+		Color c;
+		for(int i=0;i<maCarte.getHeight();i++) {
+			for(int j=0;j<maCarte.getWidth();j++) {
 					
-					c = new Color(maCarte.getRGB(j,i));
+				c = new Color(maCarte.getRGB(j,i));
 					
-					// Test : air ou pas air ?
-					if (c.getBlue() == pixelAir.getBlue() &&
-						c.getRed() == pixelAir.getRed() &&
-						c.getGreen() == pixelAir.getGreen())
-						map[j][i] = new Air();		
-					else
-						map[j][i] = new Sol(c);
+				// Test : air ou pas air ?
+				if (c.getBlue() == pixelAir.getBlue() &&
+					c.getRed() == pixelAir.getRed() &&
+					c.getGreen() == pixelAir.getGreen())
+					map[j][i] = new Air();		
+				else
+					map[j][i] = new Sol(c);
 					
-				}
 			}
 		}
+		
 			
 	}
 

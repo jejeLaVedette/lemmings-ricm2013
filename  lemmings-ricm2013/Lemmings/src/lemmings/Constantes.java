@@ -4,9 +4,7 @@ import java.awt.Color;
 
 public interface Constantes {
 	
-	// Constantes de carte
-	public final static int LARGEUR_CARTE = 500;
-	public final static int HAUTEUR_CARTE = 200;
+	// Constantes de carte	
 	public final static Color pixelAir = new Color(255,0,255);
 	public final static Color defautAir = new Color(50,50,50);
 	public final static Color defautSol = new Color(0,0,0);
