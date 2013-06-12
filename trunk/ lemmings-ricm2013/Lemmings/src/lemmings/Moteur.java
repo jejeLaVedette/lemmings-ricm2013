@@ -1,6 +1,5 @@
 package lemmings;
 
-import java.awt.Color;
 
 public class Moteur implements Constantes {
 	
@@ -51,7 +50,7 @@ public class Moteur implements Constantes {
 				}
 			}
 			
-			System.out.println(cond+lem.getEtat()+" de type "+lem.type);
+			//System.out.println(cond+lem.getEtat()+" de type "+lem.type);
 			
 			// Calcul du relief
 			if(cond=="sol") {

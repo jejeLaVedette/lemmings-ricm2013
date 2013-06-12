@@ -7,6 +7,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
+
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 
@@ -18,7 +20,8 @@ public class Fenetre extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Panneau zone_map = new Panneau();
+	private Panneau zone_map;
+	//private Panneau zone_map = new Panneau();
 	public static int tailleFX = 1000;
 	public static int tailleFY = 550;
 	
@@ -33,9 +36,13 @@ public class Fenetre extends JFrame {
 		//Termine le processus lorsqu'on clique sur la croix rouge
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		zone_map = new Panneau();
+		getContentPane().add(zone_map, BorderLayout.CENTER);
+		
 		JPanel zone_controle = new JPanel();
 		getContentPane().add(zone_controle, BorderLayout.SOUTH);
 		zone_controle.setLayout(new BoxLayout(zone_controle, BoxLayout.X_AXIS));
+		
 		
 		JPanel zone_gauche = new JPanel();
 		FlowLayout fl_zone_gauche = (FlowLayout) zone_gauche.getLayout();
@@ -84,7 +91,7 @@ public class Fenetre extends JFrame {
 	
 	public void afficher(){
 
-		getContentPane().add(zone_map, BorderLayout.CENTER);
+		//getContentPane().add(zone_map, BorderLayout.CENTER);
 		zone_map.repaint(); 
 
 		try {
