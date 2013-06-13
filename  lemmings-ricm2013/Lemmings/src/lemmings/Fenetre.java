@@ -3,6 +3,8 @@ package lemmings;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
@@ -55,6 +57,7 @@ public class Fenetre extends JFrame {
 
 		JPanel bouton_sup = new JPanel();
 	    //On d�finit le layout en lui indiquant qu'il travaillera en ligne
+
 		bouton_sup.setLayout(new BoxLayout(bouton_sup, BoxLayout.LINE_AXIS));
 		JButton bouton_creuse = new JButton(new ImageIcon(((new ImageIcon("Images/pioche.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
 		bouton_sup.add(bouton_creuse);
@@ -94,13 +97,7 @@ public class Fenetre extends JFrame {
 		bouton_inf.add(bouton_recharger);
 		Component horizontalStrut_42 = Box.createHorizontalStrut(espacement_hori);
 		bouton_inf.add(horizontalStrut_42);
-
-
 		
-
-		
-		
-
 	    //On positionne maintenant ces trois lignes en colonne
 	    zone_gauche.setLayout(new BoxLayout(zone_gauche, BoxLayout.PAGE_AXIS));
 	    zone_gauche.add(bouton_sup);
@@ -120,7 +117,7 @@ public class Fenetre extends JFrame {
 	    
 	    
 	    JLabel img = new JLabel();
-	    img.setIcon(new ImageIcon("Images/Carte3.png"));
+	    img.setIcon(new ImageIcon(Carte.miniMap));
 	    zone_droite.add(img);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -141,7 +138,20 @@ public class Fenetre extends JFrame {
 		JMenuItem mntmRgle = new JMenuItem("r\u00E8gle");
 		mnJouer.add(mntmRgle);
 		
-
+		this.pack();
+		
+		if (Toolkit.getDefaultToolkit().isFrameStateSupported(MAXIMIZED_BOTH)) {
+            System.out.println("Frame state supported.");
+            this.setExtendedState(MAXIMIZED_BOTH);
+        } else {
+            System.out.println("Frame state not supported.");
+            Dimension max = Toolkit.getDefaultToolkit().getScreenSize();
+            // TODO see getMaximumWindowBounds()
+            max.height -= 20;
+            this.setSize(max);
+            this.setLocation(0, 20);
+        }
+		
 		this.setVisible(true);
 		
 	}
