@@ -22,7 +22,7 @@ public class Jeu implements Constantes {
 		listeAutomates.add(new AutoLemmingCatapulte(5));
 		listeAutomates.add(new AutoLemmingGrimpeur(5));
 		
-		
+		Carte.miniMap = "Images/Carte3.png";
 		Carte.charger("Images/Carte.png");
 		//Carte.charger("Images/Carte2.png");
 		Carte.setEntree(new Point(120, 59));

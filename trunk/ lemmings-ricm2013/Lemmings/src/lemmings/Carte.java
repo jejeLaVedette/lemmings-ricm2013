@@ -16,6 +16,8 @@ public class Carte implements Constantes {
 	
 	public static int LARGEUR_CARTE;
 	public static int HAUTEUR_CARTE;
+	
+	public static String miniMap;
 
 	public static Element[][] map;// = new Element[LARGEUR_CARTE][HAUTEUR_CARTE];
 	public static ArrayList<Observable> obs = new ArrayList<Observable>();
