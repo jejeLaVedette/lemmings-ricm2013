@@ -92,6 +92,10 @@ public class Fenetre extends JFrame {
 		bouton_inf.add(horizontalStrut_2);
 		JButton bouton_recharger = new JButton(new ImageIcon(((new ImageIcon("Images/recharger.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_inf.add(bouton_recharger);
+		Component horizontalStrut_42 = Box.createHorizontalStrut(espacement_hori);
+		bouton_inf.add(horizontalStrut_42);
+
+
 		
 
 		
@@ -116,7 +120,7 @@ public class Fenetre extends JFrame {
 	    
 	    
 	    JLabel img = new JLabel();
-	    img.setIcon(new ImageIcon("C:\\Users\\j\u00E9r\u00F4me\\Documents\\Polytech\\s2\\java\\eclipse\\test_menu\\Images\\Carte.png"));
+	    img.setIcon(new ImageIcon("C:\\Users\\j\u00E9r\u00F4me\\Documents\\Polytech\\s2\\java\\eclipse\\test_menu\\Images\\Carte3.png"));
 	    zone_droite.add(img);
 		
 		JMenuBar menuBar = new JMenuBar();
