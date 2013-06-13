@@ -30,7 +30,7 @@ public class Panneau extends JPanel {
 		for(int i=0; i<Carte.HAUTEUR_CARTE; i++){
 
 			for(int j=0; j<Carte.LARGEUR_CARTE; j++){ 
-		
+				
 				g.setColor(Carte.map[j][i].couleur);
 				g.fillRect(posX, posY, tailleRX, tailleRY);
 				
