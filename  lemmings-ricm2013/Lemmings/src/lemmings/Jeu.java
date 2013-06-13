@@ -39,6 +39,7 @@ public class Jeu implements Constantes {
 		//Carte.obs.add(new Lemming(90,80,lemmingStop));
 		//Carte.obs.add(new Lemming(80,50,lemmingStop));
 		//Carte.obs.add(new Lemming(160,30,lemmingStop));
+
 		
 		// Lemmings creuseurs
 		//Carte.obs.add(new Lemming(80,80,lemmingCreuseur));
@@ -71,6 +72,7 @@ public class Jeu implements Constantes {
 			f.afficher();
 			
 			if(Carte.getNbLemmings()!=0)
+				Carte.obs.add(new Lemming());
 				wait++;
 		}
 		

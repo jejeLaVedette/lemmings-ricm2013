@@ -1,10 +1,13 @@
 package lemmings;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.Graphics2D;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsEnvironment;
+import java.awt.RenderingHints;
 
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
@@ -13,6 +16,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
 import java.awt.Component;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.ImageIcon;
 import javax.swing.Box;
 import javax.swing.JSeparator;
@@ -33,7 +40,7 @@ public class Fenetre extends JFrame {
 	private int espacement_hori = 20;
 	
 	
-	public Fenetre(){
+	public Fenetre() throws IOException{
 		this.setTitle("Lemmings");
 		this.setSize(tailleFX, tailleFY);
 		//empeche le redimentionnement de la fenetre
@@ -111,14 +118,29 @@ public class Fenetre extends JFrame {
 
 	    
 	    JPanel zone_droite = new JPanel();
-		zone_droite.setBounds(tailleFX/2,3/4*tailleFY ,tailleFX/2,1/4*tailleFY);
+		zone_droite.setBounds(tailleFX/2,(3/4)*tailleFY ,tailleFX/2,tailleFY/4);
 	    zone_controle.add(zone_droite);
 	    System.out.println("x zone : " + zone_droite.getX());
 	    
-	    
-	    
 	    JLabel img = new JLabel();
-	    img.setIcon(new ImageIcon(Carte.miniMap));
+	    BufferedImage b = ImageIO.read(new File(Carte.miniMap));
+	    float newx = ((float) zone_droite.getWidth())/((float)b.getWidth());
+	    float newy = ((float) zone_droite.getHeight())/((float)b.getHeight());
+	    System.out.println("zone_droite.getWidth() : "+zone_droite.getWidth());
+	    System.out.println("zone_droite.getHeight() : "+zone_droite.getHeight());
+	    System.out.println("b.getWidth() : "+b.getWidth());
+	    System.out.println("b.getHeight() : "+b.getHeight());
+
+	    System.out.println("newx : "+newx);
+	    System.out.println("newy : "+newy);
+
+
+	    img.setIcon(new ImageIcon(scale(b,newx,newy)));
+	    //img.setBounds(tailleFX/2,(3/4)*tailleFY ,tailleFX/2,tailleFY/4);
+	    
+	    System.out.println("y img : "+img.getHeight());
+	    System.out.println("x img : "+img.getWidth());
+
 	    zone_droite.add(img);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -139,7 +161,10 @@ public class Fenetre extends JFrame {
 		JMenuItem mntmRgle = new JMenuItem("r\u00E8gle");
 		mnJouer.add(mntmRgle);
 		
-		
+
+		System.out.println("y zone_droite : "+zone_droite.getHeight());
+		System.out.println("x zone_droite : "+zone_droite.getWidth());
+		System.out.println("tailleFy : "+tailleFY);
 		
 		this.setVisible(true);
 		
@@ -163,6 +188,22 @@ public class Fenetre extends JFrame {
 	public int getTailleY() {
 		return zone_map.getHeight();
 	}
+	
+	 public static BufferedImage scale(BufferedImage bImage, float factorx, float factory) {
+	        int destWidth=(int) (bImage.getWidth() * factorx);
+	        int destHeight=(int) (bImage.getHeight() * factory);
+	//créer l'image de destination
+	        GraphicsConfiguration configuration = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+	        BufferedImage bImageNew = configuration.createCompatibleImage(destWidth, destHeight);
+	        Graphics2D graphics = bImageNew.createGraphics();
+	        graphics.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+	        graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+	        //dessiner l'image de destination
+	        graphics.drawImage(bImage, 0, 0, destWidth, destHeight, 0, 0, bImage.getWidth(), bImage.getHeight(), null);
+	        graphics.dispose();
+
+	        return bImageNew;
+	    }
 			
 
 }

@@ -1,5 +1,6 @@
 package lemmings;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class Test_trajectoire {
 	public static List<Automate>listetoto = new ArrayList<Automate>();
-public static void main(String[] args){
+public static void main(String[] args) throws IOException{
 	
 		
 		listetoto.add(new AutoLemmingBasique(5));
