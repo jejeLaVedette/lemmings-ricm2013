@@ -59,11 +59,11 @@ public class Moteur implements Constantes {
 				relief = 0;
 				if(lem.getDirection()==gauche) {
 					
-					if(Carte.map[x-1][y-1].type<=typeSolSup) {
+					if(Carte.map[x-1][y].type<=typeSolSup) {
 						relief--;
-						if(Carte.map[x-1][y-2].type<=typeSolSup) {
+						if(Carte.map[x-1][y-1].type<=typeSolSup) {
 							relief--;
-							//if(Carte.map[x-1][y-2].type<=typeSolSup) relief--;
+							if(Carte.map[x-1][y-2].type<=typeSolSup) relief--;
 						}
 					}					
 					
@@ -76,11 +76,11 @@ public class Moteur implements Constantes {
 					}
 				}
 				else {
-					if(Carte.map[x+1][y-1].type<=typeSolSup) {
+					if(Carte.map[x+1][y].type<=typeSolSup) {
 						relief--;
-						if(Carte.map[x+1][y-2].type<=typeSolSup) {
+						if(Carte.map[x+1][y-1].type<=typeSolSup) {
 							relief--;
-							//if(Carte.map[x+1][y-2].type<=typeSolSup) relief--;
+							if(Carte.map[x+1][y-2].type<=typeSolSup) relief--;
 						}
 					}
 					
@@ -96,7 +96,7 @@ public class Moteur implements Constantes {
 				}
 			}
 			
-			//System.out.println("Condition: "+cond+" Etat: "+lem.getEtat()+ "(de type "+lem.type+") relief: "+relief);
+			System.out.println("relief: "+relief);
 			
 			// S'il est mort, et ben... il est mort !
 			if(lem.getEtat()==etatMort && cond=="sol") {

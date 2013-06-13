@@ -40,7 +40,7 @@ public interface Constantes {
 	public final static int lemmingGrimpeur = 5;
 	
 	// Constantes de Jeu
-	public final static int delaiAttente = 10;
+	public final static int delaiAttente = 30;
 	public final static int delaiPop = 50;
 	
 	// Constantes trajectoires
