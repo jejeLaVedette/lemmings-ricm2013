@@ -3,14 +3,20 @@ package lemmings;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JButton;
-import javax.swing.JScrollPane;
-
-import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
+import java.awt.Component;
+import javax.swing.ImageIcon;
+import javax.swing.Box;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+
 
 
 public class Fenetre extends JFrame {
@@ -20,10 +26,10 @@ public class Fenetre extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Panneau zone_map;
-	//private Panneau zone_map = new Panneau();
+	private Panneau zone_map = new Panneau();
 	public static int tailleFX = 1000;
-	public static int tailleFY = 550;
+	public static int tailleFY = 650;
+	private int espacement_hori = 20;
 	
 	
 	public Fenetre(){
@@ -36,36 +42,80 @@ public class Fenetre extends JFrame {
 		//Termine le processus lorsqu'on clique sur la croix rouge
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		zone_map = new Panneau();
-		getContentPane().add(zone_map, BorderLayout.CENTER);
-		
 		JPanel zone_controle = new JPanel();
 		getContentPane().add(zone_controle, BorderLayout.SOUTH);
 		zone_controle.setLayout(new BoxLayout(zone_controle, BoxLayout.X_AXIS));
-		
-		
+
 		JPanel zone_gauche = new JPanel();
-		FlowLayout fl_zone_gauche = (FlowLayout) zone_gauche.getLayout();
-		fl_zone_gauche.setAlignOnBaseline(true);
-		fl_zone_gauche.setVgap(1/4*tailleFY);
-		fl_zone_gauche.setHgap(1/2*tailleFX);
 		zone_controle.add(zone_gauche);
+		//zone_gauche.setBounds(0,1/4*tailleFY ,tailleFX/2,1/4*tailleFY);
+		//zone_gauche.setPreferredSize(new Dimension(tailleFX/2, 1/4*tailleFY));
+
+		JPanel bouton_sup = new JPanel();
+	    //On définit le layout en lui indiquant qu'il travaillera en ligne
+		bouton_sup.setLayout(new BoxLayout(bouton_sup, BoxLayout.LINE_AXIS));
+		JButton bouton_creuse = new JButton(new ImageIcon(((new ImageIcon("Images/pioche.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
+		bouton_sup.add(bouton_creuse);
 		
-		JButton btnBoutonGauche = new JButton("bouton gauche");
-		zone_gauche.add(btnBoutonGauche);
+		Component horizontalStrut_3 = Box.createHorizontalStrut(espacement_hori);
+		bouton_sup.add(horizontalStrut_3);
 		
-		JButton btnParapluie = new JButton("Parapluie");
-		zone_gauche.add(btnParapluie);
+		JButton bouton_parapluie = new JButton(new ImageIcon(((new ImageIcon("Images/parapluie_ferme.jpg")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+		bouton_sup.add(bouton_parapluie);
 		
-		JPanel zone_droite = new JPanel();
-		FlowLayout fl_zone_droite = (FlowLayout) zone_droite.getLayout();
-		fl_zone_droite.setVgap(1/4*tailleFY);
-		fl_zone_droite.setHgap(1/2*tailleFX);
-		zone_controle.add(zone_droite);
+		Component horizontalStrut_4 = Box.createHorizontalStrut(espacement_hori);
+		bouton_sup.add(horizontalStrut_4);
 		
-		JButton btnBoutonDroite = new JButton("bouton droite");
-		zone_droite.add(btnBoutonDroite);
-				
+		JButton bouton_saiyan = new JButton(new ImageIcon(((new ImageIcon("Images/ss.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+		bouton_sup.add(bouton_saiyan);
+		
+	 	 
+	    JPanel bouton_inf = new JPanel();
+	    //Idem pour cette ligne
+	    bouton_inf.setLayout(new BoxLayout(bouton_inf, BoxLayout.LINE_AXIS));
+		JButton bouton_play = new JButton(new ImageIcon(((new ImageIcon("Images/play.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+	    bouton_inf.add(bouton_play);
+		
+		Component horizontalStrut = Box.createHorizontalStrut(espacement_hori);
+		bouton_inf.add(horizontalStrut);
+		JButton bouton_pause = new JButton(new ImageIcon(((new ImageIcon("Images/pause.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+		bouton_inf.add(bouton_pause);
+		
+		Component horizontalStrut_1 = Box.createHorizontalStrut(espacement_hori);
+		bouton_inf.add(horizontalStrut_1);
+		JButton bouton_accelerer = new JButton(new ImageIcon(((new ImageIcon("Images/accelerer.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
+	    bouton_inf.add(bouton_accelerer);
+		
+		Component horizontalStrut_2 = Box.createHorizontalStrut(espacement_hori);
+		bouton_inf.add(horizontalStrut_2);
+		JButton bouton_recharger = new JButton(new ImageIcon(((new ImageIcon("Images/recharger.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
+		bouton_inf.add(bouton_recharger);
+		
+
+		
+		
+
+	    //On positionne maintenant ces trois lignes en colonne
+	    zone_gauche.setLayout(new BoxLayout(zone_gauche, BoxLayout.PAGE_AXIS));
+	    zone_gauche.add(bouton_sup);
+	    zone_gauche.add(bouton_inf);
+	    
+	    JSeparator separator = new JSeparator();
+	    separator.setOrientation(SwingConstants.VERTICAL);
+	    //separator.setBounds(tailleFX/2, 1/4*tailleFY, 100, 100);
+	    System.out.println("separator.getX() : " +separator.getX() );
+	    System.out.println("separator.getY() : " +separator.getY() );
+	    zone_controle.add(separator);
+	    //System.out.println("sepa : "+separator.setB);
+
+	    
+	    JPanel zone_droite = new JPanel();
+	    zone_controle.add(zone_droite);
+	    
+	    JLabel img = new JLabel();
+	    img.setIcon(new ImageIcon("C:\\Users\\j\u00E9r\u00F4me\\Documents\\Polytech\\s2\\java\\eclipse\\test_menu\\Images\\Carte.png"));
+	    zone_droite.add(img);
+		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -91,7 +141,7 @@ public class Fenetre extends JFrame {
 	
 	public void afficher(){
 
-		//getContentPane().add(zone_map, BorderLayout.CENTER);
+		getContentPane().add(zone_map, BorderLayout.CENTER);
 		zone_map.repaint(); 
 
 		try {
@@ -101,5 +151,13 @@ public class Fenetre extends JFrame {
 		}
 	}
 	
+	public int getTailleX() {
+		return zone_map.getWidth();
+	}
+
+	public int getTailleY() {
+		return zone_map.getHeight();
+	}
+			
 
 }
