@@ -27,7 +27,7 @@ public class Jeu implements Constantes {
 		//Carte.charger("Images/Carte2.png");
 		Carte.setEntree(new Point(120, 30));
 		//Carte.setEntree(new Point(100, 150));
-		Carte.setNbLemmings(5);
+		Carte.setNbLemmings(2);
 		
 		int wait = delaiPop + 1;
 		
@@ -35,7 +35,7 @@ public class Jeu implements Constantes {
 		f.afficher();
 		
 		// Lemmings bloqueurs
-		Carte.obs.add(new Lemming(80,80,lemmingStop));
+		//Carte.obs.add(new Lemming(100,150,lemmingStop));
 		//Carte.obs.add(new Lemming(90,80,lemmingStop));
 		//Carte.obs.add(new Lemming(80,50,lemmingStop));
 		//Carte.obs.add(new Lemming(160,30,lemmingStop));
