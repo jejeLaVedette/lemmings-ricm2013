@@ -59,7 +59,7 @@ public class Jeu implements Constantes {
 		while(true) {
 			
 			if(wait>delaiPop && Carte.nbLemmings>0) {
-				if(Carte.nbLemmings%2==0)
+				if(Carte.nbLemmings%2==1)
 					Carte.popLemmings(lemmingBase);
 				else
 					Carte.popLemmings(lemmingParapluie);

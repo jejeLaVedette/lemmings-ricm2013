@@ -59,17 +59,17 @@ public class Moteur implements Constantes {
 					//if(Carte.map[x-1][y].type<=typeSolSup) relief--;
 					if(Carte.map[x-1][y-1].type<=typeSolSup) relief--;
 					if(Carte.map[x-1][y-2].type<=typeSolSup) relief--;
-					if(Carte.map[x-1][y+1].type>=typeAirInf && Carte.map[x-1][y].type<=typeAirSup) relief++;
+					if(Carte.map[x-1][y].type>=typeAirInf && Carte.map[x-1][y].type<=typeAirSup) relief++;
 					if(Carte.map[x-1][y+1].type>=typeAirInf && Carte.map[x-1][y+1].type<=typeAirSup) relief++;
-					if(Carte.map[x-1][y+2].type>=typeAirInf && Carte.map[x-1][y+2].type<=typeAirSup) relief++;
+					//if(Carte.map[x-1][y+2].type>=typeAirInf && Carte.map[x-1][y+2].type<=typeAirSup) relief++;
 				}
 				else {
 					//if(Carte.map[x+1][y].type<=typeSolSup) relief--;
 					if(Carte.map[x+1][y-1].type<=typeSolSup) relief--;
 					if(Carte.map[x+1][y-2].type<=typeSolSup) relief--;
-					if(Carte.map[x+1][y+1].type>=typeAirInf && Carte.map[x+1][y].type<=typeAirSup) relief++;
+					if(Carte.map[x+1][y].type>=typeAirInf && Carte.map[x+1][y].type<=typeAirSup) relief++;
 					if(Carte.map[x+1][y+1].type>=typeAirInf && Carte.map[x+1][y+1].type<=typeAirSup) relief++;
-					if(Carte.map[x+1][y+2].type>=typeAirInf && Carte.map[x+1][y+2].type<=typeAirSup) relief++;
+					//if(Carte.map[x+1][y+2].type>=typeAirInf && Carte.map[x+1][y+2].type<=typeAirSup) relief++;
 				}
 			}
 			
