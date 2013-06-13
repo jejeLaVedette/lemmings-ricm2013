@@ -39,7 +39,7 @@ public class Fenetre extends JFrame {
 	private int espacement_hori = 20;
 	private double coefFenetre = 0.75;
 	private Panneau zone_map = new Panneau(Fenetre.tailleFX/Carte.LARGEUR_CARTE,(int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE));
-	
+	private Panneau mini_map;
 	
 	public Fenetre() throws IOException{
 		this.setTitle("Lemmings");
@@ -116,6 +116,8 @@ public class Fenetre extends JFrame {
 	    //separator.setBounds(tailleFX/2, 1/4*tailleFY, 100, 100);
 	    zone_controle.add(separator);
 	    //System.out.println("sepa : "+separator.setB);
+	    System.out.println("taille y separa : "+separator.getHeight());
+	    System.out.println("taille x separa : "+separator.getWidth());
 
 	    
 	    JPanel zone_droite = new JPanel();
@@ -123,9 +125,9 @@ public class Fenetre extends JFrame {
 	    zone_controle.add(zone_droite);
 	    System.out.println("x zone : " + zone_droite.getX());
 	    
-	    Panneau mini_map = new Panneau(Fenetre.tailleFX/Carte.LARGEUR_CARTE,(int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE));
+	    //mini_map = new Panneau(500,162);
 
-	    zone_droite.add(mini_map);
+	    //zone_droite.add(mini_map);
 	   /* JLabel img = new JLabel();
 	    BufferedImage b = ImageIO.read(new File(Carte.miniMap));
 	    float newx = ((float) zone_droite.getWidth())/((float)b.getWidth());
@@ -171,13 +173,18 @@ public class Fenetre extends JFrame {
 		System.out.println("x zone_droite : "+zone_droite.getWidth());
 		System.out.println("tailleFy : "+tailleFY);
 		
+
+		System.out.println("x zon_crt "+zone_controle.getWidth());
+		System.out.println("y zon_crt "+zone_controle.getHeight());
+		
 		this.setVisible(true);
 		
 	}
 	
 	public void afficher(){
 
-		zone_map.repaint(); 
+		//zone_map.repaint();
+		//mini_map.repaint();
 
 		try {
 			Thread.sleep(10); // a une certaine vitesse --> 1000 = 1sec
@@ -197,7 +204,7 @@ public class Fenetre extends JFrame {
 	 public static BufferedImage scale(BufferedImage bImage, float factorx, float factory) {
 	        int destWidth=(int) (bImage.getWidth() * factorx);
 	        int destHeight=(int) (bImage.getHeight() * factory);
-	//créer l'image de destination
+	//crï¿½er l'image de destination
 	        GraphicsConfiguration configuration = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 	        BufferedImage bImageNew = configuration.createCompatibleImage(destWidth, destHeight);
 	        Graphics2D graphics = bImageNew.createGraphics();
