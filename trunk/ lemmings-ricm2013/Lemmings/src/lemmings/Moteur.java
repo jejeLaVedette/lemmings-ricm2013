@@ -50,24 +50,30 @@ public class Moteur implements Constantes {
 				}
 			}
 			
-			//System.out.println(cond+lem.getEtat()+" de type "+lem.type);
+			
 			
 			// Calcul du relief
 			if(cond=="sol") {
 				relief = 0;
 				if(lem.getDirection()==gauche) {
+					//if(Carte.map[x-1][y].type<=typeSolSup) relief--;
 					if(Carte.map[x-1][y-1].type<=typeSolSup) relief--;
 					if(Carte.map[x-1][y-2].type<=typeSolSup) relief--;
+					if(Carte.map[x-1][y+1].type>=typeAirInf && Carte.map[x-1][y].type<=typeAirSup) relief++;
 					if(Carte.map[x-1][y+1].type>=typeAirInf && Carte.map[x-1][y+1].type<=typeAirSup) relief++;
 					if(Carte.map[x-1][y+2].type>=typeAirInf && Carte.map[x-1][y+2].type<=typeAirSup) relief++;
 				}
 				else {
+					//if(Carte.map[x+1][y].type<=typeSolSup) relief--;
 					if(Carte.map[x+1][y-1].type<=typeSolSup) relief--;
 					if(Carte.map[x+1][y-2].type<=typeSolSup) relief--;
+					if(Carte.map[x+1][y+1].type>=typeAirInf && Carte.map[x+1][y].type<=typeAirSup) relief++;
 					if(Carte.map[x+1][y+1].type>=typeAirInf && Carte.map[x+1][y+1].type<=typeAirSup) relief++;
 					if(Carte.map[x+1][y+2].type>=typeAirInf && Carte.map[x+1][y+2].type<=typeAirSup) relief++;
 				}
 			}
+			
+			System.out.println("Condition: "+cond+" Etat: "+lem.getEtat()+ "(de type "+lem.type+") relief: "+relief);
 			
 			// S'il est mort, et ben... il est mort !
 			if(lem.getEtat()==etatMort && cond=="sol") {
