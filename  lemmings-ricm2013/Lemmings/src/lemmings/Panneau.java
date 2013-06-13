@@ -16,8 +16,9 @@ public class Panneau extends JPanel {
 	private Image perso;
 	private int posX = 0;
 	private int posY = 0;
+	private double coefFenetre = 0.75;
 	private int tailleRX = Fenetre.tailleFX/Carte.LARGEUR_CARTE;
-	private int tailleRY = Fenetre.tailleFY/Carte.HAUTEUR_CARTE;
+	private int tailleRY = (int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE);
 	public static final int coeff = 10;
 	public void paintComponent(Graphics g)
 	{

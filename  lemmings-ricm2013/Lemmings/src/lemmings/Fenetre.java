@@ -3,7 +3,6 @@ package lemmings;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
@@ -42,13 +41,16 @@ public class Fenetre extends JFrame {
 		//Termine le processus lorsqu'on clique sur la croix rouge
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+
+		getContentPane().add(zone_map, BorderLayout.CENTER);
+		
 		JPanel zone_controle = new JPanel();
 		getContentPane().add(zone_controle, BorderLayout.SOUTH);
 		zone_controle.setLayout(new BoxLayout(zone_controle, BoxLayout.X_AXIS));
 
 		JPanel zone_gauche = new JPanel();
+		//zone_gauche.setBounds(0,3/4*tailleFY ,tailleFX/2,1/4*tailleFY);
 		zone_controle.add(zone_gauche);
-		//zone_gauche.setBounds(0,1/4*tailleFY ,tailleFX/2,1/4*tailleFY);
 		//zone_gauche.setPreferredSize(new Dimension(tailleFX/2, 1/4*tailleFY));
 
 		JPanel bouton_sup = new JPanel();
@@ -103,14 +105,15 @@ public class Fenetre extends JFrame {
 	    JSeparator separator = new JSeparator();
 	    separator.setOrientation(SwingConstants.VERTICAL);
 	    //separator.setBounds(tailleFX/2, 1/4*tailleFY, 100, 100);
-	    System.out.println("separator.getX() : " +separator.getX() );
-	    System.out.println("separator.getY() : " +separator.getY() );
 	    zone_controle.add(separator);
 	    //System.out.println("sepa : "+separator.setB);
 
 	    
 	    JPanel zone_droite = new JPanel();
+		//zone_droite.setBounds(tailleFX/2,3/4*tailleFY ,tailleFX/2,1/4*tailleFY);
 	    zone_controle.add(zone_droite);
+	    
+	    
 	    
 	    JLabel img = new JLabel();
 	    img.setIcon(new ImageIcon("C:\\Users\\j\u00E9r\u00F4me\\Documents\\Polytech\\s2\\java\\eclipse\\test_menu\\Images\\Carte.png"));
@@ -141,7 +144,6 @@ public class Fenetre extends JFrame {
 	
 	public void afficher(){
 
-		getContentPane().add(zone_map, BorderLayout.CENTER);
 		zone_map.repaint(); 
 
 		try {
