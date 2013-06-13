@@ -111,8 +111,9 @@ public class Fenetre extends JFrame {
 
 	    
 	    JPanel zone_droite = new JPanel();
-		//zone_droite.setBounds(tailleFX/2,3/4*tailleFY ,tailleFX/2,1/4*tailleFY);
+		zone_droite.setBounds(tailleFX/2,3/4*tailleFY ,tailleFX/2,1/4*tailleFY);
 	    zone_controle.add(zone_droite);
+	    System.out.println("x zone : " + zone_droite.getX());
 	    
 	    
 	    
@@ -138,19 +139,7 @@ public class Fenetre extends JFrame {
 		JMenuItem mntmRgle = new JMenuItem("r\u00E8gle");
 		mnJouer.add(mntmRgle);
 		
-		this.pack();
 		
-		if (Toolkit.getDefaultToolkit().isFrameStateSupported(MAXIMIZED_BOTH)) {
-            System.out.println("Frame state supported.");
-            this.setExtendedState(MAXIMIZED_BOTH);
-        } else {
-            System.out.println("Frame state not supported.");
-            Dimension max = Toolkit.getDefaultToolkit().getScreenSize();
-            // TODO see getMaximumWindowBounds()
-            max.height -= 20;
-            this.setSize(max);
-            this.setLocation(0, 20);
-        }
 		
 		this.setVisible(true);
 		
