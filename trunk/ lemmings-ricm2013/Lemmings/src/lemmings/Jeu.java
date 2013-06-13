@@ -31,11 +31,7 @@ public class Jeu implements Constantes {
 		
 		Fenetre f = new Fenetre();
 		f.afficher();
-		
-		Carte.obs.add(new Lemming(80,80));
-		Carte.obs.add(new Lemming(70,80));
-		Carte.obs.add(new Lemming(60,80));
-		Carte.obs.add(new Lemming(120,40));
+
 		// Lemmings bloqueurs
 		//Carte.obs.add(new Lemming(100,61,lemmingStop));
 		//Carte.obs.add(new Lemming(90,80,lemmingStop));
@@ -62,7 +58,7 @@ public class Jeu implements Constantes {
 		while(true) {
 			
 			if(wait>delaiPop && Carte.getNbLemmings()!=0) {
-				Carte.popLemmings(lemmingParapluie);
+				Carte.popLemmings(lemmingBase);
 				wait = 0;
 			}
 			
