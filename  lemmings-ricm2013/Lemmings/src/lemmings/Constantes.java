@@ -47,6 +47,6 @@ public interface Constantes {
 	public final static  double coeffreductionx= 0.4;
 	public final static  double coeffreductiony= 0.2;
 	public final static  int coeffdecalagedirectrice = 30;
-	public static int vx = 200;
-	public static int vy = 200;
+	public static int vx = 50;
+	public static int vy = 50;
 }

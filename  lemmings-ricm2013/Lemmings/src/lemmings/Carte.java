@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 public class Carte implements Constantes {
 	
 	public static Point entree;
-	public static int nbLemmings;
+	public static int nbLemmings = 0;
 	
 	public static int LARGEUR_CARTE;
 	public static int HAUTEUR_CARTE;
@@ -93,6 +93,7 @@ public class Carte implements Constantes {
 	public static void popLemmings (int type)
 	{
 		obs.add(new Lemming(entree.x,entree.y,type));
+		System.out.println(".");
 		nbLemmings--;
 	}
 	

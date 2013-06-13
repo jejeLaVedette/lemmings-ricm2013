@@ -127,20 +127,20 @@ public class Fenetre extends JFrame {
 
 
 
-		//On place le premier séparateur
+		//On place le premier sï¿½parateur
 		split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, zone_gauche, zone_droite);
-		//On place le deuxième séparateur
+		//On place le deuxiï¿½me sï¿½parateur
 		split2.setDividerLocation(tailleFX/2);
-		//On passe les deux précédents JSplitPane à celui-ci
+		//On passe les deux prï¿½cï¿½dents JSplitPane ï¿½ celui-ci
 		split3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, zone_map, split2);
-		//On place le troisième séparateur
+		//On place le troisiï¿½me sï¿½parateur
 		split3.setDividerLocation(3*tailleFY/4);
 
 
 
 
 		//On le passe ensuite au content pane de notre objet Fenetre
-		//placé au centre pour qu'il utilise tout l'espace disponible
+		//placï¿½ au centre pour qu'il utilise tout l'espace disponible
 		this.getContentPane().add(split3, BorderLayout.CENTER);
 
 		this.setVisible(true);
