@@ -48,7 +48,6 @@ public class Panneau extends JPanel {
 		posY=0;
 
 		//on affiche les lemmings
-		System.out.println(Carte.obs.size());
 		for(int k =0;k<Carte.obs.size();k++){				
 			perso = new ImageIcon(Carte.obs.get(k).image).getImage();
 			g.setColor(new Color(51,204,0));

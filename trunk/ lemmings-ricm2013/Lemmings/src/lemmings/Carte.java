@@ -93,7 +93,6 @@ public class Carte implements Constantes {
 	public static void popLemmings (int type)
 	{
 		obs.add(new Lemming(entree.x,entree.y,type));
-		System.out.println(".");
 		nbLemmings--;
 	}
 	

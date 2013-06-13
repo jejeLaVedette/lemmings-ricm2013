@@ -21,4 +21,13 @@ public class Observable {
 	public void setY(int y) {
 		this.y = y;
 	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+	
 }
