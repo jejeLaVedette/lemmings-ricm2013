@@ -124,7 +124,7 @@ public class CopyOfTrajectoire_physiqueH implements Constantes {
 		}		
 	}
 	
-	private int get_trajectoireY(int x){
+	public int get_trajectoireY(int x){
 		int yrel;
 		int rep;
 		yrel=this.get_YpourSavecconst(this.get_XpourS(x));
