@@ -1,41 +1,34 @@
 package lemmings;
 
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.RenderingHints;
 
-import javax.swing.JLabel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JSplitPane;
-import javax.swing.Spring;
-import javax.swing.SpringLayout.Constraints;
 
 import java.awt.Component;
-import java.awt.image.BufferedImage;
-import java.io.File;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.Box;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
 
 
 
-public class Fenetre extends JFrame {
+public class Fenetre extends JFrame { //implements MouseListener, ActionListener 
 
 	/**
 	 * 
@@ -44,14 +37,20 @@ public class Fenetre extends JFrame {
 
 	public static int tailleFX = 1000;
 	private JSplitPane split2, split3;
-	public static int tailleFY = 650;
+	public static int tailleFY = 700;
 	private int espacement_hori = 20;
 	private double coefFenetre = 0.75;
+	private int knowButton = 0;
 	private Panneau zone_map = new Panneau(Fenetre.tailleFX/Carte.LARGEUR_CARTE,(int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE));
 	private Panneau2 mini_map = new Panneau2(Fenetre.tailleFX/Carte.LARGEUR_CARTE,(int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE));
+    public static int restey = tailleFY%Carte.HAUTEUR_CARTE;
+    public static int restex = tailleFX%Carte.LARGEUR_CARTE;
 
 
-	public Fenetre() throws IOException{
+
+
+	public Fenetre() throws IOException {
+		
 		this.setTitle("Lemmings");
 		this.setSize(tailleFX, tailleFY);
 		//empeche le redimentionnement de la fenetre
@@ -69,16 +68,15 @@ public class Fenetre extends JFrame {
 		zone_droite.setLayout(new GridBagLayout());
 		zone_droite.add(mini_map,c);
 
-
-
 		//ZONE QUI CONTIENT LES BOUTONS
 		JPanel zone_gauche = new JPanel();
 
+        
 		JPanel bouton_sup = new JPanel();
 		//On d�finit le layout en lui indiquant qu'il travaillera en ligne
 		bouton_sup.setLayout(new BoxLayout(bouton_sup, BoxLayout.LINE_AXIS));
 		zone_gauche.add(bouton_sup);
-
+		
 		JButton bouton_creuse = new JButton(new ImageIcon(((new ImageIcon("Images/pioche.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
 		bouton_sup.add(bouton_creuse);
 
@@ -91,38 +89,78 @@ public class Fenetre extends JFrame {
 		Component horizontalStrut_4 = Box.createHorizontalStrut(espacement_hori);
 		bouton_sup.add(horizontalStrut_4);
 
-		JButton bouton_saiyan = new JButton(new ImageIcon(((new ImageIcon("Images/ss.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
-		bouton_sup.add(bouton_saiyan);
-		// zone_gauche.setBackground(Color.orange);
+		JButton bouton_escalier = new JButton(new ImageIcon(((new ImageIcon("Images/escalier.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+		bouton_sup.add(bouton_escalier);
+		
+		Component horizontalStrut_5 = Box.createHorizontalStrut(espacement_hori);
+		bouton_sup.add(horizontalStrut_5);
+		
+		JButton bouton_futur1 = new JButton(new ImageIcon(((new ImageIcon("Images/interrogation.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+		bouton_sup.add(bouton_futur1);
+		
+		Component horizontalStrut_6 = Box.createHorizontalStrut(espacement_hori);
+		bouton_sup.add(horizontalStrut_6);
 
-
-		JPanel bouton_inf = new JPanel();
+		
+		
+		JPanel bouton_inf1 = new JPanel();
 		//Idem pour cette ligne
-		bouton_inf.setLayout(new BoxLayout(bouton_inf, BoxLayout.LINE_AXIS));
+		bouton_inf1.setLayout(new BoxLayout(bouton_inf1, BoxLayout.LINE_AXIS));
+		JButton bouton_escalade = new JButton(new ImageIcon(((new ImageIcon("Images/escalade.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+		bouton_inf1.add(bouton_escalade);
+
+		Component horizontalStrut_10 = Box.createHorizontalStrut(espacement_hori);
+		bouton_inf1.add(horizontalStrut_10);
+		
+		JButton bouton_bombe = new JButton(new ImageIcon(((new ImageIcon("Images/bombe.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+		bouton_inf1.add(bouton_bombe);
+
+		Component horizontalStrut_7 = Box.createHorizontalStrut(espacement_hori);
+		bouton_inf1.add(horizontalStrut_7);
+		
+		JButton bouton_stop = new JButton(new ImageIcon(((new ImageIcon("Images/lemming3.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
+		bouton_inf1.add(bouton_stop);
+
+		Component horizontalStrut_8 = Box.createHorizontalStrut(espacement_hori);
+		bouton_inf1.add(horizontalStrut_8);
+		
+		JButton bouton_futur2 = new JButton(new ImageIcon(((new ImageIcon("Images/interrogation.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
+		bouton_inf1.add(bouton_futur2);
+		
+		Component horizontalStrut_9 = Box.createHorizontalStrut(espacement_hori);
+		bouton_inf1.add(horizontalStrut_9);
+
+		
+		
+		JPanel bouton_inf2 = new JPanel();
+		//Idem pour cette ligne
+		bouton_inf2.setLayout(new BoxLayout(bouton_inf2, BoxLayout.LINE_AXIS));
 		JButton bouton_play = new JButton(new ImageIcon(((new ImageIcon("Images/play.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
-		bouton_inf.add(bouton_play);
+		bouton_inf2.add(bouton_play);
 
 		Component horizontalStrut = Box.createHorizontalStrut(espacement_hori);
-		bouton_inf.add(horizontalStrut);
+		bouton_inf2.add(horizontalStrut);
 		JButton bouton_pause = new JButton(new ImageIcon(((new ImageIcon("Images/pause.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
-		bouton_inf.add(bouton_pause);
+		bouton_inf2.add(bouton_pause);
 
 		Component horizontalStrut_1 = Box.createHorizontalStrut(espacement_hori);
-		bouton_inf.add(horizontalStrut_1);
+		bouton_inf2.add(horizontalStrut_1);
 		JButton bouton_accelerer = new JButton(new ImageIcon(((new ImageIcon("Images/accelerer.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
-		bouton_inf.add(bouton_accelerer);
+		bouton_inf2.add(bouton_accelerer);
 
 		Component horizontalStrut_2 = Box.createHorizontalStrut(espacement_hori);
-		bouton_inf.add(horizontalStrut_2);
+		bouton_inf2.add(horizontalStrut_2);
 		JButton bouton_recharger = new JButton(new ImageIcon(((new ImageIcon("Images/recharger.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
-		bouton_inf.add(bouton_recharger);
+		bouton_inf2.add(bouton_recharger);
 		Component horizontalStrut_42 = Box.createHorizontalStrut(espacement_hori);
-		bouton_inf.add(horizontalStrut_42);
+		bouton_inf2.add(horizontalStrut_42);
 
 		//On positionne maintenant ces trois lignes en colonne
 		zone_gauche.setLayout(new BoxLayout(zone_gauche, BoxLayout.PAGE_AXIS));
 		zone_gauche.add(bouton_sup);
-		zone_gauche.add(bouton_inf);
+		zone_gauche.add(bouton_inf1);
+		zone_gauche.add(bouton_inf2);
+
 
 
 
@@ -136,19 +174,33 @@ public class Fenetre extends JFrame {
 		//On place le troisi�me s�parateur
 		split3.setDividerLocation(3*tailleFY/4);
 
-
-
-
 		//On le passe ensuite au content pane de notre objet Fenetre
 		//plac� au centre pour qu'il utilise tout l'espace disponible
 		this.getContentPane().add(split3, BorderLayout.CENTER);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnJouer = new JMenu("Jouer");
+		menuBar.add(mnJouer);
+		
+		JMenu mnJouer_1 = new JMenu("Jouer");
+		mnJouer.add(mnJouer_1);
+		
+		JMenuItem mntmMap = new JMenuItem("map1");
+		mnJouer_1.add(mntmMap);
+		
+		JMenuItem mntmMap_1 = new JMenuItem("map2");
+		mnJouer_1.add(mntmMap_1);
+		
+		JMenuItem mntmRgle = new JMenuItem("r\u00E8gle");
+		mnJouer.add(mntmRgle);
 
 		this.setVisible(true);
 
 	}
 
 	public void afficher(){
-
 		zone_map.repaint();
 		mini_map.repaint();
 
@@ -167,21 +219,7 @@ public class Fenetre extends JFrame {
 		return zone_map.getHeight();
 	}
 
-	public static BufferedImage scale(BufferedImage bImage, float factorx, float factory) {
-		int destWidth=(int) (bImage.getWidth() * factorx);	
-		int destHeight=(int) (bImage.getHeight() * factory);
-		//cr�er l'image de destination
-		GraphicsConfiguration configuration = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-		BufferedImage bImageNew = configuration.createCompatibleImage(destWidth, destHeight);
-		Graphics2D graphics = bImageNew.createGraphics();
-		graphics.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-		graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
-		//dessiner l'image de destination
-		graphics.drawImage(bImage, 0, 0, destWidth, destHeight, 0, 0, bImage.getWidth(), bImage.getHeight(), null);
-		graphics.dispose();
 
-		return bImageNew;
-	}
 
 
 }
