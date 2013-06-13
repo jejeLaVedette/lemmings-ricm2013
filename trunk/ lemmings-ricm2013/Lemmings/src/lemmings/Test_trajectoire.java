@@ -15,7 +15,7 @@ public static void main(String[] args){
 		Carte.initialiser();
 		Fenetre f = new Fenetre();
 		f.afficher();
-		CopyOfTrajectoire_physique tp = new CopyOfTrajectoire_physique(80, 80, 50, -100,true);
+		CopyOfTrajectoire_physiqueH tp = new CopyOfTrajectoire_physiqueH(80, 80, 50, -100,0);
 		for(int i = 0 ; i<20;i++){
 			int y = tp.get_trajectoireY(i);
 			System.out.println("valeur de y finale");
