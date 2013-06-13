@@ -54,7 +54,7 @@ public class Fenetre extends JFrame {
 		//zone_gauche.setPreferredSize(new Dimension(tailleFX/2, 1/4*tailleFY));
 
 		JPanel bouton_sup = new JPanel();
-	    //On définit le layout en lui indiquant qu'il travaillera en ligne
+	    //On dï¿½finit le layout en lui indiquant qu'il travaillera en ligne
 		bouton_sup.setLayout(new BoxLayout(bouton_sup, BoxLayout.LINE_AXIS));
 		JButton bouton_creuse = new JButton(new ImageIcon(((new ImageIcon("Images/pioche.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
 		bouton_sup.add(bouton_creuse);
@@ -120,7 +120,7 @@ public class Fenetre extends JFrame {
 	    
 	    
 	    JLabel img = new JLabel();
-	    img.setIcon(new ImageIcon("C:\\Users\\j\u00E9r\u00F4me\\Documents\\Polytech\\s2\\java\\eclipse\\test_menu\\Images\\Carte3.png"));
+	    img.setIcon(new ImageIcon("Images/Carte3.png"));
 	    zone_droite.add(img);
 		
 		JMenuBar menuBar = new JMenuBar();
