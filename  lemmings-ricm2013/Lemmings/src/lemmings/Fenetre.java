@@ -34,10 +34,11 @@ public class Fenetre extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Panneau zone_map = new Panneau();
 	public static int tailleFX = 1000;
 	public static int tailleFY = 650;
 	private int espacement_hori = 20;
+	private double coefFenetre = 0.75;
+	private Panneau zone_map = new Panneau(Fenetre.tailleFX/Carte.LARGEUR_CARTE,(int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE));
 	
 	
 	public Fenetre() throws IOException{
@@ -118,15 +119,19 @@ public class Fenetre extends JFrame {
 
 	    
 	    JPanel zone_droite = new JPanel();
-		zone_droite.setBounds(tailleFX/2,(3/4)*tailleFY ,tailleFX/2,tailleFY/4);
+		//zone_droite.setBounds(tailleFX/2,(3/4)*tailleFY ,tailleFX/2,tailleFY/4);
 	    zone_controle.add(zone_droite);
 	    System.out.println("x zone : " + zone_droite.getX());
 	    
-	    JLabel img = new JLabel();
+	    Panneau mini_map = new Panneau(Fenetre.tailleFX/Carte.LARGEUR_CARTE,(int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE));
+
+	    zone_droite.add(mini_map);
+	   /* JLabel img = new JLabel();
 	    BufferedImage b = ImageIO.read(new File(Carte.miniMap));
 	    float newx = ((float) zone_droite.getWidth())/((float)b.getWidth());
 	    float newy = ((float) zone_droite.getHeight())/((float)b.getHeight());
-	    System.out.println("zone_droite.getWidth() : "+zone_droite.getWidth());
+	    
+	    /*System.out.println("zone_droite.getWidth() : "+zone_droite.getWidth());
 	    System.out.println("zone_droite.getHeight() : "+zone_droite.getHeight());
 	    System.out.println("b.getWidth() : "+b.getWidth());
 	    System.out.println("b.getHeight() : "+b.getHeight());
@@ -141,7 +146,7 @@ public class Fenetre extends JFrame {
 	    System.out.println("y img : "+img.getHeight());
 	    System.out.println("x img : "+img.getWidth());
 
-	    zone_droite.add(img);
+	    zone_droite.add(img);*/
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
