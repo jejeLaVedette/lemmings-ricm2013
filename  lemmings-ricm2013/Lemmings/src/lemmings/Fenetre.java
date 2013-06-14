@@ -24,10 +24,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseListener;
 
 
 
-public class Fenetre extends JFrame implements Constantes{//implements MouseListener, ActionListener
+public class Fenetre extends JFrame implements Constantes, MouseListener, ActionListener{//implements MouseListener, ActionListener
 	/**
 	 * 
 	 */
@@ -38,14 +39,25 @@ public class Fenetre extends JFrame implements Constantes{//implements MouseList
 	public static int tailleFY = 700;
 	private int espacement_hori = 20;
 	private double coefFenetre = 0.75;
-	private int knowButton;
 	private int typeCourant;
 	private Panneau zone_map = new Panneau(Fenetre.tailleFX/Carte.LARGEUR_CARTE,(int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE));
 	private Panneau2 mini_map = new Panneau2(Fenetre.tailleFX/Carte.LARGEUR_CARTE,(int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE));
 	public static int restey = tailleFY%Carte.HAUTEUR_CARTE;
 	public static int restex = tailleFX%Carte.LARGEUR_CARTE;
-
-
+	
+	//DECLARATION DE TOUT LES BOUTONS
+	private JButton bouton_creuse = new JButton(new ImageIcon(((new ImageIcon("Images/pioche.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
+	private JButton bouton_parapluie = new JButton(new ImageIcon(((new ImageIcon("Images/parapluie_ferme.jpg")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+	private	JButton bouton_escalier = new JButton(new ImageIcon(((new ImageIcon("Images/escalier.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+	private JButton bouton_futur1 = new JButton(new ImageIcon(((new ImageIcon("Images/interrogation.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+	private JButton bouton_escalade = new JButton(new ImageIcon(((new ImageIcon("Images/escalade.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+	private JButton bouton_bombe = new JButton(new ImageIcon(((new ImageIcon("Images/bombe.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+	private JButton bouton_stop = new JButton(new ImageIcon(((new ImageIcon("Images/lemming3.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
+	private JButton bouton_futur2 = new JButton(new ImageIcon(((new ImageIcon("Images/interrogation.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
+	private JButton bouton_play = new JButton(new ImageIcon(((new ImageIcon("Images/play.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+	private JButton bouton_pause = new JButton(new ImageIcon(((new ImageIcon("Images/pause.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+	private JButton bouton_accelerer = new JButton(new ImageIcon(((new ImageIcon("Images/accelerer.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
+	private JButton bouton_recharger = new JButton(new ImageIcon(((new ImageIcon("Images/recharger.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 
 
 	public Fenetre() throws IOException {
@@ -74,53 +86,46 @@ public class Fenetre extends JFrame implements Constantes{//implements MouseList
 		flowLayout.setVgap(25);
 		flowLayout.setHgap(-6);
 		zone_droite.add(mini_map,c);
-
+		
+		//MISE EN ATTENTE DES BOUTONS
+		bouton_creuse.addActionListener(this);
+		bouton_parapluie.addActionListener(this);
+		bouton_escalier.addActionListener(this);
+		bouton_futur1.addActionListener(this);
+		bouton_escalade.addActionListener(this);
+		bouton_escalade.addActionListener(this);
+		bouton_bombe.addActionListener(this);
+		bouton_stop.addActionListener(this);
+		bouton_futur2.addActionListener(this);
+		bouton_play.addActionListener(this);
+		bouton_pause.addActionListener(this);
+		bouton_accelerer.addActionListener(this);
+		bouton_recharger.addActionListener(this);
 
 		//ZONE QUI CONTIENT LES BOUTONS
 		JPanel zone_gauche = new JPanel();
 
-		
-		zone_map.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent event) {
-				modifType(event);
-			}
-		});
 
 		JPanel bouton_sup = new JPanel();
 		//On dï¿½finit le layout en lui indiquant qu'il travaillera en ligne
 		bouton_sup.setLayout(new BoxLayout(bouton_sup, BoxLayout.LINE_AXIS));
 		zone_gauche.add(bouton_sup);
 
-		JButton bouton_creuse = new JButton(new ImageIcon(((new ImageIcon("Images/pioche.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
-		bouton_creuse.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				typeCourant = lemmingCreuseur;
-			}
-		});
 		bouton_sup.add(bouton_creuse);
 
 		Component horizontalStrut_3 = Box.createHorizontalStrut(espacement_hori);
 		bouton_sup.add(horizontalStrut_3);
 
-		JButton bouton_parapluie = new JButton(new ImageIcon(((new ImageIcon("Images/parapluie_ferme.jpg")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
-		bouton_parapluie.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				typeCourant = lemmingParapluie;
-			}
-		});
 		bouton_sup.add(bouton_parapluie);
 
 		Component horizontalStrut_4 = Box.createHorizontalStrut(espacement_hori);
 		bouton_sup.add(horizontalStrut_4);
 
-		JButton bouton_escalier = new JButton(new ImageIcon(((new ImageIcon("Images/escalier.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_sup.add(bouton_escalier);
 
 		Component horizontalStrut_5 = Box.createHorizontalStrut(espacement_hori);
 		bouton_sup.add(horizontalStrut_5);
 
-		JButton bouton_futur1 = new JButton(new ImageIcon(((new ImageIcon("Images/interrogation.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_sup.add(bouton_futur1);
 
 		Component horizontalStrut_6 = Box.createHorizontalStrut(espacement_hori);
@@ -131,25 +136,21 @@ public class Fenetre extends JFrame implements Constantes{//implements MouseList
 		JPanel bouton_inf1 = new JPanel();
 		//Idem pour cette ligne
 		bouton_inf1.setLayout(new BoxLayout(bouton_inf1, BoxLayout.LINE_AXIS));
-		JButton bouton_escalade = new JButton(new ImageIcon(((new ImageIcon("Images/escalade.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_inf1.add(bouton_escalade);
 
 		Component horizontalStrut_10 = Box.createHorizontalStrut(espacement_hori);
 		bouton_inf1.add(horizontalStrut_10);
 
-		JButton bouton_bombe = new JButton(new ImageIcon(((new ImageIcon("Images/bombe.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_inf1.add(bouton_bombe);
 
 		Component horizontalStrut_7 = Box.createHorizontalStrut(espacement_hori);
 		bouton_inf1.add(horizontalStrut_7);
 
-		JButton bouton_stop = new JButton(new ImageIcon(((new ImageIcon("Images/lemming3.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_inf1.add(bouton_stop);
 
 		Component horizontalStrut_8 = Box.createHorizontalStrut(espacement_hori);
 		bouton_inf1.add(horizontalStrut_8);
 
-		JButton bouton_futur2 = new JButton(new ImageIcon(((new ImageIcon("Images/interrogation.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_inf1.add(bouton_futur2);
 
 		Component horizontalStrut_9 = Box.createHorizontalStrut(espacement_hori);
@@ -160,22 +161,18 @@ public class Fenetre extends JFrame implements Constantes{//implements MouseList
 		JPanel bouton_inf2 = new JPanel();
 		//Idem pour cette ligne
 		bouton_inf2.setLayout(new BoxLayout(bouton_inf2, BoxLayout.LINE_AXIS));
-		JButton bouton_play = new JButton(new ImageIcon(((new ImageIcon("Images/play.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_inf2.add(bouton_play);
 
 		Component horizontalStrut = Box.createHorizontalStrut(espacement_hori);
 		bouton_inf2.add(horizontalStrut);
-		JButton bouton_pause = new JButton(new ImageIcon(((new ImageIcon("Images/pause.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_inf2.add(bouton_pause);
 
 		Component horizontalStrut_1 = Box.createHorizontalStrut(espacement_hori);
 		bouton_inf2.add(horizontalStrut_1);
-		JButton bouton_accelerer = new JButton(new ImageIcon(((new ImageIcon("Images/accelerer.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_inf2.add(bouton_accelerer);
 
 		Component horizontalStrut_2 = Box.createHorizontalStrut(espacement_hori);
 		bouton_inf2.add(horizontalStrut_2);
-		JButton bouton_recharger = new JButton(new ImageIcon(((new ImageIcon("Images/recharger.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_inf2.add(bouton_recharger);
 		Component horizontalStrut_42 = Box.createHorizontalStrut(espacement_hori);
 		bouton_inf2.add(horizontalStrut_42);
@@ -216,6 +213,15 @@ public class Fenetre extends JFrame implements Constantes{//implements MouseList
 
 		JMenuItem mntmRgle = new JMenuItem("r\u00E8gle");
 		mnJouer.add(mntmRgle);
+		
+
+		
+		zone_map.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent event) {
+				modifType(event);
+			}
+		});
 
 		this.setVisible(true);
 
@@ -241,32 +247,55 @@ public class Fenetre extends JFrame implements Constantes{//implements MouseList
 	}
 
 	public void mouseClicked(MouseEvent arg0) {
-		knowButton=1;
 		System.out.println("j'ai cliquer sur le bouton pioche");
 	}
 	
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==bouton_creuse) typeCourant = lemmingCreuseur;
+		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
+	}
 
 
 	public void modifType(MouseEvent event){
-		System.out.println("je clique sur la map pioche");
-		System.out.println("je clique sur la map parapluie");
 		//on récupère les coordonnée X de la souris    
         int newCx = ((event.getX())*Carte.LARGEUR_CARTE)/(tailleFX);
         //on réccupère les coordonnée Y de la souris
         int newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/(3*tailleFY/5);
         
         Observable lem;
-        System.out.println("tentative de suppr lemmings#######1");
         for (int i =0;i<Carte.obs.size();i++){
                 lem = Carte.obs.get(i);
-                System.out.println("tentative de suppr lemmings#######1.2");
-                if((newCy<lem.getY() && newCy>lem.getY() - Panneau.coeff) && ((newCx<lem.getX()+3/2*Panneau.coeff && newCx > lem.getX()-3/2*Panneau.coeff))){
-                        System.out.println("tentative de suppr lemmings#######2");
+                if((newCy<lem.getY() && newCy>lem.getY() -2*Panneau.coeff) && ((newCx<lem.getX()+3/2*Panneau.coeff && newCx > lem.getX()-3/2*Panneau.coeff))){
                         if(typeCourant == lemmingParapluie){
                         	Carte.obs.get(i).setEtat(etatParapluieOuvert);
                         }
                         Carte.obs.get(i).type=typeCourant;
+                        break;
                 }
         }
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
