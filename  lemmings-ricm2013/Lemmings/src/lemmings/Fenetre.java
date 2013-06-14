@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
@@ -16,9 +17,6 @@ import javax.swing.JSplitPane;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -28,8 +26,7 @@ import javax.swing.Box;
 
 
 
-public class Fenetre extends JFrame { //implements MouseListener, ActionListener 
-
+public class Fenetre extends JFrame implements MouseListener, ActionListener { 
 	/**
 	 * 
 	 */
@@ -46,6 +43,7 @@ public class Fenetre extends JFrame { //implements MouseListener, ActionListener
     public static int restey = tailleFY%Carte.HAUTEUR_CARTE;
     public static int restex = tailleFX%Carte.LARGEUR_CARTE;
 
+	private JButton bouton_creuse = new JButton(new ImageIcon(((new ImageIcon("Images/pioche.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
 
 
 
@@ -59,6 +57,10 @@ public class Fenetre extends JFrame { //implements MouseListener, ActionListener
 		this.setLocationRelativeTo(null);
 		//Termine le processus lorsqu'on clique sur la croix rouge
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//modifie le logo en haut a gauche
+        Image icone = new ImageIcon("Images/Logo.jpg").getImage();
+        setIconImage(icone);
 
 		//ZONE QUI CONTIENT LA MINIMAP
 		JPanel zone_droite = new JPanel();
@@ -77,8 +79,9 @@ public class Fenetre extends JFrame { //implements MouseListener, ActionListener
 		bouton_sup.setLayout(new BoxLayout(bouton_sup, BoxLayout.LINE_AXIS));
 		zone_gauche.add(bouton_sup);
 		
-		JButton bouton_creuse = new JButton(new ImageIcon(((new ImageIcon("Images/pioche.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
+		bouton_creuse.addActionListener(this);
 		bouton_sup.add(bouton_creuse);
+		
 
 		Component horizontalStrut_3 = Box.createHorizontalStrut(espacement_hori);
 		bouton_sup.add(horizontalStrut_3);
@@ -172,7 +175,7 @@ public class Fenetre extends JFrame { //implements MouseListener, ActionListener
 		//On passe les deux pr�c�dents JSplitPane � celui-ci
 		split3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, zone_map, split2);
 		//On place le troisi�me s�parateur
-		split3.setDividerLocation(3*tailleFY/4);
+		split3.setDividerLocation(3*tailleFY/5);
 
 		//On le passe ensuite au content pane de notre objet Fenetre
 		//plac� au centre pour qu'il utilise tout l'espace disponible
@@ -219,7 +222,49 @@ public class Fenetre extends JFrame { //implements MouseListener, ActionListener
 		return zone_map.getHeight();
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		if(arg0.getSource()==bouton_creuse){
+			knowButton = 1;
+			System.out.println("Clique sur le bouton pioche");
+			this.addMouseListener(this);
+			System.out.println("fin de l'action");
+		}
+		
+	}
 
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		if(knowButton==1){
+			System.out.println("Je suis rentrer dans la souris ;) ");
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }
