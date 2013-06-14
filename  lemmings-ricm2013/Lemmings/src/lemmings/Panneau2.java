@@ -2,9 +2,6 @@ package lemmings;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Panneau2 extends JPanel implements Constantes { 
@@ -13,7 +10,7 @@ public class Panneau2 extends JPanel implements Constantes {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Image perso;
+	//private Image perso;
 	private int posX = 0;
 	private int posY = 0;
 	private int tailleRX;

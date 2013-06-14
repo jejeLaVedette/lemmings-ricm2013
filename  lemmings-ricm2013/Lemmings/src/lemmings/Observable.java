@@ -3,6 +3,7 @@ package lemmings;
 public class Observable {
 	protected int type;
 	protected int x;
+	protected int etat;
 	protected int y;
 	protected String image;
 	
@@ -28,6 +29,14 @@ public class Observable {
 
 	public void setType(int type) {
 		this.type = type;
+	}
+
+	public int getEtat() {
+		return etat;
+	}
+
+	public void setEtat(int etat) {
+		this.etat = etat;
 	}
 	
 }
