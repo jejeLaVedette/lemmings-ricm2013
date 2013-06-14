@@ -3,7 +3,6 @@ package lemmings;
 public class Lemming extends Observable implements Constantes {
 	
 	protected int direction;
-	protected int etat;
 	protected Trajectoire_physiqueH trajH;
 	protected Trajectoire_physiqueV trajV;
 	
