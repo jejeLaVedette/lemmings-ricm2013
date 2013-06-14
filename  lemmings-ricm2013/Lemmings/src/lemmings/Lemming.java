@@ -7,6 +7,7 @@ public class Lemming extends Observable implements Constantes {
 	protected Trajectoire_physiqueV trajV;
 	
 	public Lemming() {
+		super();
 		super.type = lemmingBase;
 		this.direction = droite;
 		this.image = "Images/lemming1.png";
@@ -16,6 +17,7 @@ public class Lemming extends Observable implements Constantes {
 	}
 	
 	public Lemming(int x,int y) {
+		super();
 		super.type = lemmingBase;
 		this.direction = droite;
 		this.image = "Images/lemming1.png";
@@ -25,6 +27,27 @@ public class Lemming extends Observable implements Constantes {
 	}
 	
 	public Lemming(int x,int y, int type) {
+		super();
+		super.type = type;
+		this.direction = droite;
+		this.image = "Images/lemming1.png";
+		this.etat = etatInitial;
+		super.x = x;
+		super.y = y;
+	}
+	
+	public Lemming(int x,int y, int type, double vx, double vy) {
+		super(vx,vy);
+		super.type = type;
+		this.direction = droite;
+		this.image = "Images/lemming1.png";
+		this.etat = etatInitial;
+		super.x = x;
+		super.y = y;
+	}
+	
+	public Lemming(int x,int y, int type, double vx, double vy, double elas) {
+		super(vx,vy,elas);
 		super.type = type;
 		this.direction = droite;
 		this.image = "Images/lemming1.png";

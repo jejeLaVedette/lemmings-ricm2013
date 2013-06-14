@@ -16,6 +16,7 @@ public class Carte implements Constantes {
 	
 	public static int LARGEUR_CARTE;
 	public static int HAUTEUR_CARTE;
+	public static double gravite = 9.81;
 	
 	public static String miniMap;
 
