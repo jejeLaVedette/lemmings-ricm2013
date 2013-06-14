@@ -14,7 +14,7 @@ public static void main(String[] args) throws IOException{
 		
 		listetoto.add(new AutoLemmingBasique(5));
 		Carte.initialiser();
-		Fenetre f = new Fenetre();
+		Fenetre f = new Fenetre(Jeu.tailleFX,Jeu.tailleFY);
 		f.afficher();
 		CopyOfTrajectoire_physiqueH tp = new CopyOfTrajectoire_physiqueH(80, 80, 50, -100,0);
 		for(int i = 0 ; i<20;i++){

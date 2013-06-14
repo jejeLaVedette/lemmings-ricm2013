@@ -18,11 +18,17 @@ public class Panneau extends JPanel {
 	private int posY = 0;
 	private int tailleRX;
 	private int tailleRY;
+	private double coefFenetre = 0.75;
 	public static final int coeff = 10;
 
-	public Panneau(int tailleX, int tailleY) {
-		this.tailleRX = tailleX;
-		this.tailleRY = tailleY;
+	public Panneau(int tailleFX, int tailleFY) {
+		//on test les x
+		if(tailleFX >= Carte.LARGEUR_CARTE) this.tailleRX = Jeu.tailleFX/Carte.LARGEUR_CARTE;
+		else this.tailleRX = Carte.LARGEUR_CARTE/Jeu.tailleFX;
+		
+		//on test les y
+		if(coefFenetre*tailleFY>=Carte.HAUTEUR_CARTE) this.tailleRY = (int)(coefFenetre*Jeu.tailleFY/Carte.HAUTEUR_CARTE);
+		else this.tailleRY = (int) (Carte.HAUTEUR_CARTE/coefFenetre*Jeu.tailleFY);
 	}
 
 	public void paintComponent(Graphics g)

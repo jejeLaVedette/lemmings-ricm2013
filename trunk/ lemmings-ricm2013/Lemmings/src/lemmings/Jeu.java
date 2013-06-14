@@ -8,6 +8,9 @@ import java.util.List;
 public class Jeu implements Constantes {
 	
 	public static List<Automate>listeAutomates = new ArrayList<Automate>();
+	public static int tailleFX = 1000;
+	public static int tailleFY = 700;
+
 	/*private int x;
 	private int y;
 	private int vectx;
@@ -22,20 +25,20 @@ public class Jeu implements Constantes {
 		listeAutomates.add(new AutoLemmingCatapulte(5));
 		listeAutomates.add(new AutoLemmingGrimpeur(5));
 		
-		Carte.miniMap = "Images/Carte.png";
+		//Carte.miniMap = "Images/Carte.png";
 		Carte.charger("Images/Carte.png");
 		Carte.setEntree(new Point(120, 50));
 		Carte.setNbLemmings(20);
 		
 		int wait = delaiPop + 1;
 		
-		Fenetre f = new Fenetre();
+		Fenetre f = new Fenetre(tailleFX,tailleFY);
 		f.afficher();
 
 		// Lemmings bloqueurs
 		//Carte.obs.add(new Lemming(100,61,lemmingStop));
-		//Carte.obs.add(new Lemming(90,80,lemmingStop));
-		//Carte.obs.add(new Lemming(80,50,lemmingStop));
+		//Carte.obs.add(new Lemming(80,80,lemmingStop));
+		//Carte.obs.add(new Lemming(80,80,lemmingStop));
 		//Carte.obs.add(new Lemming(160,30,lemmingStop));
 
 		
