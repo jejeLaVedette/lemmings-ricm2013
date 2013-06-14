@@ -28,6 +28,13 @@ public class Moteur implements Constantes {
 			}
 			int x = lem.getX();
 			int y = lem.getY();
+
+			// S'il est mort, et ben... il est mort !
+			if(lem.getY()==Carte.HAUTEUR_CARTE-1) {
+				Carte.obs.remove(i);
+				break;
+			}
+
 			// Analyse de l'environnement du lemming courant
 			String cond;
 
@@ -96,13 +103,12 @@ public class Moteur implements Constantes {
 				}
 			}
 
-			//System.out.println("relief: "+relief);
-
 			// S'il est mort, et ben... il est mort !
 			if(lem.getEtat()==etatMort && cond=="sol") {
 				Carte.obs.remove(i);
 				break;
 			}
+			//System.out.println("relief: "+relief);
 
 			// Recherche de l'automate correspondant
 			Automate aut = Jeu.listeAutomates.get(0);
@@ -216,13 +222,10 @@ public class Moteur implements Constantes {
 		y = l.getY();
 		x = l.getX();
 		for(int i=0;i<(coeff/2);i++) {
-
-
-			if(y<Carte.HAUTEUR_CARTE){
-				Carte.map[l.getX()+i][y] = new Air();
-				Carte.map[l.getX()-i][y] = new Air();
-			}
+			Carte.map[x+i][y] = new Air();
+			Carte.map[x-i][y] = new Air();
 		}
+
 		l.setY(y+1);
 	}
 
