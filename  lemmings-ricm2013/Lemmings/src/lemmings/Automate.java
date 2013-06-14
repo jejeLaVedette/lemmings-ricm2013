@@ -7,6 +7,7 @@ public abstract class Automate {
 	
 	protected ArrayList<Transition> listeTransitions;
 	protected int identifiant;
+	protected String nom;
 	
 	public Automate(int nbTransitions, int id)
 	{
@@ -22,6 +23,10 @@ public abstract class Automate {
 
 	public void setIdentifiant(int identifiant) {
 		this.identifiant = identifiant;
+	}
+	
+	public static int nomVersIdentifiant (String nom) {
+		return 0;
 	}
 
 	
