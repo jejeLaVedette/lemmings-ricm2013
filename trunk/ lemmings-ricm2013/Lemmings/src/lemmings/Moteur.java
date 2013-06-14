@@ -96,7 +96,7 @@ public class Moteur implements Constantes {
 				}
 			}
 			
-			System.out.println("relief: "+relief);
+			//System.out.println("relief: "+relief);
 			
 			// S'il est mort, et ben... il est mort !
 			if(lem.getEtat()==etatMort && cond=="sol") {
