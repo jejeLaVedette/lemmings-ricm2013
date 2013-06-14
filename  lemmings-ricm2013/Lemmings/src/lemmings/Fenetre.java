@@ -35,9 +35,9 @@ public class Fenetre extends JFrame { //implements MouseListener, ActionListener
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static int tailleFX = 1500;
+	public static int tailleFX = 1000;
 	private JSplitPane split2, split3;
-	public static int tailleFY = 1000;
+	public static int tailleFY = 700;
 	private int espacement_hori = 20;
 	private double coefFenetre = 0.75;
 	private int knowButton = 0;
