@@ -20,6 +20,7 @@ public class AutoLemmingCreuseur extends Automate implements Constantes {
 		int i=1;
 		while(i<profondeurCreuser+1) {
 			listeTransitions.add(new Transition(i, i+1, "sol", l));
+			listeTransitions.add(new Transition(i, i+1, "mur", l));
 			listeTransitions.add(new Transition(i, etatReinit, "vide", l));
 			i++;
 		}
