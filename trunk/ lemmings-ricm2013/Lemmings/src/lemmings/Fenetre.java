@@ -270,6 +270,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
                         	Carte.obs.get(i).setEtat(etatParapluieOuvert);
                         }
                         Carte.obs.get(i).type=typeCourant;
+                        break;
                 }
         }
 	}
