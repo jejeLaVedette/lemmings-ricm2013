@@ -202,6 +202,7 @@ public class Moteur implements Constantes {
 		Carte.map[l.getX()][l.getY()].type = typeSolInvisible;
 		Carte.map[l.getX()][l.getY()-1].type = typeSolInvisible;
 		Carte.map[l.getX()][l.getY()-2].type = typeSolInvisible;
+		Carte.map[l.getX()][l.getY()-3].type = typeSolInvisible;
 	}
 
 	private static void tomberParapluie(Lemming l) {
