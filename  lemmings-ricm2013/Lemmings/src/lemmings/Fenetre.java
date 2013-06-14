@@ -34,16 +34,16 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static int tailleFX = 1000;
 	private JSplitPane split2, split3;
-	public static int tailleFY = 700;
 	private int espacement_hori = 20;
-	private double coefFenetre = 0.75;
+	//private double coefFenetre = 0.75;
 	private int typeCourant;
-	private Panneau zone_map = new Panneau(Fenetre.tailleFX/Carte.LARGEUR_CARTE,(int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE));
-	private Panneau2 mini_map = new Panneau2(Fenetre.tailleFX/Carte.LARGEUR_CARTE,(int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE));
-	public static int restey = tailleFY%Carte.HAUTEUR_CARTE;
-	public static int restex = tailleFX%Carte.LARGEUR_CARTE;
+	//private Panneau zone_map = new Panneau(Jeu.tailleFX/Carte.LARGEUR_CARTE,(int)(coefFenetre*Jeu.tailleFY/Carte.HAUTEUR_CARTE));
+	//private Panneau2 mini_map = new Panneau2(Jeu.tailleFX/Carte.LARGEUR_CARTE,(int)(coefFenetre*Jeu.tailleFY/Carte.HAUTEUR_CARTE));
+	private Panneau zone_map = new Panneau(Jeu.tailleFX, Jeu.tailleFY);
+	private Panneau2 mini_map = new Panneau2(Jeu.tailleFX, Jeu.tailleFY);
+	//public static int restey = Jeu.tailleFY%Carte.HAUTEUR_CARTE;
+	//public static int restex = Jeu.tailleFX%Carte.LARGEUR_CARTE;
 	
 	//DECLARATION DE TOUT LES BOUTONS
 	private JButton bouton_creuse = new JButton(new ImageIcon(((new ImageIcon("Images/pioche.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
@@ -60,10 +60,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JButton bouton_recharger = new JButton(new ImageIcon(((new ImageIcon("Images/recharger.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 
 
-	public Fenetre() throws IOException {
+	public Fenetre(int tFX, int tFY) throws IOException {
 
 		this.setTitle("Lemmings");
-		this.setSize(tailleFX, tailleFY);
+		this.setSize(tFX, tFY);
 		//empeche le redimentionnement de la fenetre
 		this.setResizable(false);
 		//Positionne l'objet au centre
@@ -79,8 +79,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		JPanel zone_droite = new JPanel();
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
-		c.ipadx = tailleFX/2;
-		c.ipady = tailleFY/4;
+		c.ipadx = Jeu.tailleFX/2;
+		c.ipady = Jeu.tailleFY/4;
 		zone_droite.setLayout(new GridBagLayout());
 		FlowLayout flowLayout = (FlowLayout) mini_map.getLayout();
 		flowLayout.setVgap(25);
@@ -186,11 +186,11 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		//On place le premier séparateur
 		split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, zone_gauche, zone_droite);
 		//On place le deuxiï¿½me séparateur
-		split2.setDividerLocation(tailleFX/2);
+		split2.setDividerLocation(Jeu.tailleFX/2);
 		//On passe les deux prï¿½cï¿½dents JSplitPane ï¿½ celui-ci
 		split3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, zone_map, split2);
 		//On place le troisiï¿½me sï¿½parateur
-		split3.setDividerLocation(3*tailleFY/5);
+		split3.setDividerLocation(3*Jeu.tailleFY/5);
 
 		//On le passe ensuite au content pane de notre objet Fenetre
 		//placï¿½ au centre pour qu'il utilise tout l'espace disponible
@@ -247,20 +247,20 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	}
 
 	public void mouseClicked(MouseEvent arg0) {
-		System.out.println("j'ai cliquer sur le bouton pioche");
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==bouton_creuse) typeCourant = lemmingCreuseur;
+		if(e.getSource()==bouton_creuse) {typeCourant = lemmingCreuseur; System.out.println("Bouton pioche");}
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
 	}
 
 
 	public void modifType(MouseEvent event){
 		//on récupère les coordonnée X de la souris    
-        int newCx = ((event.getX())*Carte.LARGEUR_CARTE)/(tailleFX);
+        int newCx = ((event.getX())*Carte.LARGEUR_CARTE)/(Jeu.tailleFX);
         //on réccupère les coordonnée Y de la souris
-        int newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/(3*tailleFY/5);
+        int newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/(3*Jeu.tailleFY/5);
         
         Observable lem;
         for (int i =0;i<Carte.obs.size();i++){
@@ -270,6 +270,11 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
                         	Carte.obs.get(i).setEtat(etatParapluieOuvert);
                         }
                         Carte.obs.get(i).type=typeCourant;
+                        System.out.println("x souris : "+newCx);
+                        System.out.println("y souris : "+newCy);
+                        System.out.println("x lem : "+lem.getX());
+                        System.out.println("y lem : "+lem.getY());
+
                         break;
                 }
         }
