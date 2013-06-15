@@ -38,26 +38,23 @@ public class Moteur implements Constantes {
 			// Analyse de l'environnement du lemming courant
 			String cond;
 
-
+			// Présence d'un vide
+			if( ( lem.getDirection()==gauche && Carte.map[x][y+1].type>=typeAirInf && Carte.map[x][y+1].type<=typeAirSup ) ||
+					( lem.getDirection()==droite && Carte.map[x][y+1].type>=typeAirInf && Carte.map[x][y+1].type<=typeAirSup )	) 
+				cond = "vide";
+			
 			// Présence d'un mur
-			if( (x==0 && lem.getDirection()==gauche) || 
+			else if( (x==0 && lem.getDirection()==gauche) || 
 					(x==Carte.LARGEUR_CARTE-1 && lem.getDirection()==1) ||
 					(lem.getDirection()==gauche && Carte.map[x-1][y].type<=typeSolSup && Carte.map[x-1][y-1].type<=typeSolSup && Carte.map[x-1][y-2].type<=typeSolSup)||
 					(lem.getDirection()==droite && Carte.map[x+1][y].type<=typeSolSup && Carte.map[x+1][y-1].type<=typeSolSup && Carte.map[x+1][y-2].type<=typeSolSup)||
 					(lem.type == lemmingCatapulte && Carte.map[x][y-1-coeff*3/4].type<=typeSolSup && Carte.map[x-1][y-1-coeff*3/4].type<=typeSolSup && Carte.map[x+1][y-1-coeff*3/4].type<=typeSolSup )
-					) {
+					) 
 				cond = "mur";
-			}
-			// Présence d'un vide
-			else { 
-				if( ( lem.getDirection()==gauche && Carte.map[x][y+1].type>=typeAirInf && Carte.map[x][y+1].type<=typeAirSup ) ||
-						( lem.getDirection()==droite && Carte.map[x][y+1].type>=typeAirInf && Carte.map[x][y+1].type<=typeAirSup )	) {
-					cond = "vide";
-				}
-				else {
-					cond = "sol";
-				}
-			}
+			
+			else 
+				cond = "sol";
+			
 
 
 
