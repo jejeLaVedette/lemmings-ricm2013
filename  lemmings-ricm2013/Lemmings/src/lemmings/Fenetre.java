@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.ScrollPane;
 
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
@@ -46,6 +47,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	
 	private Panneau zone_map;
 	private Panneau2 mini_map;
+	
+	private JScrollPane scroll;
 	
 	public static int tailleFX;
 	public static int tailleFY;
@@ -107,7 +110,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		JPanel zone_gauche = new JPanel();
 
 		JPanel bouton_sup = new JPanel();
-		//On d�finit le layout en lui indiquant qu'il travaillera en ligne
+		//On définit le layout en lui indiquant qu'il travaillera en ligne
 		bouton_sup.setLayout(new BoxLayout(bouton_sup, BoxLayout.LINE_AXIS));
 		zone_gauche.add(bouton_sup);
 
@@ -182,13 +185,19 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		zone_gauche.add(bouton_sup);
 		zone_gauche.add(bouton_inf1);
 		zone_gauche.add(bouton_inf2);
+		
+		// Scrollbar
+		zone_map.setPreferredSize(new Dimension(Carte.LARGEUR_CARTE,Carte.HAUTEUR_CARTE));
+		scroll = new JScrollPane(zone_map);
+		this.setLayout(new BorderLayout());
+		
 
 		//On place le premier séparateur
 		split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, zone_gauche, zone_droite);
 		//On place le deuxième séparateur
 		split2.setDividerLocation(tFX/2);
 		//On passe les deux précédents JSplitPane à celui-ci
-		split3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, zone_map, split2);
+		split3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scroll, split2);
 		//On place le troisieme séparateur
 		split3.setDividerLocation(3*tFY/5);
 
@@ -229,7 +238,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	}
 
 	public void afficher(){
-		zone_map.repaint();
+		scroll.repaint();
 		mini_map.repaint();
 
 		try {
@@ -258,9 +267,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 
 	public void modifType(MouseEvent event){
-		//on r�cup�re les coordonn�e X de la souris    
+		//on récupére les coordonnée X de la souris    
 		int newCx = ((event.getX())*Carte.LARGEUR_CARTE)/(tailleFX);
-		//on r�ccup�re les coordonn�e Y de la souris
+		//on réccupére les coordonnée Y de la souris
 		int newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/(3*tailleFY/5);
 
 		Observable lem;
