@@ -47,6 +47,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private Panneau zone_map;
 	private Panneau2 mini_map;
 	
+	private int tailleFX;
+	private int tailleFY;
+	
 	//public static int restey = Jeu.tailleFY%Carte.HAUTEUR_CARTE;
 	//public static int restex = Jeu.tailleFX%Carte.LARGEUR_CARTE;
 
@@ -67,6 +70,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 	public Fenetre(int tFX, int tFY) throws IOException {
 
+		tailleFX = tFX;
+		tailleFY = tFY;
+		
 		this.setTitle("Lemmings");
 		this.setSize(tFX, tFY);
 		//empeche le redimentionnement de la fenetre
@@ -80,15 +86,15 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		Image icone = new ImageIcon("Images/Logo.jpg").getImage();
 		setIconImage(icone);
 
-		zone_map = new Panneau(tFX, tFY);
-		mini_map = new Panneau2(tFX, tFY);
+		zone_map = new Panneau(tailleFX, tailleFY);
+		mini_map = new Panneau2(tailleFX, tailleFY);
 		
 		//ZONE QUI CONTIENT LA MINIMAP
 		JPanel zone_droite = new JPanel();
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
-		c.ipadx = Jeu.tailleFX/2;
-		c.ipady = Jeu.tailleFY/4;
+		c.ipadx = tailleFX/2;
+		c.ipady = tailleFY/4;
 		zone_droite.setLayout(new GridBagLayout());
 		FlowLayout flowLayout = (FlowLayout) mini_map.getLayout();
 		flowLayout.setVgap(25);
@@ -126,7 +132,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		//ZONE QUI CONTIENT LES BOUTONS
 		JPanel zone_gauche = new JPanel();
-
 
 		JPanel bouton_sup = new JPanel();
 		//On d�finit le layout en lui indiquant qu'il travaillera en ligne
@@ -208,11 +213,11 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		//On place le premier séparateur
 		split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, zone_gauche, zone_droite);
 		//On place le deuxième séparateur
-		split2.setDividerLocation(Jeu.tailleFX/2);
+		split2.setDividerLocation(tFX/2);
 		//On passe les deux précédents JSplitPane à celui-ci
 		split3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, zone_map, split2);
 		//On place le troisieme séparateur
-		split3.setDividerLocation(3*Jeu.tailleFY/5);
+		split3.setDividerLocation(3*tFY/5);
 
 		//On le passe ensuite au content pane de notre objet Fenetre
 		//placé au centre pour qu'il utilise tout l'espace disponible
@@ -234,7 +239,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		JMenuItem mntmMap_1 = new JMenuItem("map2");
 		mnJouer_1.add(mntmMap_1);
 
-		JMenuItem mntmRgle = new JMenuItem("r\u00E8gle");
+		JMenuItem mntmRgle = new JMenuItem("r\u00E8gles");
 		mnJouer.add(mntmRgle);
 
 
@@ -281,9 +286,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 	public void modifType(MouseEvent event){
 		//on r�cup�re les coordonn�e X de la souris    
-		int newCx = ((event.getX())*Carte.LARGEUR_CARTE)/(Jeu.tailleFX);
+		int newCx = ((event.getX())*Carte.LARGEUR_CARTE)/(tailleFX);
 		//on r�ccup�re les coordonn�e Y de la souris
-		int newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/(3*Jeu.tailleFY/5);
+		int newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/(3*tailleFY/5);
 
 		Observable lem;
 		for (int i =0;i<Carte.obs.size();i++){

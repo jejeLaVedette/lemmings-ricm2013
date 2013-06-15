@@ -32,7 +32,7 @@ public class Jeu implements Constantes {
 		
 		int wait = delaiPop + 1;
 		
-		Fenetre f = new Fenetre(tailleFX,tailleFY);
+		Fenetre f = new Fenetre(640,480);
 		f.afficher();
 		
 		
