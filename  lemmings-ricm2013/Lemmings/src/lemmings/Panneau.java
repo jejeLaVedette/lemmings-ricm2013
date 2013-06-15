@@ -25,7 +25,7 @@ public class Panneau extends JPanel {
 		//on test les x
 		if(tailleFX >= Carte.LARGEUR_CARTE) this.tailleRX = Jeu.tailleFX/Carte.LARGEUR_CARTE;
 		else this.tailleRX = Carte.LARGEUR_CARTE/Jeu.tailleFX;
-		
+
 		//on test les y
 		if(coefFenetre*tailleFY>=Carte.HAUTEUR_CARTE) this.tailleRY = (int)(coefFenetre*Jeu.tailleFY/Carte.HAUTEUR_CARTE);
 		else this.tailleRY = (int) (Carte.HAUTEUR_CARTE/coefFenetre*Jeu.tailleFY);
@@ -59,7 +59,7 @@ public class Panneau extends JPanel {
 			g.setColor(new Color(51,204,0));
 			setOpaque(false);
 			g.drawImage(perso, Carte.obs.get(k).getX()*tailleRX-tailleRX*coeff/2, 
-					(Carte.obs.get(k).getY()-coeff)*tailleRY,
+					(Carte.obs.get(k).getY()+1-coeff)*tailleRY,
 					tailleRX*coeff,tailleRY*coeff, null);
 		}
 
