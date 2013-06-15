@@ -17,6 +17,8 @@ public class Panneau2 extends JPanel implements Constantes {
 	private int tailleRY;
 	private double coefFenetre = 0.75;
 	public static final int coeff = 10;
+	
+	private int coefRetrecissement;
 
 	public Panneau2(int tailleFX, int tailleFY) {
 		//on test les x
@@ -26,14 +28,16 @@ public class Panneau2 extends JPanel implements Constantes {
 		//on test les y
 		if(coefFenetre*tailleFY>=Carte.HAUTEUR_CARTE) this.tailleRY = (int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE);
 		else this.tailleRY = (int) (Carte.HAUTEUR_CARTE/coefFenetre*Fenetre.tailleFY);
+		
+		this.coefRetrecissement = 3;
 	}
 
 	public void paintComponent(Graphics g)
 	{
 		int luminance; Color c;
-		for(int i=0; i<Carte.HAUTEUR_CARTE; i++){
+		for(int i=0; i<Carte.HAUTEUR_CARTE; i+=coefRetrecissement){
 
-			for(int j=0; j<Carte.LARGEUR_CARTE; j++){ 
+			for(int j=0; j<Carte.LARGEUR_CARTE; j+=coefRetrecissement){ 
 				
 				if (Carte.map[j][i].type >= typeSolInf && Carte.map[j][i].type <= typeSolSup)
 				{
@@ -48,13 +52,13 @@ public class Panneau2 extends JPanel implements Constantes {
 
 				// on avance en longueur
 				posX=posX+tailleRX;
-				j+=2;
+				
 			}
 			//on se replace tout a gauche de l'écran
 			posX=0;
 			//et on diminue d'un rang en hauteur
 			posY=posY+tailleRY;
-			i+=2;
+			;
 		}
 
 		//si on repaint, on repart de 0
@@ -63,14 +67,11 @@ public class Panneau2 extends JPanel implements Constantes {
 		
 		//on affiche les lemmings
 		for(int k =0;k<Carte.obs.size();k++){				
-			/*perso = new ImageIcon(Carte.obs.get(k).image).getImage();
-			g.setColor(new Color(51,204,0));
-			setOpaque(false);
-			g.drawImage(perso, Carte.obs.get(k).getX()*tailleRX/3-tailleRX*coeff/2, 
-					(Carte.obs.get(k).getY()-coeff)*tailleRY/3,
-					tailleRX*coeff/3,tailleRY*coeff/3, null);*/
 			g.setColor(new Color(0,200,0));
-			g.fillRect(Carte.obs.get(k).getX()*tailleRX/3-tailleRX*coeff/2, (Carte.obs.get(k).getY()-coeff)*tailleRY/3, Constantes.coeff/2, Constantes.coeff);
+			g.fillRect(Carte.obs.get(k).getX()*tailleRX/coefRetrecissement-tailleRX*coeff/2, 
+					   (Carte.obs.get(k).getY()-coeff)*tailleRY/coefRetrecissement, 
+					   Constantes.coeff/2, 
+					   Constantes.coeff);
 		}
 		
 

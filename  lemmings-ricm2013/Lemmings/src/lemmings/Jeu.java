@@ -24,7 +24,7 @@ public class Jeu implements Constantes {
 		listeAutomates.add(new AutoLemmingGrimpeur(5));
 		
 		//Carte.miniMap = "Images/Carte.png";
-		Carte.charger("Images/Carte.png");
+		Carte.charger("Images/Carte2.png");
 		Carte.setEntree(new Point(100, 36));
 		Carte.setNbLemmings(20);
 		
