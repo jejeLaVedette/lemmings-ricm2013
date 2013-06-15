@@ -183,9 +183,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		zone_gauche.add(bouton_inf1);
 		zone_gauche.add(bouton_inf2);
 
-		//On place le premier séparateur
+		//On place le premier sï¿½parateur
 		split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, zone_gauche, zone_droite);
-		//On place le deuxiï¿½me séparateur
+		//On place le deuxiï¿½me sï¿½parateur
 		split2.setDividerLocation(Jeu.tailleFX/2);
 		//On passe les deux prï¿½cï¿½dents JSplitPane ï¿½ celui-ci
 		split3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, zone_map, split2);
@@ -251,15 +251,15 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==bouton_creuse) {typeCourant = lemmingCreuseur; System.out.println("Bouton pioche");}
+		if(e.getSource()==bouton_creuse) {typeCourant = lemmingCreuseur; /*System.out.println("Bouton pioche");*/}
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
 	}
 
 
 	public void modifType(MouseEvent event){
-		//on récupère les coordonnée X de la souris    
+		//on rï¿½cupï¿½re les coordonnï¿½e X de la souris    
         int newCx = ((event.getX())*Carte.LARGEUR_CARTE)/(Jeu.tailleFX);
-        //on réccupère les coordonnée Y de la souris
+        //on rï¿½ccupï¿½re les coordonnï¿½e Y de la souris
         int newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/(3*Jeu.tailleFY/5);
         
         Observable lem;
@@ -270,10 +270,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
                         	Carte.obs.get(i).setEtat(etatParapluieOuvert);
                         }
                         Carte.obs.get(i).type=typeCourant;
-                        System.out.println("x souris : "+newCx);
-                        System.out.println("y souris : "+newCy);
-                        System.out.println("x lem : "+lem.getX());
-                        System.out.println("y lem : "+lem.getY());
+                        //System.out.println("x souris : "+newCx);
+                        //System.out.println("y souris : "+newCy);
+                        //System.out.println("x lem : "+lem.getX());
+                        //System.out.println("y lem : "+lem.getY());
 
                         break;
                 }
