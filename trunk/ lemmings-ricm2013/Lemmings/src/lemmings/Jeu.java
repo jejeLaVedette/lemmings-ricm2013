@@ -8,8 +8,6 @@ import java.util.List;
 public class Jeu implements Constantes {
 	
 	public static List<Automate>listeAutomates = new ArrayList<Automate>();
-	public static int tailleFX = 1000;
-	public static int tailleFY = 700;
 
 	/*private int x;
 	private int y;
@@ -32,7 +30,7 @@ public class Jeu implements Constantes {
 		
 		int wait = delaiPop + 1;
 		
-		Fenetre f = new Fenetre(640,480);
+		Fenetre f = new Fenetre(tailleFenetreH,tailleFenetreV);
 		f.afficher();
 		
 		

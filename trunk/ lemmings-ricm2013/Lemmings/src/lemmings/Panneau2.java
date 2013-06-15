@@ -20,12 +20,12 @@ public class Panneau2 extends JPanel implements Constantes {
 
 	public Panneau2(int tailleFX, int tailleFY) {
 		//on test les x
-		if(tailleFX >= Carte.LARGEUR_CARTE) this.tailleRX = Jeu.tailleFX/Carte.LARGEUR_CARTE;
-		else this.tailleRX = Carte.LARGEUR_CARTE/Jeu.tailleFX;
+		if(tailleFX >= Carte.LARGEUR_CARTE) this.tailleRX = Fenetre.tailleFX/Carte.LARGEUR_CARTE;
+		else this.tailleRX = Carte.LARGEUR_CARTE/Fenetre.tailleFX;
 		
 		//on test les y
-		if(coefFenetre*tailleFY>=Carte.HAUTEUR_CARTE) this.tailleRY = (int)(coefFenetre*Jeu.tailleFY/Carte.HAUTEUR_CARTE);
-		else this.tailleRY = (int) (Carte.HAUTEUR_CARTE/coefFenetre*Jeu.tailleFY);
+		if(coefFenetre*tailleFY>=Carte.HAUTEUR_CARTE) this.tailleRY = (int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE);
+		else this.tailleRY = (int) (Carte.HAUTEUR_CARTE/coefFenetre*Fenetre.tailleFY);
 	}
 
 	public void paintComponent(Graphics g)
