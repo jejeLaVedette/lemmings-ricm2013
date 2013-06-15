@@ -92,7 +92,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		//ZONE QUI CONTIENT LA MINIMAP
 		JPanel zone_droite = new JPanel();
 		GridBagConstraints c = new GridBagConstraints();
-		c.gridx = 0;
 		c.ipadx = tailleFX/2;
 		c.ipady = tailleFY/4;
 		zone_droite.setLayout(new GridBagLayout());
