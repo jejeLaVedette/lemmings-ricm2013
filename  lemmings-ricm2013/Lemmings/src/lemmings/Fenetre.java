@@ -47,8 +47,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private Panneau zone_map;
 	private Panneau2 mini_map;
 	
-	private int tailleFX;
-	private int tailleFY;
+	public static int tailleFX;
+	public static int tailleFY;
 	
 	//public static int restey = Jeu.tailleFY%Carte.HAUTEUR_CARTE;
 	//public static int restex = Jeu.tailleFX%Carte.LARGEUR_CARTE;
@@ -331,4 +331,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		// TODO Auto-generated method stub
 
 	}
+	
+	
 }

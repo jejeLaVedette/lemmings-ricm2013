@@ -27,6 +27,8 @@ public interface Constantes {
 	
 	// Constantes de la fenêtre
 	public final static int coeff = 10;
+	public final static int tailleFenetreH = 1000;
+	public final static int tailleFenetreV = 700;
 	
 	// Constantes Automates
 	public final static int etatInitial = 0;
