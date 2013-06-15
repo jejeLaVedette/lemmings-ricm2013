@@ -7,7 +7,6 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
-import java.awt.ScrollPane;
 
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
@@ -41,25 +40,25 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private int espacement_hori = 20;
 	//private double coefFenetre = 0.75;
 	private int typeCourant;
-	
+
 	//private Panneau zone_map = new Panneau(Jeu.tailleFX/Carte.LARGEUR_CARTE,(int)(coefFenetre*Jeu.tailleFY/Carte.HAUTEUR_CARTE));
 	//private Panneau2 mini_map = new Panneau2(Jeu.tailleFX/Carte.LARGEUR_CARTE,(int)(coefFenetre*Jeu.tailleFY/Carte.HAUTEUR_CARTE));
-	
+
 	private Panneau zone_map;
 	private Panneau2 mini_map;
-	
+
 	private JScrollPane scroll;
-	
+
 	public static int tailleFX;
 	public static int tailleFY;
-	
-	//public static int restey = Jeu.tailleFY%Carte.HAUTEUR_CARTE;
-	//public static int restex = Jeu.tailleFX%Carte.LARGEUR_CARTE;
+
+	public static int restey = tailleFenetreV%Carte.HAUTEUR_CARTE;
+	public static int restex = tailleFenetreH%Carte.LARGEUR_CARTE;
 
 	//DECLARATION DE TOUT LES BOUTONS
 	private JButton bouton_creuse;
 	private JButton bouton_parapluie;  
-	private	JButton bouton_escalier;  
+	private JButton bouton_escalier;  
 	private JButton bouton_futur1;  
 	private JButton bouton_escalade;  
 	private JButton bouton_bombe;  
@@ -75,7 +74,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		tailleFX = tFX;
 		tailleFY = tFY;
-		
+
 		this.setTitle("Lemmings");
 		this.setSize(tFX, tFY);
 		//empeche le redimentionnement de la fenetre
@@ -91,7 +90,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		zone_map = new Panneau(tailleFX, tailleFY);
 		mini_map = new Panneau2(tailleFX, tailleFY);
-		
+
 		//ZONE QUI CONTIENT LA MINIMAP
 		JPanel zone_droite = new JPanel();
 		GridBagConstraints c = new GridBagConstraints();
@@ -105,12 +104,12 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		// Initialisation des boutons
 		initBoutons();
-		
+
 		//ZONE QUI CONTIENT LES BOUTONS
 		JPanel zone_gauche = new JPanel();
 
 		JPanel bouton_sup = new JPanel();
-		//On dÃ©finit le layout en lui indiquant qu'il travaillera en ligne
+		//On définit le layout en lui indiquant qu'il travaillera en ligne
 		bouton_sup.setLayout(new BoxLayout(bouton_sup, BoxLayout.LINE_AXIS));
 		zone_gauche.add(bouton_sup);
 
@@ -185,27 +184,27 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		zone_gauche.add(bouton_sup);
 		zone_gauche.add(bouton_inf1);
 		zone_gauche.add(bouton_inf2);
-		
+
 		// Scrollbar
 		zone_map.setPreferredSize(new Dimension(Carte.LARGEUR_CARTE,Carte.HAUTEUR_CARTE));
 		scroll = new JScrollPane(zone_map);
 		this.setLayout(new BorderLayout());
-		
 
-		//On place le premier sÃ©parateur
+
+		//On place le premier séparateur
 		split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, zone_gauche, zone_droite);
-		//On place le deuxiÃ¨me sÃ©parateur
+		//On place le deuxième séparateur
 		split2.setDividerLocation(tFX/2);
-		//On passe les deux prÃ©cÃ©dents JSplitPane Ã  celui-ci
+		//On passe les deux précédents JSplitPane à celui-ci
 		split3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scroll, split2);
-		//On place le troisieme sÃ©parateur
+		//On place le troisieme séparateur
 		split3.setDividerLocation(3*tFY/5);
 
 		//On le passe ensuite au content pane de notre objet Fenetre
-		//placÃ© au centre pour qu'il utilise tout l'espace disponible
+		//placé au centre pour qu'il utilise tout l'espace disponible
 		//this.add(split3, BorderLayout.CENTER);
 		this.getContentPane().add(split3, BorderLayout.CENTER);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
@@ -261,16 +260,33 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==bouton_creuse) {typeCourant = lemmingCreuseur; /*System.out.println("Bouton pioche");*/}
+		if(e.getSource()==bouton_creuse) typeCourant = lemmingCreuseur; 
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
+		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
 	}
 
 
 	public void modifType(MouseEvent event){
-		//on rÃ©cupÃ©re les coordonnÃ©e X de la souris    
-		int newCx = ((event.getX())*Carte.LARGEUR_CARTE)/(tailleFX);
-		//on rÃ©ccupÃ©re les coordonnÃ©e Y de la souris
-		int newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/(3*tailleFY/5);
+		//on récupére les coordonnée X de la souris    
+		//int newCx = ((event.getX()*Carte.LARGEUR_CARTE))/(tailleFX);
+		//on réccupére les coordonnée Y de la souris
+		//int newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/((3*tailleFY/5));
+		int newCx;
+		int newCy;
+		if(tailleFX>=Carte.LARGEUR_CARTE) {
+			newCx = ((event.getX()*Carte.LARGEUR_CARTE))/(tailleFX);
+			
+			}
+		else {
+			newCx = ((event.getX()*tailleFX))/(Carte.LARGEUR_CARTE);
+			}
+		if((3*tailleFY/5)>=Carte.HAUTEUR_CARTE) {
+			newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/((3*tailleFY/5));
+			
+		}
+		else {
+			newCy = ((event.getY())*3*tailleFY/5)/(Carte.HAUTEUR_CARTE);
+		}
 
 		Observable lem;
 		for (int i =0;i<Carte.obs.size();i++){
@@ -280,13 +296,20 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 					Carte.obs.get(i).setEtat(etatParapluieOuvert);
 				}
 				Carte.obs.get(i).type=typeCourant;
-				//System.out.println("x souris : "+newCx);
-				//System.out.println("y souris : "+newCy);
-				//System.out.println("x lem : "+lem.getX());
-				//System.out.println("y lem : "+lem.getY());
-
+				System.out.println("x souris : "+newCx);
+				System.out.println("y souris : "+newCy);
+				System.out.println("x lem : "+lem.getX());
+				System.out.println("y lem : "+lem.getY());
+				System.out.println("??????????");
 				break;
 			}
+			System.out.println("x souris map: "+newCx);
+			System.out.println("y souris map: "+newCy);
+			System.out.println("x souris fen: "+event.getX());
+			System.out.println("y souris fen: "+event.getY());
+			System.out.println("x lem : "+lem.getX());
+			System.out.println("y lem : "+lem.getY());
+			System.out.println("###########");
 		}
 	}
 
@@ -313,7 +336,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	private void initBoutons () {
 		bouton_creuse = new JButton(new ImageIcon(((new ImageIcon("Images/pioche.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
 		bouton_parapluie = new JButton(new ImageIcon(((new ImageIcon("Images/parapluie_ferme.jpg")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
@@ -343,6 +366,5 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_accelerer.addActionListener(this);
 		bouton_recharger.addActionListener(this);
 	}
-	
-	
 }
+
