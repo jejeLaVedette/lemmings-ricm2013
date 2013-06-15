@@ -3,6 +3,7 @@ package lemmings;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -12,6 +13,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
 import java.awt.Component;
@@ -44,7 +46,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private Panneau2 mini_map = new Panneau2(Jeu.tailleFX, Jeu.tailleFY);
 	//public static int restey = Jeu.tailleFY%Carte.HAUTEUR_CARTE;
 	//public static int restex = Jeu.tailleFX%Carte.LARGEUR_CARTE;
-	
+
 	//DECLARATION DE TOUT LES BOUTONS
 	private JButton bouton_creuse = new JButton(new ImageIcon(((new ImageIcon("Images/pioche.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
 	private JButton bouton_parapluie = new JButton(new ImageIcon(((new ImageIcon("Images/parapluie_ferme.jpg")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
@@ -86,7 +88,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		flowLayout.setVgap(25);
 		flowLayout.setHgap(-6);
 		zone_droite.add(mini_map,c);
-		
+
 		//MISE EN ATTENTE DES BOUTONS
 		bouton_creuse.addActionListener(this);
 		bouton_parapluie.addActionListener(this);
@@ -183,19 +185,20 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		zone_gauche.add(bouton_inf1);
 		zone_gauche.add(bouton_inf2);
 
-		//On place le premier s�parateur
+		//On place le premier séparateur
 		split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, zone_gauche, zone_droite);
-		//On place le deuxi�me s�parateur
+		//On place le deuxième séparateur
 		split2.setDividerLocation(Jeu.tailleFX/2);
-		//On passe les deux pr�c�dents JSplitPane � celui-ci
+		//On passe les deux précédents JSplitPane à celui-ci
 		split3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, zone_map, split2);
-		//On place le troisi�me s�parateur
+		//On place le troisieme séparateur
 		split3.setDividerLocation(3*Jeu.tailleFY/5);
 
 		//On le passe ensuite au content pane de notre objet Fenetre
-		//plac� au centre pour qu'il utilise tout l'espace disponible
+		//placé au centre pour qu'il utilise tout l'espace disponible
+		//this.add(split3, BorderLayout.CENTER);
 		this.getContentPane().add(split3, BorderLayout.CENTER);
-
+		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
@@ -213,9 +216,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		JMenuItem mntmRgle = new JMenuItem("r\u00E8gle");
 		mnJouer.add(mntmRgle);
-		
 
-		
+
+
 		zone_map.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent event) {
@@ -247,9 +250,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	}
 
 	public void mouseClicked(MouseEvent arg0) {
-		
+
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==bouton_creuse) {typeCourant = lemmingCreuseur; /*System.out.println("Bouton pioche");*/}
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
@@ -258,49 +261,49 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 	public void modifType(MouseEvent event){
 		//on r�cup�re les coordonn�e X de la souris    
-        int newCx = ((event.getX())*Carte.LARGEUR_CARTE)/(Jeu.tailleFX);
-        //on r�ccup�re les coordonn�e Y de la souris
-        int newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/(3*Jeu.tailleFY/5);
-        
-        Observable lem;
-        for (int i =0;i<Carte.obs.size();i++){
-                lem = Carte.obs.get(i);
-                if((newCy<lem.getY() && newCy>lem.getY() -2*Panneau.coeff) && ((newCx<lem.getX()+3/2*Panneau.coeff && newCx > lem.getX()-3/2*Panneau.coeff))){
-                        if(typeCourant == lemmingParapluie){
-                        	Carte.obs.get(i).setEtat(etatParapluieOuvert);
-                        }
-                        Carte.obs.get(i).type=typeCourant;
-                        //System.out.println("x souris : "+newCx);
-                        //System.out.println("y souris : "+newCy);
-                        //System.out.println("x lem : "+lem.getX());
-                        //System.out.println("y lem : "+lem.getY());
+		int newCx = ((event.getX())*Carte.LARGEUR_CARTE)/(Jeu.tailleFX);
+		//on r�ccup�re les coordonn�e Y de la souris
+		int newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/(3*Jeu.tailleFY/5);
 
-                        break;
-                }
-        }
+		Observable lem;
+		for (int i =0;i<Carte.obs.size();i++){
+			lem = Carte.obs.get(i);
+			if((newCy<lem.getY() && newCy>lem.getY() -2*Panneau.coeff) && ((newCx<lem.getX()+3/2*Panneau.coeff && newCx > lem.getX()-3/2*Panneau.coeff))){
+				if(typeCourant == lemmingParapluie){
+					Carte.obs.get(i).setEtat(etatParapluieOuvert);
+				}
+				Carte.obs.get(i).type=typeCourant;
+				//System.out.println("x souris : "+newCx);
+				//System.out.println("y souris : "+newCy);
+				//System.out.println("x lem : "+lem.getX());
+				//System.out.println("y lem : "+lem.getY());
+
+				break;
+			}
+		}
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
