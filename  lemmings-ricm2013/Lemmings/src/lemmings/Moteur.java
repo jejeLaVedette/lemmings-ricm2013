@@ -106,7 +106,7 @@ public class Moteur implements Constantes {
 				break;
 			}
 			
-			System.out.println("x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
+			//System.out.println("x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
 
 			// Recherche de l'automate correspondant
 			Automate aut = Jeu.listeAutomates.get(0);
@@ -126,7 +126,7 @@ public class Moteur implements Constantes {
 			}
 
 			if(k==aut.listeTransitions.size())
-				System.out.println("Automate non-déterministe !");
+				System.out.println("Automate n°"+ aut.identifiant +" non-déterministe !");
 			// On applique les actions associées
 			for(int l=0;l<aut.listeTransitions.get(k).getActions().size();l++) {
 				appliquerAction(aut.listeTransitions.get(k).getActions().get(l),lem);
