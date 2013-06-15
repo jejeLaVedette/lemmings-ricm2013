@@ -8,6 +8,7 @@ public interface Constantes {
 	public final static Color pixelAir = new Color(255,0,255);
 	public final static Color defautAir = new Color(50,50,50);
 	public final static Color defautSol = new Color(0,0,0);
+	public final static int toleranceAir = 10;
 	
 	// Constantes des Elements
 	public final static int typeSolInf = 0;
@@ -22,7 +23,7 @@ public interface Constantes {
 	public final static int droite = 1;
 	public final static int gauche = 0;
 	public final static int profondeurCreuser = 10;
-	public final static int hauteurLetale = 20;
+	public final static int hauteurLetale = 40;
 	
 	// Constantes de la fenêtre
 	public final static int coeff = 10;

@@ -105,7 +105,8 @@ public class Moteur implements Constantes {
 				Carte.obs.remove(i);
 				break;
 			}
-			//System.out.println("relief: "+relief);
+			
+			System.out.println("x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
 
 			// Recherche de l'automate correspondant
 			Automate aut = Jeu.listeAutomates.get(0);
@@ -188,7 +189,7 @@ public class Moteur implements Constantes {
 	}
 
 	private static void tomber(Lemming l) {
-		l.setY(l.getY()+2);
+		l.setY(l.getY()+1);
 		l.image = "Images/lemming5.png";
 
 	}

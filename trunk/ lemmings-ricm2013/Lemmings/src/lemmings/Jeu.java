@@ -27,14 +27,17 @@ public class Jeu implements Constantes {
 		
 		//Carte.miniMap = "Images/Carte.png";
 		Carte.charger("Images/Carte.png");
-		Carte.setEntree(new Point(120, 50));
-		Carte.setNbLemmings(20);
+		Carte.setEntree(new Point(100, 36));
+		Carte.setNbLemmings(1);
 		
 		int wait = delaiPop + 1;
 		
 		Fenetre f = new Fenetre(tailleFX,tailleFY);
 		f.afficher();
-
+		if (Carte.map[100][37] instanceof Air)
+			System.out.println("Air");
+		if (Carte.map[100][37] instanceof Sol)
+			System.out.println("Sol");
 		// Lemmings bloqueurs
 		//Carte.obs.add(new Lemming(100,61,lemmingStop));
 		//Carte.obs.add(new Lemming(80,80,lemmingStop));

@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 
 public class Carte implements Constantes {
@@ -78,10 +77,14 @@ public class Carte implements Constantes {
 				c = new Color(maCarte.getRGB(j,i));
 					
 				// Test : air ou pas air ?
-				if (c.getBlue() == pixelAir.getBlue() &&
+				/*if (c.getBlue() == pixelAir.getBlue() &&
 					c.getRed() == pixelAir.getRed() &&
 					c.getGreen() == pixelAir.getGreen())
-					map[j][i] = new Air();		
+					map[j][i] = new Air();		*/
+				if ( (Math.abs(c.getBlue()-pixelAir.getBlue())< toleranceAir) &&
+					 (Math.abs(c.getRed()-pixelAir.getRed())< toleranceAir) &&
+					 (Math.abs(c.getGreen()-pixelAir.getGreen())< toleranceAir))
+					map[j][i] = new Air();
 				else
 					map[j][i] = new Sol(c);
 					
