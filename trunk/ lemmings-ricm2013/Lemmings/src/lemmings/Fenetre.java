@@ -31,7 +31,7 @@ import java.awt.event.MouseListener;
 
 
 
-public class Fenetre extends JFrame implements Constantes, MouseListener, ActionListener{//implements MouseListener, ActionListener
+public class Fenetre extends JFrame implements Constantes, MouseListener, ActionListener{
 	/**
 	 * 
 	 */
@@ -40,11 +40,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JSplitPane split2, split3;
 	private int espacement_hori = 20;
 	private int espacement_text = 65;
-	//private double coefFenetre = 0.75;
 	private int typeCourant;
 
-	//private Panneau zone_map = new Panneau(Jeu.tailleFX/Carte.LARGEUR_CARTE,(int)(coefFenetre*Jeu.tailleFY/Carte.HAUTEUR_CARTE));
-	//private Panneau2 mini_map = new Panneau2(Jeu.tailleFX/Carte.LARGEUR_CARTE,(int)(coefFenetre*Jeu.tailleFY/Carte.HAUTEUR_CARTE));
 
 	private Panneau zone_map;
 	private Panneau2 mini_map;
@@ -71,7 +68,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JButton bouton_accelerer; 
 	private JButton bouton_recharger; 
 
-	private int cmpPioche;
+	//DECLARATION DES COMPTEURS DE TOUT LES OBJET
+	private int cmpPioche; 
 	private int cmpParapluie;
 	private int cmpEscalier;
 	private int cmpFutur1;  
@@ -79,6 +77,19 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private int cmpBombe;  
 	private int cmpStop; 
 	private int cmpFutur2; 
+
+	//DECLARATION DE TOUT LES TEXTES DES COMPTEURS
+	private JLabel tPioche;
+	private JLabel tParapluie;
+	private JLabel tEscalier;
+	private JLabel tFutur1;
+	private JLabel tEscalade;
+	private JLabel tBombe;
+	private JLabel tStop;
+	private JLabel tFutur2;
+
+	private int ancienNum;
+
 
 
 	public Fenetre(int tFX, int tFY) throws IOException {
@@ -115,19 +126,19 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		// Initialisation des boutons
 		initBoutons();
+		initCmp();
 
 		//ZONE QUI CONTIENT LES BOUTONS
 		JPanel zone_gauche = new JPanel();
-		
+
 		//LES CHIFFRES QUI REPRESENTE LE NOMBRE D'OBJETS
 		JPanel text1 = new JPanel();
 		JPanel text2 = new JPanel();
 
 		JPanel bouton_sup = new JPanel();
-		
+
 		//On définit le layout en lui indiquant qu'il travaillera en ligne
 		bouton_sup.setLayout(new BoxLayout(bouton_sup, BoxLayout.LINE_AXIS));
-		//zone_gauche.add(bouton_sup);
 
 		bouton_sup.add(bouton_creuse);
 
@@ -146,27 +157,21 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		bouton_sup.add(bouton_futur1);
 
-		//Component horizontalStrut_6 = Box.createHorizontalStrut(espacement_hori);
-		//bouton_sup.add(horizontalStrut_6);
-		
+
 		text1.setLayout(new BoxLayout(text1, BoxLayout.LINE_AXIS));
 
-		JLabel tPioche = new JLabel(""+cmpPioche);
 		text1.add(tPioche);
 		Component horizontalStrut_t1 = Box.createHorizontalStrut(espacement_text);
 		text1.add(horizontalStrut_t1);
 
-		JLabel tParapluie = new JLabel(""+cmpParapluie);
 		text1.add(tParapluie);
 		Component horizontalStrut_t2 = Box.createHorizontalStrut(espacement_text);
 		text1.add(horizontalStrut_t2);
 
-		JLabel tEscalier = new JLabel(""+cmpEscalier);
 		text1.add(tEscalier);
 		Component horizontalStrut_t3 = Box.createHorizontalStrut(espacement_text);
 		text1.add(horizontalStrut_t3);
 
-		JLabel tFutur1 = new JLabel(""+cmpFutur1);
 		text1.add(tFutur1);
 
 
@@ -192,34 +197,28 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		bouton_inf1.add(bouton_futur2);
 
-		//Component horizontalStrut_9 = Box.createHorizontalStrut(espacement_hori);
-		//bouton_inf1.add(horizontalStrut_9);
-		
+
 		text2.setLayout(new BoxLayout(text2, BoxLayout.LINE_AXIS));
 
 		Component horizontalStrut_tbonus = Box.createHorizontalStrut(espacement_text);
 		text2.add(horizontalStrut_tbonus);
-		
-		JLabel tEscalade = new JLabel(""+cmpPioche);
+
 		text2.add(tEscalade);
 		Component horizontalStrut_t4 = Box.createHorizontalStrut(espacement_text);
 		text2.add(horizontalStrut_t4);
-		
-		JLabel tBombe = new JLabel(""+cmpPioche);
+
 		text2.add(tBombe);
 		Component horizontalStrut_t5 = Box.createHorizontalStrut(espacement_text);
 		text2.add(horizontalStrut_t5);
-		
-		JLabel tStop = new JLabel(""+cmpPioche);
+
 		text2.add(tStop);
 		Component horizontalStrut_t6 = Box.createHorizontalStrut(espacement_text);
 		text2.add(horizontalStrut_t6);
-		
-		JLabel tFutur2 = new JLabel(""+cmpPioche);
+
 		text2.add(tFutur2);
 		Component horizontalStrut_t7 = Box.createHorizontalStrut(espacement_text);
 		text2.add(horizontalStrut_t7);
-		
+
 
 		JPanel bouton_inf2 = new JPanel();
 		//Idem pour cette ligne
@@ -248,8 +247,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		zone_gauche.add(bouton_inf1);
 		zone_gauche.add(text2);
 		zone_gauche.add(bouton_inf2);
-		
-		
+
+
 		// Scrollbar
 		zone_map.setPreferredSize(new Dimension(Carte.LARGEUR_CARTE,Carte.HAUTEUR_CARTE));
 		scroll = new JScrollPane(zone_map);
@@ -325,7 +324,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==bouton_creuse) typeCourant = lemmingCreuseur; 
+		if(e.getSource()==bouton_creuse) {
+			typeCourant = lemmingCreuseur;  
+		}
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
 		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
 
@@ -341,7 +342,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		int newCy;
 		if(tailleFX>=Carte.LARGEUR_CARTE) {
 			newCx = ((event.getX()*Carte.LARGEUR_CARTE))/(tailleFX);
-
 		}
 		else {
 			newCx = ((event.getX()*tailleFX))/(Carte.LARGEUR_CARTE);
@@ -358,15 +358,36 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		for (int i =0;i<Carte.obs.size();i++){
 			lem = Carte.obs.get(i);
 			if((newCy<lem.getY() && newCy>lem.getY() -2*Panneau.coeff) && ((newCx<lem.getX()+3/2*Panneau.coeff && newCx > lem.getX()-3/2*Panneau.coeff))){
+
 				if(typeCourant == lemmingParapluie){
+					if(this.cmpParapluie-- <= 0) tParapluie.setText("0");
+					else tParapluie.setText("" + this.cmpParapluie);
+					this.ancienNum = this.cmpParapluie;
 					Carte.obs.get(i).setEtat(etatParapluieOuvert);
 				}
-				Carte.obs.get(i).type=typeCourant;
+
+				if(typeCourant == lemmingCreuseur){
+					if(this.cmpPioche-- <= 0) tPioche.setText("0");
+					else tPioche.setText("" + this.cmpPioche);
+					this.ancienNum = this.cmpPioche;
+				}
+
+				if(typeCourant == lemmingStop){
+					if(this.cmpStop-- <= 0) tStop.setText("0");
+					else tStop.setText("" + this.cmpStop);
+					this.ancienNum = this.cmpPioche;
+				}
+
+				if(this.ancienNum>=0) {
+					Carte.obs.get(i).type=typeCourant;
+				}
+
 				System.out.println("x souris : "+newCx);
 				System.out.println("y souris : "+newCy);
 				System.out.println("x lem : "+lem.getX());
 				System.out.println("y lem : "+lem.getY());
 				System.out.println("??????????");
+
 				break;
 			}
 			System.out.println("x souris map: "+newCx);
@@ -432,6 +453,26 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_accelerer.addActionListener(this);
 		bouton_recharger.addActionListener(this);
 	}
+
+	private void initCmp(){
+		cmpPioche = 1;
+		cmpParapluie = 1;
+		cmpEscalier = 0;
+		cmpFutur1 = 0;  
+		cmpEscalade = 0;  
+		cmpBombe = 0;  
+		cmpStop = 2; 
+		cmpFutur2 = 0; 
+		tPioche = new JLabel(""+cmpPioche);
+		tParapluie = new JLabel(""+cmpParapluie);
+		tEscalier = new JLabel(""+cmpEscalier);
+		tFutur1 = new JLabel(""+cmpFutur1);
+		tEscalade = new JLabel(""+cmpEscalade);
+		tBombe = new JLabel(""+cmpBombe);
+		tStop = new JLabel(""+cmpStop);
+		tFutur2 = new JLabel(""+cmpFutur2);
+	}
+	
 
 }
 
