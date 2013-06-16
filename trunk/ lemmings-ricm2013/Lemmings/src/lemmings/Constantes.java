@@ -53,4 +53,11 @@ public interface Constantes {
 	public final static  int coeffdecalagedirectrice = 30;
 	public static int vx = 50;
 	public static int vy = 50;
+	public static double coeffgravite=9.8;
+	public static double hauteurlemmings=1.20;
+	public static double larglemmings=0.20;
+	public static double proflemmings=0.60;
+	public static double massevolair=1.184;
+	public static double masselemming=80;
+	public static double coefftraineelemming=1.05;
 }
