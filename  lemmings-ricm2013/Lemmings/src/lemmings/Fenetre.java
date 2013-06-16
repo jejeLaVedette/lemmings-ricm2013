@@ -10,6 +10,7 @@ import java.awt.Image;
 
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -38,6 +39,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 	private JSplitPane split2, split3;
 	private int espacement_hori = 20;
+	private int espacement_text = 65;
 	//private double coefFenetre = 0.75;
 	private int typeCourant;
 
@@ -68,6 +70,15 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JButton bouton_pause;  
 	private JButton bouton_accelerer; 
 	private JButton bouton_recharger; 
+
+	private int cmpPioche;
+	private int cmpParapluie;
+	private int cmpEscalier;
+	private int cmpFutur1;  
+	private int cmpEscalade;  
+	private int cmpBombe;  
+	private int cmpStop; 
+	private int cmpFutur2; 
 
 
 	public Fenetre(int tFX, int tFY) throws IOException {
@@ -107,11 +118,16 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		//ZONE QUI CONTIENT LES BOUTONS
 		JPanel zone_gauche = new JPanel();
+		
+		//LES CHIFFRES QUI REPRESENTE LE NOMBRE D'OBJETS
+		JPanel text1 = new JPanel();
+		JPanel text2 = new JPanel();
 
 		JPanel bouton_sup = new JPanel();
+		
 		//On définit le layout en lui indiquant qu'il travaillera en ligne
 		bouton_sup.setLayout(new BoxLayout(bouton_sup, BoxLayout.LINE_AXIS));
-		zone_gauche.add(bouton_sup);
+		//zone_gauche.add(bouton_sup);
 
 		bouton_sup.add(bouton_creuse);
 
@@ -130,13 +146,34 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		bouton_sup.add(bouton_futur1);
 
-		Component horizontalStrut_6 = Box.createHorizontalStrut(espacement_hori);
-		bouton_sup.add(horizontalStrut_6);
+		//Component horizontalStrut_6 = Box.createHorizontalStrut(espacement_hori);
+		//bouton_sup.add(horizontalStrut_6);
+		
+		text1.setLayout(new BoxLayout(text1, BoxLayout.LINE_AXIS));
+
+		JLabel tPioche = new JLabel(""+cmpPioche);
+		text1.add(tPioche);
+		Component horizontalStrut_t1 = Box.createHorizontalStrut(espacement_text);
+		text1.add(horizontalStrut_t1);
+
+		JLabel tParapluie = new JLabel(""+cmpParapluie);
+		text1.add(tParapluie);
+		Component horizontalStrut_t2 = Box.createHorizontalStrut(espacement_text);
+		text1.add(horizontalStrut_t2);
+
+		JLabel tEscalier = new JLabel(""+cmpEscalier);
+		text1.add(tEscalier);
+		Component horizontalStrut_t3 = Box.createHorizontalStrut(espacement_text);
+		text1.add(horizontalStrut_t3);
+
+		JLabel tFutur1 = new JLabel(""+cmpFutur1);
+		text1.add(tFutur1);
 
 
 
 		JPanel bouton_inf1 = new JPanel();
 		//Idem pour cette ligne
+
 		bouton_inf1.setLayout(new BoxLayout(bouton_inf1, BoxLayout.LINE_AXIS));
 		bouton_inf1.add(bouton_escalade);
 
@@ -155,10 +192,34 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		bouton_inf1.add(bouton_futur2);
 
-		Component horizontalStrut_9 = Box.createHorizontalStrut(espacement_hori);
-		bouton_inf1.add(horizontalStrut_9);
+		//Component horizontalStrut_9 = Box.createHorizontalStrut(espacement_hori);
+		//bouton_inf1.add(horizontalStrut_9);
+		
+		text2.setLayout(new BoxLayout(text2, BoxLayout.LINE_AXIS));
 
-
+		Component horizontalStrut_tbonus = Box.createHorizontalStrut(espacement_text);
+		text2.add(horizontalStrut_tbonus);
+		
+		JLabel tEscalade = new JLabel(""+cmpPioche);
+		text2.add(tEscalade);
+		Component horizontalStrut_t4 = Box.createHorizontalStrut(espacement_text);
+		text2.add(horizontalStrut_t4);
+		
+		JLabel tBombe = new JLabel(""+cmpPioche);
+		text2.add(tBombe);
+		Component horizontalStrut_t5 = Box.createHorizontalStrut(espacement_text);
+		text2.add(horizontalStrut_t5);
+		
+		JLabel tStop = new JLabel(""+cmpPioche);
+		text2.add(tStop);
+		Component horizontalStrut_t6 = Box.createHorizontalStrut(espacement_text);
+		text2.add(horizontalStrut_t6);
+		
+		JLabel tFutur2 = new JLabel(""+cmpPioche);
+		text2.add(tFutur2);
+		Component horizontalStrut_t7 = Box.createHorizontalStrut(espacement_text);
+		text2.add(horizontalStrut_t7);
+		
 
 		JPanel bouton_inf2 = new JPanel();
 		//Idem pour cette ligne
@@ -176,15 +237,19 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		Component horizontalStrut_2 = Box.createHorizontalStrut(espacement_hori);
 		bouton_inf2.add(horizontalStrut_2);
 		bouton_inf2.add(bouton_recharger);
-		Component horizontalStrut_42 = Box.createHorizontalStrut(espacement_hori);
-		bouton_inf2.add(horizontalStrut_42);
+		//Component horizontalStrut_42 = Box.createHorizontalStrut(espacement_hori);
+		//bouton_inf2.add(horizontalStrut_42);
 
-		//On positionne maintenant ces trois lignes en colonne
+
+		//On positionne maintenant en colonne
 		zone_gauche.setLayout(new BoxLayout(zone_gauche, BoxLayout.PAGE_AXIS));
 		zone_gauche.add(bouton_sup);
+		zone_gauche.add(text1);
 		zone_gauche.add(bouton_inf1);
+		zone_gauche.add(text2);
 		zone_gauche.add(bouton_inf2);
-
+		
+		
 		// Scrollbar
 		zone_map.setPreferredSize(new Dimension(Carte.LARGEUR_CARTE,Carte.HAUTEUR_CARTE));
 		scroll = new JScrollPane(zone_map);
@@ -263,6 +328,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(e.getSource()==bouton_creuse) typeCourant = lemmingCreuseur; 
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
 		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
+
 	}
 
 
@@ -275,14 +341,14 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		int newCy;
 		if(tailleFX>=Carte.LARGEUR_CARTE) {
 			newCx = ((event.getX()*Carte.LARGEUR_CARTE))/(tailleFX);
-			
-			}
+
+		}
 		else {
 			newCx = ((event.getX()*tailleFX))/(Carte.LARGEUR_CARTE);
-			}
+		}
 		if((3*tailleFY/5)>=Carte.HAUTEUR_CARTE) {
 			newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/((3*tailleFY/5));
-			
+
 		}
 		else {
 			newCy = ((event.getY())*3*tailleFY/5)/(Carte.HAUTEUR_CARTE);
@@ -366,5 +432,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_accelerer.addActionListener(this);
 		bouton_recharger.addActionListener(this);
 	}
+
 }
 
