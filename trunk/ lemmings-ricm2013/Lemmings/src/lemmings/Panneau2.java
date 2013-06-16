@@ -18,26 +18,47 @@ public class Panneau2 extends JPanel implements Constantes {
 	private double coefFenetre = 0.75;
 	public static final int coeff = 10;
 	
-	private int coefRetrecissement;
+	private int coefRetrecissementx;
+	private int coefRetrecissementy;
 
 	public Panneau2(int tailleFX, int tailleFY) {
 		//on test les x
-		if(tailleFX >= Carte.LARGEUR_CARTE) this.tailleRX = Fenetre.tailleFX/Carte.LARGEUR_CARTE;
+		/*if(tailleFX >= Carte.LARGEUR_CARTE) this.tailleRX = Fenetre.tailleFX/Carte.LARGEUR_CARTE;
 		else this.tailleRX = Carte.LARGEUR_CARTE/Fenetre.tailleFX;
 		
 		//on test les y
 		if(coefFenetre*tailleFY>=Carte.HAUTEUR_CARTE) this.tailleRY = (int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE);
 		else this.tailleRY = (int) (Carte.HAUTEUR_CARTE/coefFenetre*Fenetre.tailleFY);
 		
-		this.coefRetrecissement = 3;
+		this.coefRetrecissement = 3;*/
+		
+		if(tailleFX >= Carte.LARGEUR_CARTE) {
+			this.tailleRX = Fenetre.tailleFX/Carte.LARGEUR_CARTE;
+			this.coefRetrecissementx = this.tailleRX;
+		}
+		else {
+			this.tailleRX = Carte.LARGEUR_CARTE/Fenetre.tailleFX;
+			this.coefRetrecissementx = this.tailleRX*2+1;//*2 car la mini_map n'est que 1/2 de x de l'écran et +1 pour prendre le pixel supérieur
+		}
+		
+		//on test les y
+		if(coefFenetre*tailleFY>=Carte.HAUTEUR_CARTE) {
+			this.tailleRY = (int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE);
+			this.coefRetrecissementy = this.tailleRY;
+		}
+		else {
+			this.tailleRY = (int) (Carte.HAUTEUR_CARTE/coefFenetre*Fenetre.tailleFY);
+			this.coefRetrecissementy = this.tailleRY*2+1;
+		}
+		
 	}
 
 	public void paintComponent(Graphics g)
 	{
 		int luminance; Color c;
-		for(int i=0; i<Carte.HAUTEUR_CARTE; i+=coefRetrecissement){
+		for(int i=0; i<Carte.HAUTEUR_CARTE; i+=coefRetrecissementy){
 
-			for(int j=0; j<Carte.LARGEUR_CARTE; j+=coefRetrecissement){ 
+			for(int j=0; j<Carte.LARGEUR_CARTE; j+=coefRetrecissementx){ 
 				
 				if (Carte.map[j][i].type >= typeSolInf && Carte.map[j][i].type <= typeSolSup)
 				{
@@ -68,8 +89,8 @@ public class Panneau2 extends JPanel implements Constantes {
 		//on affiche les lemmings
 		for(int k =0;k<Carte.obs.size();k++){				
 			g.setColor(new Color(0,200,0));
-			g.fillRect(Carte.obs.get(k).getX()*tailleRX/coefRetrecissement-tailleRX*coeff/2, 
-					   (Carte.obs.get(k).getY()-coeff)*tailleRY/coefRetrecissement, 
+			g.fillRect(Carte.obs.get(k).getX()*tailleRX/coefRetrecissementx-tailleRX*coeff/2, 
+					   (Carte.obs.get(k).getY()-coeff)*tailleRY/coefRetrecissementy, 
 					   Constantes.coeff/2, 
 					   Constantes.coeff);
 		}
