@@ -8,21 +8,19 @@ import java.util.List;
 
 
 public class Test_trajectoire {
-	public static List<Automate>listetoto = new ArrayList<Automate>();
+	
 public static void main(String[] args) throws IOException{
 	
 		
-		listetoto.add(new AutoLemmingBasique(5));
-		Carte.initialiser();
-		Fenetre f = new Fenetre(Fenetre.tailleFX,Fenetre.tailleFY);
-		f.afficher();
-		CopyOfTrajectoire_physiqueH tp = new CopyOfTrajectoire_physiqueH(80, 80, 50, -100,0);
-		for(int i = 0 ; i<20;i++){
-			int y = tp.get_trajectoireY(i);
-			System.out.println("valeur de y finale");
-			 
-			
-			System.out.println(y);}
+		trajectoireparaphysique tp = new trajectoireparaphysique(0, 0, 200,Math.PI/4 ,0);
+		for(int i = 0 ; i<200;i++){
+			int y = tp.calculy(i);
+			int x=tp.calculx(i);
+			System.out.println("valeur de x finale");			
+			System.out.println(x);
+			System.out.println("valeur de y finale");			
+			System.out.println(y);	}
+		
 	}
 
 }
