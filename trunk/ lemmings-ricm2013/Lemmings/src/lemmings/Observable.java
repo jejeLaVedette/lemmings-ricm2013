@@ -11,14 +11,14 @@ public class Observable {
 	protected int sousAction = 0;
 	
 	protected double elasticite;
-	protected int Xprec;
-	protected int Yprec;
+	protected double Xprec;
+	protected double Yprec;
 	protected double time;
 	public Observable () {
-		elasticite = 0.5;
+		elasticite = 0.6;
 		Xprec = 0;
 		Yprec = 0;
-		time = 0.05;
+		time = 0.1;
 	}
 	
 	public Observable(int vx, int vy) {
@@ -73,26 +73,26 @@ public class Observable {
 		this.elasticite = elasticite;
 	}
 
-	public int getXp() {
+	public double getXp() {
 		return Xprec;
 	}
 
-	public int getYp() {
+	public double getYp() {
 		return Yprec;
 	}
 
-	public void setXp(int vx) {
-		this.Xprec = vx;
+	public void setXp(double d) {
+		this.Xprec = d;
 	}
 
-	public void setYp(int vy) {
+	public void setYp(double vy) {
 		this.Yprec = vy;
 	}
 	public void setTime(){
-		time = time +0.05;
+		time = time +0.1;
 	}
 	public void resetTime(){
-		time=0;
+		time=0.1;
 	}
 
 	public int getImageCourante() {
