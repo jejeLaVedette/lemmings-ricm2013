@@ -13,8 +13,16 @@ public class AutoLemmingGrimpeur extends Automate implements Constantes {
 		listeTransitions.add(new Transition(0,1,"mur",l));
 		
 		l = new ArrayList<String>();
-		listeTransitions.add(new Transition(1,1,"mur",l));
-		listeTransitions.add(new Transition(1,0,"sol",l));
+		l.add("marcher");
+		listeTransitions.add(new Transition(0, 0, "sol", l));
+		
+		l = new ArrayList<String>();
+		l.add("retourner");
+		listeTransitions.add(new Transition(0, 0, "mur", l));
+		
+		l = new ArrayList<String>();
+		l.add("tomber");
+		listeTransitions.add(new Transition(0, 1, "vide", l));
 	}
 
 }
