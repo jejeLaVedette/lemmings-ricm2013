@@ -3,13 +3,16 @@ package lemmings;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -19,6 +22,7 @@ import javax.swing.JSplitPane;
 
 import java.awt.Component;
 import java.io.IOException;
+import java.text.NumberFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.Box;
@@ -32,6 +36,14 @@ import java.awt.event.MouseListener;
 
 
 public class Fenetre extends JFrame implements Constantes, MouseListener, ActionListener{
+	
+	private JPanel container = new JPanel();
+	private JFormattedTextField Tangle = new JFormattedTextField(NumberFormat.getIntegerInstance());
+	private JFormattedTextField Tpuissance = new JFormattedTextField(NumberFormat.getIntegerInstance());
+	private JLabel label = new JLabel("Entrée un angle : ");
+	private JLabel label2 = new JLabel("Entrée une puissance : ");
+	private JButton b2 = new JButton ("OK");
+	private final JFrame frame = new JFrame("Choisir coordonnée");
 	/**
 	 * 
 	 */
@@ -329,6 +341,43 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(e.getSource()==bouton_creuse) typeCourant = lemmingCreuseur; 
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
 		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
+		
+		if(e.getSource()==bouton_futur1){
+			bouton_futur1.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					
+					//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame.setLocationRelativeTo(null);
+					frame.setSize(400, 110);
+					frame.setVisible(true);
+
+					container.setLayout(new BorderLayout());
+					JPanel top = new JPanel();       
+					Font police = new Font("Arial", Font.BOLD, 14);
+					
+					Tangle.setFont(police);
+					Tangle.setPreferredSize(new Dimension(150, 30));
+					Tangle.setForeground(Color.BLUE);
+					
+					Tpuissance.setFont(police);
+					Tpuissance.setPreferredSize(new Dimension(150, 30));
+					Tpuissance.setForeground(Color.BLUE);
+					
+					b2.addActionListener(new BoutonListener());
+					
+					top.add(label); 
+					top.add(Tangle);
+					top.add(label2);
+					top.add(Tpuissance);
+					top.add(b2);
+					
+					frame.setContentPane(top);
+					
+
+				}
+			});
+		}
 
 	}
 
@@ -347,7 +396,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			newCx =event.getX(); //newCx = ((event.getX()*tailleFX*(Carte.LARGEUR_CARTE/Fenetre.tailleFX)))/(Carte.LARGEUR_CARTE);
 		}
 		if((3*tailleFY/5)>=Carte.HAUTEUR_CARTE) {
-			newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/((3*tailleFY/5)+restey);
+			newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/((3*tailleFY/5));
 		}
 		else {
 			newCy = event.getY();//newCy = ((event.getY())*3*tailleFY/5)/(Carte.HAUTEUR_CARTE);
@@ -429,7 +478,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_creuse = new JButton(new ImageIcon(((new ImageIcon("Images/pioche.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
 		bouton_parapluie = new JButton(new ImageIcon(((new ImageIcon("Images/parapluie_ferme.jpg")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_escalier = new JButton(new ImageIcon(((new ImageIcon("Images/escalier.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
-		bouton_futur1 = new JButton(new ImageIcon(((new ImageIcon("Images/interrogation.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+		bouton_futur1 = new JButton(new ImageIcon(((new ImageIcon("Images/Catapulte.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_escalade = new JButton(new ImageIcon(((new ImageIcon("Images/escalade.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_bombe = new JButton(new ImageIcon(((new ImageIcon("Images/bombe.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_stop = new JButton(new ImageIcon(((new ImageIcon("Images/lemming3.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
@@ -464,6 +513,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		cmpBombe = 0;  
 		cmpStop = 2; 
 		cmpFutur2 = 0; 
+		
 		tPioche = new JLabel(""+cmpPioche);
 		tParapluie = new JLabel(""+cmpParapluie);
 		tEscalier = new JLabel(""+cmpEscalier);
@@ -472,8 +522,16 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		tBombe = new JLabel(""+cmpBombe);
 		tStop = new JLabel(""+cmpStop);
 		tFutur2 = new JLabel(""+cmpFutur2);
+		
 	}
 	
-
+	class BoutonListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("angle : " + Tangle.getText());
+			System.out.println("puissance : " + Tpuissance.getText());
+			frame.dispose();
+			
+		}
+	}
 }
 
