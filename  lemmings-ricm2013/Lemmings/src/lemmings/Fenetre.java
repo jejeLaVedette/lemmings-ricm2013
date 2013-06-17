@@ -19,6 +19,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTextField;
 
 import java.awt.Component;
 import java.io.IOException;
@@ -36,7 +37,7 @@ import java.awt.event.MouseListener;
 
 
 public class Fenetre extends JFrame implements Constantes, MouseListener, ActionListener{
-	
+
 	private JPanel container = new JPanel();
 	private JFormattedTextField Tangle = new JFormattedTextField(NumberFormat.getIntegerInstance());
 	private JFormattedTextField Tpuissance = new JFormattedTextField(NumberFormat.getIntegerInstance());
@@ -101,6 +102,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JLabel tFutur2;
 
 	private int ancienNum;
+	private int puissance;
+	private double angle;
 
 
 
@@ -338,11 +341,11 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		
+
 		if(e.getSource()==bouton_creuse) typeCourant = lemmingCreuseur; 
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
 		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
-		
+
 		if(e.getSource()==bouton_futur1){
 			this.cmpFutur1--;
 			bouton_futur1.addMouseListener(new MouseAdapter() {
@@ -352,41 +355,40 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 					else {
 						tFutur1.setText("" + cmpFutur1);
 						System.out.println("cmpF : "+cmpFutur1);
-						
-						
+
 						//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 						frame.setSize(370, 110);
 						frame.setResizable(false);
 						frame.setLocationRelativeTo(null);
-						
+
 
 						container.setLayout(new BorderLayout());
 						JPanel top = new JPanel();       
 						Font police = new Font("Arial", Font.BOLD, 14);
-						
+
 						Tangle.setFont(police);
 						Tangle.setPreferredSize(new Dimension(150, 30));
 						Tangle.setForeground(Color.BLUE);
-						
+
 						Tpuissance.setFont(police);
 						Tpuissance.setPreferredSize(new Dimension(150, 30));
 						Tpuissance.setForeground(Color.BLUE);
-						
+
 						b2.addActionListener(new BoutonListener());
-						
+
 						top.add(label); 
 						top.add(Tangle);
 						top.add(label2);
 						top.add(Tpuissance);
 						top.add(b2);
-						
+
 						frame.setContentPane(top);
 						
 
 						frame.setVisible(true);
 					}
-					
-					
+
+
 
 				}
 			});
@@ -526,7 +528,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		cmpBombe = 0;  
 		cmpStop = 2; 
 		cmpFutur2 = 0; 
-		
+
 		tPioche = new JLabel(""+cmpPioche);
 		tParapluie = new JLabel(""+cmpParapluie);
 		tEscalier = new JLabel(""+cmpEscalier);
@@ -535,16 +537,24 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		tBombe = new JLabel(""+cmpBombe);
 		tStop = new JLabel(""+cmpStop);
 		tFutur2 = new JLabel(""+cmpFutur2);
-		
+
 	}
-	
+
 	class BoutonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
+			puissance = Integer.parseInt(Tpuissance.getText());
+			angle = (double) ((Integer.parseInt(Tangle.getText()))*Math.PI/180); //on met en radian
+			
+			
 			System.out.println("angle : " + Tangle.getText());
 			System.out.println("puissance : " + Tpuissance.getText());
-			frame.dispose();
+			Carte.obs.add(new Lemming(70,150,angle,puissance));
+
 			
+			frame.dispose();
+
 		}
 	}
+
 }
 
