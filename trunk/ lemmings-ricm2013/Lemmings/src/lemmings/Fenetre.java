@@ -250,8 +250,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 
 		// Scrollbar
-		zone_map.setPreferredSize(new Dimension(Carte.LARGEUR_CARTE,Carte.HAUTEUR_CARTE));
 		scroll = new JScrollPane(zone_map);
+		zone_map.setPreferredSize(new Dimension(Carte.LARGEUR_CARTE,Carte.HAUTEUR_CARTE));
+		System.out.println("largeur carte "+ Carte.LARGEUR_CARTE);
+		System.out.println("hauteur carte "+ Carte.HAUTEUR_CARTE);
 		this.setLayout(new BorderLayout());
 
 
@@ -324,9 +326,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==bouton_creuse) {
-			typeCourant = lemmingCreuseur;  
-		}
+		if(e.getSource()==bouton_creuse) typeCourant = lemmingCreuseur; 
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
 		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
 
@@ -344,14 +344,13 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			newCx = ((event.getX()*Carte.LARGEUR_CARTE))/(tailleFX);
 		}
 		else {
-			newCx = ((event.getX()*tailleFX))/(Carte.LARGEUR_CARTE);
+			newCx =event.getX(); //newCx = ((event.getX()*tailleFX*(Carte.LARGEUR_CARTE/Fenetre.tailleFX)))/(Carte.LARGEUR_CARTE);
 		}
 		if((3*tailleFY/5)>=Carte.HAUTEUR_CARTE) {
-			newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/((3*tailleFY/5));
-
+			newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/((3*tailleFY/5)+restey);
 		}
 		else {
-			newCy = ((event.getY())*3*tailleFY/5)/(Carte.HAUTEUR_CARTE);
+			newCy = event.getY();//newCy = ((event.getY())*3*tailleFY/5)/(Carte.HAUTEUR_CARTE);
 		}
 
 		Observable lem;
@@ -384,6 +383,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 				System.out.println("x souris : "+newCx);
 				System.out.println("y souris : "+newCy);
+				System.out.println("x souris fen: "+event.getX());
+				System.out.println("y souris fen: "+event.getY());
 				System.out.println("x lem : "+lem.getX());
 				System.out.println("y lem : "+lem.getY());
 				System.out.println("??????????");
