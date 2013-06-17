@@ -338,41 +338,54 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		
 		if(e.getSource()==bouton_creuse) typeCourant = lemmingCreuseur; 
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
 		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
 		
 		if(e.getSource()==bouton_futur1){
+			this.cmpFutur1--;
 			bouton_futur1.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					
-					//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame.setLocationRelativeTo(null);
-					frame.setSize(400, 110);
-					frame.setVisible(true);
+					if(cmpFutur1 < 0) tFutur1.setText("0");
+					else {
+						tFutur1.setText("" + cmpFutur1);
+						System.out.println("cmpF : "+cmpFutur1);
+						
+						
+						//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						frame.setSize(370, 110);
+						frame.setResizable(false);
+						frame.setLocationRelativeTo(null);
+						
 
-					container.setLayout(new BorderLayout());
-					JPanel top = new JPanel();       
-					Font police = new Font("Arial", Font.BOLD, 14);
+						container.setLayout(new BorderLayout());
+						JPanel top = new JPanel();       
+						Font police = new Font("Arial", Font.BOLD, 14);
+						
+						Tangle.setFont(police);
+						Tangle.setPreferredSize(new Dimension(150, 30));
+						Tangle.setForeground(Color.BLUE);
+						
+						Tpuissance.setFont(police);
+						Tpuissance.setPreferredSize(new Dimension(150, 30));
+						Tpuissance.setForeground(Color.BLUE);
+						
+						b2.addActionListener(new BoutonListener());
+						
+						top.add(label); 
+						top.add(Tangle);
+						top.add(label2);
+						top.add(Tpuissance);
+						top.add(b2);
+						
+						frame.setContentPane(top);
+						
+
+						frame.setVisible(true);
+					}
 					
-					Tangle.setFont(police);
-					Tangle.setPreferredSize(new Dimension(150, 30));
-					Tangle.setForeground(Color.BLUE);
-					
-					Tpuissance.setFont(police);
-					Tpuissance.setPreferredSize(new Dimension(150, 30));
-					Tpuissance.setForeground(Color.BLUE);
-					
-					b2.addActionListener(new BoutonListener());
-					
-					top.add(label); 
-					top.add(Tangle);
-					top.add(label2);
-					top.add(Tpuissance);
-					top.add(b2);
-					
-					frame.setContentPane(top);
 					
 
 				}
@@ -423,7 +436,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				if(typeCourant == lemmingStop){
 					if(this.cmpStop-- <= 0) tStop.setText("0");
 					else tStop.setText("" + this.cmpStop);
-					this.ancienNum = this.cmpPioche;
+					this.ancienNum = this.cmpStop;
 				}
 
 				if(this.ancienNum>=0) {
@@ -505,10 +518,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	}
 
 	private void initCmp(){
-		cmpPioche = 1;
-		cmpParapluie = 1;
+		cmpPioche = 10;
+		cmpParapluie = 5;
 		cmpEscalier = 0;
-		cmpFutur1 = 0;  
+		cmpFutur1 = 6;  
 		cmpEscalade = 0;  
 		cmpBombe = 0;  
 		cmpStop = 2; 
