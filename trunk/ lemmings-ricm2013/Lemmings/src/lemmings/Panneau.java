@@ -3,11 +3,15 @@ package lemmings;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class Panneau extends JPanel { 
+public class Panneau extends JPanel implements Constantes{ 
 	/**
 	 * 
 	 */
@@ -19,7 +23,6 @@ public class Panneau extends JPanel {
 	private int tailleRX;
 	private int tailleRY;
 	public static double coefFenetre = 0.75;
-	public static final int coeff = 10;
 
 	public Panneau(int tailleFX, int tailleFY) {
 		//on test les x
@@ -56,14 +59,26 @@ public class Panneau extends JPanel {
 		posX=0;
 		posY=0;
 
+		Observable o;
 		//on affiche les lemmings
 		for(int k =0;k<Carte.obs.size();k++){				
-			perso = new ImageIcon(Carte.obs.get(k).image).getImage();
-			g.setColor(new Color(51,204,0));
-			setOpaque(false);
-			g.drawImage(perso, Carte.obs.get(k).getX()*tailleRX-tailleRX*coeff/2, 
-					(Carte.obs.get(k).getY()+1-coeff)*tailleRY,
-					tailleRX*coeff,tailleRY*coeff, null);
+			//perso = new ImageIcon(Carte.obs.get(k).image).getImage();
+			o = Carte.obs.get(k);
+			BufferedImage buffer;
+			try {
+				buffer = ImageIO.read(new File(o.image));
+				buffer = buffer.getSubimage((o.getImageCourante()/2)*20, 0, 20, 40);
+				g.setColor(new Color(51,204,0));
+				setOpaque(false);
+				g.drawImage(buffer, o.getX()*tailleRX-tailleRX*coeff/2, 
+						(o.getY()+1-coeff)*tailleRY,
+						tailleRX*coeff,tailleRY*coeff, null);
+				o.setImageCourante((o.getImageCourante()+1)%(nbSprite*2));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 
 

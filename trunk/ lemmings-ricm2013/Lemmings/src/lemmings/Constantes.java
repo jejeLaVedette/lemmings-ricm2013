@@ -29,6 +29,7 @@ public interface Constantes {
 	public final static int coeff = 10;
 	public final static int tailleFenetreH = 1000;
 	public final static int tailleFenetreV = 700;
+	public final static int nbSprite = 8;
 	
 	// Constantes Automates
 	public final static int etatInitial = 0;
@@ -44,7 +45,7 @@ public interface Constantes {
 	public final static int lemmingGrimpeur = 5;
 	
 	// Constantes de Jeu
-	public final static int delaiAttente = 30;
+	public final static int delaiAttente = 50;
 	public final static int delaiPop = 50;
 	
 	// Constantes trajectoires

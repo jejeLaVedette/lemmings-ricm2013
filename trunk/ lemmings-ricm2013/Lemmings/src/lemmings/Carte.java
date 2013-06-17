@@ -10,20 +10,23 @@ import javax.imageio.ImageIO;
 
 public class Carte implements Constantes {
 
-	public static Point entree;
+	public static Point entree,sortie;
 	public static int nbLemmings = 0;
 
 	public static int LARGEUR_CARTE;
 	public static int HAUTEUR_CARTE;
+	public static int taille;
+	
 	public static double gravite = 9.81;
+	
 	public static String background;
 	public static String miniMap;
 
 	public static Element[][] map;// = new Element[LARGEUR_CARTE][HAUTEUR_CARTE];
 	public static ArrayList<Observable> obs = new ArrayList<Observable>();
-	public static int taille;
 
-
+	//DECLARATION DES COMPTEURS DE TOUT LES OBJET
+	public static int cmpPioche,cmpParapluie,cmpEscalier,cmpFutur1,cmpEscalade,cmpBombe,cmpStop,cmpFutur2;
 
 	public static void charger(String carte, String background) throws IOException {
 
@@ -50,12 +53,7 @@ public class Carte implements Constantes {
 			for(int j=0;j<maCarte.getWidth();j++) {
 
 				c = new Color(maCarte.getRGB(j,i));
-
-				// Test : air ou pas air ?
-				/*if (c.getBlue() == pixelAir.getBlue() &&
-					c.getRed() == pixelAir.getRed() &&
-					c.getGreen() == pixelAir.getGreen())
-					map[j][i] = new Air();		*/
+				
 				if ( (Math.abs(c.getBlue()-pixelAir.getBlue())< toleranceAir) &&
 						(Math.abs(c.getRed()-pixelAir.getRed())< toleranceAir) &&
 						(Math.abs(c.getGreen()-pixelAir.getGreen())< toleranceAir))
@@ -89,6 +87,17 @@ public class Carte implements Constantes {
 
 	public static void setNbLemmings(int nbLemmings) {
 		Carte.nbLemmings = nbLemmings;
+	}
+	
+	public static void initCmp(int pioche, int parapluie, int escalier, int futur1, int grimpeur, int bombe, int stop, int futur2) {
+		cmpPioche = pioche;
+		cmpParapluie = parapluie;
+		cmpEscalier = escalier;
+		cmpFutur1 = futur1;  
+		cmpEscalade = grimpeur;  
+		cmpBombe = bombe;  
+		cmpStop = stop; 
+		cmpFutur2 = futur2; 
 	}
 
 

@@ -120,7 +120,7 @@ public class Moteur implements Constantes {
 					aut = Jeu.listeAutomates.get(m); break;
 				}
 			}
-			
+
 			if(aut == null) {
 				System.out.println("Modèle d'automate introuvable !");
 				System.exit(1);
@@ -178,44 +178,39 @@ public class Moteur implements Constantes {
 	}
 
 	private static void marcher(Lemming l) {
-		if(l.getDirection()==0) {
-			l.image = "Images/lemming2.png";
+		if(l.getDirection()==gauche) {
+			l.image = "Images/lemmingBaseGauche2.png";
 			l.setX(l.getX()-1);
 			l.setY(l.getY()+relief);
 		}			
-		else if(l.getDirection()==1) {
+		else if(l.getDirection()==droite) {
 			l.setX(l.getX()+1);
 			l.setY(l.getY()+relief);
-			l.image = "Images/lemming1.png";
+			l.image = "Images/lemmingBaseDroite2.png";
 		}
 	}
 
 	private static void retourner(Lemming l) {
 
-		if(l.getDirection()==0) {
+		if(l.getDirection()==gauche) {
 			l.setDirection(1);
-			l.image = "Images/lemming1.png";
+			l.image = "Images/lemmingBaseGauche2.png";
 		}
-		else if(l.getDirection()==1) {
+		else if(l.getDirection()==droite) {
 			l.setDirection(0);
-			l.image = "Images/lemming2.png";
+			l.image = "Images/lemmingBaseDroite2.png";
 		}
 	}
 
 	private static void tomber(Lemming l) {
 		l.setY(l.getY()+1);
-		l.image = "Images/lemming5.png";
+		l.image = "Images/tombe2.png";
 
 	}
 
 	private static void bloquer(Lemming l) {
 
-		if(l.getDirection()==0) {
-			l.image = "Images/lemming4.png";
-		}
-		else if(l.getDirection()==1) {
-			l.image = "Images/lemming3.png";
-		}
+		l.image = "Images/lemmingStop2.png";
 
 		Carte.map[l.getX()][l.getY()].type = typeSolInvisible;
 		Carte.map[l.getX()][l.getY()-1].type = typeSolInvisible;
@@ -225,7 +220,7 @@ public class Moteur implements Constantes {
 
 	private static void tomberParapluie(Lemming l) {
 		l.setY(l.getY()+1);
-		l.image = "Images/lemming6.png";
+		l.image = "Images/parapluie2.png";
 	}
 
 	private static void creuser(Lemming l) throws IOException {
