@@ -2,9 +2,11 @@ package lemmings;
 
 public class Lemming extends Observable implements Constantes {
 	
-	protected int direction;
-	protected Trajectoire_physiqueH trajH;
+	protected int direction; /*
+	protected Trajectoire_physiqueV trajH;*/
 	protected Trajectoire_physiqueV trajV;
+	
+	protected trajectoireparaphysique trajH;
 	
 	public Lemming() {
 		super();
@@ -36,7 +38,7 @@ public class Lemming extends Observable implements Constantes {
 		super.y = y;
 	}
 	
-	public Lemming(int x,int y, int type, double vx, double vy) {
+	public Lemming(int x,int y, int type, int vx, int vy) {
 		super(vx,vy);
 		super.type = type;
 		this.direction = droite;
@@ -46,7 +48,7 @@ public class Lemming extends Observable implements Constantes {
 		super.y = y;
 	}
 	
-	public Lemming(int x,int y, int type, double vx, double vy, double elas) {
+	public Lemming(int x,int y, int type, int vx, int vy, double elas) {
 		super(vx,vy,elas);
 		super.type = type;
 		this.direction = droite;
@@ -72,7 +74,7 @@ public class Lemming extends Observable implements Constantes {
 		this.etat = etat;
 	}
 	
-	public Trajectoire_physiqueH getTrajH() {
+	public trajectoireparaphysique getTrajH() {
 		return trajH;
 	}
 
@@ -80,7 +82,7 @@ public class Lemming extends Observable implements Constantes {
 		return trajV;
 	}
 
-	public void setTrajH(Trajectoire_physiqueH trajH) {
+	public void setTrajH(trajectoireparaphysique trajH) {
 		this.trajH = trajH;
 	}
 

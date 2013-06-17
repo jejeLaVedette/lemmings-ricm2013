@@ -24,9 +24,9 @@ public class Jeu implements Constantes {
 		listeAutomates.add(new AutoLemmingGrimpeur(5));
 		
 		//Carte.miniMap = "Images/Carte.png";
-		Carte.charger("Images/Carte4.png");
+		Carte.charger("Images/Carte2.png");
 		Carte.setEntree(new Point(100, 36));
-		Carte.setNbLemmings(20);
+				Carte.setNbLemmings(20);
 		
 		int wait = delaiPop + 1;
 		
@@ -54,15 +54,15 @@ public class Jeu implements Constantes {
 		Carte.obs.add(new Lemming(350,150,lemmingCatapulte));
 		((Lemming) Carte.obs.get(0)).setDirection(gauche);
 		((Lemming) Carte.obs.get(1)).setDirection(gauche);*/
-		//Carte.obs.add(new Lemming(70,150,lemmingCatapulte));
+		Carte.obs.add(new Lemming(70,150,lemmingCatapulte));
 		
 		
 		while(true) {
 			
-			if(wait>delaiPop && Carte.getNbLemmings()!=0) {
+			/*if(wait>delaiPop && Carte.getNbLemmings()!=0) {
 				Carte.popLemmings(lemmingBase);
 				wait = 0;
-			}
+			}*/
 			
 			Moteur.miseAJourObservables();
 			Thread.sleep(delaiAttente);
