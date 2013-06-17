@@ -36,7 +36,6 @@ public interface Constantes {
 	public final static int etatMort = -1;
 	public final static int etatReinit = -2;
 	public final static int etatReinitParapluie = -3;
-	public final static int etatParapluieOuvert = hauteurLetale;
 	public final static int lemmingBase = 0;
 	public final static int lemmingStop = 1;
 	public final static int lemmingParapluie = 2;
@@ -48,7 +47,7 @@ public interface Constantes {
 	// Constantes de Jeu
 	public final static int delaiAttente = 50;
 	public final static int delaiPop = 50;
-	public final static int nbMarche = 10;
+	public final static int nbMarche = 15;
 	public final static int delaiSousAction = 4;
 	
 	// Constantes trajectoires

@@ -416,7 +416,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 					if(Carte.cmpParapluie-- <= 0) tParapluie.setText("0");
 					else tParapluie.setText("" + Carte.cmpParapluie);
 					this.ancienNum = Carte.cmpParapluie;
-					Carte.obs.get(i).setEtat(etatParapluieOuvert);
 				}
 
 				if(typeCourant == lemmingCreuseur){
@@ -429,6 +428,12 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 					if(Carte.cmpStop-- <= 0) tStop.setText("0");
 					else tStop.setText("" + Carte.cmpStop);
 					this.ancienNum = Carte.cmpStop;
+				}
+				
+				if(typeCourant == lemmingEscalier){
+					if(Carte.cmpEscalier-- <= 0) tEscalier.setText("0");
+					else tEscalier.setText("" + Carte.cmpEscalier);
+					this.ancienNum = Carte.cmpEscalier;
 				}
 
 				if(this.ancienNum>=0) {
