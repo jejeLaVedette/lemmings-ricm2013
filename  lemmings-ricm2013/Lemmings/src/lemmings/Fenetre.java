@@ -334,7 +334,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(e.getSource()==bouton_creuse) typeCourant = lemmingCreuseur; 
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
 		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
-
+		if(e.getSource()==bouton_escalier) typeCourant = lemmingEscalier;
+		
 		if(e.getSource()==bouton_futur1){
 			Carte.cmpFutur1--;
 			bouton_futur1.addMouseListener(new MouseAdapter() {
