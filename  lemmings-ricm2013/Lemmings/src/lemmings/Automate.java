@@ -19,21 +19,17 @@ public Automate(int nbTransitions, int id)
 public Automate() {}
 public static int nomVersIdentifiant (String nom) {
 	int id;
-    switch (nom) {
-        case "Classique":  id = 0;
-                 break;
-        case "Parapluie":  id = 1;
-                 break;
-        case "Creuseur":   id = 2;
-                 break;
-        case "Grimpeur":   id = 3;
-                 break;
-                 
-        // A completer //
-                 
-        default: id = 0;
-                 break;
-    }
+	
+	if(nom=="Classique")
+		id = 0;
+	else if (nom=="Parapluie")
+		id = 1;
+	else if (nom=="Creuseur")
+		id = 2;
+	else if (nom=="Grimpeur")
+		id = 3;
+	else
+		id = 0;
     return id;
 	}
 
