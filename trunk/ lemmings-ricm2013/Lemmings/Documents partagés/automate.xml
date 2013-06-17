@@ -1,0 +1,46 @@
+<open>
+ <automate nom = "Classique">
+   <transition etat="0" etatsuivant="0">
+    <condition>sol</condition>
+    <action>marcher</action>
+   </transition>
+   <transition etat="0" etatsuivant="0">
+    <condition>mur</condition>
+    <action>retourner</action>
+    <action>marcher</action>
+   </transition>
+   <transition etat="0" etatsuivant="1">
+    <condition>vide</condition>
+    <action>tomber</action>
+   </transition>
+	 <transition etat="1" etatsuivant="1">
+    <condition>vide</condition>
+    <action>tomber</action>
+   </transition>
+	 <transition etat="1" etatsuivant="0">
+    <condition>sol</condition>
+   </transition>
+ </automate> 
+ <automate nom = "Parapluie">
+   <transition etat="0" etatsuivant="0">
+    <condition>sol</condition>
+    <action>marcher</action>
+   </transition>
+   <transition etat="0" etatsuivant="0">
+    <condition>mur</condition>
+    <action>retourner</action>
+    <action>marcher</action>
+   </transition>
+   <transition etat="0" etatsuivant="1">
+    <condition>vide</condition>
+    <action>tomberParapluie</action>
+   </transition>
+	 <transition etat="1" etatsuivant="1">
+    <condition>vide</condition>
+    <action>tomberParapluie</action>
+   </transition>
+	 <transition etat="1" etatsuivant="0">
+    <condition>sol</condition>
+   </transition>
+ </automate> 
+</open>
