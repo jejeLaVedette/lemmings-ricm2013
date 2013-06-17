@@ -23,8 +23,8 @@ public class Jeu implements Constantes {
 
 		//Carte.miniMap = "Images/Carte.png";
 
-		Carte.charger("Images/map1.png","Images/nuages.png");
-		Carte.initCmp(0, 0, 4, 0, 0, 0, 2, 0);
+		Carte.charger("Images/map1.png","Images/mario.png");
+		Carte.initCmp(0, 1, 4, 0, 0, 0, 2, 0);
 
 		Carte.setEntree(new Point(60, 55));
 

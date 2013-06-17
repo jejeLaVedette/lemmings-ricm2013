@@ -146,6 +146,8 @@ public class Moteur implements Constantes {
 					appliquerAction(aut.listeTransitions.get(k).getActions().get(l),lem);
 				}
 			}
+			
+			// On change d'etat, sauf si 
 			lem.setEtat(aut.listeTransitions.get(k).getEtatFinal());
 
 		} // Fin for(i)
