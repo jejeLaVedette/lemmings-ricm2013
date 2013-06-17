@@ -47,11 +47,11 @@
    </transition>
  </automate> 
  <automate nom = "Creuseur">
-   <transition etat="0" etatsuivant="0">
+   <transition etat="0" etatsuivant="1">
     <condition>sol</condition>
     <action>creuser</action>
    </transition>
-   <transition etat="0" etatsuivant="0">
+   <transition etat="0" etatsuivant="1">
     <condition>mur</condition>
     <action>creuser</action>
    </transition>
@@ -61,13 +61,15 @@
    </transition>
 	 <transition etat="1" etatsuivant="1">
     <condition>vide</condition>
-    <action>tomber</action>
+    <action>initLemmingBase</action>
    </transition>
-	 <transition etat="1" etatsuivant="0">
+	 <transition etat="1" etatsuivant="1">
     <condition>sol</condition>
+    <action>initLemmingBase</action>
    </transition>
-	 <transition etat="1" etatsuivant="0">
+	 <transition etat="1" etatsuivant="1">
     <condition>mur</condition>
+    <action>initLemmingBase</action>
    </transition>
  </automate> 
 </open>
