@@ -111,7 +111,7 @@ public class Moteur implements Constantes {
 				break;
 			}
 
-			//System.out.println("x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
+			System.out.println("x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
 
 			// Recherche de l'automate correspondant
 			Automate aut = null;
@@ -253,36 +253,37 @@ public class Moteur implements Constantes {
 	}
 
 	private static void voler(Lemming l) {
-		l.setXp(l.getX());
-		l.setYp(l.getY());
-		trajectoireparaphysique t = l.getTrajH();		
-		l.setX(t.calculx(l.time));
-		l.setY(t.calculy(l.time));
+		
+		trajectoireparaphysique t = l.getTrajH();
+		l.setX((int)t.calculx(l.time));
+		l.setY((int)t.calculy(l.time));
 
 		l.setTime();
-		Carte.map[l.getX()][l.getY()].couleur = new Color(255,0,0);
+		//Carte.map[l.getX()][l.getY()].couleur = new Color(255,0,0);
 
 	}
 
 	private static void rebondir(Lemming l) {
-		/*
-		if(!l.getTrajV().doit_tomber(l.getY())) {
-			l.setX(l.getTrajV().get_trajectoireX(l.getY()));
-			l.setY(l.getY()+1);
-			System.out.println("x:"+l.getX()+" y:"+l.getY());
-			Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
-		}
-		else {
-			l.type = lemmingParapluie; 
-			l.setEtat(hauteurLetale);*/
-		System.out.println("x:"+l.getX()+" y:"+l.getY()+" Xp"+l.getXp() +"Yp" + l.getYp());
+//Alors ici je cherche a avoir la Vitesse précise pour cela  ... 
 
 		trajectoireparaphysique t= l.getTrajH() ;
-		t.calculcolision(l.getX(), l.getY(), l.getXp()  , l.getYp() , l.getElasticite(),0.0, false);
+		double x  = t.calculx(l.time);
+		double y = t.calculy(l.time);
+		l.setXp(t.calculx(l.time -2*deltat));
+		l.setYp(t.calculy(l.time -2*deltat));
+		System.out.println("x:"+l.getX()+" y:"+l.getY()+" Xp"+l.getXp() +"Yp" + l.getYp());
+		t.calculcolision(x, y, l.getXp()  , l.getYp() , l.getElasticite(),0.5, false);
+		
+		
+		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 10){
+
 		l.setTrajH(t);
-		System.out.println("x:"+l.getX()+" y:"+l.getY());
-		//Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
+		System.out.println("x:"+l.getX()+" y"+l.getY());
+		l.setY(l.getY()-2);
+		 
+		Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
 		l.resetTime();
+		 }
 
 	}
 

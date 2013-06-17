@@ -12,23 +12,26 @@ public class Jeu implements Constantes {
 
 	public static void main(String[] args) throws InterruptedException, IOException{
 
+
 		//listeAutomates.add(new AutoLemmingBasique(5));
 		AutomateHandler.initAutomates("./Documents partagés/automate.xml");
 		listeAutomates.add(new AutoLemmingStop(5));
 		//listeAutomates.add(new AutoLemmingParapluie(5));
 		//listeAutomates.add(new AutoLemmingCreuseur(5));
+
 		listeAutomates.add(new AutoLemmingCatapulte(5));
 
 		//listeAutomates.add(new AutoLemmingGrimpeur(5));
 
 		//Carte.miniMap = "Images/Carte.png";
 
+
 		Carte.charger("Images/map1.png","Images/mario.png");
 		Carte.initCmp(5, 1, 4, 0, 0, 0, 2, 0);
 
 		Carte.setEntree(new Point(60, 55));
 
-		Carte.setNbLemmings(20);
+		Carte.setNbLemmings(0);
 
 		int wait = delaiPop + 1;
 
@@ -56,7 +59,7 @@ public class Jeu implements Constantes {
 		((Lemming) Carte.obs.get(0)).setDirection(gauche);
 		((Lemming) Carte.obs.get(1)).setDirection(gauche);*/
 
-		//Carte.obs.add(new Lemming(70,150,lemmingCatapulte));
+		Carte.obs.add(new Lemming(70,150,Math.PI/6,75));
 
 
 

@@ -22,29 +22,46 @@ public class AutoLemmingCatapulte extends Automate implements Constantes {
 
 		
 		l = new ArrayList<String>();
-		listeTransitions.add(new Transition(1, 3, "sol", l));
-		listeTransitions.add(new Transition(1, 3, "mur", l));
+		listeTransitions.add(new Transition(1, 2, "sol", l));
+		listeTransitions.add(new Transition(1, 2, "mur", l));
+		
+		l = new ArrayList<String>();
+	
+		l.add("rebondir");
+	
+		listeTransitions.add(new Transition(2, 4, "vide", l));
+		listeTransitions.add(new Transition(2, 3, "sol", l));
+		listeTransitions.add(new Transition(2, 3, "mur", l));
 		
 		l = new ArrayList<String>();
 		l.add("voler");
+		listeTransitions.add(new Transition(4, 4, "vide", l));
 
-		listeTransitions.add(new Transition(2, 2, "vide", l));
-		listeTransitions.add(new Transition(2, 2, "sol", l));
-		listeTransitions.add(new Transition(2, 2, "mur", l));
-		
 		l = new ArrayList<String>();
 		l.add("rebondir");
-		listeTransitions.add(new Transition(3, 2, "vide", l));
-		listeTransitions.add(new Transition(3, 2, "sol", l));
-		listeTransitions.add(new Transition(3, 2, "mur", l));
-		
+		listeTransitions.add(new Transition(4, 5, "mur", l));
+		listeTransitions.add(new Transition(4, 5, "sol", l));
 
+		l = new ArrayList<String>();
+
+		l.add("voler");
+		listeTransitions.add(new Transition(5,5 , "vide", l));
+		l = new ArrayList<String>();
+		listeTransitions.add(new Transition(5,6 , "mur", l));
+		listeTransitions.add(new Transition(5,6 , "sol", l));
+		l = new ArrayList<String>();
+		listeTransitions.add(new Transition(3, 4 ,"vide", l));
+		listeTransitions.add(new Transition(3, 6 ,"sol", l));
+		listeTransitions.add(new Transition(3, 6, "mur", l));
 		
+	
+
+		l = new ArrayList<String>();
+		l.add("retourner");
+		listeTransitions.add(new Transition(6, etatReinit, "vide", l));
+		listeTransitions.add(new Transition(6, etatReinit, "sol", l));
+		listeTransitions.add(new Transition(6, etatReinit, "mur", l));
 		
-		/*l = new ArrayList<String>();
-		listeTransitions.add(new Transition(3, etatReinitParapluie, "sol", l));
-		listeTransitions.add(new Transition(3, etatReinitParapluie, "mur", l));
-		*/
 		// Rebond au sol
 		//l = new ArrayList<String>();
 		
