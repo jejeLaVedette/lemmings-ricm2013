@@ -12,7 +12,7 @@ public class Test_trajectoire {
 public static void main(String[] args) throws IOException{
 	
 		
-		trajectoireparaphysique tp = new trajectoireparaphysique(0, 0, 200,Math.PI/4 ,0);
+		trajectoireparaphysique tp = new trajectoireparaphysique(100, 100, 200,Math.PI/4 ,0);
 		for(int i = 0 ; i<200;i++){
 			int y = tp.calculy(i);
 			int x=tp.calculx(i);

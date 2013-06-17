@@ -9,24 +9,25 @@ public class Observable {
 	protected String image;
 	
 	protected double elasticite;
-	protected double vx;
-	protected double vy;
-	
+	protected int Xprec;
+	protected int Yprec;
+	protected double time;
 	public Observable () {
-		elasticite = 0;
-		vx = 0;
-		vy = 0;
+		elasticite = 0.5;
+		Xprec = 0;
+		Yprec = 0;
+		time = 0.05;
 	}
 	
-	public Observable(double vx, double vy) {
+	public Observable(int vx, int vy) {
 		elasticite = 0;
-		this.vx = vx;
-		this.vy = vy;
+		this.Xprec = vx;
+		this.Yprec=  vy;
 	}
 	
-	public Observable(double vx, double vy, double elas) {
-		this.vx = vx;
-		this.vy = vy;
+	public Observable(int vx, int vy, double elas) {
+		this.Xprec = vx;
+		this.Yprec = vy;
 		this.elasticite = elas;
 	}
 	
@@ -70,20 +71,26 @@ public class Observable {
 		this.elasticite = elasticite;
 	}
 
-	public double getVx() {
-		return vx;
+	public int getXp() {
+		return Xprec;
 	}
 
-	public double getVy() {
-		return vy;
+	public int getYp() {
+		return Yprec;
 	}
 
-	public void setVx(double vx) {
-		this.vx = vx;
+	public void setXp(int vx) {
+		this.Xprec = vx;
 	}
 
-	public void setVy(double vy) {
-		this.vy = vy;
+	public void setYp(int vy) {
+		this.Yprec = vy;
+	}
+	public void setTime(){
+		time = time +0.05;
+	}
+	public void resetTime(){
+		time=0;
 	}
 	
 }

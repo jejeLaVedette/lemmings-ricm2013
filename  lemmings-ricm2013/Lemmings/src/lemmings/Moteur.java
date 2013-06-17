@@ -228,33 +228,25 @@ public class Moteur implements Constantes {
 	}
 
 	private static void initTrajectoire(Lemming l) {
-		int signe = 0;
-		if(l.getDirection()==gauche)
-			signe = -1;
-		else
-			signe = 1;
-
-		int x = l.getX();
-		int y = l.getY();
-
-		l.setTrajH(new Trajectoire_physiqueH(x, y, signe*vx, vy, haut));
-
-		if(Carte.map[x][y-1-coeff*3/4].type<=typeSolSup && Carte.map[x-1][y-1-coeff*3/4].type<=typeSolSup && Carte.map[x+1][y-1-coeff*3/4].type<=typeSolSup)
-			l.setTrajV(new Trajectoire_physiqueV(l.getX(), l.getY(), vx, vy, 1-l.getDirection()));
-		else
-			l.setTrajV(new Trajectoire_physiqueV(l.getX(), l.getY(), vx, vy, l.getDirection()));
+		 
+		trajectoireparaphysique t=new trajectoireparaphysique(l.getX(),l.getY(),30,Math.PI/2,1);
+ l.setTrajH(t);
 	}
 
 	private static void voler(Lemming l) {
-		l.setY(l.getTrajH().get_trajectoireY(l.getX()));
+		l.setXp(l.getX());
+		l.setYp(l.getY());
+		trajectoireparaphysique t = l.getTrajH();		
+		l.setX(t.calculx(l.time));
+		l.setY(t.calculy(l.time));
+		
+		l.setTime();
 		Carte.map[l.getX()][l.getY()].couleur = new Color(255,0,0);
-		if(l.getDirection()==droite)
-			l.setX(l.getX()+1);
-		else
-			l.setX(l.getX()-1);
+		
 	}
 
 	private static void rebondir(Lemming l) {
+		/*
 		if(!l.getTrajV().doit_tomber(l.getY())) {
 			l.setX(l.getTrajV().get_trajectoireX(l.getY()));
 			l.setY(l.getY()+1);
@@ -262,9 +254,17 @@ public class Moteur implements Constantes {
 			Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
 		}
 		else {
-			l.type = lemmingParapluie;
-			l.setEtat(hauteurLetale);
-		}
+			l.type = lemmingParapluie; 
+			l.setEtat(hauteurLetale);*/
+		System.out.println("x:"+l.getX()+" y:"+l.getY()+" Xp"+l.getXp() +"Yp" + l.getYp());
+
+		trajectoireparaphysique t= l.getTrajH() ;
+		t.calculcolision(l.getX(), l.getY(), l.getXp()  , l.getYp() , l.getElasticite(),0.0, false);
+		l.setTrajH(t);
+		System.out.println("x:"+l.getX()+" y:"+l.getY());
+			//Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
+			l.resetTime();
+		
 	}
 
 	private static void grimper(Lemming l) {
