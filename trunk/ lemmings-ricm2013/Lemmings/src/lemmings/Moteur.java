@@ -176,6 +176,8 @@ public class Moteur implements Constantes {
 			grimper(l);
 		else if(s.equals("initTrajectoire"))
 			initTrajectoire(l);
+		else if(s.equals("initLemmingBase"))
+			initLemmingBase(l);
 		else
 			System.out.println("Action invalide !");
 	}
@@ -285,6 +287,11 @@ public class Moteur implements Constantes {
 	private static void grimper(Lemming l) {
 		System.out.println("TOTO");
 		l.setY(l.getY()-1);
+	}
+	
+	private static void initLemmingBase(Lemming l) {
+		l.setType(lemmingBase);
+		l.setEtat(etatInitial);
 	}
 
 }
