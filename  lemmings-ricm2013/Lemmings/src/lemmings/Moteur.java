@@ -115,11 +115,12 @@ public class Moteur implements Constantes {
 
 			// Recherche de l'automate correspondant
 			Automate aut = null;
-			for(int m=0;m<Jeu.listeAutomates.size();m++)
+			for(int m=0;m<Jeu.listeAutomates.size();m++) {
 				if(Jeu.listeAutomates.get(m).identifiant == lem.type) {
 					aut = Jeu.listeAutomates.get(m); break;
 				}
-
+			}
+			
 			if(aut == null) {
 				System.out.println("Modèle d'automate introuvable !");
 				System.exit(1);
