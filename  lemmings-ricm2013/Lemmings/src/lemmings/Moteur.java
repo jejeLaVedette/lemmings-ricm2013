@@ -243,7 +243,7 @@ public class Moteur implements Constantes {
 
 	private static void initTrajectoire(Lemming l) {
 		 
-		trajectoireparaphysique t=new trajectoireparaphysique(l.getX(),l.getY(),30,Math.PI/2,1);
+		trajectoireparaphysique t=new trajectoireparaphysique(l.getX(),l.getY(),40,Math.PI/24,1);
  l.setTrajH(t);
 	}
 
