@@ -1,13 +1,18 @@
 package lemmings;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 
 public class Moteur implements Constantes {
 
 	private static int relief=0;
 
-	public static void miseAJourObservables()
+	public static void miseAJourObservables() throws IOException
 	{
 
 		for(int i=0;i<Carte.obs.size();i++) {
@@ -42,7 +47,7 @@ public class Moteur implements Constantes {
 			if( ( lem.getDirection()==gauche && Carte.map[x][y+1].type>=typeAirInf && Carte.map[x][y+1].type<=typeAirSup ) ||
 					( lem.getDirection()==droite && Carte.map[x][y+1].type>=typeAirInf && Carte.map[x][y+1].type<=typeAirSup )	) 
 				cond = "vide";
-			
+
 			// Présence d'un mur
 			else if( (x==0 && lem.getDirection()==gauche) || 
 					(x==Carte.LARGEUR_CARTE-1 && lem.getDirection()==1) ||
@@ -51,10 +56,10 @@ public class Moteur implements Constantes {
 					(lem.type == lemmingCatapulte && Carte.map[x][y-1-coeff*3/4].type<=typeSolSup && Carte.map[x-1][y-1-coeff*3/4].type<=typeSolSup && Carte.map[x+1][y-1-coeff*3/4].type<=typeSolSup )
 					) 
 				cond = "mur";
-			
+
 			else 
 				cond = "sol";
-			
+
 
 
 
@@ -105,59 +110,67 @@ public class Moteur implements Constantes {
 				Carte.obs.remove(i);
 				break;
 			}
-			
+
 			//System.out.println("x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
 
 			// Recherche de l'automate correspondant
-			Automate aut = Jeu.listeAutomates.get(0);
+			Automate aut = null;
 			for(int m=0;m<Jeu.listeAutomates.size();m++)
 				if(Jeu.listeAutomates.get(m).identifiant == lem.type) {
 					aut = Jeu.listeAutomates.get(m); break;
 				}
 
+			if(aut == null) {
+				System.out.println("Modèle d'automate introuvable !");
+				System.exit(1);
+			}
+			
 			// Recherche de la transition dans l'automate
 			int k=0;
 			while(k<aut.listeTransitions.size()) {
 				if( aut.listeTransitions.get(k).getEtatInitial()==lem.getEtat() && 
-						aut.listeTransitions.get(k).getCondition()==cond)
-					break;
+					aut.listeTransitions.get(k).getCondition().equals(cond)) break;
 
 				k++;
 			}
 
-			if(k==aut.listeTransitions.size())
+			if(k==aut.listeTransitions.size()) {
 				System.out.println("Automate n°"+ aut.identifiant +" non-déterministe !");
-			// On applique les actions associées
-			for(int l=0;l<aut.listeTransitions.get(k).getActions().size();l++) {
-				appliquerAction(aut.listeTransitions.get(k).getActions().get(l),lem);
+				System.exit(1);
 			}
-
+			// On applique les actions associées
+			if (aut.listeTransitions.get(k).getActions() != null)
+			{
+				for(int l=0;l<aut.listeTransitions.get(k).getActions().size();l++) {
+					appliquerAction(aut.listeTransitions.get(k).getActions().get(l),lem);
+				}
+			}
 			lem.setEtat(aut.listeTransitions.get(k).getEtatFinal());
 
 		} // Fin for(i)
 	}
 
-	private static void appliquerAction(String s, Lemming l) {
+	private static void appliquerAction(String s, Lemming l) throws IOException {
 
-		if(s=="marcher")
+		if(s.equals("marcher"))
 			marcher(l);
-		else if(s=="retourner")
+		else if(s.equals("retourner"))
 			retourner(l);
-		else if(s=="tomber")
+		else if(s.equals("tomber"))
 			tomber(l);
-		else if(s=="bloquer")
+		else if(s.equals("bloquer"))
 			bloquer(l);
-		else if(s=="tomberParapluie")
+		else if(s.equals("tomberParapluie"))
 			tomberParapluie(l);
-		else if(s=="creuser")
+		else if(s.equals("creuser"))
 			creuser(l);
-		else if(s=="voler")
+		else if(s.equals("voler"))
 			voler(l);
-		else if(s=="rebondir")
+		else if(s.equals("rebondir"))
 			rebondir(l);
-		else if(s=="grimper")
+		else if(s.equals("grimper"))
 			grimper(l);
-		else if(s=="initTrajectoire")
+		else if(s.equals("initTrajectoire"))
 			initTrajectoire(l);
 		else
 			System.out.println("Action invalide !");
@@ -214,14 +227,15 @@ public class Moteur implements Constantes {
 		l.image = "Images/lemming6.png";
 	}
 
-	private static void creuser(Lemming l) {
+	private static void creuser(Lemming l) throws IOException {
 
 		int x,y;
 		y = l.getY();
 		x = l.getX();
+		BufferedImage arrierePlan=ImageIO.read(new File(Carte.background));
 		for(int i=0;i<(coeff/2);i++) {
-			Carte.map[x+i][y] = new Air();
-			Carte.map[x-i][y] = new Air();
+			Carte.map[x+i][y] = new Air(new Color(arrierePlan.getRGB(x+i,y)));
+			Carte.map[x-i][y] = new Air(new Color(arrierePlan.getRGB(x-i,y)));
 		}
 
 		l.setY(y+1);

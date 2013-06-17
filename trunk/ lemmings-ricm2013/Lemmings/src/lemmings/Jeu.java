@@ -16,15 +16,17 @@ public class Jeu implements Constantes {
 	
 	public static void main(String[] args) throws InterruptedException, IOException{
 		
-		listeAutomates.add(new AutoLemmingBasique(5));
-		listeAutomates.add(new AutoLemmingStop(5));
+		//listeAutomates.add(new AutoLemmingBasique(5));
+		AutomateHandler.initAutomates("./automate.xml");
+		/*listeAutomates.add(new AutoLemmingStop(5));
 		listeAutomates.add(new AutoLemmingParapluie(5));
-		listeAutomates.add(new AutoLemmingCreuseur(5));
+		listeAutomates.add(new AutoLemmingCreuseur(5));*/
 		listeAutomates.add(new AutoLemmingCatapulte(5));
-		listeAutomates.add(new AutoLemmingGrimpeur(5));
+		//listeAutomates.add(new AutoLemmingGrimpeur(5));
 		
 		//Carte.miniMap = "Images/Carte.png";
-		Carte.charger("Images/Carte2.png");
+		Carte.charger("Images/Carte.png","Images/chat.png");
+
 		Carte.setEntree(new Point(100, 36));
 				Carte.setNbLemmings(20);
 		

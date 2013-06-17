@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 import lemmings.Transition;
 
-public class Automate {
+public class Automate implements Constantes {
 
 	protected ArrayList<Transition> listeTransitions;
 	protected int identifiant;
@@ -20,14 +20,14 @@ public Automate() {}
 public static int nomVersIdentifiant (String nom) {
 	int id;
 	
-	if(nom=="Classique")
-		id = 0;
-	else if (nom=="Parapluie")
-		id = 1;
-	else if (nom=="Creuseur")
-		id = 2;
-	else if (nom=="Grimpeur")
-		id = 3;
+	if(nom.equals("Classique"))
+		id = lemmingBase;
+	else if (nom.equals("Parapluie"))
+		id = lemmingParapluie;
+	else if (nom.equals("Creuseur"))
+		id = lemmingCreuseur;
+	else if (nom.equals("Grimpeur"))
+		id = lemmingGrimpeur;
 	else
 		id = 0;
     return id;

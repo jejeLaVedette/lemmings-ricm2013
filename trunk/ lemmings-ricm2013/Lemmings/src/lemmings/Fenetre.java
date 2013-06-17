@@ -40,10 +40,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JPanel container = new JPanel();
 	private JFormattedTextField Tangle = new JFormattedTextField(NumberFormat.getIntegerInstance());
 	private JFormattedTextField Tpuissance = new JFormattedTextField(NumberFormat.getIntegerInstance());
-	private JLabel label = new JLabel("Entrée un angle : ");
-	private JLabel label2 = new JLabel("Entrée une puissance : ");
+	private JLabel label = new JLabel("EntrÃ©e un angle : ");
+	private JLabel label2 = new JLabel("EntrÃ©e une puissance : ");
 	private JButton b2 = new JButton ("OK");
-	private final JFrame frame = new JFrame("Choisir coordonnée");
+	private final JFrame frame = new JFrame("Choisir coordonnÃ©e");
 	/**
 	 * 
 	 */
@@ -149,7 +149,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		JPanel bouton_sup = new JPanel();
 
-		//On définit le layout en lui indiquant qu'il travaillera en ligne
+		//On dï¿½finit le layout en lui indiquant qu'il travaillera en ligne
 		bouton_sup.setLayout(new BoxLayout(bouton_sup, BoxLayout.LINE_AXIS));
 
 		bouton_sup.add(bouton_creuse);
@@ -269,17 +269,17 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		this.setLayout(new BorderLayout());
 
 
-		//On place le premier séparateur
+		//On place le premier sï¿½parateur
 		split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, zone_gauche, zone_droite);
-		//On place le deuxième séparateur
+		//On place le deuxiï¿½me sï¿½parateur
 		split2.setDividerLocation(tFX/2);
-		//On passe les deux précédents JSplitPane à celui-ci
+		//On passe les deux prï¿½cï¿½dents JSplitPane ï¿½ celui-ci
 		split3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scroll, split2);
-		//On place le troisieme séparateur
+		//On place le troisieme sï¿½parateur
 		split3.setDividerLocation(3*tFY/5);
 
 		//On le passe ensuite au content pane de notre objet Fenetre
-		//placé au centre pour qu'il utilise tout l'espace disponible
+		//placï¿½ au centre pour qu'il utilise tout l'espace disponible
 		//this.add(split3, BorderLayout.CENTER);
 		this.getContentPane().add(split3, BorderLayout.CENTER);
 
@@ -396,9 +396,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 
 	public void modifType(MouseEvent event){
-		//on récupére les coordonnée X de la souris    
+		//on rï¿½cupï¿½re les coordonnï¿½e X de la souris    
 		//int newCx = ((event.getX()*Carte.LARGEUR_CARTE))/(tailleFX);
-		//on réccupére les coordonnée Y de la souris
+		//on rï¿½ccupï¿½re les coordonnï¿½e Y de la souris
 		//int newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/((3*tailleFY/5));
 		int newCx;
 		int newCy;
