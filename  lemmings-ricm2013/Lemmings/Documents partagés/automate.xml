@@ -1,0 +1,41 @@
+
+ <automate>
+   <transition etat="0" etatsuivant="0">
+    <condition>SOL</condition>
+    <action>MARCHER</action>
+   </transition>
+   <transition etat="0" etatsuivant="0">
+    <condition>MUR</condition>
+    <action>RETOURNER</action>
+    <action>MARCHER</action>
+   </transition>
+   <transition etat="0" etatsuivant="1">
+    <condition>VIDE</condition>
+    <action>TOMBER</action>
+   </transition>
+  <transition etat="1" etatsuivant="0">
+    <condition>SOL</condition>
+    <action>MARCHER</action>
+   </transition>
+   <transition etat="1" etatsuivant="0">
+    <condition>MUR</condition>
+    <action></action>
+   </transition>
+   <transition etat="1" etatsuivant="2">
+    <condition>VIDE</condition>
+    <action></action>
+   </transition>
+   <transition etat="2" etatsuivant="2">
+    <condition>VIDE</condition>
+    <action></action>
+   </transition>
+   <transition etat="2" etatsuivant="2">
+    <condition>MUR</condition>
+    <action></action>
+   </transition>
+  <transition etat="2" etatsuivant="2">
+    <condition>SOL</condition>
+    <action></action>
+   </transition>
+ </automate>
+ 
