@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<annuaire>
+	<personne id="0">
+		<nom>Zominy</nom>
+		<prenom>Laurent</prenom>
+		<adresse>6 rue Jean Moulin</adresse>
+	</personne>
+	<personne id="1">
+		<nom>Levayer</nom>
+		<prenom>David</prenom>
+		<adresse>adresse1</adresse>
+	</personne>
+		<personne id="2">
+		<nom>Barbier</nom>
+		<prenom>Jerome</prenom>
+		<adresse>adresse2</adresse>
+	</personne>
+	<personne id="3">
+		<nom>Peyre</nom>
+		<prenom>Flavien</prenom>
+		<adresse>adresse3</adresse>
+	</personne>
+	<personne id="4">
+		<nom>Ben Younes</nom>
+		<prenom>Radhoane</prenom>
+		<adresse>adresse4</adresse>
+	</personne>
+</annuaire>
