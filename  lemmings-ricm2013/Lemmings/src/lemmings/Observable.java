@@ -4,9 +4,10 @@ public class Observable {
 	
 	protected int type;
 	protected int x;
-	protected int etat;
 	protected int y;
+	protected int etat;
 	protected String image;
+	protected int imageCourante = 0;
 	
 	protected double elasticite;
 	protected int Xprec;
@@ -92,5 +93,15 @@ public class Observable {
 	public void resetTime(){
 		time=0;
 	}
+
+	public int getImageCourante() {
+		return imageCourante;
+	}
+
+	public void setImageCourante(int imageCourante) {
+		this.imageCourante = imageCourante;
+	}
+	
+	
 	
 }

@@ -81,16 +81,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JButton bouton_accelerer; 
 	private JButton bouton_recharger; 
 
-	//DECLARATION DES COMPTEURS DE TOUT LES OBJET
-	private int cmpPioche; 
-	private int cmpParapluie;
-	private int cmpEscalier;
-	private int cmpFutur1;  
-	private int cmpEscalade;  
-	private int cmpBombe;  
-	private int cmpStop; 
-	private int cmpFutur2; 
-
 	//DECLARATION DE TOUT LES TEXTES DES COMPTEURS
 	private JLabel tPioche;
 	private JLabel tParapluie;
@@ -141,7 +131,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		// Initialisation des boutons
 		initBoutons();
-		initCmp();
 
 		//ZONE QUI CONTIENT LES BOUTONS
 		JPanel zone_gauche = new JPanel();
@@ -347,14 +336,14 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
 
 		if(e.getSource()==bouton_futur1){
-			this.cmpFutur1--;
+			Carte.cmpFutur1--;
 			bouton_futur1.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					if(cmpFutur1 < 0) tFutur1.setText("0");
+					if(Carte.cmpFutur1 < 0) tFutur1.setText("0");
 					else {
-						tFutur1.setText("" + cmpFutur1);
-						System.out.println("cmpF : "+cmpFutur1);
+						tFutur1.setText("" + Carte.cmpFutur1);
+						System.out.println("cmpF : "+Carte.cmpFutur1);
 
 						//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 						frame.setSize(370, 110);
@@ -423,22 +412,22 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			if((newCy<lem.getY() && newCy>lem.getY() -2*Panneau.coeff) && ((newCx<lem.getX()+3/2*Panneau.coeff && newCx > lem.getX()-3/2*Panneau.coeff))){
 
 				if(typeCourant == lemmingParapluie){
-					if(this.cmpParapluie-- <= 0) tParapluie.setText("0");
-					else tParapluie.setText("" + this.cmpParapluie);
-					this.ancienNum = this.cmpParapluie;
+					if(Carte.cmpParapluie-- <= 0) tParapluie.setText("0");
+					else tParapluie.setText("" + Carte.cmpParapluie);
+					this.ancienNum = Carte.cmpParapluie;
 					Carte.obs.get(i).setEtat(etatParapluieOuvert);
 				}
 
 				if(typeCourant == lemmingCreuseur){
-					if(this.cmpPioche-- <= 0) tPioche.setText("0");
-					else tPioche.setText("" + this.cmpPioche);
-					this.ancienNum = this.cmpPioche;
+					if(Carte.cmpPioche-- <= 0) tPioche.setText("0");
+					else tPioche.setText("" + Carte.cmpPioche);
+					this.ancienNum = Carte.cmpPioche;
 				}
 
 				if(typeCourant == lemmingStop){
-					if(this.cmpStop-- <= 0) tStop.setText("0");
-					else tStop.setText("" + this.cmpStop);
-					this.ancienNum = this.cmpStop;
+					if(Carte.cmpStop-- <= 0) tStop.setText("0");
+					else tStop.setText("" + Carte.cmpStop);
+					this.ancienNum = Carte.cmpStop;
 				}
 
 				if(this.ancienNum>=0) {
@@ -503,6 +492,15 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_accelerer = new JButton(new ImageIcon(((new ImageIcon("Images/accelerer.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_recharger = new JButton(new ImageIcon(((new ImageIcon("Images/recharger.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 
+		tPioche = new JLabel(""+Carte.cmpPioche);
+		tParapluie = new JLabel(""+Carte.cmpParapluie);
+		tEscalier = new JLabel(""+Carte.cmpEscalier);
+		tFutur1 = new JLabel(""+Carte.cmpFutur1);
+		tEscalade = new JLabel(""+Carte.cmpEscalade);
+		tBombe = new JLabel(""+Carte.cmpBombe);
+		tStop = new JLabel(""+Carte.cmpStop);
+		tFutur2 = new JLabel(""+Carte.cmpFutur2);
+		
 		//MISE EN ATTENTE DES BOUTONS
 		bouton_creuse.addActionListener(this);
 		bouton_parapluie.addActionListener(this);
@@ -517,27 +515,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_pause.addActionListener(this);
 		bouton_accelerer.addActionListener(this);
 		bouton_recharger.addActionListener(this);
-	}
-
-	private void initCmp(){
-		cmpPioche = 10;
-		cmpParapluie = 5;
-		cmpEscalier = 0;
-		cmpFutur1 = 6;  
-		cmpEscalade = 0;  
-		cmpBombe = 0;  
-		cmpStop = 2; 
-		cmpFutur2 = 0; 
-
-		tPioche = new JLabel(""+cmpPioche);
-		tParapluie = new JLabel(""+cmpParapluie);
-		tEscalier = new JLabel(""+cmpEscalier);
-		tFutur1 = new JLabel(""+cmpFutur1);
-		tEscalade = new JLabel(""+cmpEscalade);
-		tBombe = new JLabel(""+cmpBombe);
-		tStop = new JLabel(""+cmpStop);
-		tFutur2 = new JLabel(""+cmpFutur2);
-
 	}
 
 	class BoutonListener implements ActionListener{
