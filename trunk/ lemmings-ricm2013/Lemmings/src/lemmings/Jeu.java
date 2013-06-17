@@ -15,8 +15,8 @@ public class Jeu implements Constantes {
 		//listeAutomates.add(new AutoLemmingBasique(5));
 		AutomateHandler.initAutomates("./Documents partagés/automate.xml");
 		listeAutomates.add(new AutoLemmingStop(5));
-		listeAutomates.add(new AutoLemmingParapluie(5));
-		listeAutomates.add(new AutoLemmingCreuseur(5));
+		//listeAutomates.add(new AutoLemmingParapluie(5));
+		//listeAutomates.add(new AutoLemmingCreuseur(5));
 		listeAutomates.add(new AutoLemmingCatapulte(5));
 
 		//listeAutomates.add(new AutoLemmingGrimpeur(5));
@@ -24,7 +24,7 @@ public class Jeu implements Constantes {
 		//Carte.miniMap = "Images/Carte.png";
 
 		Carte.charger("Images/map1.png","Images/mario.png");
-		Carte.initCmp(0, 1, 4, 0, 0, 0, 2, 0);
+		Carte.initCmp(5, 1, 4, 0, 0, 0, 2, 0);
 
 		Carte.setEntree(new Point(60, 55));
 

@@ -147,8 +147,9 @@ public class Moteur implements Constantes {
 				}
 			}
 			
-			// On change d'etat, sauf si 
-			lem.setEtat(aut.listeTransitions.get(k).getEtatFinal());
+			// On change d'etat, sauf si on n'a pas fini les micro-actions
+			if(lem.getSousAction()==0)
+				lem.setEtat(aut.listeTransitions.get(k).getEtatFinal());
 
 		} // Fin for(i)
 	}
@@ -227,6 +228,7 @@ public class Moteur implements Constantes {
 
 	private static void creuser(Lemming l) throws IOException {
 
+		if(l.getSousAction()%4==0) {
 		int x,y;
 		y = l.getY();
 		x = l.getX();
@@ -237,6 +239,8 @@ public class Moteur implements Constantes {
 		}
 
 		l.setY(y+1);
+		}
+		l.setSousAction((l.getSousAction()+1)%(profondeurCreuser*4));
 	}
 
 	private static void initTrajectoire(Lemming l) {
