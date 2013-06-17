@@ -43,10 +43,13 @@ public interface Constantes {
 	public final static int lemmingCreuseur = 3;
 	public final static int lemmingCatapulte = 4;
 	public final static int lemmingGrimpeur = 5;
+	public final static int lemmingEscalier = 6;
 	
 	// Constantes de Jeu
 	public final static int delaiAttente = 50;
 	public final static int delaiPop = 50;
+	public final static int nbMarche = 10;
+	public final static int delaiSousAction = 4;
 	
 	// Constantes trajectoires
 	public final static  double coeffreductionx= 0.4;

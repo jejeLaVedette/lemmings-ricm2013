@@ -44,16 +44,16 @@ public class Moteur implements Constantes {
 			String cond;
 
 			// Présence d'un vide
-			if( ( lem.getDirection()==gauche && Carte.map[x][y+1].type>=typeAirInf && Carte.map[x][y+1].type<=typeAirSup ) ||
-					( lem.getDirection()==droite && Carte.map[x][y+1].type>=typeAirInf && Carte.map[x][y+1].type<=typeAirSup )	) 
+			if( ( lem.getDirection()==gauche && Carte.map[x][y+1].isAir() ) ||
+					( lem.getDirection()==droite && Carte.map[x][y+1].isAir() )	) 
 				cond = "vide";
 
 			// Présence d'un mur
 			else if( (x==0 && lem.getDirection()==gauche) || 
 					(x==Carte.LARGEUR_CARTE-1 && lem.getDirection()==1) ||
-					(lem.getDirection()==gauche && Carte.map[x-1][y].type<=typeSolSup && Carte.map[x-1][y-1].type<=typeSolSup && Carte.map[x-1][y-2].type<=typeSolSup)||
-					(lem.getDirection()==droite && Carte.map[x+1][y].type<=typeSolSup && Carte.map[x+1][y-1].type<=typeSolSup && Carte.map[x+1][y-2].type<=typeSolSup)||
-					(lem.type == lemmingCatapulte && Carte.map[x][y-1-coeff*3/4].type<=typeSolSup && Carte.map[x-1][y-1-coeff*3/4].type<=typeSolSup && Carte.map[x+1][y-1-coeff*3/4].type<=typeSolSup )
+					(lem.getDirection()==gauche && Carte.map[x-1][y].isSol() && Carte.map[x-1][y-1].isSol() && Carte.map[x-1][y-2].isSol())||
+					(lem.getDirection()==droite && Carte.map[x+1][y].isSol() && Carte.map[x+1][y-1].isSol() && Carte.map[x+1][y-2].isSol())||
+					(lem.type == lemmingCatapulte && Carte.map[x][y-1-coeff*3/4].isSol() && Carte.map[x-1][y-1-coeff*3/4].isSol() && Carte.map[x+1][y-1-coeff*3/4].isSol() )
 					) 
 				cond = "mur";
 
@@ -68,34 +68,34 @@ public class Moteur implements Constantes {
 				relief = 0;
 				if(lem.getDirection()==gauche) {
 
-					if(Carte.map[x-1][y].type<=typeSolSup) {
+					if(Carte.map[x-1][y].isSol()) {
 						relief--;
-						if(Carte.map[x-1][y-1].type<=typeSolSup) {
+						if(Carte.map[x-1][y-1].isSol()) {
 							relief--;
-							if(Carte.map[x-1][y-2].type<=typeSolSup) relief--;
+							if(Carte.map[x-1][y-2].isSol()) relief--;
 						}
 					}					
 
-					if(Carte.map[x-1][y+1].type>=typeAirInf && Carte.map[x-1][y+1].type<=typeAirSup) {
+					if(Carte.map[x-1][y+1].isAir()) {
 						relief++;
-						if(Carte.map[x-1][y+2].type>=typeAirInf && Carte.map[x-1][y+2].type<=typeAirSup) {
+						if(Carte.map[x-1][y+2].isAir()) {
 							relief++;
 							//if(Carte.map[x-1][y+2].type>=typeAirInf && Carte.map[x-1][y+2].type<=typeAirSup) relief++;
 						}
 					}
 				}
 				else {
-					if(Carte.map[x+1][y].type<=typeSolSup) {
+					if(Carte.map[x+1][y].isSol()) {
 						relief--;
-						if(Carte.map[x+1][y-1].type<=typeSolSup) {
+						if(Carte.map[x+1][y-1].isSol()) {
 							relief--;
-							if(Carte.map[x+1][y-2].type<=typeSolSup) relief--;
+							if(Carte.map[x+1][y-2].isSol()) relief--;
 						}
 					}
 
-					if(Carte.map[x+1][y+1].type>=typeAirInf && Carte.map[x+1][y+1].type<=typeAirSup) {
+					if(Carte.map[x+1][y+1].isAir()) {
 						relief++;
-						if(Carte.map[x+1][y+2].type>=typeAirInf && Carte.map[x+1][y+2].type<=typeAirSup) {
+						if(Carte.map[x+1][y+2].isAir()) {
 							relief++;
 							//if(Carte.map[x+1][y+2].type>=typeAirInf && Carte.map[x+1][y+2].type<=typeAirSup) relief++;
 						}
@@ -146,7 +146,7 @@ public class Moteur implements Constantes {
 					appliquerAction(aut.listeTransitions.get(k).getActions().get(l),lem);
 				}
 			}
-			
+
 			// On change d'etat, sauf si on n'a pas fini les micro-actions
 			if(lem.getSousAction()==0)
 				lem.setEtat(aut.listeTransitions.get(k).getEtatFinal());
@@ -174,6 +174,8 @@ public class Moteur implements Constantes {
 			rebondir(l);
 		else if(s.equals("grimper"))
 			grimper(l);
+		else if(s.equals("construireEscalier"))
+			construireEscalier(l);
 		else if(s.equals("initTrajectoire"))
 			initTrajectoire(l);
 		else if(s.equals("initLemmingBase"))
@@ -230,19 +232,19 @@ public class Moteur implements Constantes {
 
 	private static void creuser(Lemming l) throws IOException {
 
-		if(l.getSousAction()%4==0) {
-		int x,y;
-		y = l.getY();
-		x = l.getX();
-		BufferedImage arrierePlan=ImageIO.read(new File(Carte.background));
-		for(int i=0;i<(coeff/2);i++) {
-			Carte.map[x+i][y] = new Air(new Color(arrierePlan.getRGB(x+i,y)));
-			Carte.map[x-i][y] = new Air(new Color(arrierePlan.getRGB(x-i,y)));
-		}
+		if(l.getSousAction()%delaiSousAction==0) {
+			int x,y;
+			y = l.getY();
+			x = l.getX();
+			BufferedImage arrierePlan=ImageIO.read(new File(Carte.background));
+			for(int i=0;i<(coeff/2);i++) {
+				Carte.map[x+i][y] = new Air(new Color(arrierePlan.getRGB(x+i,y)));
+				Carte.map[x-i][y] = new Air(new Color(arrierePlan.getRGB(x-i,y)));
+			}
 
-		l.setY(y+1);
+			l.setY(y+1);
 		}
-		l.setSousAction((l.getSousAction()+1)%(profondeurCreuser*4));
+		l.setSousAction((l.getSousAction()+1)%(profondeurCreuser*delaiSousAction));
 	}
 
 	private static void initTrajectoire(Lemming l) {
@@ -288,10 +290,34 @@ public class Moteur implements Constantes {
 		System.out.println("TOTO");
 		l.setY(l.getY()-1);
 	}
-	
+
 	private static void initLemmingBase(Lemming l) {
 		l.setType(lemmingBase);
 		l.setEtat(etatInitial);
+	}
+
+	private static void construire(Lemming l) {
+		int x,y;
+		y = l.getY();
+		x = l.getX();
+		if(l.direction==droite)
+			for(int i=0;i<(coeff/2);i++) {
+				if(Carte.map[x+i][y].isAir())
+					Carte.map[x+i][y] = new Sol(new Color(150,0,0));
+			}
+		else
+			for(int i=0;i<(coeff/2);i++) {
+				Carte.map[x-i][y] = new Sol(new Color(150,0,0));
+			}	
+
+	}
+
+	private static void construireEscalier(Lemming l) {
+		if(l.getSousAction()%delaiSousAction==0) 
+			construire(l);
+		if(l.getSousAction()%delaiSousAction==1)
+			marcher(l);		
+		l.setSousAction((l.getSousAction()+1)%(nbMarche*delaiSousAction));
 	}
 
 }
