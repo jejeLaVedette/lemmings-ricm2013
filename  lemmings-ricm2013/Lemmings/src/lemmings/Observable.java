@@ -8,6 +8,7 @@ public class Observable {
 	protected int etat;
 	protected String image;
 	protected int imageCourante = 0;
+	protected int sousAction = 0;
 	
 	protected double elasticite;
 	protected int Xprec;
@@ -101,6 +102,16 @@ public class Observable {
 	public void setImageCourante(int imageCourante) {
 		this.imageCourante = imageCourante;
 	}
+
+	public int getSousAction() {
+		return sousAction;
+	}
+
+	public void setSousAction(int sousAction) {
+		this.sousAction = sousAction;
+	}
+	
+	
 	
 	
 	
