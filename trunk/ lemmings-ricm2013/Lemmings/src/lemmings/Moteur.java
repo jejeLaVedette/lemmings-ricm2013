@@ -125,12 +125,12 @@ public class Moteur implements Constantes {
 				System.out.println("Modèle d'automate introuvable !");
 				System.exit(1);
 			}
-			
+
 			// Recherche de la transition dans l'automate
 			int k=0;
 			while(k<aut.listeTransitions.size()) {
 				if( aut.listeTransitions.get(k).getEtatInitial()==lem.getEtat() && 
-					aut.listeTransitions.get(k).getCondition().equals(cond)) break;
+						aut.listeTransitions.get(k).getCondition().equals(cond)) break;
 
 				k++;
 			}
@@ -243,9 +243,8 @@ public class Moteur implements Constantes {
 	}
 
 	private static void initTrajectoire(Lemming l) {
-		 
-		trajectoireparaphysique t=new trajectoireparaphysique(l.getX(),l.getY(),40,Math.PI/24,1);
- l.setTrajH(t);
+		trajectoireparaphysique t=new trajectoireparaphysique(l.getX(),l.getY(),l.puissance,l.angle,1);
+		l.setTrajH(t);
 	}
 
 	private static void voler(Lemming l) {
@@ -254,10 +253,10 @@ public class Moteur implements Constantes {
 		trajectoireparaphysique t = l.getTrajH();		
 		l.setX(t.calculx(l.time));
 		l.setY(t.calculy(l.time));
-		
+
 		l.setTime();
 		Carte.map[l.getX()][l.getY()].couleur = new Color(255,0,0);
-		
+
 	}
 
 	private static void rebondir(Lemming l) {
@@ -277,9 +276,9 @@ public class Moteur implements Constantes {
 		t.calculcolision(l.getX(), l.getY(), l.getXp()  , l.getYp() , l.getElasticite(),0.0, false);
 		l.setTrajH(t);
 		System.out.println("x:"+l.getX()+" y:"+l.getY());
-			//Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
-			l.resetTime();
-		
+		//Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
+		l.resetTime();
+
 	}
 
 	private static void grimper(Lemming l) {
