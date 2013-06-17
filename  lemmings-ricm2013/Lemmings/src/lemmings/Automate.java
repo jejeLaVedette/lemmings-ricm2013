@@ -18,7 +18,23 @@ public Automate(int nbTransitions, int id)
 	
 public Automate() {}
 public static int nomVersIdentifiant (String nom) {
-		return 0;
+	int id;
+    switch (nom) {
+        case "Classique":  id = 0;
+                 break;
+        case "Parapluie":  id = 1;
+                 break;
+        case "Creuseur":   id = 2;
+                 break;
+        case "Grimpeur":   id = 3;
+                 break;
+                 
+        // A completer //
+                 
+        default: id = 0;
+                 break;
+    }
+    return id;
 	}
 
 public ArrayList<Transition> getListe() {return listeTransitions;}
