@@ -37,7 +37,7 @@ public class Panneau2 extends JPanel implements Constantes {
 			this.coefRetrecissementx = this.tailleRX;
 		}
 		else {
-			this.tailleRX = Carte.LARGEUR_CARTE/Fenetre.tailleFX;
+			this.tailleRX = 1;
 			this.coefRetrecissementx = this.tailleRX*2+1;//*2 car la mini_map n'est que 1/2 de x de l'écran et +1 pour prendre le pixel supérieur
 		}
 		
@@ -47,7 +47,7 @@ public class Panneau2 extends JPanel implements Constantes {
 			this.coefRetrecissementy = this.tailleRY;
 		}
 		else {
-			this.tailleRY = (int) (Carte.HAUTEUR_CARTE/coefFenetre*Fenetre.tailleFY);
+			this.tailleRY =1;
 			this.coefRetrecissementy = this.tailleRY*2+1;
 		}
 		
