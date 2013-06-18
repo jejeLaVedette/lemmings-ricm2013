@@ -37,7 +37,7 @@ public class Moteur implements Constantes {
 			// S'il est mort, et ben... il est mort !
 			if(lem.getY()==Carte.HAUTEUR_CARTE-1) {
 				Carte.obs.remove(i);
-				break;
+				continue;
 			}
 
 			// Analyse de l'environnement du lemming courant
@@ -106,11 +106,14 @@ public class Moteur implements Constantes {
 			}
 
 			// S'il est mort, et ben... il est mort !
-			if(lem.getEtat()==etatMort && cond=="sol") {
+			if(lem.getEtat()==etatMort && (cond.equals("sol")||cond.equals("mur"))) {
 				Carte.obs.remove(i);
-				break;
+				continue;
 			}
-
+			if(lem.getEtat()==etatMort && cond.equals("vide")) {
+				tomber(lem);
+				continue;
+			}
 			//System.out.println("x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
 
 			// Recherche de l'automate correspondant
@@ -184,8 +187,10 @@ public class Moteur implements Constantes {
 			initTrajectoire(l);
 		else if(s.equals("initLemmingBase"))
 			initLemmingBase(l);
-		else
+		else {
 			System.out.println("Action invalide !");
+			System.exit(1);
+		}
 	}
 
 	private static void marcher(Lemming l) {
@@ -214,7 +219,14 @@ public class Moteur implements Constantes {
 	}
 
 	private static void tomber(Lemming l) {
-		l.setY(l.getY()+1);
+		
+		if(l.getSousAction()>hauteurLetale) {
+			l.setEtat(etatMort);
+		}
+		else
+			l.setSousAction(l.getSousAction()+1);
+		
+		l.setY(l.getY()+1);		
 		l.image = "Images/tombe2.png";
 
 	}
