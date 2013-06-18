@@ -25,7 +25,7 @@ public class Moteur implements Constantes {
 
 			int x = lem.getX();
 			int y = lem.getY();
-			
+
 			// S'il est sur le point de sortie, +- une certaine tolérance
 			if(Math.abs(x-Carte.sortie.x)<(toleranceSortie/2) && Math.abs(y-Carte.sortie.y)<toleranceSortie) {
 				Carte.lemmingSauf++;
@@ -217,13 +217,13 @@ public class Moteur implements Constantes {
 	}
 
 	private static void tomber(Lemming l) {
-		
+
 		if(l.getSousAction()>hauteurLetale) {
 			l.setEtat(etatMort);
 		}
 		else
 			l.setSousAction(l.getSousAction()+1);
-		
+
 		l.setY(l.getY()+1);		
 		l.image = "Images/tombe2.png";
 
@@ -267,7 +267,7 @@ public class Moteur implements Constantes {
 	}
 
 	private static void voler(Lemming l) {
-		
+
 		trajectoireparaphysique t = l.getTrajH();
 		l.setX((int)t.calculx(l.time));
 		l.setY((int)t.calculy(l.time));
@@ -278,7 +278,7 @@ public class Moteur implements Constantes {
 	}
 
 	private static void rebondir(Lemming l) {
-//Alors ici je cherche a avoir la Vitesse précise pour cela  ... 
+		//Alors ici je cherche a avoir la Vitesse précise pour cela  ... 
         double xmod,ymod;
 		trajectoireparaphysique t= l.getTrajH() ;
 		double x  = t.calculx(l.time);
@@ -287,9 +287,10 @@ public class Moteur implements Constantes {
 		l.setYp(t.calculy(l.time -2*deltat));
 		System.out.println("x:"+l.getX()+" y:"+l.getY()+" Xp"+l.getXp() +"Yp" + l.getYp());
 		t.calculcolision(x, y, l.getXp()  , l.getYp() , l.getElasticite(),0.5, false);
-		
-		
+
+
 		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 15){
+
 
 		l.setTrajH(t);
 		System.out.println("x:"+l.getX()+" y"+l.getY());
@@ -334,7 +335,7 @@ public class Moteur implements Constantes {
 			marcher(l);		
 		l.setSousAction((l.getSousAction()+1)%(nbMarche*delaiSousAction));
 	}
-	
+
 	public static Point collisionTrajectoire (Point pCourant, Point pDest) {
 		return new Point(0,0);
 	}
