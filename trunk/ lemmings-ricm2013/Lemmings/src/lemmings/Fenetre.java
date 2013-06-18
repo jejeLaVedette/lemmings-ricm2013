@@ -53,7 +53,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private int espacement_hori = 20;
 	private int espacement_text = 65;
 	private int typeCourant;
-	private int catapulteX = 70;
+	private int catapulteX = 100;
 	private int catapulteY = 150;
 
 
@@ -244,7 +244,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		//Component horizontalStrut_42 = Box.createHorizontalStrut(espacement_hori);
 		//bouton_inf2.add(horizontalStrut_42);
 
-
 		//On positionne maintenant en colonne
 		zone_gauche.setLayout(new BoxLayout(zone_gauche, BoxLayout.PAGE_AXIS));
 		zone_gauche.add(bouton_sup);
@@ -253,14 +252,12 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		zone_gauche.add(text2);
 		zone_gauche.add(bouton_inf2);
 
-
 		// Scrollbar
 		scroll = new JScrollPane(zone_map);
 		zone_map.setPreferredSize(new Dimension(Carte.LARGEUR_CARTE,Carte.HAUTEUR_CARTE));
 		System.out.println("largeur carte "+ Carte.LARGEUR_CARTE);
 		System.out.println("hauteur carte "+ Carte.HAUTEUR_CARTE);
 		this.setLayout(new BorderLayout());
-
 
 		//On place le premier s�parateur
 		split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, zone_gauche, zone_droite);
@@ -273,7 +270,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		//On le passe ensuite au content pane de notre objet Fenetre
 		//plac� au centre pour qu'il utilise tout l'espace disponible
-		//this.add(split3, BorderLayout.CENTER);
 		this.getContentPane().add(split3, BorderLayout.CENTER);
 
 		JMenuBar menuBar = new JMenuBar();
@@ -281,30 +277,76 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		JMenu mnJouer = new JMenu("Jouer");
 		menuBar.add(mnJouer);
+		
+		JMenu mnCarte = new JMenu("Carte");
+		menuBar.add(mnCarte);
 
-		JMenu mnJouer_1 = new JMenu("Jouer");
+		JMenuItem mnJouer_1 = new JMenuItem("Nouveau Jeu");
 		mnJouer.add(mnJouer_1);
 
 		JMenuItem mntmMap = new JMenuItem("map1");
-		mnJouer_1.add(mntmMap);
+		mnCarte.add(mntmMap);
+		mntmMap.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}       
+		});
 
-		JMenuItem mntmMap_1 = new JMenuItem("map2");
-		mnJouer_1.add(mntmMap_1);
+		JMenuItem mntmMap2 = new JMenuItem("map2");
+		mnCarte.add(mntmMap2);
+		mntmMap2.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}       
+		});
+		
+		JMenuItem mntmMap3 = new JMenuItem("map3");
+		mnCarte.add(mntmMap3);
+		mntmMap3.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}       
+		});
+		
+		JMenuItem mntmMap4 = new JMenuItem("map4");
+		mnCarte.add(mntmMap4);
+		mntmMap4.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}       
+		});
+		
+		JMenuItem mntmMap5 = new JMenuItem("map5");
+		mnCarte.add(mntmMap5);
+		mntmMap5.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}       
+		});
 
 		JMenuItem mntmRgle = new JMenuItem("r\u00E8gles");
 		mnJouer.add(mntmRgle);
+		mntmRgle.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}       
+		});
+		
+		JMenuItem mntmFermer = new JMenuItem("Fermer");
+		mnJouer.add(mntmFermer);
+		mntmFermer.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}       
+		});
 
-		JMenuItem chargement = new JMenuItem("chargement de map");
-		mnJouer.add(chargement);
-
+		JMenuItem chargement = new JMenuItem("chargement de map...");
+		mnCarte.add(chargement);
 		chargement.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				FileChooser.createAndShowGUI();
 			}       
 		});
-
-
-
 
 		zone_map.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent event) {
@@ -327,14 +369,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		}
 	}
 
-	public int getTailleX() {
-		return zone_map.getWidth();
-	}
-
-	public int getTailleY() {
-		return zone_map.getHeight();
-	}
-
 	public void mouseClicked(MouseEvent arg0) {
 
 	}
@@ -355,11 +389,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						tFutur1.setText("" + Carte.cmpFutur1);
 						System.out.println("cmpF : "+Carte.cmpFutur1);
 
-						//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 						frame.setSize(370, 110);
 						frame.setResizable(false);
 						frame.setLocationRelativeTo(null);
-
 
 						container.setLayout(new BorderLayout());
 						JPanel top = new JPanel();       
@@ -384,9 +416,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						frame.setContentPane(top);
 						frame.setVisible(true);
 					}
-
-
-
 				}
 			});
 		}
