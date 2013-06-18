@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -445,6 +446,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			lem = Carte.obs.get(i);
 			if((newCy<lem.getY() && newCy>lem.getY() -2*Panneau.coeff) && ((newCx<lem.getX()+3/2*Panneau.coeff && newCx > lem.getX()-3/2*Panneau.coeff))){
 				if(typeCourant != lem.type){
+					this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 					if(typeCourant == lemmingParapluie){
 						if(Carte.cmpParapluie-- <= 0) tParapluie.setText("0");
 						else tParapluie.setText("" + Carte.cmpParapluie);
@@ -480,7 +482,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 					System.out.println("x lem : "+lem.getX());
 					System.out.println("y lem : "+lem.getY());
 					System.out.println("??????????");
-
 					break;
 				}
 			}
@@ -492,6 +493,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			System.out.println("y lem : "+lem.getY());
 			System.out.println("###########");
 		}
+
+		
 	}
 
 	@Override
