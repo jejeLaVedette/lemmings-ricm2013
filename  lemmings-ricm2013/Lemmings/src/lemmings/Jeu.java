@@ -20,7 +20,7 @@ public class Jeu implements Constantes {
 		//listeAutomates.add(new AutoLemmingParapluie(5));
 		//listeAutomates.add(new AutoLemmingCreuseur(5));
 
-		listeAutomates.add(new AutoLemmingCatapulte(5));
+		//listeAutomates.add(new AutoLemmingCatapulte(5));
 
 		//listeAutomates.add(new AutoLemmingGrimpeur(5));
 

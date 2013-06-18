@@ -341,7 +341,31 @@ public class Moteur implements Constantes {
 	}
 
 	public static Point collisionTrajectoire (Point pCourant, Point pDest) {
-		return new Point(0,0);
+		int yCourant = pCourant.y;
+		
+		int coeffDirecteur = (pDest.x - pCourant.x)/(pDest.y - pCourant.y);
+		int constante = pCourant.y - coeffDirecteur * pCourant.x;
+		
+		int i = pCourant.x;
+		
+		if (pCourant.x < pDest.x) {
+			while (i< pDest.x ) {
+				yCourant = coeffDirecteur * i + constante;
+				if (Carte.map[i][yCourant].isSol())
+					break;
+				i++;
+			}
+		}
+		else {
+			while (i> pDest.x) {
+				yCourant = coeffDirecteur * i + constante;
+				if (Carte.map[i][yCourant].isSol())
+					break;
+				i--;
+			}
+		}
+		
+		return new Point(i,yCourant);
 	}
 
 }
