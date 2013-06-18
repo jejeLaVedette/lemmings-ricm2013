@@ -9,6 +9,7 @@ public class Observable {
 	protected String image;
 	protected int imageCourante = 0;
 	protected int sousAction = 0;
+	protected String condPrecedente = "";
 	
 	protected double elasticite;
 	protected double Xprec;
@@ -109,6 +110,14 @@ public class Observable {
 
 	public void setSousAction(int sousAction) {
 		this.sousAction = sousAction;
+	}
+
+	public String getCondPrecedente() {
+		return condPrecedente;
+	}
+
+	public void setCondPrecedente(String condPrecedente) {
+		this.condPrecedente = condPrecedente;
 	}
 	
 	
