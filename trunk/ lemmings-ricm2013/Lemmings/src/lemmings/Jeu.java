@@ -34,7 +34,7 @@ public class Jeu implements Constantes {
 		//playWave.start();
 
 
-                Carte.charger("Images/map1.png","Images/mario.png");
+                Carte.charger("Images/Carte2.png","Images/mario.png");
 
                 Carte.initCmp(5, 1, 6, 0, 0, 0, 2, 0);
 
@@ -67,7 +67,7 @@ public class Jeu implements Constantes {
                 // Lemmings catapultes
 
 
-		Carte.obs.add(new Lemming(250,150,lemmingCatapulte));
+		//Carte.obs.add(new Lemming(250,150,lemmingCatapulte));
                //Carte.obs.add(new Lemming(350,150,lemmingCatapulte));
                 //Carte.obs.add(new Lemming(250,150,lemmingCatapulte));
                 //Carte.obs.add(new Lemming(350,150,lemmingCatapulte));
@@ -76,7 +76,7 @@ public class Jeu implements Constantes {
 
 
 
-		Carte.obs.add(new Lemming(100,150,Math.PI/6,30));
+		Carte.obs.add(new Lemming(100,150,Math.PI/4,80));
 
 
 
