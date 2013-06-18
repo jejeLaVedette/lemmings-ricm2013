@@ -347,6 +347,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				FileChooser.createAndShowGUI();
 			}       
 		});
+		
 
 		zone_map.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent event) {
