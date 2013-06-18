@@ -35,12 +35,6 @@ public class Jeu implements Constantes {
 
 		Carte.initCmp(5, 1, 6, 0, 0, 0, 2, 0);
 
-
-		Carte.charger("Images/map1.png","Images/mario.png");
-
-		Carte.initCmp(5, 1, 6, 0, 0, 0, 2, 0);
-
-
 		Carte.setEntree(new Point(60, 55));
 		Carte.setSortie(new Point(330, 125));
 
@@ -48,10 +42,8 @@ public class Jeu implements Constantes {
 
 		int wait = delaiPop + 1;
 
-
 		Fenetre f = new Fenetre(tailleFenetreH,tailleFenetreV);
 		f.afficher();
-
 
 		// Lemmings bloqueurs
 		//Carte.obs.add(new Lemming(100,61,lemmingStop));
@@ -60,6 +52,7 @@ public class Jeu implements Constantes {
 		//Carte.obs.add(new Lemming(160,30,lemmingStop));
 
 		f.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
 
 		// Lemmings creuseurs
 		//Carte.obs.add(new Lemming(80,80,lemmingCreuseur));
@@ -75,7 +68,8 @@ public class Jeu implements Constantes {
                 ((Lemming) Carte.obs.get(0)).setDirection(gauche);
                 ((Lemming) Carte.obs.get(1)).setDirection(gauche);*/
 
-		Carte.obs.add(new Lemming(70,150,Math.PI/6,40));
+		//Carte.obs.add(new Lemming(70,150,Math.PI/6,40));
+
 
 
 
