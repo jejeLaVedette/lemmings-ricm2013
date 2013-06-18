@@ -283,28 +283,55 @@ public class Moteur implements Constantes {
 
 	private static void rebondir(Lemming l) {
 		//Alors ici je cherche a avoir la Vitesse précise pour cela  ... 
-		double xmod,ymod;
+		Point courant,destination,colision;
+		colision=new Point(0,0);
 		trajectoireparaphysique t= l.getTrajH() ;
 		double x  = t.calculx(l.time);
 		double y = t.calculy(l.time);
 		l.setXp(t.calculx(l.time -2*deltat));
 		l.setYp(t.calculy(l.time -2*deltat));
-		System.out.println("x:"+l.getX()+" y:"+l.getY()+" Xp"+l.getXp() +"Yp" + l.getYp());
-		t.calculcolision(x, y, l.getXp()  , l.getYp() , l.getElasticite(),0.5, false);
-
-
-		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 15){
-
-
+		courant=new Point((int)t.calculx(l.time -2*deltat),(int)t.calculy(l.time -2*deltat));		
+		destination=new Point((int)x,(int)y);
+		colision.x=(int)Moteur.collisionTrajectoire(courant, destination).getX();
+		colision.y=(int)Moteur.collisionTrajectoire(courant, destination).getY();
+		System.out.println("x:"+l.getX()+" y:"+l.getY()+" Xp"+l.getXp() +"Yp" + l.getYp()+"xsol"+colision.getX()+"ysol"+colision.getY());
+         t.calculcolision(x, y, l.getXp()  , l.getYp(),colision.getX(),colision.getY() , l.getElasticite(),0.5, false);
+         if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 15){
+ 			l.setTrajH(t);
+ 			System.out.println("x:"+l.getX()+" y"+l.getY());
+ 			l.setY((int)colision.getY());
+ 			l.setX((int)colision.getX());
+ 			Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
+ 			l.resetTime();
+ 		}
+         
+		
+	}
+	
+	private static void rebondirmur(Lemming l) {
+		//Alors ici je cherche a avoir la Vitesse précise pour cela  ... 
+		Point courant,destination,colision;
+		trajectoireparaphysique t= l.getTrajH() ;
+		double x  = t.calculx(l.time);
+		double y = t.calculy(l.time);
+		l.setXp(t.calculx(l.time -2*deltat));
+		l.setYp(t.calculy(l.time -2*deltat));
+		courant=new Point((int)t.calculx(l.time -2*deltat),(int)t.calculy(l.time -2*deltat));		
+		destination=new Point((int)x,(int)y);
+		colision=Moteur.collisionTrajectoire(courant, destination);
+		System.out.println("x:"+l.getX()+" y:"+l.getY()+" Xp"+l.getXp() +"Yp" + l.getYp()+"xsol"+colision.getX()+"ysol"+colision.getY());
+        t.calculcolision(x, y, l.getXp()  , l.getYp(),colision.getX(),colision.getY() , l.getElasticite(),0.5, true);
+        if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 15){
 			l.setTrajH(t);
 			System.out.println("x:"+l.getX()+" y"+l.getY());
-			l.setY(l.getY()-3);
-
+			l.setY((int)colision.getY());
+ 			l.setX((int)colision.getX());
 			Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
 			l.resetTime();
 		}
-
+		
 	}
+		
 
 	private static void grimper(Lemming l) {
 		System.out.println("TOTO");
@@ -341,31 +368,68 @@ public class Moteur implements Constantes {
 	}
 
 	public static Point collisionTrajectoire (Point pCourant, Point pDest) {
-		int yCourant = pCourant.y;
+		int coeffDirecteur;
+		int yCourant =(int) pCourant.getY();
+		Point rep= new Point(0,0);
+		int i=0;
 		
-		int coeffDirecteur = (pDest.x - pCourant.x)/(pDest.y - pCourant.y);
+		if(((int)pDest.getX() - pCourant.getX())!=0){
+		 coeffDirecteur = (int)((pDest.getY() - pCourant.getY())/(pDest.getX() - pCourant.getX()));
 		int constante = pCourant.y - coeffDirecteur * pCourant.x;
-		
-		int i = pCourant.x;
-		
-		if (pCourant.x < pDest.x) {
-			while (i< pDest.x ) {
+		i = (int)pCourant.getX();
+		if ((int)pCourant.getX() < pDest.getX()) {
+			while (i< pDest.getX() ) {
 				yCourant = coeffDirecteur * i + constante;
-				if (Carte.map[i][yCourant].isSol())
-					break;
+				if (Carte.map[i][yCourant].isSol()){					
+					break;				}
 				i++;
 			}
+			rep.x=i-2;
+			rep.y=coeffDirecteur * (i-2) + constante;
 		}
 		else {
 			while (i> pDest.x) {
 				yCourant = coeffDirecteur * i + constante;
-				if (Carte.map[i][yCourant].isSol())
+				if (Carte.map[i][yCourant].isSol()){
+					
 					break;
+				}					
 				i--;
 			}
+			rep.x=i+2;
+			rep.y=coeffDirecteur * (i+2) + constante;
 		}
+		}
+		else{
+			i=(int)pCourant.getY();
+			if ((int)pCourant.getY() < pDest.getY()){
+				while(i<pDest.getY()){
+					if (Carte.map[(int)pCourant.getX()][i].isSol()){					
+						break;
+					}
+					i++;
+				}
+				rep.x=(int)pCourant.getX();
+				rep.y=i-2;
+			}
+			else{
+				while(i>pDest.getY()){
+					if (Carte.map[(int)pCourant.getX()][i].isSol()){					
+						break;
+					}
+					i--;
+				}
+				rep.x=(int)pCourant.getX();
+				rep.y=i+2;
+				}
+				
+			}
+					
+			
+			
 		
-		return new Point(i,yCourant);
+		
+		return rep;
 	}
 
 }
