@@ -19,7 +19,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTextField;
 
 import java.awt.Component;
 import java.io.IOException;
@@ -41,10 +40,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JPanel container = new JPanel();
 	private JFormattedTextField Tangle = new JFormattedTextField(NumberFormat.getIntegerInstance());
 	private JFormattedTextField Tpuissance = new JFormattedTextField(NumberFormat.getIntegerInstance());
-	private JLabel label = new JLabel("Entrée un angle : ");
-	private JLabel label2 = new JLabel("Entrée une puissance : ");
+	private JLabel label = new JLabel("Entrez un angle : ");
+	private JLabel label2 = new JLabel("Entrez une puissance : ");
 	private JButton b2 = new JButton ("OK");
-	private final JFrame frame = new JFrame("Choisir coordonnée");
+	private final JFrame frame = new JFrame("R�glage catapulte");
 	/**
 	 * 
 	 */
@@ -54,6 +53,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private int espacement_hori = 20;
 	private int espacement_text = 65;
 	private int typeCourant;
+	private int catapulteX = 70;
+	private int catapulteY = 150;
 
 
 	private Panneau zone_map;
@@ -293,10 +294,19 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		JMenuItem mntmRgle = new JMenuItem("r\u00E8gles");
 		mnJouer.add(mntmRgle);
 
+		JMenuItem chargement = new JMenuItem("chargement de map");
+		mnJouer.add(chargement);
+
+		chargement.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				FileChooser.createAndShowGUI();
+			}       
+		});
+
+
 
 
 		zone_map.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseClicked(MouseEvent event) {
 				modifType(event);
 			}
@@ -335,7 +345,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
 		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
 		if(e.getSource()==bouton_escalier) typeCourant = lemmingEscalier;
-		
+		/*if(e.getSource()==chargement){
+			System.out.println("chargement#####################");
+		}*/
 		if(e.getSource()==bouton_futur1){
 			Carte.cmpFutur1--;
 			bouton_futur1.addMouseListener(new MouseAdapter() {
@@ -373,8 +385,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						top.add(b2);
 
 						frame.setContentPane(top);
-						
-
 						frame.setVisible(true);
 					}
 
@@ -429,7 +439,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 					else tStop.setText("" + Carte.cmpStop);
 					this.ancienNum = Carte.cmpStop;
 				}
-				
+
 				if(typeCourant == lemmingEscalier){
 					if(Carte.cmpEscalier-- <= 0) tEscalier.setText("0");
 					else tEscalier.setText("" + Carte.cmpEscalier);
@@ -506,7 +516,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		tBombe = new JLabel(""+Carte.cmpBombe);
 		tStop = new JLabel(""+Carte.cmpStop);
 		tFutur2 = new JLabel(""+Carte.cmpFutur2);
-		
+
 		//MISE EN ATTENTE DES BOUTONS
 		bouton_creuse.addActionListener(this);
 		bouton_parapluie.addActionListener(this);
@@ -527,17 +537,14 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		public void actionPerformed(ActionEvent e) {
 			puissance = Integer.parseInt(Tpuissance.getText());
 			angle = (double) ((Integer.parseInt(Tangle.getText()))*Math.PI/180); //on met en radian
-			
-			
-			System.out.println("angle : " + Tangle.getText());
-			System.out.println("puissance : " + Tpuissance.getText());
-			Carte.obs.add(new Lemming(70,150,angle,puissance));
+			Carte.obs.add(new Lemming(catapulteX,catapulteY,angle,puissance));
 
-			
+
 			frame.dispose();
 
 		}
 	}
+
 
 }
 
