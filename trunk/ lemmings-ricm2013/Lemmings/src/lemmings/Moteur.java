@@ -112,7 +112,7 @@ public class Moteur implements Constantes {
 				tomber(lem);
 				continue;
 			}
-			//System.out.println("x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
+			System.out.println("x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
 
 			// Recherche de l'automate correspondant
 			Automate aut = null;
@@ -279,7 +279,7 @@ public class Moteur implements Constantes {
 
 	private static void rebondir(Lemming l) {
 //Alors ici je cherche a avoir la Vitesse précise pour cela  ... 
-
+        double xmod,ymod;
 		trajectoireparaphysique t= l.getTrajH() ;
 		double x  = t.calculx(l.time);
 		double y = t.calculy(l.time);
@@ -289,11 +289,11 @@ public class Moteur implements Constantes {
 		t.calculcolision(x, y, l.getXp()  , l.getYp() , l.getElasticite(),0.5, false);
 		
 		
-		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 10){
+		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 15){
 
 		l.setTrajH(t);
 		System.out.println("x:"+l.getX()+" y"+l.getY());
-		l.setY(l.getY()-2);
+		l.setY(l.getY()-3);
 		 
 		Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
 		l.resetTime();

@@ -54,15 +54,23 @@ public class trajectoireparaphysique implements Constantes {
 	 }
 	 
 	 public double calculx(double t){
-		
-		
+		 if (this.Vx==0){ 	
+			 return this.base_x;
+		 }
+		 else{	
 		 return (this.base_x+ ((masselemming/this.calculkx())*this.Vx*(1-Math.exp(-(this.calculkx()*t)/masselemming))));
 		 }
+	 }
 	 
 	 public double  calculy(double t){
-		
-		 return (this.base_y-((masselemming/this.calculky())*(this.Vy+((masselemming/this.calculky())*coeffgravite))*(1-Math.exp(-(this.calculky()/masselemming)*t))-((masselemming/this.calculky())*coeffgravite*t)));
+		 if (this.Vy==0){ 	
+			 return this.base_y;
 		 }
+		 else{
+		
+		 return ((double)this.base_y-((masselemming/this.calculky())*(this.Vy+((masselemming/this.calculky())*coeffgravite))*(1-Math.exp(-(this.calculky()/masselemming)*t))-((masselemming/this.calculky())*coeffgravite*t)));
+		 }
+	 }
 	 
 	 //type= true->colision avec mur vertical
 	 
@@ -70,7 +78,7 @@ public class trajectoireparaphysique implements Constantes {
 		 
 		
 		 
-		 this.Vx=(double)(2*((xcoli-xprec)/(2*deltat)));
+		 this.Vx=(double)(1.5*((xcoli-xprec)/(2*deltat)));
 		 this.Vy= (double)((-(ycoli-yprec)/(2*deltat)));
 		 
 		 System.out.println("valeur de Vx ");			
@@ -78,7 +86,7 @@ public class trajectoireparaphysique implements Constantes {
 		 System.out.println("valeur de Vy ");			
 	     System.out.println(Vy);
 		 this.base_x=(int)xcoli;
-		 this.base_y=(int)ycoli -2;
+		 this.base_y=(int)ycoli-3 ;
 		 double x=this.Vx;
 		 double y=this.Vy;
 		 double elastot=coeff1+coeff2;

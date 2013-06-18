@@ -58,9 +58,10 @@ public class AutoLemmingCatapulte extends Automate implements Constantes {
 
 		l = new ArrayList<String>();
 		l.add("retourner");
-		listeTransitions.add(new Transition(6, etatReinit, "vide", l));
-		listeTransitions.add(new Transition(6, etatReinit, "sol", l));
-		listeTransitions.add(new Transition(6, etatReinit, "mur", l));
+		l.add("initLemmingBase");
+		listeTransitions.add(new Transition(6, 6, "vide", l));
+		listeTransitions.add(new Transition(6, 6, "sol", l));
+		listeTransitions.add(new Transition(6, 6, "mur", l));
 		
 		// Rebond au sol
 		//l = new ArrayList<String>();
