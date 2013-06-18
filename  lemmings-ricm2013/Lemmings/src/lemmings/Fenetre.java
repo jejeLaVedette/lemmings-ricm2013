@@ -460,7 +460,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			lem = Carte.obs.get(i);
 			if((newCy<lem.getY() && newCy>lem.getY() -2*Panneau.coeff) && ((newCx<lem.getX()+3/2*Panneau.coeff && newCx > lem.getX()-3/2*Panneau.coeff))){
 				if(typeCourant != lem.type){
-					this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+					//this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 					if(typeCourant == lemmingParapluie){
 						if(Carte.cmpParapluie-- <= 0) tParapluie.setText("0");
 						else tParapluie.setText("" + Carte.cmpParapluie);

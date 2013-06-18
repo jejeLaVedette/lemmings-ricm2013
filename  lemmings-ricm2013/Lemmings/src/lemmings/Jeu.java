@@ -6,9 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-
 
 public class Jeu implements Constantes {
 
@@ -18,7 +15,7 @@ public class Jeu implements Constantes {
 
 
 		//listeAutomates.add(new AutoLemmingBasique(5));
-		AutomateHandler.initAutomates("./Documents partagÃ©s/automate.xml");
+		AutomateHandler.initAutomates("./Documents partagés/automate.xml");
 		listeAutomates.add(new AutoLemmingStop(5));
 		//listeAutomates.add(new AutoLemmingParapluie(5));
 		//listeAutomates.add(new AutoLemmingCreuseur(5));
@@ -28,8 +25,8 @@ public class Jeu implements Constantes {
 		//listeAutomates.add(new AutoLemmingGrimpeur(5));
 
 		//Carte.miniMap = "Images/Carte.png";
-		//Thread playWave=new AePlayWave("Musiques/THePETEBOX_Panther Dance.wav");
-		//playWave.start();
+		Thread playWave=new AePlayWave("Musiques/THePETEBOX_Panther Dance.wav");
+		playWave.start();
 
 		Carte.charger("Images/map1.png","Images/mario.png");
 
@@ -68,13 +65,13 @@ public class Jeu implements Constantes {
                 ((Lemming) Carte.obs.get(0)).setDirection(gauche);
                 ((Lemming) Carte.obs.get(1)).setDirection(gauche);*/
 
-		//Carte.obs.add(new Lemming(70,150,Math.PI/6,40));
+		Carte.obs.add(new Lemming(70,150,Math.PI/6,40));
 
 
 
 
 		while(true) {
-			f.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			//f.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
 			if(wait>delaiPop && Carte.getNbLemmings()!=0) {
 				Carte.popLemmings(lemmingBase);
