@@ -1,6 +1,7 @@
 package lemmings;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -332,6 +333,10 @@ public class Moteur implements Constantes {
 		if(l.getSousAction()%delaiSousAction==1)
 			marcher(l);		
 		l.setSousAction((l.getSousAction()+1)%(nbMarche*delaiSousAction));
+	}
+	
+	public static Point collisionTrajectoire (Point pCourant, Point pDest) {
+		return new Point(0,0);
 	}
 
 }
