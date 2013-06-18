@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+
 
 public class Jeu implements Constantes {
 
@@ -14,7 +17,7 @@ public class Jeu implements Constantes {
 
 
 		//listeAutomates.add(new AutoLemmingBasique(5));
-		AutomateHandler.initAutomates("./Documents partagÃ©s/automate.xml");
+		AutomateHandler.initAutomates("./Documents partagés/automate.xml");
 		listeAutomates.add(new AutoLemmingStop(5));
 		//listeAutomates.add(new AutoLemmingParapluie(5));
 		//listeAutomates.add(new AutoLemmingCreuseur(5));
@@ -24,10 +27,13 @@ public class Jeu implements Constantes {
 		//listeAutomates.add(new AutoLemmingGrimpeur(5));
 
 		//Carte.miniMap = "Images/Carte.png";
-
+		 Thread playWave=new AePlayWave("Musiques/THePETEBOX_Panther Dance.wav");
+	     playWave.start();
 
 		Carte.charger("Images/map1.png","Images/mario.png");
+
 		Carte.initCmp(5, 1, 6, 0, 0, 0, 2, 0);
+
 
 		Carte.setEntree(new Point(60, 55));
 		Carte.setSortie(new Point(330, 125));
@@ -36,6 +42,7 @@ public class Jeu implements Constantes {
 
 		int wait = delaiPop + 1;
 
+		
 		Fenetre f = new Fenetre(tailleFenetreH,tailleFenetreV);
 		f.afficher();
 		
