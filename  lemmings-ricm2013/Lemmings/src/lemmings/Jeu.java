@@ -65,14 +65,13 @@ public class Jeu implements Constantes {
                 ((Lemming) Carte.obs.get(0)).setDirection(gauche);
                 ((Lemming) Carte.obs.get(1)).setDirection(gauche);*/
 
-		Carte.obs.add(new Lemming(70,150,Math.PI/6,40));
+		//Carte.obs.add(new Lemming(70,150,Math.PI/6,40));
 
 
 
 
 		while(true) {
 			//f.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
 			if(wait>delaiPop && Carte.getNbLemmings()!=0) {
 				Carte.popLemmings(lemmingBase);
 				wait = 0;
