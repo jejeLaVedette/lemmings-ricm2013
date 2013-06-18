@@ -113,7 +113,7 @@ public class Moteur implements Constantes {
 				continue;
 			}
 
-			//System.out.println("etat:"+lem.getEtat()+" type:"+lem.getType()+" x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
+			System.out.println("etat:"+lem.getEtat()+" type:"+lem.getType()+" x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
 
 			// Recherche de l'automate correspondant
 			Automate aut = null;
@@ -179,8 +179,10 @@ public class Moteur implements Constantes {
 			creuser(l);
 		else if(s.equals("voler"))
 			voler(l);
-		else if(s.equals("rebondir"))
-			rebondir(l);
+		else if(s.equals("rebondirsol"))
+			rebondirsol(l);
+		else if(s.equals("rebondirmur"))
+			rebondirsol(l);
 		else if(s.equals("grimper"))
 			grimper(l);
 		else if(s.equals("construireEscalier"))
@@ -281,7 +283,7 @@ public class Moteur implements Constantes {
 
 	}
 
-	private static void rebondir(Lemming l) {
+	private static void rebondirsol(Lemming l) {
 		//Alors ici je cherche a avoir la Vitesse précise pour cela  ... 
 		Point courant,destination,colision;
 		colision=new Point(0,0);
