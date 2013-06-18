@@ -345,9 +345,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
 		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
 		if(e.getSource()==bouton_escalier) typeCourant = lemmingEscalier;
-		/*if(e.getSource()==chargement){
-			System.out.println("chargement#####################");
-		}*/
 		if(e.getSource()==bouton_futur1){
 			Carte.cmpFutur1--;
 			bouton_futur1.addMouseListener(new MouseAdapter() {
@@ -398,10 +395,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 
 	public void modifType(MouseEvent event){
-		//on r�cup�re les coordonn�e X de la souris    
-		//int newCx = ((event.getX()*Carte.LARGEUR_CARTE))/(tailleFX);
-		//on r�ccup�re les coordonn�e Y de la souris
-		//int newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/((3*tailleFY/5));
 		int newCx;
 		int newCy;
 		if(tailleFX>=Carte.LARGEUR_CARTE) {
@@ -421,44 +414,45 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		for (int i =0;i<Carte.obs.size();i++){
 			lem = Carte.obs.get(i);
 			if((newCy<lem.getY() && newCy>lem.getY() -2*Panneau.coeff) && ((newCx<lem.getX()+3/2*Panneau.coeff && newCx > lem.getX()-3/2*Panneau.coeff))){
+				if(typeCourant != lem.type){
+					if(typeCourant == lemmingParapluie){
+						if(Carte.cmpParapluie-- <= 0) tParapluie.setText("0");
+						else tParapluie.setText("" + Carte.cmpParapluie);
+						this.ancienNum = Carte.cmpParapluie;
+					}
 
-				if(typeCourant == lemmingParapluie){
-					if(Carte.cmpParapluie-- <= 0) tParapluie.setText("0");
-					else tParapluie.setText("" + Carte.cmpParapluie);
-					this.ancienNum = Carte.cmpParapluie;
+					if(typeCourant == lemmingCreuseur){
+						if(Carte.cmpPioche-- <= 0) tPioche.setText("0");
+						else tPioche.setText("" + Carte.cmpPioche);
+						this.ancienNum = Carte.cmpPioche;
+					}
+
+					if(typeCourant == lemmingStop){
+						if(Carte.cmpStop-- <= 0) tStop.setText("0");
+						else tStop.setText("" + Carte.cmpStop);
+						this.ancienNum = Carte.cmpStop;
+					}
+
+					if(typeCourant == lemmingEscalier){
+						if(Carte.cmpEscalier-- <= 0) tEscalier.setText("0");
+						else tEscalier.setText("" + Carte.cmpEscalier);
+						this.ancienNum = Carte.cmpEscalier;
+					}
+
+					if(this.ancienNum>=0) {
+						Carte.obs.get(i).type=typeCourant;
+					}
+
+					System.out.println("x souris : "+newCx);
+					System.out.println("y souris : "+newCy);
+					System.out.println("x souris fen: "+event.getX());
+					System.out.println("y souris fen: "+event.getY());
+					System.out.println("x lem : "+lem.getX());
+					System.out.println("y lem : "+lem.getY());
+					System.out.println("??????????");
+
+					break;
 				}
-
-				if(typeCourant == lemmingCreuseur){
-					if(Carte.cmpPioche-- <= 0) tPioche.setText("0");
-					else tPioche.setText("" + Carte.cmpPioche);
-					this.ancienNum = Carte.cmpPioche;
-				}
-
-				if(typeCourant == lemmingStop){
-					if(Carte.cmpStop-- <= 0) tStop.setText("0");
-					else tStop.setText("" + Carte.cmpStop);
-					this.ancienNum = Carte.cmpStop;
-				}
-
-				if(typeCourant == lemmingEscalier){
-					if(Carte.cmpEscalier-- <= 0) tEscalier.setText("0");
-					else tEscalier.setText("" + Carte.cmpEscalier);
-					this.ancienNum = Carte.cmpEscalier;
-				}
-
-				if(this.ancienNum>=0) {
-					Carte.obs.get(i).type=typeCourant;
-				}
-
-				System.out.println("x souris : "+newCx);
-				System.out.println("y souris : "+newCy);
-				System.out.println("x souris fen: "+event.getX());
-				System.out.println("y souris fen: "+event.getY());
-				System.out.println("x lem : "+lem.getX());
-				System.out.println("y lem : "+lem.getY());
-				System.out.println("??????????");
-
-				break;
 			}
 			System.out.println("x souris map: "+newCx);
 			System.out.println("y souris map: "+newCy);
@@ -538,8 +532,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			puissance = Integer.parseInt(Tpuissance.getText());
 			angle = (double) ((Integer.parseInt(Tangle.getText()))*Math.PI/180); //on met en radian
 			Carte.obs.add(new Lemming(catapulteX,catapulteY,angle,puissance));
-
-
 			frame.dispose();
 
 		}
