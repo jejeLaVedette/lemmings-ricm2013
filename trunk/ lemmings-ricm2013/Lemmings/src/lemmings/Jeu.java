@@ -27,16 +27,18 @@ public class Jeu implements Constantes {
 
 
 		Carte.charger("Images/map1.png","Images/mario.png");
-		Carte.initCmp(5, 1, 4, 0, 0, 0, 2, 0);
+		Carte.initCmp(5, 1, 6, 0, 0, 0, 2, 0);
 
 		Carte.setEntree(new Point(60, 55));
-
-		Carte.setNbLemmings(5);
+		Carte.setSortie(new Point(330, 125));
+		
+		Carte.setNbLemmings(20);
 
 		int wait = delaiPop + 1;
 
 		Fenetre f = new Fenetre(tailleFenetreH,tailleFenetreV);
 		f.afficher();
+		
 
 		// Lemmings bloqueurs
 		//Carte.obs.add(new Lemming(100,61,lemmingStop));

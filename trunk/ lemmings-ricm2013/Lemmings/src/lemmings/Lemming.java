@@ -13,7 +13,7 @@ public class Lemming extends Observable implements Constantes {
 		super();
 		super.type = lemmingBase;
 		this.direction = droite;
-		this.image = "Images/lemmingBaseDroite.png";
+		this.image = "Images/lemmingBaseDroite2.png";
 		this.etat = etatInitial;
 		super.x = Carte.getEntree().x;
 		super.y = Carte.getEntree().y;
@@ -23,7 +23,7 @@ public class Lemming extends Observable implements Constantes {
 		super();
 		super.type = lemmingBase;
 		this.direction = droite;
-		this.image = "Images/lemmingBaseDroite.png";
+		this.image = "Images/lemmingBaseDroite2.png";
 		this.etat = etatInitial;
 		super.x = x;
 		super.y = y;
@@ -33,7 +33,7 @@ public class Lemming extends Observable implements Constantes {
 		super();
 		super.type = type;
 		this.direction = droite;
-		this.image = "Images/lemmingBaseDroite.png";
+		this.image = "Images/lemmingBaseDroite2.png";
 		this.etat = etatInitial;
 		super.x = x;
 		super.y = y;
@@ -43,7 +43,7 @@ public class Lemming extends Observable implements Constantes {
 		super(vx,vy);
 		super.type = type;
 		this.direction = droite;
-		this.image = "Images/lemmingBaseDroite.png";
+		this.image = "Images/lemmingBaseDroite2.png";
 		this.etat = etatInitial;
 		super.x = x;
 		super.y = y;
@@ -53,7 +53,7 @@ public class Lemming extends Observable implements Constantes {
 		super(vx,vy,elas);
 		super.type = type;
 		this.direction = droite;
-		this.image = "Images/lemmingBaseDroite.png";
+		this.image = "Images/lemmingBaseDroite2.png";
 		this.etat = etatInitial;
 		super.x = x;
 		super.y = y;
@@ -64,7 +64,7 @@ public class Lemming extends Observable implements Constantes {
 		super.type = lemmingCatapulte;
 		this.puissance = puissance;
 		this.angle = angle ;
-		this.image = "Images/lemmingBaseDroite.png";
+		this.image = "Images/lemmingBaseDroite2.png";
 		this.etat = etatInitial;
 		super.x = x;
 		super.y = y;
