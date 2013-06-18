@@ -130,7 +130,7 @@ public class Moteur implements Constantes {
 			int k=0;
 			while(k<aut.listeTransitions.size()) {
 				if( aut.listeTransitions.get(k).getEtatInitial()==lem.getEtat() && 
-						aut.listeTransitions.get(k).getCondition().equals(cond)) break;
+						(aut.listeTransitions.get(k).getCondition().equals(cond) || aut.listeTransitions.get(k).getCondition().equals("any"))) break;
 
 				k++;
 			}
