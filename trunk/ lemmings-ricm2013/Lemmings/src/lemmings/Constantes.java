@@ -45,7 +45,7 @@ public interface Constantes {
 	public final static int lemmingEscalier = 6;
 	
 	// Constantes de Jeu
-	public final static int delaiAttente = 50;
+	public final static int delaiAttente = 40;
 	public final static int delaiPop = 50;
 	public final static int nbMarche = 15;
 	public final static int delaiSousAction = 4;
