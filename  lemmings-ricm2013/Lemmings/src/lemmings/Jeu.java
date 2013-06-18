@@ -14,19 +14,25 @@ public class Jeu implements Constantes {
         public static void main(String[] args) throws InterruptedException, IOException{
 
 
-                //listeAutomates.add(new AutoLemmingBasique(5));
-                AutomateHandler.initAutomates("./Documents partagés/automate.xml");
-                listeAutomates.add(new AutoLemmingStop(5));
-                //listeAutomates.add(new AutoLemmingParapluie(5));
-                //listeAutomates.add(new AutoLemmingCreuseur(5));
 
-                //listeAutomates.add(new AutoLemmingCatapulte(5));
+		//listeAutomates.add(new AutoLemmingBasique(5));
+		AutomateHandler.initAutomates("./Documents partagÃ©s/automate.xml");
+		listeAutomates.add(new AutoLemmingStop(5));
+		//listeAutomates.add(new AutoLemmingParapluie(5));
+		//listeAutomates.add(new AutoLemmingCreuseur(5));
+
+
+
+		listeAutomates.add(new AutoLemmingCatapulte(5));
+
 
                 //listeAutomates.add(new AutoLemmingGrimpeur(5));
 
-                //Carte.miniMap = "Images/Carte.png";
-                Thread playWave=new AePlayWave("Musiques/THePETEBOX_Panther Dance.wav");
-                playWave.start();
+
+		//Carte.miniMap = "Images/Carte.png";
+		//Thread playWave=new AePlayWave("Musiques/THePETEBOX_Panther Dance.wav");
+		//playWave.start();
+
 
                 Carte.charger("Images/map1.png","Images/mario.png");
 
@@ -35,7 +41,9 @@ public class Jeu implements Constantes {
                 Carte.setEntree(new Point(60, 55));
                 Carte.setSortie(new Point(330, 125));
 
-                Carte.setNbLemmings(20);
+
+		Carte.setNbLemmings(0);
+
 
                 int wait = delaiPop + 1;
 
@@ -58,14 +66,19 @@ public class Jeu implements Constantes {
 
                 // Lemmings catapultes
 
-                /*Carte.obs.add(new Lemming(250,150,lemmingCatapulte));
-                Carte.obs.add(new Lemming(350,150,lemmingCatapulte));
-                Carte.obs.add(new Lemming(250,150,lemmingCatapulte));
-                Carte.obs.add(new Lemming(350,150,lemmingCatapulte));
-                ((Lemming) Carte.obs.get(0)).setDirection(gauche);
-                ((Lemming) Carte.obs.get(1)).setDirection(gauche);*/
 
-                //Carte.obs.add(new Lemming(70,150,Math.PI/6,40));
+		Carte.obs.add(new Lemming(250,150,lemmingCatapulte));
+               //Carte.obs.add(new Lemming(350,150,lemmingCatapulte));
+                //Carte.obs.add(new Lemming(250,150,lemmingCatapulte));
+                //Carte.obs.add(new Lemming(350,150,lemmingCatapulte));
+                //((Lemming) Carte.obs.get(0)).setDirection(gauche);
+                //((Lemming) Carte.obs.get(1)).setDirection(gauche);*/
+
+
+
+		Carte.obs.add(new Lemming(100,150,Math.PI/6,30));
+
+
 
 
 
