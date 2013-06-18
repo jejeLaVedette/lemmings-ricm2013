@@ -27,7 +27,7 @@ public class Carte implements Constantes {
 	public static ArrayList<Observable> obs = new ArrayList<Observable>();
 
 	//DECLARATION DES COMPTEURS DE TOUT LES OBJET
-	public static int cmpPioche,cmpParapluie,cmpEscalier,cmpFutur1,cmpEscalade,cmpBombe,cmpStop,cmpFutur2;
+	public static int cmpPioche,cmpParapluie,cmpEscalier,cmpFutur1,cmpEscalade,cmpBombe,cmpStop,cmpFutur2,cmpLemmingSave;
 
 	public static void charger(String carte, String background) throws IOException {
 
