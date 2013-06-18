@@ -22,17 +22,14 @@ public class Moteur implements Constantes {
 			// Si on a un Lemming
 			Lemming  lem = (Lemming) Carte.obs.get(i);
 
-			// Si l'état est -2 : on "convertit" le lemming en lemming de base
-			if(lem.getEtat()==etatReinit) {
-				lem.type = lemmingBase;
-				lem.setEtat(etatInitial);
-			}
-			if(lem.getEtat()==etatReinitParapluie) {
-				lem.type = lemmingParapluie;
-				lem.setEtat(etatInitial);
-			}
 			int x = lem.getX();
 			int y = lem.getY();
+			
+			// S'il est sur le point de sortie, +- une certaine tolérance
+			if(Math.abs(x-Carte.sortie.x)<(toleranceSortie/2) && Math.abs(y-Carte.sortie.y)<toleranceSortie) {
+				Carte.lemmingSauf++;
+				Carte.obs.remove(i);
+			}
 
 			// S'il est mort, et ben... il est mort !
 			if(lem.getY()==Carte.HAUTEUR_CARTE-1) {
