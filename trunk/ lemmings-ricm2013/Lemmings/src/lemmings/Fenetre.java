@@ -82,6 +82,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JButton bouton_pause;  
 	private JButton bouton_accelerer; 
 	private JButton bouton_recharger; 
+	private JButton bouton_lemmingSave;
 
 	//DECLARATION DE TOUT LES TEXTES DES COMPTEURS
 	private JLabel tPioche;
@@ -92,6 +93,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JLabel tBombe;
 	private JLabel tStop;
 	private JLabel tFutur2;
+	private JLabel tLemmingSave;
 
 	private int ancienNum;
 	private int puissance;
@@ -162,8 +164,14 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_sup.add(horizontalStrut_5);
 
 		bouton_sup.add(bouton_futur1);
+		
+		Component horizontalStrut_12 = Box.createHorizontalStrut(espacement_hori);
+		bouton_sup.add(horizontalStrut_12);
 
-
+		bouton_sup.add(bouton_lemmingSave);
+		
+		
+		
 		text1.setLayout(new BoxLayout(text1, BoxLayout.LINE_AXIS));
 
 		text1.add(tPioche);
@@ -179,6 +187,11 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		text1.add(horizontalStrut_t3);
 
 		text1.add(tFutur1);
+		
+		Component horizontalStrut_t11 = Box.createHorizontalStrut(espacement_text);
+		text1.add(horizontalStrut_t11);
+
+		text1.add(tLemmingSave);
 
 
 
@@ -362,6 +375,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 	public void afficher(){
 		scroll.repaint();
+		tLemmingSave.setText("" + Carte.lemmingSauf);
 		mini_map.repaint();
 
 		try {
@@ -534,6 +548,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_pause = new JButton(new ImageIcon(((new ImageIcon("Images/pause.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_accelerer = new JButton(new ImageIcon(((new ImageIcon("Images/accelerer.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_recharger = new JButton(new ImageIcon(((new ImageIcon("Images/recharger.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
+		bouton_lemmingSave = new JButton(new ImageIcon(((new ImageIcon("Images/sauver.jpg")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 
 		tPioche = new JLabel(""+Carte.cmpPioche);
 		tParapluie = new JLabel(""+Carte.cmpParapluie);
@@ -543,6 +558,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		tBombe = new JLabel(""+Carte.cmpBombe);
 		tStop = new JLabel(""+Carte.cmpStop);
 		tFutur2 = new JLabel(""+Carte.cmpFutur2);
+		tLemmingSave = new JLabel(""+Carte.lemmingSauf);
 
 		//MISE EN ATTENTE DES BOUTONS
 		bouton_creuse.addActionListener(this);
