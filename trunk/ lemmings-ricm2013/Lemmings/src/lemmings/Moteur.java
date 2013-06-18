@@ -112,7 +112,8 @@ public class Moteur implements Constantes {
 				tomber(lem);
 				continue;
 			}
-			System.out.println("x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
+
+			//System.out.println("etat:"+lem.getEtat()+" type:"+lem.getType()+" x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
 
 			// Recherche de l'automate correspondant
 			Automate aut = null;
@@ -140,6 +141,7 @@ public class Moteur implements Constantes {
 				System.out.println("Automate n°"+ aut.identifiant +" non-déterministe !");
 				System.exit(1);
 			}
+
 			// On applique les actions associées
 			if (aut.listeTransitions.get(k).getActions() != null)
 			{
@@ -155,6 +157,8 @@ public class Moteur implements Constantes {
 			// On change d'etat, sauf si on n'a pas fini les micro-actions
 			if(lem.getSousAction()==0)
 				lem.setEtat(aut.listeTransitions.get(k).getEtatFinal());
+
+
 
 		} // Fin for(i)
 	}
@@ -279,7 +283,7 @@ public class Moteur implements Constantes {
 
 	private static void rebondir(Lemming l) {
 		//Alors ici je cherche a avoir la Vitesse précise pour cela  ... 
-        double xmod,ymod;
+		double xmod,ymod;
 		trajectoireparaphysique t= l.getTrajH() ;
 		double x  = t.calculx(l.time);
 		double y = t.calculy(l.time);
@@ -292,13 +296,13 @@ public class Moteur implements Constantes {
 		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 15){
 
 
-		l.setTrajH(t);
-		System.out.println("x:"+l.getX()+" y"+l.getY());
-		l.setY(l.getY()-3);
-		 
-		Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
-		l.resetTime();
-		 }
+			l.setTrajH(t);
+			System.out.println("x:"+l.getX()+" y"+l.getY());
+			l.setY(l.getY()-3);
+
+			Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
+			l.resetTime();
+		}
 
 	}
 

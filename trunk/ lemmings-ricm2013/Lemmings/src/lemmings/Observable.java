@@ -1,6 +1,6 @@
 package lemmings;
 
-public class Observable {
+public abstract class Observable {
 	
 	protected int type;
 	protected int x;

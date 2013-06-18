@@ -73,17 +73,9 @@ public class Lemming extends Observable implements Constantes {
 	public int getDirection() {
 		return direction;
 	}
-
-	public int getEtat() {
-		return etat;
-	}
-
+	
 	public void setDirection(int direction) {
 		this.direction = direction;
-	}
-
-	public void setEtat(int etat) {
-		this.etat = etat;
 	}
 	
 	public trajectoireparaphysique getTrajH() {
