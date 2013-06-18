@@ -1,5 +1,6 @@
 package lemmings;
 
+import java.awt.Cursor;
 import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -73,6 +74,7 @@ public class Jeu implements Constantes {
 
 
 		while(true) {
+			f.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
 			if(wait>delaiPop && Carte.getNbLemmings()!=0) {
 				Carte.popLemmings(lemmingBase);
