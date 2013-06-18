@@ -111,7 +111,7 @@ public class Moteur implements Constantes {
 				break;
 			}
 
-			System.out.println("x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
+			//System.out.println("x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
 
 			// Recherche de l'automate correspondant
 			Automate aut = null;
@@ -147,6 +147,10 @@ public class Moteur implements Constantes {
 				}
 			}
 
+			// On met à jour le champs condPrecedente et eventuellement la micro-action
+			if(lem.getCondPrecedente()!=cond)
+				lem.setSousAction(0);
+			lem.setCondPrecedente(cond);
 			// On change d'etat, sauf si on n'a pas fini les micro-actions
 			if(lem.getSousAction()==0)
 				lem.setEtat(aut.listeTransitions.get(k).getEtatFinal());

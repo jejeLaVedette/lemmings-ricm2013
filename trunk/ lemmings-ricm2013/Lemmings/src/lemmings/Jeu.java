@@ -31,7 +31,7 @@ public class Jeu implements Constantes {
 
 		Carte.setEntree(new Point(60, 55));
 
-		Carte.setNbLemmings(0);
+		Carte.setNbLemmings(5);
 
 		int wait = delaiPop + 1;
 
@@ -59,7 +59,7 @@ public class Jeu implements Constantes {
 		((Lemming) Carte.obs.get(0)).setDirection(gauche);
 		((Lemming) Carte.obs.get(1)).setDirection(gauche);*/
 
-		Carte.obs.add(new Lemming(70,150,Math.PI/6,75));
+		//Carte.obs.add(new Lemming(70,150,Math.PI/6,75));
 
 
 
