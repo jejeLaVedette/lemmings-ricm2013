@@ -18,11 +18,13 @@ public class Jeu implements Constantes {
 		Carte.initCmp(0, 0, 0, 0, 0, 0, 0, 0);
 
 		Jeu.initialiserJeu("Images/Carte2.png", 
-				"Images/chat.png",
-				"", "Automates/automate.xml",
+
+				"Images/Carte2.png",
+				"",
+				"Automates/automate.xml",
 				new Point(60,55), 
-				new Point(330,125), 
-				20);
+				new Point(0,0), 
+				0);
 
 		int wait = delaiPop + 1;
 
@@ -31,6 +33,8 @@ public class Jeu implements Constantes {
 
 		//f.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
+		//Carte.obs.add(new Lemming(70,150,lemmingCatapulte));
+		Carte.obs.add(new Lemming(360,150,Math.PI*2/3,70));
 		while(true) {
 
 			if(wait>delaiPop && Carte.getNbLemmings()!=0) {
