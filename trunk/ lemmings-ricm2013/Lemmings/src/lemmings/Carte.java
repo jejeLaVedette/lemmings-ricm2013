@@ -17,9 +17,9 @@ public class Carte implements Constantes {
 	public static int LARGEUR_CARTE;
 	public static int HAUTEUR_CARTE;
 	public static int taille;
-	
+
 	public static double gravite = 9.81;
-	
+
 	public static String background;
 	public static String miniMap;
 
@@ -27,14 +27,14 @@ public class Carte implements Constantes {
 	public static ArrayList<Observable> obs = new ArrayList<Observable>();
 
 	//DECLARATION DES COMPTEURS DE TOUT LES OBJET
-	public static int cmpPioche,cmpParapluie,cmpEscalier,cmpFutur1,cmpEscalade,cmpBombe,cmpStop,cmpFutur2,cmpLemmingSave;
+	public static int cmpPioche,cmpParapluie,cmpEscalier,cmpCatapulte,cmpEscalade,cmpBombe,cmpStop,cmpFutur2,cmpLemmingSave;
 
 	public static void charger(String carte, String background) throws IOException {
 
 
 		BufferedImage arrierePlan=ImageIO.read(new File(background));
 		BufferedImage maCarte=ImageIO.read(new File(carte));
-		
+
 		if(arrierePlan.getHeight()<maCarte.getHeight() || arrierePlan.getWidth()<maCarte.getWidth()) { 
 			System.out.println("Erreur : arrière plan trop petit !");
 			System.out.println("Taille de l'arriere plan : "+arrierePlan.getWidth()+"x"+arrierePlan.getHeight());
@@ -54,7 +54,7 @@ public class Carte implements Constantes {
 			for(int j=0;j<maCarte.getWidth();j++) {
 
 				c = new Color(maCarte.getRGB(j,i));
-				
+
 				if ( (Math.abs(c.getBlue()-pixelAir.getBlue())< toleranceAir) &&
 						(Math.abs(c.getRed()-pixelAir.getRed())< toleranceAir) &&
 						(Math.abs(c.getGreen()-pixelAir.getGreen())< toleranceAir))
@@ -97,12 +97,12 @@ public class Carte implements Constantes {
 	public static void setNbLemmings(int nbLemmings) {
 		Carte.nbLemmings = nbLemmings;
 	}
-	
-	public static void initCmp(int pioche, int parapluie, int escalier, int futur1, int grimpeur, int bombe, int stop, int futur2) {
+
+	public static void initCmp(int pioche, int parapluie, int escalier, int cata, int grimpeur, int bombe, int stop, int futur2) {
 		cmpPioche = pioche;
 		cmpParapluie = parapluie;
 		cmpEscalier = escalier;
-		cmpFutur1 = futur1;  
+		cmpCatapulte = cata;  
 		cmpEscalade = grimpeur;  
 		cmpBombe = bombe;  
 		cmpStop = stop; 

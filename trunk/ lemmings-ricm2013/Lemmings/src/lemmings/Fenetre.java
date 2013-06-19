@@ -45,7 +45,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JLabel label = new JLabel("Entrez un angle : ");
 	private JLabel label2 = new JLabel("Entrez une puissance : ");
 	private JButton b2 = new JButton ("OK");
-	private final JFrame frame = new JFrame("Rï¿½glage catapulte");
+	private final JFrame frame = new JFrame("Réglage catapulte");
 	/**
 	 * 
 	 */
@@ -75,7 +75,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JButton bouton_creuse;
 	private JButton bouton_parapluie;  
 	private JButton bouton_escalier;  
-	private JButton bouton_futur1;  
+	private JButton bouton_Catapulte;  
 	private JButton bouton_escalade;  
 	private JButton bouton_bombe;  
 	private JButton bouton_stop; 
@@ -90,7 +90,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JLabel tPioche;
 	private JLabel tParapluie;
 	private JLabel tEscalier;
-	private JLabel tFutur1;
+	private JLabel tCatapulte;
 	private JLabel tEscalade;
 	private JLabel tBombe;
 	private JLabel tStop;
@@ -135,8 +135,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		zone_map = new Panneau(Fenetre.tailleFX, Fenetre.tailleFY);
 		mini_map = new Panneau2(Fenetre.tailleFX, Fenetre.tailleFY);
-		
-		
+
+
 		//ZONE QUI CONTIENT LA MINIMAP
 		JPanel zone_droite = new JPanel();
 		GridBagConstraints c = new GridBagConstraints();
@@ -147,8 +147,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		flowLayout.setVgap(25);
 		flowLayout.setHgap(-6);
 		zone_droite.add(mini_map,c);
-		
-		
+
+
 
 		// Initialisation des boutons
 		initBoutons();
@@ -180,7 +180,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		Component horizontalStrut_5 = Box.createHorizontalStrut(espacement_hori);
 		bouton_sup.add(horizontalStrut_5);
 
-		bouton_sup.add(bouton_futur1);
+		bouton_sup.add(bouton_Catapulte);
 
 		Component horizontalStrut_12 = Box.createHorizontalStrut(espacement_hori);
 		bouton_sup.add(horizontalStrut_12);
@@ -203,7 +203,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		Component horizontalStrut_t3 = Box.createHorizontalStrut(espacement_text);
 		text1.add(horizontalStrut_t3);
 
-		text1.add(tFutur1);
+		text1.add(tCatapulte);
 
 		Component horizontalStrut_t11 = Box.createHorizontalStrut(espacement_text);
 		text1.add(horizontalStrut_t11);
@@ -378,16 +378,17 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	public void actionPerformed(ActionEvent e) {
 
 		if(e.getSource()==mntmMap || e.getSource()==mnJouer_1){
-			try {
-				Carte.initCmp(4, 20, 0, 0, 0, 0, 0, 0);
+			try {	
+				Carte.initCmp(4, 20, 4, 0, 0, 0, 4, 0);
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/Carte4.png", 
 						"Images/Carte4.png", 
 						"", 
-						"Documents partagÃ©s/automate.xml", 
+						"Documents partagés/automate.xml", 
 						new Point(60,55), 
 						new Point(330,125), 
 						20);
+
 
 			} catch (IOException ev) {
 				// TODO Auto-generated catch block
@@ -402,7 +403,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				Jeu.initialiserJeu("Images/map1.png", 
 						"Images/mario.png", 
 						"", 
-						"Documents partagÃ©s/automate.xml", 
+						"Documents partagés/automate.xml", 
 						new Point(60,55), 
 						new Point(330,125), 
 						20);
@@ -412,23 +413,42 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				ev.printStackTrace();
 			} 
 		}
-		
-		if(e.getSource()==mntmFermer) System.exit(0); //on close la fenï¿½tre
+
+		if(e.getSource()==mntmFermer) System.exit(0); //on close la fenètre 
+
+		if(e.getSource()==mntmMap3){
+			try {
+				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
+				afficherTexteCmp();
+				Jeu.initialiserJeu("Images/carte3.png", 
+						"Images/carte3.png", 
+						"", 
+						"Documents partagés/automate.xml", 
+						new Point(60,55), 
+						new Point(330,125), 
+						20);
+
+
+			} catch (IOException ev) {
+				// TODO Auto-generated catch block
+				ev.printStackTrace();
+			}
+		}
 
 
 		if(e.getSource()==bouton_creuse) typeCourant = lemmingCreuseur; 
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
 		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
 		if(e.getSource()==bouton_escalier) typeCourant = lemmingEscalier;
-		if(e.getSource()==bouton_futur1){
-			Carte.cmpFutur1--;
-			bouton_futur1.addMouseListener(new MouseAdapter() {
+		if(e.getSource()==bouton_Catapulte){
+			Carte.cmpCatapulte--;
+			bouton_Catapulte.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					if(Carte.cmpFutur1 < 0) tFutur1.setText("0");
+					if(Carte.cmpCatapulte < 0) tCatapulte.setText("0");
 					else {
-						tFutur1.setText("" + Carte.cmpFutur1);
-						System.out.println("cmpF : "+Carte.cmpFutur1);
+						tCatapulte.setText("" + Carte.cmpCatapulte);
+						System.out.println("cmpF : "+Carte.cmpCatapulte);
 
 						frame.setSize(370, 110);
 						frame.setResizable(false);
@@ -565,7 +585,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_creuse = new JButton(new ImageIcon(((new ImageIcon("Images/pioche.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
 		bouton_parapluie = new JButton(new ImageIcon(((new ImageIcon("Images/parapluie_ferme.jpg")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_escalier = new JButton(new ImageIcon(((new ImageIcon("Images/escalier.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
-		bouton_futur1 = new JButton(new ImageIcon(((new ImageIcon("Images/Catapulte.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+		bouton_Catapulte = new JButton(new ImageIcon(((new ImageIcon("Images/Catapulte.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_escalade = new JButton(new ImageIcon(((new ImageIcon("Images/escalade.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_bombe = new JButton(new ImageIcon(((new ImageIcon("Images/bombe.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_stop = new JButton(new ImageIcon(((new ImageIcon("Images/lemming3.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
@@ -579,7 +599,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		tPioche = new JLabel(""+Carte.cmpPioche);
 		tParapluie = new JLabel(""+Carte.cmpParapluie);
 		tEscalier = new JLabel(""+Carte.cmpEscalier);
-		tFutur1 = new JLabel(""+Carte.cmpFutur1);
+		tCatapulte = new JLabel(""+Carte.cmpCatapulte);
 		tEscalade = new JLabel(""+Carte.cmpEscalade);
 		tBombe = new JLabel(""+Carte.cmpBombe);
 		tStop = new JLabel(""+Carte.cmpStop);
@@ -590,7 +610,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_creuse.addActionListener(this);
 		bouton_parapluie.addActionListener(this);
 		bouton_escalier.addActionListener(this);
-		bouton_futur1.addActionListener(this);
+		bouton_Catapulte.addActionListener(this);
 		bouton_escalade.addActionListener(this);
 		bouton_escalade.addActionListener(this);
 		bouton_bombe.addActionListener(this);
@@ -617,7 +637,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		tParapluie.setText("" + Carte.cmpParapluie);
 		tEscalier.setText("" + Carte.cmpEscalier);
 		tEscalade.setText("" + Carte.cmpEscalade);
-		tFutur1.setText("" + Carte.cmpFutur1);
+		tCatapulte.setText("" + Carte.cmpCatapulte);
 		tBombe.setText("" + Carte.cmpBombe);
 		tStop.setText("" + Carte.cmpStop);
 		tFutur2.setText("" + Carte.cmpFutur2);	
