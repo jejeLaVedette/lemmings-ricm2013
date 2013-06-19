@@ -419,13 +419,13 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		}
 		
 		if(e.getSource()==mapDetail){
-			JOptionPane.showMessageDialog(null, "Map1\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("Images/carte3.png"));
+			JOptionPane.showMessageDialog(null, "Map1\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/carte3.png"));
 		}
 		
 		
 		
 		if(e.getSource()==map2Detail){
-			JOptionPane.showMessageDialog(null, "Map1\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("Images/map1.png"));
+			JOptionPane.showMessageDialog(null, "Map1\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/map1.png"));
 		}
 
 		if(e.getSource()==mntmMap2){
