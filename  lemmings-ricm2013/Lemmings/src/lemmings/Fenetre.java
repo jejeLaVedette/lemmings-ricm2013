@@ -389,7 +389,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				Jeu.initialiserJeu("Images/Carte4.png", 
 						"Images/Carte4.png", 
 						"", 
-						"Documents partagés/automate.xml", 
+						"Automates/automate.xml", 
 						new Point(60,55), 
 						new Point(330,125), 
 						20);
@@ -409,7 +409,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				Jeu.initialiserJeu("Images/map1.png", 
 						"Images/mario.png", 
 						"", 
-						"Documents partagés/automate.xml", 
+						"Automates/automate.xml", 
 						new Point(60,55), 
 						new Point(330,125), 
 						20);
@@ -430,7 +430,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				Jeu.initialiserJeu("Images/carte3.png", 
 						"Images/carte3.png", 
 						"", 
-						"Documents partagés/automate.xml", 
+						"Automates/automate.xml", 
 						new Point(60,55), 
 						new Point(330,125), 
 						20);
@@ -451,7 +451,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			String s; 
 			Carte.setNbLemmings(0);
 			Carte.obs.removeAll(Carte.obs);
-			if(Carte.lemmingSauf>Carte.lemmingASauver) s = "lemming sauver : "+ Carte.lemmingSauf+"\n Vous avez gagné!!";
+			if(Carte.lemmingSauf>Carte.lemmingASauver) s = "lemming(s) sauvé(s) : "+ Carte.lemmingSauf+"\n Vous avez gagné!!";
 			else s = "lemming sauver : "+ Carte.lemmingSauf+"\n Vous avez perdu";
 			JOptionPane.showMessageDialog(null, s);
 		}

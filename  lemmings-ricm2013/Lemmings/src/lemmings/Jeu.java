@@ -19,7 +19,7 @@ public class Jeu implements Constantes {
 
 		Jeu.initialiserJeu("Images/Carte2.png", 
 				"Images/chat.png",
-				"", "Documents partagés/automate.xml",
+				"", "Automates/automate.xml",
 				new Point(60,55), 
 				new Point(330,125), 
 				20);
