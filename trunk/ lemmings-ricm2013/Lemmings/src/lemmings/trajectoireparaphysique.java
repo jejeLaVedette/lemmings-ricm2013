@@ -42,12 +42,12 @@ public class trajectoireparaphysique implements Constantes {
 	 }
 	 private double calculkx (){
 		
-		 double x= (1.0/2)*massevolair*hauteurlemmings*proflemmings*coefftraineelemming*this.Vx*0.8; 		 
+		 double x= (1.0/2)*massevolair*hauteurlemmings*proflemmings*coefftraineelemming*this.Vx*0.6; 		 
 		 return x;
 		 
 	 }
 	 private double calculky (){
-		 double y=(1.0/2)*massevolair*larglemmings*proflemmings*coefftraineelemming*this.Vy*0.8;
+		 double y=(1.0/2)*massevolair*larglemmings*proflemmings*coefftraineelemming*this.Vy*0.6;
 		 return y; 
 		 
 	 }
@@ -77,12 +77,12 @@ public class trajectoireparaphysique implements Constantes {
 		 
 		
 		if(!type){
-		 this.Vx=(2*(xcoli-xprec)/(2*deltat));
+		 this.Vx=((xcoli-xprec)/(2*deltat));
 		 this.Vy= (-(ycoli-yprec)/(2*deltat));
 		}
 		else{
 			this.Vx=((xcoli-xprec)/(2*deltat));
-			 this.Vy= (-2*(ycoli-yprec)/(2*deltat));
+			 this.Vy= (-(ycoli-yprec)/(2*deltat));
 		}
 		 System.out.println("Percussion");
 		 System.out.println("valeur de Vx ");			

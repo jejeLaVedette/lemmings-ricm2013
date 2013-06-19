@@ -34,7 +34,7 @@ public class Jeu implements Constantes {
 		//f.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
 		//Carte.obs.add(new Lemming(70,150,lemmingCatapulte));
-		Carte.obs.add(new Lemming(360,150,Math.PI*2/3,70));
+		Carte.obs.add(new Lemming(360,150,Math.PI/4,100));
 		while(true) {
 
 			if(wait>delaiPop && Carte.getNbLemmings()!=0) {

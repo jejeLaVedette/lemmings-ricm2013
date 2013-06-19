@@ -62,6 +62,7 @@ public class Lemming extends Observable implements Constantes {
 	public Lemming(int x,int y,double angle, int puissance) {
 		super(vx,vy);
 		super.type = lemmingCatapulte;
+		this.direction = gauche;
 		this.puissance = puissance;
 		this.angle = angle ;
 		this.image = "Images/lemmingBaseDroite2.png";

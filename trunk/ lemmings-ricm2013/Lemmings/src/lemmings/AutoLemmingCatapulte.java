@@ -31,26 +31,26 @@ public class AutoLemmingCatapulte extends Automate implements Constantes {
 		
 		listeTransitions.add(new Transition(1, 2, "mur", l));
 		listeTransitions.add(new Transition(2, 3, "mur", l));
-		listeTransitions.add(new Transition(3, 6, "mur", l));
 		listeTransitions.add(new Transition(5, 3, "mur", l));
-		listeTransitions.add(new Transition(7, 6, "mur", l));
 
 		l = new ArrayList<String>();
 		l.add("rebondirsol");
 		listeTransitions.add(new Transition(1, 5, "sol", l));
 		listeTransitions.add(new Transition(5, 7, "sol", l));
-		listeTransitions.add(new Transition(7, 6, "sol", l));
 		listeTransitions.add(new Transition(2, 7, "sol", l));
-		listeTransitions.add(new Transition(3, 6, "sol", l));
 
 		l = new ArrayList<String>();
-		l.add("retourner");
 		l.add("initLemmingBase");
 		listeTransitions.add(new Transition(6, 0, "vide", l));
 		listeTransitions.add(new Transition(6, 0, "sol", l));
 		listeTransitions.add(new Transition(6, 0, "mur", l));
 		
-		
+		l = new ArrayList<String>();
+		listeTransitions.add(new Transition(3, 6, "mur", l));
+		listeTransitions.add(new Transition(7, 6, "sol", l));
+		listeTransitions.add(new Transition(7, 6, "mur", l));
+		listeTransitions.add(new Transition(3, 6, "sol", l));
+
 
 	/*
 		l.add("rebondir");
