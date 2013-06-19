@@ -41,8 +41,14 @@ public class Moteur implements Constantes {
 			// Analyse de l'environnement du lemming courant
 			String cond;
 
+			if (Carte.map[x][y-1-coeff*3/4].isSol() && Carte.map[x-1][y-1-coeff*3/4].isSol() && Carte.map[x+1][y-1-coeff*3/4].isSol() )
+			{	cond = "sol"; System.out.println("SOL1");}
+					
+				
 			// Présence d'un vide
-			if( ( lem.getDirection()==gauche && Carte.map[x][y+1].isAir() ) ||
+			
+			else 
+				if( ( lem.getDirection()==gauche && Carte.map[x][y+1].isAir() ) ||
 					( lem.getDirection()==droite && Carte.map[x][y+1].isAir() )	) 
 				cond = "vide";
 
@@ -50,13 +56,12 @@ public class Moteur implements Constantes {
 			else if( (x==0 && lem.getDirection()==gauche) || 
 					(x==Carte.LARGEUR_CARTE-1 && lem.getDirection()==1) ||
 					(lem.getDirection()==gauche && Carte.map[x-1][y].isSol() && Carte.map[x-1][y-1].isSol() && Carte.map[x-1][y-2].isSol())||
-					(lem.getDirection()==droite && Carte.map[x+1][y].isSol() && Carte.map[x+1][y-1].isSol() && Carte.map[x+1][y-2].isSol())||
-					(lem.type == lemmingCatapulte && Carte.map[x][y-1-coeff*3/4].isSol() && Carte.map[x-1][y-1-coeff*3/4].isSol() && Carte.map[x+1][y-1-coeff*3/4].isSol() )
+					(lem.getDirection()==droite && Carte.map[x+1][y].isSol() && Carte.map[x+1][y-1].isSol() && Carte.map[x+1][y-2].isSol())
 					) 
-				cond = "mur";
+			{	cond = "mur"; System.out.println("MUR"); }
 
 			else 
-				cond = "sol";
+			{	cond = "sol"; System.out.println("SOL2"); }
 
 
 
@@ -114,7 +119,7 @@ public class Moteur implements Constantes {
 			}
 
 			System.out.println("etat:"+lem.getEtat()+" type:"+lem.getType()+" x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
-
+			System.out.println("Direction:"+lem.getDirection());
 			// Recherche de l'automate correspondant
 			Automate aut = null;
 			for(int m=0;m<Jeu.listeAutomates.size();m++) {
@@ -221,6 +226,7 @@ public class Moteur implements Constantes {
 			l.image = "Images/lemmingBaseDroite2.png";
 		}
 	}
+	
 
 	private static void tomber(Lemming l) {
 
@@ -273,68 +279,74 @@ public class Moteur implements Constantes {
 	}
 
 	private static void voler(Lemming l) {
-
 		trajectoireparaphysique t = l.getTrajH();
-		l.setX((int)t.calculx(l.time));
-		l.setY((int)t.calculy(l.time));
+		double x=t.calculx(l.time);
+		double y=t.calculy(l.time);
+		Point pReel = Moteur.collisionTrajectoire(new Point(l.getX(),l.getY()), new Point((int)t.calculx(l.time),(int)t.calculy(l.time)));
+
+		if(hasColision(x,y)){
+		l.setX(pReel.x);
+		l.setY(pReel.y);
+		}
+		else{
+		l.setX((int)x);
+		l.setY((int)y);
+		}
 
 		l.setTime();
-		//Carte.map[l.getX()][l.getY()].couleur = new Color(255,0,0);
+		Carte.map[l.getX()][l.getY()].couleur = new Color(255,0,0);
 
 	}
 
 	private static void rebondirsol(Lemming l) {
-		//Alors ici je cherche a avoir la Vitesse précise pour cela  ... 
-		Point courant,destination,colision;
-		colision=new Point(0,0);
+
+		
+		System.out.println("REBONDIR SO!!L");
+		
 		trajectoireparaphysique t= l.getTrajH() ;
 		double x  = t.calculx(l.time);
 		double y = t.calculy(l.time);
 		l.setXp(t.calculx(l.time -2*deltat));
 		l.setYp(t.calculy(l.time -2*deltat));
-		courant=new Point((int)t.calculx(l.time -2*deltat),(int)t.calculy(l.time -2*deltat));		
-		destination=new Point((int)x,(int)y);
-		colision.x=(int)Moteur.collisionTrajectoire(courant, destination).getX();
-		colision.y=(int)Moteur.collisionTrajectoire(courant, destination).getY();
-		System.out.println("x:"+l.getX()+" y:"+l.getY()+" Xp"+l.getXp() +"Yp" + l.getYp()+"xsol"+colision.getX()+"ysol"+colision.getY());
-         t.calculcolision(x, y, l.getXp()  , l.getYp(),colision.getX(),colision.getY() , l.getElasticite(),0.5, false);
-         if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 15){
+		l.setX((int)t.calculx(l.time -2*deltat));
+		l.setY((int)t.calculy(l.time -2*deltat));
+		t.calculcolision(x, y, l.getXp() , l.getYp(),l.getX(),l.getY() , l.getElasticite(),0.5, false);
+         
+		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 1){
  			l.setTrajH(t);
- 			System.out.println("x:"+l.getX()+" y"+l.getY());
- 			l.setY((int)colision.getY());
- 			l.setX((int)colision.getX());
+ 			System.out.println("x:"+l.getX()+" y"+l.getY()); 
  			Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
  			l.resetTime();
+ 			voler(l);
+ 		}
+         
+		
+	}
+private static void rebondirmur(Lemming l) {
+
+		
+		System.out.println("REBONDIR MUR!!");
+		trajectoireparaphysique t= l.getTrajH() ;
+		double x  = t.calculx(l.time);
+		double y = t.calculy(l.time);
+		l.setXp(t.calculx(l.time -2*deltat));
+		l.setYp(t.calculy(l.time -2*deltat));
+		l.setX((int)t.calculx(l.time -2*deltat));
+		l.setY((int)t.calculy(l.time -2*deltat));
+		t.calculcolision(x, y, l.getXp() , l.getYp(),l.getX(),l.getY() , l.getElasticite(),0.5, true);
+        
+		retourner(l);
+		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 10){
+ 			l.setTrajH(t);
+ 			System.out.println("x:"+l.getX()+" y"+l.getY()); 
+ 			Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
+ 			l.resetTime();
+ 			voler(l);
  		}
          
 		
 	}
 	
-	private static void rebondirmur(Lemming l) {
-		//Alors ici je cherche a avoir la Vitesse précise pour cela  ... 
-		Point courant,destination,colision;
-		colision=new Point(0,0);
-		trajectoireparaphysique t= l.getTrajH() ;
-		double x  = t.calculx(l.time);
-		double y = t.calculy(l.time);
-		l.setXp(t.calculx(l.time -2*deltat));
-		l.setYp(t.calculy(l.time -2*deltat));
-		courant=new Point((int)t.calculx(l.time -2*deltat),(int)t.calculy(l.time -2*deltat));		
-		destination=new Point((int)x,(int)y);
-		colision.x=(int)Moteur.collisionTrajectoire(courant, destination).getX();
-		colision.y=(int)Moteur.collisionTrajectoire(courant, destination).getY();
-		System.out.println("x:"+l.getX()+" y:"+l.getY()+" Xp"+l.getXp() +"Yp" + l.getYp()+"xsol"+colision.getX()+"ysol"+colision.getY());
-        t.calculcolision(x, y, l.getXp()  , l.getYp(),colision.getX(),colision.getY() , l.getElasticite(),0.5, true);
-        if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 15){
-			l.setTrajH(t);
-			System.out.println("x:"+l.getX()+" y"+l.getY());
-			l.setY((int)colision.getY());
- 			l.setX((int)colision.getX());
-			Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
-			l.resetTime();
-		}
-		
-	}
 		
 
 	private static void grimper(Lemming l) {
@@ -376,64 +388,69 @@ public class Moteur implements Constantes {
 		int yCourant =(int) pCourant.getY();
 		Point rep= new Point(0,0);
 		int i=0;
-		
+
 		if(((int)pDest.getX() - pCourant.getX())!=0){
-		 coeffDirecteur = (int)((pDest.getY() - pCourant.getY())/(pDest.getX() - pCourant.getX()));
-		int constante = pCourant.y - coeffDirecteur * pCourant.x;
-		i = (int)pCourant.getX();
-		if ((int)pCourant.getX() < pDest.getX()) {
-			while (i< pDest.getX() ) {
-				yCourant = coeffDirecteur * i + constante;
-				if (Carte.map[i][yCourant].isSol()){					
-					break;				}
-				i++;
+			coeffDirecteur = (int)((pDest.getY() - pCourant.getY())/(pDest.getX() - pCourant.getX()));
+			int constante = pCourant.y - coeffDirecteur * pCourant.x;
+			i = (int)pCourant.getX();
+			if ((int)pCourant.getX() < pDest.getX()) {
+				while (i< pDest.getX() ) {
+					yCourant = coeffDirecteur * i + constante;
+					if (Carte.map[i][yCourant].isSol()){
+						break; }
+					i++;
+				}
+				rep.x=i;
+				rep.y=coeffDirecteur * i + constante;
 			}
-			rep.x=i-2;
-			rep.y=coeffDirecteur * (i-2) + constante;
-		}
-		else {
-			while (i> pDest.x) {
-				yCourant = coeffDirecteur * i + constante;
-				if (Carte.map[i][yCourant].isSol()){
-					
-					break;
-				}					
-				i--;
+			else {
+				while (i> pDest.x) {
+					yCourant = coeffDirecteur * i + constante;
+					if (Carte.map[i][yCourant].isSol()){
+
+						break;
+					}
+					i--;
+				}
+				rep.x=i;
+				rep.y=coeffDirecteur * i + constante;
 			}
-			rep.x=i+2;
-			rep.y=coeffDirecteur * (i+2) + constante;
-		}
 		}
 		else{
 			i=(int)pCourant.getY();
 			if ((int)pCourant.getY() < pDest.getY()){
 				while(i<pDest.getY()){
-					if (Carte.map[(int)pCourant.getX()][i].isSol()){					
+					if (Carte.map[(int)pCourant.getX()][i].isSol()){
 						break;
 					}
 					i++;
 				}
 				rep.x=(int)pCourant.getX();
-				rep.y=i-2;
+				rep.y=i;
 			}
 			else{
 				while(i>pDest.getY()){
-					if (Carte.map[(int)pCourant.getX()][i].isSol()){					
+					if (Carte.map[(int)pCourant.getX()][i].isSol()){
 						break;
 					}
 					i--;
 				}
 				rep.x=(int)pCourant.getX();
-				rep.y=i+2;
-				}
-				
+				rep.y=i;
 			}
-					
-			
-			
-		
-		
+
+		}
+
 		return rep;
 	}
 
+
+	public static boolean hasColision(double x,double y){
+		if (Carte.map[(int)x][(int)y].isSol()){
+		return true;
+		}
+		else
+		return false;
+
+		}
 }
