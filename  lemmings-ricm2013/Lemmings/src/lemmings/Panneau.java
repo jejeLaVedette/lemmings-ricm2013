@@ -31,7 +31,7 @@ public class Panneau extends JPanel implements Constantes{
 		//on test les y
 		if(coefFenetre*tailleFY>=Carte.HAUTEUR_CARTE) this.tailleRY = (int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE);
 		else this.tailleRY = 1;
-		
+
 		System.out.println("tailleRX : "+tailleRX);
 		System.out.println("tailleRY : "+tailleRY);
 	}
@@ -48,7 +48,7 @@ public class Panneau extends JPanel implements Constantes{
 				// on avance en longueur
 				posX=posX+tailleRX;
 			}
-			//on se replace tout a gauche de l'Ã©cran
+			//on se replace tout a gauche de l'écran
 			posX=0;
 			//et on diminue d'un rang en hauteur
 			posY=posY+tailleRY;
@@ -77,7 +77,7 @@ public class Panneau extends JPanel implements Constantes{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
 
 
