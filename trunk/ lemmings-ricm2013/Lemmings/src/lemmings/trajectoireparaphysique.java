@@ -1,5 +1,5 @@
 package lemmings;
-import java.math.*;
+
 
 public class trajectoireparaphysique implements Constantes {
 
@@ -8,7 +8,7 @@ public class trajectoireparaphysique implements Constantes {
 	private double Vx;
 	private double Vy;
 	private double masse;
-	private double surface;
+	
 	
 	public trajectoireparaphysique(int bx, int by,double vecx,double vecy,int type){
 		this.base_x=bx;
@@ -76,9 +76,14 @@ public class trajectoireparaphysique implements Constantes {
 	 public void calculcolision(double xcoli,double ycoli,double xprec,double yprec,double xbase,double ybase,double coeff1,double coeff2,boolean type){
 		 
 		
-		 
-		 this.Vx=2*((xcoli-xprec)/(2*deltat));
+		if(!type){
+		 this.Vx=(2*(xcoli-xprec)/(2*deltat));
 		 this.Vy= (-(ycoli-yprec)/(2*deltat));
+		}
+		else{
+			this.Vx=((xcoli-xprec)/(2*deltat));
+			 this.Vy= (-2*(ycoli-yprec)/(2*deltat));
+		}
 		 System.out.println("Percussion");
 		 System.out.println("valeur de Vx ");			
 	     System.out.println(Vx);
