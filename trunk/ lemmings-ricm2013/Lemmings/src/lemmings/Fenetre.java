@@ -59,8 +59,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private int catapulteY = 150;
 
 
-	private Panneau zone_map;
-	private Panneau2 mini_map;
+	public static Panneau zone_map;
+	public static Panneau2 mini_map;
 
 	private JScrollPane scroll;
 
@@ -115,8 +115,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JMenuItem mntmFermer;
 	private JMenuItem chargement;
 
-
-
 	public Fenetre(int tFX, int tFY) throws IOException {
 
 		tailleFX = tFX;
@@ -135,9 +133,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		Image icone = new ImageIcon("Images/Logo.jpg").getImage();
 		setIconImage(icone);
 
-		zone_map = new Panneau(tailleFX, tailleFY);
-		mini_map = new Panneau2(tailleFX, tailleFY);
-
+		zone_map = new Panneau(Fenetre.tailleFX, Fenetre.tailleFY);
+		mini_map = new Panneau2(Fenetre.tailleFX, Fenetre.tailleFY);
+		
+		
 		//ZONE QUI CONTIENT LA MINIMAP
 		JPanel zone_droite = new JPanel();
 		GridBagConstraints c = new GridBagConstraints();
@@ -148,6 +147,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		flowLayout.setVgap(25);
 		flowLayout.setHgap(-6);
 		zone_droite.add(mini_map,c);
+		
+		
 
 		// Initialisation des boutons
 		initBoutons();
@@ -380,10 +381,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			try {
 				Carte.initCmp(4, 20, 0, 0, 0, 0, 0, 0);
 				afficherTexteCmp();
-				Jeu.initialiserJeu("Images/Carte.png", 
-						"Images/nuages.png", 
+				Jeu.initialiserJeu("Images/Carte4.png", 
+						"Images/Carte4.png", 
 						"", 
-						"Documents partagés/automate.xml", 
+						"Documents partagÃ©s/automate.xml", 
 						new Point(60,55), 
 						new Point(330,125), 
 						20);
@@ -401,7 +402,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				Jeu.initialiserJeu("Images/map1.png", 
 						"Images/mario.png", 
 						"", 
-						"Documents partagés/automate.xml", 
+						"Documents partagÃ©s/automate.xml", 
 						new Point(60,55), 
 						new Point(330,125), 
 						20);
@@ -409,10 +410,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			} catch (IOException ev) {
 				// TODO Auto-generated catch block
 				ev.printStackTrace();
-			}
+			} 
 		}
 		
-		if(e.getSource()==mntmFermer) System.exit(0); //on close la fenètre
+		if(e.getSource()==mntmFermer) System.exit(0); //on close la fenï¿½tre
 
 
 		if(e.getSource()==bouton_creuse) typeCourant = lemmingCreuseur; 
