@@ -182,7 +182,7 @@ public class Moteur implements Constantes {
 		else if(s.equals("rebondirsol"))
 			rebondirsol(l);
 		else if(s.equals("rebondirmur"))
-			rebondirsol(l);
+			rebondirmur(l);
 		else if(s.equals("grimper"))
 			grimper(l);
 		else if(s.equals("construireEscalier"))
@@ -313,6 +313,7 @@ public class Moteur implements Constantes {
 	private static void rebondirmur(Lemming l) {
 		//Alors ici je cherche a avoir la Vitesse précise pour cela  ... 
 		Point courant,destination,colision;
+		colision=new Point(0,0);
 		trajectoireparaphysique t= l.getTrajH() ;
 		double x  = t.calculx(l.time);
 		double y = t.calculy(l.time);
@@ -320,7 +321,8 @@ public class Moteur implements Constantes {
 		l.setYp(t.calculy(l.time -2*deltat));
 		courant=new Point((int)t.calculx(l.time -2*deltat),(int)t.calculy(l.time -2*deltat));		
 		destination=new Point((int)x,(int)y);
-		colision=Moteur.collisionTrajectoire(courant, destination);
+		colision.x=(int)Moteur.collisionTrajectoire(courant, destination).getX();
+		colision.y=(int)Moteur.collisionTrajectoire(courant, destination).getY();
 		System.out.println("x:"+l.getX()+" y:"+l.getY()+" Xp"+l.getXp() +"Yp" + l.getYp()+"xsol"+colision.getX()+"ysol"+colision.getY());
         t.calculcolision(x, y, l.getXp()  , l.getYp(),colision.getX(),colision.getY() , l.getElasticite(),0.5, true);
         if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 15){

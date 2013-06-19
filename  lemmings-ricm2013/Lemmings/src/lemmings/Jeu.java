@@ -76,7 +76,7 @@ public class Jeu implements Constantes {
 
 
 
-		Carte.obs.add(new Lemming(100,150,Math.PI/4,80));
+		Carte.obs.add(new Lemming(400,150,Math.PI/4,50));
 
 
 
