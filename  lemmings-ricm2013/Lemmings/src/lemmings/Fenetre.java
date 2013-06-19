@@ -382,7 +382,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	public void actionPerformed(ActionEvent e) {
 
 		if(e.getSource()==mntmMap || e.getSource()==mnJouer_1){
-			try {	
+			try {
+				Carte.lemmingASauver=10;
 				Carte.initCmp(4, 20, 4, 0, 0, 0, 4, 0);
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/Carte4.png", 
@@ -402,6 +403,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		if(e.getSource()==mntmMap2){
 			try {
+				Carte.lemmingASauver=10;
 				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/map1.png", 
@@ -422,6 +424,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		if(e.getSource()==mntmMap3){
 			try {
+				Carte.lemmingASauver=10;
 				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/carte3.png", 
@@ -448,7 +451,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			String s; 
 			Carte.setNbLemmings(0);
 			Carte.obs.removeAll(Carte.obs);
-			if(Carte.lemmingSauf>=10) s = "lemming sauver : "+ Carte.lemmingSauf+"\n Vous avez gagné!!";
+			if(Carte.lemmingSauf>Carte.lemmingASauver) s = "lemming sauver : "+ Carte.lemmingSauf+"\n Vous avez gagné!!";
 			else s = "lemming sauver : "+ Carte.lemmingSauf+"\n Vous avez perdu";
 			JOptionPane.showMessageDialog(null, s);
 		}
