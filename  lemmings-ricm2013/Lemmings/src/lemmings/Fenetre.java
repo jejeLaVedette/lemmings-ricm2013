@@ -49,7 +49,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JFormattedTextField Tpuissance = new JFormattedTextField(NumberFormat.getIntegerInstance());
 	private JLabel label = new JLabel("Entrez un angle : ");
 	private JLabel label2 = new JLabel("Entrez une puissance : ");
-	private final JFrame frame = new JFrame("Réglage catapulte");
+	private final JFrame frame = new JFrame("Rï¿½glage catapulte");
 	private JSplitPane split2, split3;
 	private int espacement_hori = 20;
 	private int espacement_text = 65;
@@ -327,7 +327,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mntmMap = new JMenuItem("Jouer");
 		mnMap.add(mntmMap);
 		mntmMap.addActionListener(this);
-		mapDetail = new JMenuItem("Détails");
+		mapDetail = new JMenuItem("Dï¿½tails");
 		mnMap.add(mapDetail);
 		mapDetail.addActionListener(this);
 
@@ -336,7 +336,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mntmMap2 = new JMenuItem("Jouer");
 		mnMap2.add(mntmMap2);
 		mntmMap2.addActionListener(this);
-		map2Detail = new JMenuItem("Détails");
+		map2Detail = new JMenuItem("Dï¿½tails");
 		mnMap2.add(map2Detail);
 		map2Detail.addActionListener(this);
 		
@@ -448,8 +448,15 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				ev.printStackTrace();
 			} 
 		}
+	
+		if(e.getSource()==mntmRgle) {
+			String regle = "Le but du jeu et de sauver les lemmings. \n Pour ce faire, vous devez les ammener de la porte de sortie Ã  la porte d'entrÃ©e. \n Evitez de gaspiller vos lemmings, ils ont tous leur importance";
+			JOptionPane.showMessageDialog(null, regle);
+		}
 
-		if(e.getSource()==mntmFermer) System.exit(0); //on close la fenètre et le jeu
+
+		if(e.getSource()==mntmFermer) System.exit(0); //on close la fenï¿½tre et le jeu
+
 
 		if(e.getSource()==mntmMap3){
 			try {
@@ -464,13 +471,13 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						new Point(60,55), 
 						new Point(330,125), 
 						20);
-
-
+				
 			} catch (IOException ev) {
 				// TODO Auto-generated catch block
 				ev.printStackTrace();
 			}
 		}
+		
 
 
 		if(e.getSource()==bouton_creuse) typeCourant = lemmingCreuseur; 
@@ -481,7 +488,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			String s; 
 			Carte.setNbLemmings(0);
 			Carte.obs.removeAll(Carte.obs);
-			if(Carte.lemmingSauf>Carte.lemmingASauver) s = "lemming(s) sauvé(s) : "+ Carte.lemmingSauf+"\n Vous avez gagné!!";
+			if(Carte.lemmingSauf>Carte.lemmingASauver) s = "lemming(s) sauvï¿½(s) : "+ Carte.lemmingSauf+"\n Vous avez gagnï¿½!!";
 			else s = "lemming sauver : "+ Carte.lemmingSauf+"\n Vous avez perdu";
 			JOptionPane.showMessageDialog(null, s);
 		}
