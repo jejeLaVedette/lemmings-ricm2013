@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
@@ -85,6 +86,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JButton bouton_accelerer; 
 	private JButton bouton_recharger; 
 	private JButton bouton_lemmingSave;
+	private JButton bouton_suppr;
 
 	//DECLARATION DE TOUT LES TEXTES DES COMPTEURS
 	private JLabel tPioche;
@@ -272,8 +274,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		Component horizontalStrut_2 = Box.createHorizontalStrut(espacement_hori);
 		bouton_inf2.add(horizontalStrut_2);
 		bouton_inf2.add(bouton_recharger);
-		//Component horizontalStrut_42 = Box.createHorizontalStrut(espacement_hori);
-		//bouton_inf2.add(horizontalStrut_42);
+		
+		Component horizontalStrut_13 = Box.createHorizontalStrut(espacement_hori);
+		bouton_inf2.add(horizontalStrut_13);
+		bouton_inf2.add(bouton_suppr);
 
 		//On positionne maintenant en colonne
 		zone_gauche.setLayout(new BoxLayout(zone_gauche, BoxLayout.PAGE_AXIS));
@@ -440,6 +444,14 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
 		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
 		if(e.getSource()==bouton_escalier) typeCourant = lemmingEscalier;
+		if(e.getSource()==bouton_suppr) {
+			String s; 
+			Carte.setNbLemmings(0);
+			Carte.obs.removeAll(Carte.obs);
+			if(Carte.lemmingSauf>=10) s = "lemming sauver : "+ Carte.lemmingSauf+"\n Vous avez gagné!!";
+			else s = "lemming sauver : "+ Carte.lemmingSauf+"\n Vous avez perdu";
+			JOptionPane.showMessageDialog(null, s);
+		}
 		if(e.getSource()==bouton_Catapulte){
 			Carte.cmpCatapulte--;
 			bouton_Catapulte.addMouseListener(new MouseAdapter() {
@@ -595,6 +607,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_accelerer = new JButton(new ImageIcon(((new ImageIcon("Images/accelerer.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_recharger = new JButton(new ImageIcon(((new ImageIcon("Images/recharger.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_lemmingSave = new JButton(new ImageIcon(((new ImageIcon("Images/sauver.jpg")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
+		bouton_suppr = new JButton(new ImageIcon(((new ImageIcon("Images/explosion.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 
 		tPioche = new JLabel(""+Carte.cmpPioche);
 		tParapluie = new JLabel(""+Carte.cmpParapluie);
@@ -620,6 +633,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_pause.addActionListener(this);
 		bouton_accelerer.addActionListener(this);
 		bouton_recharger.addActionListener(this);
+		bouton_suppr.addActionListener(this);
 	}
 
 	class BoutonListener implements ActionListener{
