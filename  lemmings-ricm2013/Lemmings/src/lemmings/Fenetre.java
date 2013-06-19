@@ -12,8 +12,10 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Point;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
+import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -40,25 +42,20 @@ import java.awt.event.MouseListener;
 
 public class Fenetre extends JFrame implements Constantes, MouseListener, ActionListener{
 
+	private static final long serialVersionUID = 1L;
+
 	private JPanel container = new JPanel();
 	private JFormattedTextField Tangle = new JFormattedTextField(NumberFormat.getIntegerInstance());
 	private JFormattedTextField Tpuissance = new JFormattedTextField(NumberFormat.getIntegerInstance());
 	private JLabel label = new JLabel("Entrez un angle : ");
 	private JLabel label2 = new JLabel("Entrez une puissance : ");
-	private JButton b2 = new JButton ("OK");
 	private final JFrame frame = new JFrame("Réglage catapulte");
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	private JSplitPane split2, split3;
 	private int espacement_hori = 20;
 	private int espacement_text = 65;
 	private int typeCourant;
 	private int catapulteX = 100;
 	private int catapulteY = 150;
-
 
 	public static Panneau zone_map;
 	public static Panneau2 mini_map;
@@ -87,6 +84,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JButton bouton_recharger; 
 	private JButton bouton_lemmingSave;
 	private JButton bouton_suppr;
+	private JButton b2 = new JButton ("OK");
 
 	//DECLARATION DE TOUT LES TEXTES DES COMPTEURS
 	private JLabel tPioche;
@@ -116,6 +114,12 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JMenuItem mntmRgle;
 	private JMenuItem mntmFermer;
 	private JMenuItem chargement;
+	private JMenu mnMap;
+	private JMenuItem mapDetail;
+
+	private JMenu mnMap2;
+
+	private JMenuItem map2Detail;
 
 	public Fenetre(int tFX, int tFY) throws IOException {
 
@@ -189,8 +193,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		bouton_sup.add(bouton_lemmingSave);
 
-
-
+		
+		
 		text1.setLayout(new BoxLayout(text1, BoxLayout.LINE_AXIS));
 
 		text1.add(tPioche);
@@ -290,8 +294,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		// Scrollbar
 		scroll = new JScrollPane(zone_map);
 		zone_map.setPreferredSize(new Dimension(Carte.LARGEUR_CARTE,Carte.HAUTEUR_CARTE));
-		System.out.println("largeur carte "+ Carte.LARGEUR_CARTE);
-		System.out.println("hauteur carte "+ Carte.HAUTEUR_CARTE);
 		this.setLayout(new BorderLayout());
 
 		//On place le premier sï¿½parateur
@@ -320,14 +322,29 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mnJouer.add(mnJouer_1);
 		mnJouer_1.addActionListener(this);
 
-		mntmMap = new JMenuItem("map1");
-		mnCarte.add(mntmMap);
+		mnMap = new JMenu("map1");
+		mnCarte.add(mnMap);
+		mntmMap = new JMenuItem("Jouer");
+		mnMap.add(mntmMap);
 		mntmMap.addActionListener(this);
+		mapDetail = new JMenuItem("Détails");
+		mnMap.add(mapDetail);
+		mapDetail.addActionListener(this);
 
-		mntmMap2 = new JMenuItem("map2");
-		mnCarte.add(mntmMap2);
+		mnMap2 = new JMenu("map2");
+		mnCarte.add(mnMap2);
+		mntmMap2 = new JMenuItem("Jouer");
+		mnMap2.add(mntmMap2);
 		mntmMap2.addActionListener(this);
+		map2Detail = new JMenuItem("Détails");
+		mnMap2.add(map2Detail);
+		map2Detail.addActionListener(this);
+		
+		
 
+		
+		
+		
 		mntmMap3 = new JMenuItem("map3");
 		mnCarte.add(mntmMap3);
 		mntmMap3.addActionListener(this);
@@ -367,7 +384,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		scroll.repaint();
 		tLemmingSave.setText("" + Carte.lemmingSauf);
 		mini_map.repaint();
-
 		try {
 			Thread.sleep(10); // a une certaine vitesse --> 1000 = 1sec
 		} catch (InterruptedException e) {
@@ -383,6 +399,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		if(e.getSource()==mntmMap || e.getSource()==mnJouer_1){
 			try {
+				Carte.lemmingSauf=0;
 				Carte.lemmingASauver=10;
 				Carte.initCmp(4, 20, 4, 0, 0, 0, 4, 0);
 				afficherTexteCmp();
@@ -400,9 +417,20 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				ev.printStackTrace();
 			}
 		}
+		
+		if(e.getSource()==mapDetail){
+			JOptionPane.showMessageDialog(null, "Map1\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("Images/carte3.png"));
+		}
+		
+		
+		
+		if(e.getSource()==map2Detail){
+			JOptionPane.showMessageDialog(null, "Map1\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("Images/map1.png"));
+		}
 
 		if(e.getSource()==mntmMap2){
 			try {
+				Carte.lemmingSauf=0;
 				Carte.lemmingASauver=10;
 				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
 				afficherTexteCmp();
@@ -413,6 +441,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						new Point(60,55), 
 						new Point(330,125), 
 						20);
+				
 
 			} catch (IOException ev) {
 				// TODO Auto-generated catch block
@@ -420,10 +449,11 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			} 
 		}
 
-		if(e.getSource()==mntmFermer) System.exit(0); //on close la fenètre 
+		if(e.getSource()==mntmFermer) System.exit(0); //on close la fenètre et le jeu
 
 		if(e.getSource()==mntmMap3){
 			try {
+				Carte.lemmingSauf=0;
 				Carte.lemmingASauver=10;
 				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
 				afficherTexteCmp();
@@ -455,6 +485,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			else s = "lemming sauver : "+ Carte.lemmingSauf+"\n Vous avez perdu";
 			JOptionPane.showMessageDialog(null, s);
 		}
+		
 		if(e.getSource()==bouton_Catapulte){
 			Carte.cmpCatapulte--;
 			bouton_Catapulte.addMouseListener(new MouseAdapter() {
@@ -581,7 +612,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -645,7 +675,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			angle = (double) ((Integer.parseInt(Tangle.getText()))*Math.PI/180); //on met en radian
 			Carte.obs.add(new Lemming(catapulteX,catapulteY,angle,puissance));
 			frame.dispose();
-
 		}
 	}
 
