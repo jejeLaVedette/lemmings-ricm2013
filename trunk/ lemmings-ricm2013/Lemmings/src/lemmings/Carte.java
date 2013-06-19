@@ -13,6 +13,7 @@ public class Carte implements Constantes {
 	public static Point entree,sortie;
 	public static int nbLemmings = 0;
 	public static int lemmingSauf = 0;
+	public static int lemmingASauver=0;
 
 	public static int LARGEUR_CARTE;
 	public static int HAUTEUR_CARTE;
