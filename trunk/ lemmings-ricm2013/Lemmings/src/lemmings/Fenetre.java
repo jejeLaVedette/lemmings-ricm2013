@@ -396,16 +396,20 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource()==chargement) FileChooser.createAndShowGUI();
 
 		if(e.getSource()==mntmMap || e.getSource()==mnJouer_1){
 			try {
+
+				Jeu.playWave.stop();
 				Carte.lemmingSauf=0;
 				Carte.lemmingASauver=10;
 				Carte.initCmp(4, 20, 4, 0, 0, 0, 4, 0);
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/Carte4.png", 
 						"Images/Carte4.png", 
-						"", 
+						"Musiques/fairy_tail.wav", 
 						"Automates/automate.xml", 
 						new Point(60,55), 
 						new Point(330,125), 
@@ -430,6 +434,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		if(e.getSource()==mntmMap2){
 			try {
+				Jeu.playWave.stop();
 				Carte.lemmingSauf=0;
 				Carte.lemmingASauver=10;
 				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
