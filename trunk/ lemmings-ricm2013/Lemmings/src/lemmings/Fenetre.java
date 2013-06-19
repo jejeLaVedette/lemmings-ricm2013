@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Point;
 
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
@@ -44,7 +45,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JLabel label = new JLabel("Entrez un angle : ");
 	private JLabel label2 = new JLabel("Entrez une puissance : ");
 	private JButton b2 = new JButton ("OK");
-	private final JFrame frame = new JFrame("Réglage catapulte");
+	private final JFrame frame = new JFrame("Rï¿½glage catapulte");
 	/**
 	 * 
 	 */
@@ -99,6 +100,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private int ancienNum;
 	private int puissance;
 	private double angle;
+	
+	// Menu
+	private JMenuBar menuBar;
 
 
 
@@ -287,7 +291,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		//placï¿½ au centre pour qu'il utilise tout l'espace disponible
 		this.getContentPane().add(split3, BorderLayout.CENTER);
 
-		JMenuBar menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
 		JMenu mnJouer = new JMenu("Jouer");
@@ -303,6 +307,20 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mnCarte.add(mntmMap);
 		mntmMap.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				try {
+					
+					Jeu.initialiserJeu("Images/Carte.png", 
+									   "Images/nuages.png", 
+									   "", 
+									   "Documents partagÃ©s/automate.xml", 
+									   new Point(60,55), 
+									   new Point(330,125), 
+									   20);
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}       
 		});

@@ -9,70 +9,44 @@ import java.util.List;
 
 public class Jeu implements Constantes {
 
-        public static List<Automate>listeAutomates = new ArrayList<Automate>();
+	public static List<Automate>listeAutomates = new ArrayList<Automate>();
 
-        public static void main(String[] args) throws InterruptedException, IOException{
-
-
-
-		//listeAutomates.add(new AutoLemmingBasique(5));
-		AutomateHandler.initAutomates("./Documents partagés/automate.xml");
-		listeAutomates.add(new AutoLemmingStop(5));
-		//listeAutomates.add(new AutoLemmingParapluie(5));
-		//listeAutomates.add(new AutoLemmingCreuseur(5));
+	public static void main(String[] args) throws InterruptedException, IOException{
 
 
 
-		listeAutomates.add(new AutoLemmingCatapulte(5));
+
+		Carte.initCmp(0, 0, 0, 0, 0, 0, 0, 0);
+		Jeu.initialiserJeu("Images/Carte2.png", "Images/chat.png", "", "Documents partagés/automate.xml", new Point(60,55), new Point(330,125), 20);
+		
+		int wait = delaiPop + 1;
+
+		Fenetre f = new Fenetre(tailleFenetreH,tailleFenetreV);
+		f.afficher();
+
+		// Lemmings bloqueurs
+		//Carte.obs.add(new Lemming(100,61,lemmingStop));
+		//Carte.obs.add(new Lemming(80,80,lemmingStop));
+		//Carte.obs.add(new Lemming(80,80,lemmingStop));
+		//Carte.obs.add(new Lemming(160,30,lemmingStop));
+
+		f.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
 
-                //listeAutomates.add(new AutoLemmingGrimpeur(5));
+		// Lemmings creuseurs
+		//Carte.obs.add(new Lemming(80,80,lemmingCreuseur));
+		//Carte.obs.add(new Lemming(330,80,lemmingCreuseur));
 
 
-		//Carte.miniMap = "Images/Carte.png";
-		//Thread playWave=new AePlayWave("Musiques/THePETEBOX_Panther Dance.wav");
-		//playWave.start();
-
-
-                Carte.charger("Images/Carte2.png","Images/mario.png");
-
-                Carte.initCmp(5, 1, 6, 0, 0, 0, 2, 0);
-
-                Carte.setEntree(new Point(60, 55));
-                Carte.setSortie(new Point(330, 125));
-
-
-		Carte.setNbLemmings(0);
-
-
-                int wait = delaiPop + 1;
-
-                Fenetre f = new Fenetre(tailleFenetreH,tailleFenetreV);
-                f.afficher();
-
-                // Lemmings bloqueurs
-                //Carte.obs.add(new Lemming(100,61,lemmingStop));
-                //Carte.obs.add(new Lemming(80,80,lemmingStop));
-                //Carte.obs.add(new Lemming(80,80,lemmingStop));
-                //Carte.obs.add(new Lemming(160,30,lemmingStop));
-
-                f.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
-
-                // Lemmings creuseurs
-                //Carte.obs.add(new Lemming(80,80,lemmingCreuseur));
-                //Carte.obs.add(new Lemming(330,80,lemmingCreuseur));
-
-
-                // Lemmings catapultes
+		// Lemmings catapultes
 
 
 		//Carte.obs.add(new Lemming(250,150,lemmingCatapulte));
-               //Carte.obs.add(new Lemming(350,150,lemmingCatapulte));
-                //Carte.obs.add(new Lemming(250,150,lemmingCatapulte));
-                //Carte.obs.add(new Lemming(350,150,lemmingCatapulte));
-                //((Lemming) Carte.obs.get(0)).setDirection(gauche);
-                //((Lemming) Carte.obs.get(1)).setDirection(gauche);*/
+		//Carte.obs.add(new Lemming(350,150,lemmingCatapulte));
+		//Carte.obs.add(new Lemming(250,150,lemmingCatapulte));
+		//Carte.obs.add(new Lemming(350,150,lemmingCatapulte));
+		//((Lemming) Carte.obs.get(0)).setDirection(gauche);
+		//((Lemming) Carte.obs.get(1)).setDirection(gauche);*/
 
 
 
@@ -83,22 +57,45 @@ public class Jeu implements Constantes {
 
 
 
-                while(true) {
-                        //f.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                        if(wait>delaiPop && Carte.getNbLemmings()!=0) {
-                                Carte.popLemmings(lemmingBase);
-                                wait = 0;
-                        }
+		while(true) {
+			//f.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			if(wait>delaiPop && Carte.getNbLemmings()!=0) {
+				Carte.popLemmings(lemmingBase);
+				wait = 0;
+			}
 
-                        Moteur.miseAJourObservables();
-                        Thread.sleep(delaiAttente);
-                        f.afficher();
+			Moteur.miseAJourObservables();
+			Thread.sleep(delaiAttente);
+			f.afficher();
 
-                        if(Carte.getNbLemmings()!=0)
-                                wait++;
-                }
+			if(Carte.getNbLemmings()!=0)
+				wait++;
+		}
 
 
-        }
+	}
+
+	public static void initialiserJeu(String map,String background, String musique, String fichierAutomates, Point ptEntree, Point ptSortie, int nbLemmings) throws IOException {
+		
+		Carte.obs.removeAll(Carte.obs);
+		
+		AutomateHandler.initAutomates(fichierAutomates);
+		
+		listeAutomates.add(new AutoLemmingStop(5));
+		listeAutomates.add(new AutoLemmingCatapulte(5));
+
+		Carte.miniMap = "Images/Carte.png";
+		//Thread playWave=new AePlayWave(musique);
+		//playWave.start();
+
+
+		Carte.charger(map,background);
+		
+		Carte.setEntree(ptEntree);
+		Carte.setSortie(ptSortie);
+
+		Carte.setNbLemmings(nbLemmings);
+
+	}
 
 }
