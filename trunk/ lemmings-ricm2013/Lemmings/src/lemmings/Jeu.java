@@ -17,7 +17,7 @@ public class Jeu implements Constantes {
 
 
 		Carte.initCmp(0, 0, 0, 0, 0, 0, 0, 0);
-		Jeu.initialiserJeu("Images/Carte2.png", "Images/chat.png", "", "Documents partagÃ©s/automate.xml", new Point(60,55), new Point(330,125), 20);
+		Jeu.initialiserJeu("Images/Carte2.png", "Images/chat.png", "", "Documents partagés/automate.xml", new Point(60,55), new Point(330,125), 20);
 		
 		int wait = delaiPop + 1;
 

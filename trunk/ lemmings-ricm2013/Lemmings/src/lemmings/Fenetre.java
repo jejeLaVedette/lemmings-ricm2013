@@ -100,9 +100,20 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private int ancienNum;
 	private int puissance;
 	private double angle;
-	
+
 	// Menu
 	private JMenuBar menuBar;
+	private JMenu mnJouer;
+	private JMenu mnCarte;
+	private JMenuItem mnJouer_1;
+	private JMenuItem mntmMap;
+	private JMenuItem mntmMap2;
+	private JMenuItem mntmMap3;
+	private JMenuItem mntmMap4;
+	private JMenuItem mntmMap5;
+	private JMenuItem mntmRgle;
+	private JMenuItem mntmFermer;
+	private JMenuItem chargement;
 
 
 
@@ -169,14 +180,14 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_sup.add(horizontalStrut_5);
 
 		bouton_sup.add(bouton_futur1);
-		
+
 		Component horizontalStrut_12 = Box.createHorizontalStrut(espacement_hori);
 		bouton_sup.add(horizontalStrut_12);
 
 		bouton_sup.add(bouton_lemmingSave);
-		
-		
-		
+
+
+
 		text1.setLayout(new BoxLayout(text1, BoxLayout.LINE_AXIS));
 
 		text1.add(tPioche);
@@ -192,7 +203,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		text1.add(horizontalStrut_t3);
 
 		text1.add(tFutur1);
-		
+
 		Component horizontalStrut_t11 = Box.createHorizontalStrut(espacement_text);
 		text1.add(horizontalStrut_t11);
 
@@ -294,93 +305,48 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
-		JMenu mnJouer = new JMenu("Jouer");
+		mnJouer = new JMenu("Jouer");
 		menuBar.add(mnJouer);
-		
-		JMenu mnCarte = new JMenu("Carte");
+
+		mnCarte = new JMenu("Carte");
 		menuBar.add(mnCarte);
 
-		JMenuItem mnJouer_1 = new JMenuItem("Nouveau Jeu");
+		mnJouer_1 = new JMenuItem("Nouveau Jeu");
 		mnJouer.add(mnJouer_1);
+		mnJouer_1.addActionListener(this);
 
-		JMenuItem mntmMap = new JMenuItem("map1");
+		mntmMap = new JMenuItem("map1");
 		mnCarte.add(mntmMap);
-		mntmMap.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					
-					Jeu.initialiserJeu("Images/Carte.png", 
-									   "Images/nuages.png", 
-									   "", 
-									   "Documents partagÃ©s/automate.xml", 
-									   new Point(60,55), 
-									   new Point(330,125), 
-									   20);
-					
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-			}       
-		});
+		mntmMap.addActionListener(this);
 
-		JMenuItem mntmMap2 = new JMenuItem("map2");
+		mntmMap2 = new JMenuItem("map2");
 		mnCarte.add(mntmMap2);
-		mntmMap2.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}       
-		});
-		
-		JMenuItem mntmMap3 = new JMenuItem("map3");
+		mntmMap2.addActionListener(this);
+
+		mntmMap3 = new JMenuItem("map3");
 		mnCarte.add(mntmMap3);
-		mntmMap3.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}       
-		});
-		
-		JMenuItem mntmMap4 = new JMenuItem("map4");
+		mntmMap3.addActionListener(this);
+
+		mntmMap4 = new JMenuItem("map4");
 		mnCarte.add(mntmMap4);
-		mntmMap4.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}       
-		});
-		
-		JMenuItem mntmMap5 = new JMenuItem("map5");
+		mntmMap4.addActionListener(this);
+
+		mntmMap5 = new JMenuItem("map5");
 		mnCarte.add(mntmMap5);
-		mntmMap5.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}       
-		});
+		mntmMap5.addActionListener(this);
 
-		JMenuItem mntmRgle = new JMenuItem("r\u00E8gles");
+		mntmRgle = new JMenuItem("r\u00E8gles");
 		mnJouer.add(mntmRgle);
-		mntmRgle.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}       
-		});
-		
-		JMenuItem mntmFermer = new JMenuItem("Fermer");
-		mnJouer.add(mntmFermer);
-		mntmFermer.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-			}       
-		});
+		mntmRgle.addActionListener(this);
 
-		JMenuItem chargement = new JMenuItem("chargement de map...");
+		mntmFermer = new JMenuItem("Fermer");
+		mnJouer.add(mntmFermer);
+		mntmFermer.addActionListener(this);
+
+		chargement = new JMenuItem("chargement de map...");
 		mnCarte.add(chargement);
-		chargement.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
-				FileChooser.createAndShowGUI();
-			}       
-		});
-		
+		chargement.addActionListener(this);
+
 
 		zone_map.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent event) {
@@ -409,6 +375,45 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	}
 
 	public void actionPerformed(ActionEvent e) {
+
+		if(e.getSource()==mntmMap || e.getSource()==mnJouer_1){
+			try {
+				Carte.initCmp(4, 20, 0, 0, 0, 0, 0, 0);
+				afficherTexteCmp();
+				Jeu.initialiserJeu("Images/Carte.png", 
+						"Images/nuages.png", 
+						"", 
+						"Documents partagés/automate.xml", 
+						new Point(60,55), 
+						new Point(330,125), 
+						20);
+
+			} catch (IOException ev) {
+				// TODO Auto-generated catch block
+				ev.printStackTrace();
+			}
+		}
+
+		if(e.getSource()==mntmMap2){
+			try {
+				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
+				afficherTexteCmp();
+				Jeu.initialiserJeu("Images/map1.png", 
+						"Images/mario.png", 
+						"", 
+						"Documents partagés/automate.xml", 
+						new Point(60,55), 
+						new Point(330,125), 
+						20);
+
+			} catch (IOException ev) {
+				// TODO Auto-generated catch block
+				ev.printStackTrace();
+			}
+		}
+		
+		if(e.getSource()==mntmFermer) System.exit(0); //on close la fenètre
+
 
 		if(e.getSource()==bouton_creuse) typeCourant = lemmingCreuseur; 
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
@@ -528,7 +533,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			System.out.println("###########");
 		}
 
-		
+
 	}
 
 	@Override
@@ -604,6 +609,17 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			frame.dispose();
 
 		}
+	}
+
+	public void afficherTexteCmp(){
+		tPioche.setText("" + Carte.cmpPioche);
+		tParapluie.setText("" + Carte.cmpParapluie);
+		tEscalier.setText("" + Carte.cmpEscalier);
+		tEscalade.setText("" + Carte.cmpEscalade);
+		tFutur1.setText("" + Carte.cmpFutur1);
+		tBombe.setText("" + Carte.cmpBombe);
+		tStop.setText("" + Carte.cmpStop);
+		tFutur2.setText("" + Carte.cmpFutur2);	
 	}
 
 
