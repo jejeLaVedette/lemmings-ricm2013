@@ -68,7 +68,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JButton bouton_parapluie;  
 	private JButton bouton_escalier;  
 	private JButton bouton_Catapulte;  
-	private JButton bouton_escalade;  
+	private JButton bouton_trampoline;  
 	private JButton bouton_bombe;  
 	private JButton bouton_stop; 
 	private JButton bouton_futur2; 
@@ -85,7 +85,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JLabel tParapluie;
 	private JLabel tEscalier;
 	private JLabel tCatapulte;
-	private JLabel tEscalade;
+	private JLabel tTrampoline;
 	private JLabel tBombe;
 	private JLabel tStop;
 	private JLabel tFutur2;
@@ -222,7 +222,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		JPanel bouton_inf1 = new JPanel();
 
 		bouton_inf1.setLayout(new BoxLayout(bouton_inf1, BoxLayout.LINE_AXIS));
-		bouton_inf1.add(bouton_escalade);
+		bouton_inf1.add(bouton_trampoline);
 
 		Component horizontalStrut_10 = Box.createHorizontalStrut(espacement_hori);
 		bouton_inf1.add(horizontalStrut_10);
@@ -245,7 +245,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		Component horizontalStrut_tbonus = Box.createHorizontalStrut(espacement_text);
 		text2.add(horizontalStrut_tbonus);
 
-		text2.add(tEscalade);
+		text2.add(tTrampoline);
 		Component horizontalStrut_t4 = Box.createHorizontalStrut(espacement_text);
 		text2.add(horizontalStrut_t4);
 
@@ -400,7 +400,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 	public void mouseClicked(MouseEvent arg0) {
 		if(arg0.getSource()==zone_map) modifType(arg0);
-
+		
 		if(arg0.getSource()==bouton_Catapulte) {
 			if(Carte.cmpCatapulte < 0) tCatapulte.setText("0");
 			else {
@@ -493,7 +493,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				Jeu.playWave.stop();
 				Carte.lemmingSauf=0;
 				Carte.lemmingASauver=10;
-				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
+				Carte.initCmp(4, 4, 6, 0, 7, 0, 2, 0);
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/map1.png", 
 						"Images/mario.png", 
@@ -588,6 +588,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
 		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
 		if(e.getSource()==bouton_escalier) typeCourant = lemmingEscalier;
+		if(e.getSource()==bouton_trampoline) typeCourant = lemmingTrampoline;
 
 		//permet de tuer tout les lemmings et dit si on a gagné ou non le jeu
 		if(e.getSource()==bouton_suppr) {
@@ -668,6 +669,11 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						else tEscalier.setText("" + Carte.cmpEscalier);
 						this.ancienNum = Carte.cmpEscalier;
 					}
+					if(typeCourant == lemmingTrampoline){
+						if(Carte.cmpTrampoline-- <= 0) tTrampoline.setText("0");
+						else tTrampoline.setText("" + Carte.cmpTrampoline);
+						this.ancienNum = Carte.cmpTrampoline;
+					}
 
 					if(this.ancienNum>=0) {
 						Carte.obs.get(i).type=typeCourant;
@@ -706,7 +712,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_parapluie = new JButton(new ImageIcon(((new ImageIcon("Images/parapluie_ferme.jpg")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_escalier = new JButton(new ImageIcon(((new ImageIcon("Images/escalier.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_Catapulte = new JButton(new ImageIcon(((new ImageIcon("Images/Catapulte.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
-		bouton_escalade = new JButton(new ImageIcon(((new ImageIcon("Images/escalade.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+		bouton_trampoline = new JButton(new ImageIcon(((new ImageIcon("Images/escalade.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_bombe = new JButton(new ImageIcon(((new ImageIcon("Images/bombe.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_stop = new JButton(new ImageIcon(((new ImageIcon("Images/lemming3.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_futur2 = new JButton(new ImageIcon(((new ImageIcon("Images/interrogation.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
@@ -721,7 +727,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		tParapluie = new JLabel(""+Carte.cmpParapluie);
 		tEscalier = new JLabel(""+Carte.cmpEscalier);
 		tCatapulte = new JLabel(""+Carte.cmpCatapulte);
-		tEscalade = new JLabel(""+Carte.cmpEscalade);
+		tTrampoline = new JLabel(""+Carte.cmpTrampoline);
 		tBombe = new JLabel(""+Carte.cmpBombe);
 		tStop = new JLabel(""+Carte.cmpStop);
 		tFutur2 = new JLabel(""+Carte.cmpFutur2);
@@ -732,8 +738,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_parapluie.addActionListener(this);
 		bouton_escalier.addActionListener(this);
 		bouton_Catapulte.addActionListener(this);
-		bouton_escalade.addActionListener(this);
-		bouton_escalade.addActionListener(this);
+		bouton_trampoline.addActionListener(this);
 		bouton_bombe.addActionListener(this);
 		bouton_stop.addActionListener(this);
 		bouton_futur2.addActionListener(this);
@@ -760,7 +765,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		tPioche.setText("" + Carte.cmpPioche);
 		tParapluie.setText("" + Carte.cmpParapluie);
 		tEscalier.setText("" + Carte.cmpEscalier);
-		tEscalade.setText("" + Carte.cmpEscalade);
+		tTrampoline.setText("" + Carte.cmpTrampoline);
 		tCatapulte.setText("" + Carte.cmpCatapulte);
 		tBombe.setText("" + Carte.cmpBombe);
 		tStop.setText("" + Carte.cmpStop);
