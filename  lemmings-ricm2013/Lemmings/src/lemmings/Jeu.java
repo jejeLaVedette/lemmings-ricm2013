@@ -35,7 +35,8 @@ public class Jeu implements Constantes {
 
 		//Carte.obs.add(new Lemming(70,150,lemmingCatapulte));
 
-		Carte.obs.add(new Lemming(150,150,Math.PI/3,50));
+		Carte.obs.add(new Lemming(150,150,Math.PI/4,30));
+		Carte.obs.add(new Lemming(150,160));
 
 		while(true) {
 

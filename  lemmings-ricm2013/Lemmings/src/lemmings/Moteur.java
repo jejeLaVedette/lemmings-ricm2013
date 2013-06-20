@@ -324,7 +324,7 @@ public class Moteur implements Constantes {
 		l.setYp(yp);
 		l.setX((int)xp);
 		l.setY((int)yp);
-		t.calculcolision(x, y, l.getXp() , l.getYp(),l.getX(),l.getY() , l.getElasticite(),0.5, false);
+		t.calculcolision(x, y, l.getXp() , l.getYp(),l.getX(),l.getY() , l.getElasticite(),0.2, false);
          
 		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 1){
  			l.setTrajpara(t);
