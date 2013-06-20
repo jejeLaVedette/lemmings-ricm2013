@@ -38,7 +38,7 @@ public class Panneau2 extends JPanel implements Constantes {
 		}
 		else {
 			this.tailleRX = 1;
-			this.coefRetrecissementx = this.tailleRX*2+1;//*2 car la mini_map n'est que 1/2 de x de l'écran et +1 pour prendre le pixel supérieur
+			this.coefRetrecissementx = this.tailleRX*2+1;//*2 car la mini_map n'est que 1/2 de x de l'ï¿½cran et +1 pour prendre le pixel supï¿½rieur
 		}
 		
 		//on test les y
@@ -56,17 +56,25 @@ public class Panneau2 extends JPanel implements Constantes {
 	public void paintComponent(Graphics g)
 	{
 		int luminance; Color c;
+		System.out.println(Fenetre.scroll.getViewport().getY());
 		for(int i=0; i<Carte.HAUTEUR_CARTE; i+=coefRetrecissementy){
 
 			for(int j=0; j<Carte.LARGEUR_CARTE; j+=coefRetrecissementx){ 
 				
-				if (Carte.map[j][i].type >= typeSolInf && Carte.map[j][i].type <= typeSolSup)
+				if (j == Fenetre.scroll.getViewport().getViewPosition().y || 
+					j == Fenetre.scroll.getViewport().getViewPosition().y + Fenetre.scroll.getBounds().width -1 )
+				{
+					g.setColor(new Color(0,255,0));
+				}
+				// Si c'est du sol, on affiche en nuance de gris
+				else if (Carte.map[j][i].isSol())
 				{
 					c = Carte.map[j][i].couleur;
 					luminance = (int) (c.getRed() * 0.2126 + c.getGreen() * 0.7152 + c.getBlue() * 0.0722);
 					g.setColor(new Color(luminance,luminance,luminance));
 				}
-				if (Carte.map[j][i].type >= typeAirInf && Carte.map[j][i].type <= typeAirSup)
+				// Si c'est de l'air, on affiche en gris clair
+				else if (Carte.map[j][i].isAir())
 					g.setColor(new Color(200,200,200));
 				
 				g.fillRect(posX, posY, tailleRX, tailleRY);
