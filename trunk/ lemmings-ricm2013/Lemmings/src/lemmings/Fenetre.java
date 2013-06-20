@@ -480,23 +480,23 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		//on affiche une fenetre popup pour chaque "Detail" de toutes les maps
 		if(e.getSource()==mapDetail){
-			JOptionPane.showMessageDialog(null, "Map1\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/map1.png"));
+			JOptionPane.showMessageDialog(null, "Facile\n lemmings a sauver : 10 \n Pour bien debuter !", "Carte 1", 0, new ImageIcon("ImagesMenu/map1.png"));
 		}
 
 		if(e.getSource()==map2Detail){
-			JOptionPane.showMessageDialog(null, "Map2\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/map2.png"));
+			JOptionPane.showMessageDialog(null, "Moyen\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Carte 2", 0, new ImageIcon("ImagesMenu/map2.png"));
 		}
 
 		if(e.getSource()==map3Detail){
-			JOptionPane.showMessageDialog(null, "Map3\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/map3.png"));
+			JOptionPane.showMessageDialog(null, "Difficile\n lemmings a sauver : 10 \n Please insert coin", "Carte 3", 0, new ImageIcon("ImagesMenu/map3.png"));
 		}
 
 		if(e.getSource()==map4Detail){
-			JOptionPane.showMessageDialog(null, "Map4\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/map4.png"));
+			JOptionPane.showMessageDialog(null, "Moyen\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Carte 4", 0, new ImageIcon("ImagesMenu/map4.png"));
 		}
 
 		if(e.getSource()==map5Detail){
-			JOptionPane.showMessageDialog(null, "Map5\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/map5.png"));
+			JOptionPane.showMessageDialog(null, "Difficile\n lemmings a sauver : 10 \n Invaders must die", "Carte 5", 0, new ImageIcon("ImagesMenu/map5.png"));
 		}
 
 		//on charge la map
@@ -512,7 +512,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						"Musiques/fairy_tail.wav", 
 						"Automates/automate.xml", 
 						new Point(60,55), 
-						new Point(330,125), 
+						new Point(330,125),
+						new Point(0,0),
 						20);
 
 
@@ -533,7 +534,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						"Musiques/Mario.wav", 
 						"Automates/automate.xml", 
 						new Point(60,55), 
-						new Point(330,125), 
+						new Point(330,125),
+						new Point(0,0),
 						20);
 
 
@@ -554,7 +556,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						"", 
 						"Automates/automate.xml", 
 						new Point(19,27), 
-						new Point(842,138), 
+						new Point(842,138),
+						new Point(0,0),
 						20);
 
 			} catch (IOException ev) {
@@ -574,7 +577,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						"", 
 						"Automates/automate.xml", 
 						new Point(60,55), 
-						new Point(330,125), 
+						new Point(473,84),
+						new Point(0,0),
 						20);
 
 
@@ -594,8 +598,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						"Images/map5bg.png", 
 						"", 
 						"Automates/automate.xml", 
-						new Point(255,159), 
-						new Point(0,0), 
+						new Point(36,164), 
+						new Point(473,84),
+						new Point(0,0),
 						20);
 
 			} catch (IOException ev) {
@@ -713,6 +718,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 					if(this.ancienNum>=0) {
 						Carte.obs.get(i).type=typeCourant;
+						Carte.obs.get(i).setEtat(etatInitial);
 					}
 					break;
 				}
@@ -766,7 +772,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		tStop = new JLabel(""+Carte.cmpStop);
 		tFutur2 = new JLabel(""+Carte.cmpFutur2);
 		tLemmingSave = new JLabel(""+Carte.lemmingSauf);
-		tLemmingSauver = new JLabel("Lemmings sauv�(s):");
+		tLemmingSauver = new JLabel("Lemmings sauve(s):");
 
 		//MISE EN ATTENTE DES BOUTONS
 		bouton_creuse.addActionListener(this);

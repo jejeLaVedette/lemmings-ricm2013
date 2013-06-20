@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 
 public class Carte implements Constantes {
 
-	public static Point entree,sortie;
+	public static Point entree,sortie,catapulte;
 	public static int nbLemmings = 0;
 	public static int lemmingSauf = 0;
 	public static int lemmingASauver=0;
@@ -97,6 +97,15 @@ public class Carte implements Constantes {
 
 	public static void setNbLemmings(int nbLemmings) {
 		Carte.nbLemmings = nbLemmings;
+	}
+	
+
+	public static Point getCatapulte() {
+		return catapulte;
+	}
+
+	public static void setCatapulte(Point catapulte) {
+		Carte.catapulte = catapulte;
 	}
 
 	public static void initCmp(int pioche, int parapluie, int escalier, int cata, int trampoline, int bombe, int stop, int futur2) {

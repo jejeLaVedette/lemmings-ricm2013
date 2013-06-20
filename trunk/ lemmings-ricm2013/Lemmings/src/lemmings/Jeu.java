@@ -26,7 +26,8 @@ public class Jeu implements Constantes {
 				"",
 				"Automates/automate.xml",
 				new Point(60,55), 
-				new Point(0,0), 
+				new Point(0,0),
+				new Point(0,0),
 				0);
 
 		int wait = delaiPop + 1;
@@ -72,7 +73,7 @@ public class Jeu implements Constantes {
 
 	}
 
-	public static void initialiserJeu(String map,String background, String musique, String fichierAutomates, Point ptEntree, Point ptSortie, int nbLemmings) throws IOException {
+	public static void initialiserJeu(String map,String background, String musique, String fichierAutomates, Point ptEntree, Point ptSortie, Point ptCatapulte, int nbLemmings) throws IOException {
 
 		Carte.obs.removeAll(Carte.obs);
 
@@ -90,6 +91,7 @@ public class Jeu implements Constantes {
 
 		Carte.setEntree(ptEntree);
 		Carte.setSortie(ptSortie);
+		Carte.setCatapulte(ptCatapulte);
 
 		Carte.setNbLemmings(nbLemmings);
 		if (f!=null) {
