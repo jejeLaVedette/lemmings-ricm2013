@@ -28,7 +28,7 @@ public class Moteur implements Constantes {
 			int x = lem.getX();
 			int y = lem.getY();
 
-			// S'il est sur le point de sortie, +- une certaine tolérance
+			// S'il est sur le point de sortie, +- une certaine tolï¿½rance
 			if(Math.abs(x-Carte.sortie.x)<(toleranceSortie/2) && Math.abs(y-Carte.sortie.y)<toleranceSortie) {
 				Carte.lemmingSauf++;
 				Carte.obs.remove(i);
@@ -43,18 +43,18 @@ public class Moteur implements Constantes {
 			// Analyse de l'environnement du lemming courant
 			String cond;
 
-			// Si présence d'un plafond
+			// Si prï¿½sence d'un plafond
 			if (Carte.map[x][y-1-coeff*3/4].isSol() && Carte.map[x-1][y-1-coeff*3/4].isSol() && Carte.map[x+1][y-1-coeff*3/4].isSol() )
 			{       cond = "sol"; }
 
-			// Présence d'un vide
+			// Prï¿½sence d'un vide
 
 			else 
 				if( ( lem.getDirection()==gauche && Carte.map[x][y+1].isAir() ) ||
 						( lem.getDirection()==droite && Carte.map[x][y+1].isAir() )     ) 
 					cond = "vide";
 
-			// Présence d'un mur
+			// Prï¿½sence d'un mur
 				else if( (x==0 && lem.getDirection()==gauche) || 
 						(x==Carte.LARGEUR_CARTE-1 && lem.getDirection()==1) ||
 						(lem.getDirection()==gauche && Carte.map[x-1][y].isSol() && Carte.map[x-1][y-1].isSol() && Carte.map[x-1][y-2].isSol())||
@@ -140,7 +140,7 @@ public class Moteur implements Constantes {
 			}
 
 			if(aut == null) {
-				System.out.println("Modèle d'automate introuvable !");
+				System.out.println("Modï¿½le d'automate introuvable !");
 				System.exit(1);
 			}
 
@@ -154,11 +154,11 @@ public class Moteur implements Constantes {
 			}
 
 			if(k==aut.listeTransitions.size()) {
-				System.out.println("Automate n°"+ aut.identifiant +" non-déterministe !");
+				System.out.println("Automate nï¿½"+ aut.identifiant +" non-dï¿½terministe !");
 				System.exit(1);
 			}
 
-			// On applique les actions associées
+			// On applique les actions associï¿½es
 			if (aut.listeTransitions.get(k).getActions() != null)
 			{
 				for(int l=0;l<aut.listeTransitions.get(k).getActions().size();l++) {
@@ -166,7 +166,7 @@ public class Moteur implements Constantes {
 				}
 			}
 
-			// On met à jour le champs condPrecedente et eventuellement la micro-action
+			// On met ï¿½ jour le champs condPrecedente et eventuellement la micro-action
 			if(lem.getCondPrecedente()!=cond)
 				lem.setSousAction(0);
 			lem.setCondPrecedente(cond);
@@ -291,6 +291,7 @@ public class Moteur implements Constantes {
 	private static void initTrajectoire(Lemming l) {
 		trajectoireparaphysique t=new trajectoireparaphysique(l.getX(),l.getY(),l.puissance,l.angle,1);
 		l.setTrajpara(t);
+		l.image = "Images/catapulte2.png";
 	}
 
 	private static void voler(Lemming l) {
@@ -315,9 +316,6 @@ public class Moteur implements Constantes {
 	}
 
 	private static void rebondirsol(Lemming l) {
-
-
-		System.out.println("REBONDIR SO!!L");
 
 		trajectoireparaphysique t= l.getTrajH();
 		Point traj=t.trajectoire(l.time);
@@ -344,8 +342,6 @@ public class Moteur implements Constantes {
 	}
 	private static void rebondirmur(Lemming l) {
 
-
-		System.out.println("REBONDIR MUR!!");
 		trajectoireparaphysique t= l.getTrajH() ;
 		Point traj=t.trajectoire(l.time);
 		Point trajprec=t.trajectoire(l.time-2*deltat);

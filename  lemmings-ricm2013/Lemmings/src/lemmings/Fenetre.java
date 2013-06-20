@@ -46,7 +46,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JFormattedTextField Tpuissance = new JFormattedTextField(NumberFormat.getIntegerInstance());
 	private JLabel label = new JLabel("Entrez un angle :        ");
 	private JLabel label2 = new JLabel("Entrez une puissance (0-100) : ");
-	private final JFrame frame = new JFrame("R�glage catapulte");
+	private final JFrame frame = new JFrame("Reglage catapulte");
 	private JSplitPane split2, split3;
 	private int espacement_hori = 20;
 	private int espacement_text = 65;
@@ -333,7 +333,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mntmMap = new JMenuItem("Jouer");
 		mnMap.add(mntmMap);
 		mntmMap.addActionListener(this);
-		mapDetail = new JMenuItem("D�tails");
+		mapDetail = new JMenuItem("Details");
 		mnMap.add(mapDetail);
 		mapDetail.addActionListener(this);
 
@@ -342,7 +342,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mntmMap2 = new JMenuItem("Jouer");
 		mnMap2.add(mntmMap2);
 		mntmMap2.addActionListener(this);
-		map2Detail = new JMenuItem("D�tails");
+		map2Detail = new JMenuItem("Details");
 		mnMap2.add(map2Detail);
 		map2Detail.addActionListener(this);
 
@@ -351,7 +351,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mntmMap3 = new JMenuItem("Jouer");
 		mnMap3.add(mntmMap3);
 		mntmMap3.addActionListener(this);
-		map3Detail = new JMenuItem("D�tail");
+		map3Detail = new JMenuItem("Details");
 		mnMap3.add(map3Detail);
 		map3Detail.addActionListener(this);
 
@@ -360,7 +360,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mntmMap4 = new JMenuItem("Jouer");
 		mnMap4.add(mntmMap4);
 		mntmMap4.addActionListener(this);
-		map4Detail = new JMenuItem("D�tail");
+		map4Detail = new JMenuItem("Details");
 		mnMap4.add(map4Detail);
 		map4Detail.addActionListener(this);
 
@@ -369,11 +369,11 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mntmMap5 = new JMenuItem("Jouer");
 		mnMap5.add(mntmMap5);
 		mntmMap5.addActionListener(this);
-		map5Detail = new JMenuItem("D�tail");
+		map5Detail = new JMenuItem("Details");
 		mnMap5.add(map5Detail);
 		map5Detail.addActionListener(this);
 
-		mntmRgle = new JMenuItem("r\u00E8gles");
+		mntmRgle = new JMenuItem("Regles");
 		mnJouer.add(mntmRgle);
 		mntmRgle.addActionListener(this);
 
@@ -442,6 +442,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		}
 	}
 
+	
+	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent e) {
 
 		//on creer l'interface pour le chargement d'un fichier utilisateur
@@ -482,16 +484,13 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		//on charge la map
 		if(e.getSource()==mntmMap || e.getSource()==mnJouer_1){
 			try {
-				//on coupe la musique precedente
 				Jeu.playWave.stop();
-				//on reinitialise tout les compteurs
-				Carte.lemmingSauf=0;
 				Carte.lemmingASauver=10;
 				Carte.initCmp(4, 20, 4, 0, 0, 0, 4, 0);
 				afficherTexteCmp();
 				//on charge la map avec les bon parametres
 				Jeu.initialiserJeu("Images/map1.png", 
-						"Images/map1.png", 
+						"Images/map1bg.png", 
 						"Musiques/fairy_tail.wav", 
 						"Automates/automate.xml", 
 						new Point(60,55), 
@@ -508,12 +507,11 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(e.getSource()==mntmMap2){
 			try {
 				Jeu.playWave.stop();
-				Carte.lemmingSauf=0;
 				Carte.lemmingASauver=10;
-				Carte.initCmp(4, 4, 6, 0, 7, 0, 2, 0);
+				Carte.initCmp(2, 2, 6, 0, 1, 0, 2, 0);
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/map2.png", 
-						"Images/mario.png", 
+						"Images/map2bg.png", 
 						"", 
 						"Automates/automate.xml", 
 						new Point(60,55), 
@@ -530,16 +528,15 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(e.getSource()==mntmMap3){
 			try {
 				Jeu.playWave.stop();
-				Carte.lemmingSauf=0;
 				Carte.lemmingASauver=10;
-				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
+				Carte.initCmp(2, 2, 2, 0, 0, 2, 2, 0);
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/map3.png", 
-						"Images/map3.png", 
+						"Images/map3bg.png", 
 						"", 
 						"Automates/automate.xml", 
-						new Point(60,55), 
-						new Point(330,125), 
+						new Point(19,27), 
+						new Point(842,138), 
 						20);
 
 			} catch (IOException ev) {
@@ -551,12 +548,11 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(e.getSource()==mntmMap4){
 			try {
 				Jeu.playWave.stop();
-				Carte.lemmingSauf=0;
 				Carte.lemmingASauver=10;
 				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/map4.png", 
-						"Images/map4.png", 
+						"Images/map4bg.png", 
 						"", 
 						"Automates/automate.xml", 
 						new Point(60,55), 
@@ -573,16 +569,15 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(e.getSource()==mntmMap5){
 			try {
 				Jeu.playWave.stop();
-				Carte.lemmingSauf=0;
 				Carte.lemmingASauver=10;
-				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
+				Carte.initCmp(10, 10, 10, 10, 10, 10, 10, 10);
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/map5.png", 
-						"Images/map5.png", 
+						"Images/map5bg.png", 
 						"", 
 						"Automates/automate.xml", 
-						new Point(60,55), 
-						new Point(330,125), 
+						new Point(255,159), 
+						new Point(0,0), 
 						20);
 
 			} catch (IOException ev) {
@@ -769,7 +764,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	class BoutonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			puissance = Integer.parseInt(Tpuissance.getText()); //on reccupere la puissance
-			if(0<=puissance&&puissance<=100) {
+			if(0>puissance&&puissance<=100) {
 				angle = (double) ((Integer.parseInt(Tangle.getText()))*Math.PI/180); //on reccupere l'angle et on convertie en radian
 				Carte.obs.add(new Lemming(catapulteX,catapulteY,angle,(puissance+1)*70/100)); //on tire le lemmings
 				frame.dispose(); //on ferme la fenetre
