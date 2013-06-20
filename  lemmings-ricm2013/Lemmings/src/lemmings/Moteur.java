@@ -44,8 +44,8 @@ public class Moteur implements Constantes {
 			String cond;
 
 			// Si presence d'un plafond
-			if (Carte.map[x][y-1-coeff*3/4].isSol() && Carte.map[x-1][y-1-coeff*3/4].isSol() && Carte.map[x+1][y-1-coeff*3/4].isSol() ||
-				Carte.map[x][y].isSol())
+			if (Carte.map[x][y-1-coeff*3/4].isSol() && Carte.map[x-1][y-1-coeff*3/4].isSol() && Carte.map[x+1][y-1-coeff*3/4].isSol() 
+				/*Carte.map[x][y].isSol()*/)
 					
 			{       cond = "sol"; }
 
