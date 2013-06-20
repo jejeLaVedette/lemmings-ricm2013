@@ -79,7 +79,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JButton bouton_play;  
 	private JButton bouton_pause;  
 	private JButton bouton_accelerer; 
-	private JButton bouton_recharger; 
 	private JButton bouton_suppr;
 	private JButton b2 = new JButton ("OK");
 
@@ -290,10 +289,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		Component horizontalStrut_2 = Box.createHorizontalStrut(espacement_hori);
 		bouton_inf2.add(horizontalStrut_2);
-		bouton_inf2.add(bouton_recharger);
 
-		Component horizontalStrut_13 = Box.createHorizontalStrut(espacement_hori);
-		bouton_inf2.add(horizontalStrut_13);
 		bouton_inf2.add(bouton_suppr);
 
 		//On positionne maintenant en colonne
@@ -751,7 +747,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_play = new JButton(new ImageIcon(((new ImageIcon("Images/play.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_pause = new JButton(new ImageIcon(((new ImageIcon("Images/pause.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_accelerer = new JButton(new ImageIcon(((new ImageIcon("Images/accelerer.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
-		bouton_recharger = new JButton(new ImageIcon(((new ImageIcon("Images/recharger.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_suppr = new JButton(new ImageIcon(((new ImageIcon("Images/explosion.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 
 		tPioche = new JLabel(""+Carte.cmpPioche);
@@ -777,7 +772,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_play.addActionListener(this);
 		bouton_pause.addActionListener(this);
 		bouton_accelerer.addActionListener(this);
-		bouton_recharger.addActionListener(this);
 		bouton_suppr.addActionListener(this);
 	}
 
