@@ -784,13 +784,11 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	class BoutonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			puissance = Integer.parseInt(Tpuissance.getText()); //on reccupere la puissance
-			System.out.println("########################################################");
-			//if(0>puissance&&puissance<=100) {
-				System.out.println("??????????????????????????????????????????????????????????????");
+			if((0<= puissance)&&(puissance<=100) ) {
 				angle = (double) ((Integer.parseInt(Tangle.getText()))*Math.PI/180); //on reccupere l'angle et on convertie en radian
 				Carte.obs.add(new Lemming(catapulteX,catapulteY,angle,puissance)); //on tire le lemmings
 				frame.dispose(); //on ferme la fenetre
-			//}
+			}
 		}
 	}
 
