@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -12,10 +11,8 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Point;
 
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
-import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -32,7 +29,6 @@ import java.text.NumberFormat;
 import javax.swing.ImageIcon;
 import javax.swing.Box;
 import java.awt.FlowLayout;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -47,9 +43,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JPanel container = new JPanel();
 	private JFormattedTextField Tangle = new JFormattedTextField(NumberFormat.getIntegerInstance());
 	private JFormattedTextField Tpuissance = new JFormattedTextField(NumberFormat.getIntegerInstance());
-	private JLabel label = new JLabel("Entrez un angle : ");
-	private JLabel label2 = new JLabel("Entrez une puissance : ");
-	private final JFrame frame = new JFrame("Rï¿½glage catapulte");
+	private JLabel label = new JLabel("Entrez un angle :        ");
+	private JLabel label2 = new JLabel("Entrez une puissance (0-100) : ");
+	private final JFrame frame = new JFrame("Réglage catapulte");
 	private JSplitPane split2, split3;
 	private int espacement_hori = 20;
 	private int espacement_text = 65;
@@ -65,8 +61,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	public static int tailleFX;
 	public static int tailleFY;
 
-	public static int restey = tailleFenetreV%Carte.HAUTEUR_CARTE;
-	public static int restex = tailleFenetreH%Carte.LARGEUR_CARTE;
 	public static int etatSouris;
 
 	//DECLARATION DE TOUT LES BOUTONS
@@ -115,11 +109,17 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JMenuItem mntmFermer;
 	private JMenuItem chargement;
 	private JMenu mnMap;
-	private JMenuItem mapDetail;
-
 	private JMenu mnMap2;
-
+	private JMenu mnMap3;
+	private JMenu mnMap4;
+	private JMenu mnMap5;	
+	private JMenuItem mapDetail;
 	private JMenuItem map2Detail;
+	private JMenuItem map3Detail;
+	private JMenuItem map4Detail;
+	private JMenuItem map5Detail;
+
+
 
 	public Fenetre(int tFX, int tFY) throws IOException {
 
@@ -139,7 +139,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		Image icone = new ImageIcon("Images/Logo.jpg").getImage();
 		setIconImage(icone);
 
+		//on creer la map
 		zone_map = new Panneau(Fenetre.tailleFX, Fenetre.tailleFY);
+		//on creer la mini_map
 		mini_map = new Panneau2(Fenetre.tailleFX, Fenetre.tailleFY);
 
 
@@ -155,8 +157,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		zone_droite.add(mini_map,c);
 
 
-
-		// Initialisation des boutons
+		//INITIALISATION DES BOUTONS
 		initBoutons();
 
 		//ZONE QUI CONTIENT LES BOUTONS
@@ -168,7 +169,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		JPanel bouton_sup = new JPanel();
 
-		//On dï¿½finit le layout en lui indiquant qu'il travaillera en ligne
+		//On definit le layout en lui indiquant qu'il travaillera en ligne
 		bouton_sup.setLayout(new BoxLayout(bouton_sup, BoxLayout.LINE_AXIS));
 
 		bouton_sup.add(bouton_creuse);
@@ -193,8 +194,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		bouton_sup.add(bouton_lemmingSave);
 
-		
-		
+
+
 		text1.setLayout(new BoxLayout(text1, BoxLayout.LINE_AXIS));
 
 		text1.add(tPioche);
@@ -219,7 +220,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 
 		JPanel bouton_inf1 = new JPanel();
-		//Idem pour cette ligne
 
 		bouton_inf1.setLayout(new BoxLayout(bouton_inf1, BoxLayout.LINE_AXIS));
 		bouton_inf1.add(bouton_escalade);
@@ -278,7 +278,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		Component horizontalStrut_2 = Box.createHorizontalStrut(espacement_hori);
 		bouton_inf2.add(horizontalStrut_2);
 		bouton_inf2.add(bouton_recharger);
-		
+
 		Component horizontalStrut_13 = Box.createHorizontalStrut(espacement_hori);
 		bouton_inf2.add(horizontalStrut_13);
 		bouton_inf2.add(bouton_suppr);
@@ -296,17 +296,17 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		zone_map.setPreferredSize(new Dimension(Carte.LARGEUR_CARTE,Carte.HAUTEUR_CARTE));
 		this.setLayout(new BorderLayout());
 
-		//On place le premier sï¿½parateur
+		//On place le premier separateur
 		split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, zone_gauche, zone_droite);
-		//On place le deuxiï¿½me sï¿½parateur
+		//On place le deuxieme separateur
 		split2.setDividerLocation(tFX/2);
-		//On passe les deux prï¿½cï¿½dents JSplitPane ï¿½ celui-ci
+		//On passe les deux precedents JSplitPane à celui-ci
 		split3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scroll, split2);
-		//On place le troisieme sï¿½parateur
+		//On place le troisieme separateur
 		split3.setDividerLocation(3*tFY/5);
 
 		//On le passe ensuite au content pane de notre objet Fenetre
-		//placï¿½ au centre pour qu'il utilise tout l'espace disponible
+		//place au centre pour qu'il utilise tout l'espace disponible
 		this.getContentPane().add(split3, BorderLayout.CENTER);
 
 		menuBar = new JMenuBar();
@@ -327,7 +327,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mntmMap = new JMenuItem("Jouer");
 		mnMap.add(mntmMap);
 		mntmMap.addActionListener(this);
-		mapDetail = new JMenuItem("Dï¿½tails");
+		mapDetail = new JMenuItem("Détails");
 		mnMap.add(mapDetail);
 		mapDetail.addActionListener(this);
 
@@ -336,26 +336,36 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mntmMap2 = new JMenuItem("Jouer");
 		mnMap2.add(mntmMap2);
 		mntmMap2.addActionListener(this);
-		map2Detail = new JMenuItem("Dï¿½tails");
+		map2Detail = new JMenuItem("Détails");
 		mnMap2.add(map2Detail);
 		map2Detail.addActionListener(this);
-		
-		
 
-		
-		
-		
-		mntmMap3 = new JMenuItem("map3");
-		mnCarte.add(mntmMap3);
+		mnMap3 = new JMenu("map3");
+		mnCarte.add(mnMap3);
+		mntmMap3 = new JMenuItem("Jouer");
+		mnMap3.add(mntmMap3);
 		mntmMap3.addActionListener(this);
+		map3Detail = new JMenuItem("Détail");
+		mnMap3.add(map3Detail);
+		map3Detail.addActionListener(this);
 
-		mntmMap4 = new JMenuItem("map4");
-		mnCarte.add(mntmMap4);
+		mnMap4 = new JMenu("map4");
+		mnCarte.add(mnMap4);
+		mntmMap4 = new JMenuItem("Jouer");
+		mnMap4.add(mntmMap4);
 		mntmMap4.addActionListener(this);
+		map4Detail = new JMenuItem("Détail");
+		mnMap4.add(map4Detail);
+		map4Detail.addActionListener(this);
 
-		mntmMap5 = new JMenuItem("map5");
-		mnCarte.add(mntmMap5);
+		mnMap5 = new JMenu("map5");
+		mnCarte.add(mnMap5);
+		mntmMap5 = new JMenuItem("Jouer");
+		mnMap5.add(mntmMap5);
 		mntmMap5.addActionListener(this);
+		map5Detail = new JMenuItem("Détail");
+		mnMap5.add(map5Detail);
+		map5Detail.addActionListener(this);
 
 		mntmRgle = new JMenuItem("r\u00E8gles");
 		mnJouer.add(mntmRgle);
@@ -369,20 +379,15 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mnCarte.add(chargement);
 		chargement.addActionListener(this);
 
-
-		zone_map.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent event) {
-				modifType(event);
-			}
-		});
+		//on met la map en attente de clique
+		zone_map.addMouseListener(this);
 
 		this.setVisible(true);
-		
-		
-
 	}
 
+
 	public void afficher(){
+		//on rafraichi toute la map et on met a jour le nombre de lemming a sauver
 		scroll.repaint();
 		tLemmingSave.setText("" + Carte.lemmingSauf);
 		mini_map.repaint();
@@ -394,21 +399,80 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	}
 
 	public void mouseClicked(MouseEvent arg0) {
+		if(arg0.getSource()==zone_map) modifType(arg0);
 
+		if(arg0.getSource()==bouton_Catapulte) {
+			if(Carte.cmpCatapulte < 0) tCatapulte.setText("0");
+			else {
+				tCatapulte.setText("" + Carte.cmpCatapulte);
+
+				frame.setSize(400, 110);
+				frame.setResizable(false);
+				frame.setLocationRelativeTo(null);
+
+				container.setLayout(new BorderLayout());
+				JPanel top = new JPanel();       
+				Font police = new Font("Arial", Font.BOLD, 14);
+
+				Tangle.setFont(police);
+				Tangle.setPreferredSize(new Dimension(150, 30));
+				Tangle.setForeground(Color.BLUE);
+
+				Tpuissance.setFont(police);
+				Tpuissance.setPreferredSize(new Dimension(150, 30));
+				Tpuissance.setForeground(Color.BLUE);
+
+				b2.addActionListener(new BoutonListener());
+
+				top.add(label); 
+				top.add(Tangle);
+				top.add(label2);
+				top.add(Tpuissance);
+				top.add(b2);
+
+				frame.setContentPane(top);
+				frame.setVisible(true);
+			}
+		}
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		
+
+		//on creer l'interface pour le chargement d'un fichier utilisateur
 		if(e.getSource()==chargement) FileChooser.createAndShowGUI();
 
+		//on affiche une fenetre popup pour chaque "Detail" de toutes les maps
+		if(e.getSource()==mapDetail){
+			JOptionPane.showMessageDialog(null, "Map1\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/carte3.png"));
+		}
+
+		if(e.getSource()==map2Detail){
+			JOptionPane.showMessageDialog(null, "Map2\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/map1.png"));
+		}
+
+		if(e.getSource()==map3Detail){
+			JOptionPane.showMessageDialog(null, "Map3\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/Carte3.png"));
+		}
+
+		if(e.getSource()==map4Detail){
+			JOptionPane.showMessageDialog(null, "Map4\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/carte4.png"));
+		}
+
+		if(e.getSource()==map5Detail){
+			JOptionPane.showMessageDialog(null, "Map5\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/carte5.png"));
+		}
+
+		//on charge la map
 		if(e.getSource()==mntmMap || e.getSource()==mnJouer_1){
 			try {
-
+				//on coupe la musique precedente
 				Jeu.playWave.stop();
+				//on reinitialise tout les compteurs
 				Carte.lemmingSauf=0;
 				Carte.lemmingASauver=10;
 				Carte.initCmp(4, 20, 4, 0, 0, 0, 4, 0);
 				afficherTexteCmp();
+				//on charge la map avec les bon parametres
 				Jeu.initialiserJeu("Images/Carte4.png", 
 						"Images/Carte4.png", 
 						"Musiques/fairy_tail.wav", 
@@ -422,16 +486,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				// TODO Auto-generated catch block
 				ev.printStackTrace();
 			}
-		}
-		
-		if(e.getSource()==mapDetail){
-			JOptionPane.showMessageDialog(null, "Map1\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/carte3.png"));
-		}
-		
-		
-		
-		if(e.getSource()==map2Detail){
-			JOptionPane.showMessageDialog(null, "Map1\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/map1.png"));
 		}
 
 		if(e.getSource()==mntmMap2){
@@ -448,25 +502,17 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						new Point(60,55), 
 						new Point(330,125), 
 						20);
-				
+
 
 			} catch (IOException ev) {
 				// TODO Auto-generated catch block
 				ev.printStackTrace();
 			} 
 		}
-	
-		if(e.getSource()==mntmRgle) {
-			String regle = "Le but du jeu et de sauver les lemmings. \n Pour ce faire, vous devez les ammener de la porte de sortie Ã  la porte d'entrÃ©e. \n Evitez de gaspiller vos lemmings, ils ont tous leur importance";
-			JOptionPane.showMessageDialog(null, regle);
-		}
-
-
-		if(e.getSource()==mntmFermer) System.exit(0); //on close la fenï¿½tre et le jeu
-
 
 		if(e.getSource()==mntmMap3){
 			try {
+				Jeu.playWave.stop();
 				Carte.lemmingSauf=0;
 				Carte.lemmingASauver=10;
 				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
@@ -478,67 +524,85 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						new Point(60,55), 
 						new Point(330,125), 
 						20);
-				
+
 			} catch (IOException ev) {
 				// TODO Auto-generated catch block
 				ev.printStackTrace();
 			}
 		}
-		
+
+		if(e.getSource()==mntmMap4){
+			try {
+				Jeu.playWave.stop();
+				Carte.lemmingSauf=0;
+				Carte.lemmingASauver=10;
+				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
+				afficherTexteCmp();
+				Jeu.initialiserJeu("Images/carte4.png", 
+						"Images/carte4.png", 
+						"", 
+						"Automates/automate.xml", 
+						new Point(60,55), 
+						new Point(330,125), 
+						20);
 
 
+			} catch (IOException ev) {
+				// TODO Auto-generated catch block
+				ev.printStackTrace();
+			} 
+		}
+
+		if(e.getSource()==mntmMap5){
+			try {
+				Jeu.playWave.stop();
+				Carte.lemmingSauf=0;
+				Carte.lemmingASauver=10;
+				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
+				afficherTexteCmp();
+				Jeu.initialiserJeu("Images/carte5.png", 
+						"Images/carte5.png", 
+						"", 
+						"Automates/automate.xml", 
+						new Point(60,55), 
+						new Point(330,125), 
+						20);
+
+			} catch (IOException ev) {
+				// TODO Auto-generated catch block
+				ev.printStackTrace();
+			}
+		}
+
+		//on affiche un message popup
+		if(e.getSource()==mntmRgle) {
+			String regle = "Le but du jeu est de sauver les lemmings. \n Pour ce faire, vous devez les ammener de la porte de sortie à la porte d'entrée. \n Evitez de gaspiller vos lemmings, ils ont tous leur importance";
+			JOptionPane.showMessageDialog(null, regle);
+		}
+
+
+		if(e.getSource()==mntmFermer) System.exit(0); //on ferme la fenetre et le jeu
+
+		//on prépare le changement du type du lemming en fonction du bouton clique
 		if(e.getSource()==bouton_creuse) typeCourant = lemmingCreuseur; 
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
 		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
 		if(e.getSource()==bouton_escalier) typeCourant = lemmingEscalier;
+
+		//permet de tuer tout les lemmings et dit si on a gagné ou non le jeu
 		if(e.getSource()==bouton_suppr) {
 			String s; 
 			Carte.setNbLemmings(0);
 			Carte.obs.removeAll(Carte.obs);
-			if(Carte.lemmingSauf>Carte.lemmingASauver) s = "lemming(s) sauvï¿½(s) : "+ Carte.lemmingSauf+"\n Vous avez gagnï¿½!!";
+			if(Carte.lemmingSauf>Carte.lemmingASauver) s = "lemming(s) sauvé(s) : "+ Carte.lemmingSauf+"\n Vous avez gagné!!";
 			else s = "lemming sauver : "+ Carte.lemmingSauf+"\n Vous avez perdu";
 			JOptionPane.showMessageDialog(null, s);
 		}
-		
+
+		//on tire la catapulte
 		if(e.getSource()==bouton_Catapulte){
 			Carte.cmpCatapulte--;
-			bouton_Catapulte.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent arg0) {
-					if(Carte.cmpCatapulte < 0) tCatapulte.setText("0");
-					else {
-						tCatapulte.setText("" + Carte.cmpCatapulte);
-						System.out.println("cmpF : "+Carte.cmpCatapulte);
-
-						frame.setSize(370, 110);
-						frame.setResizable(false);
-						frame.setLocationRelativeTo(null);
-
-						container.setLayout(new BorderLayout());
-						JPanel top = new JPanel();       
-						Font police = new Font("Arial", Font.BOLD, 14);
-
-						Tangle.setFont(police);
-						Tangle.setPreferredSize(new Dimension(150, 30));
-						Tangle.setForeground(Color.BLUE);
-
-						Tpuissance.setFont(police);
-						Tpuissance.setPreferredSize(new Dimension(150, 30));
-						Tpuissance.setForeground(Color.BLUE);
-
-						b2.addActionListener(new BoutonListener());
-
-						top.add(label); 
-						top.add(Tangle);
-						top.add(label2);
-						top.add(Tpuissance);
-						top.add(b2);
-
-						frame.setContentPane(top);
-						frame.setVisible(true);
-					}
-				}
-			});
+			bouton_Catapulte.addMouseListener(this);
 		}
 
 	}
@@ -547,24 +611,38 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	public void modifType(MouseEvent event){
 		int newCx;
 		int newCy;
+		//on recupere les coordonnees en X de la souris dans la carte
 		if(tailleFX>=Carte.LARGEUR_CARTE) {
 			newCx = ((event.getX()*Carte.LARGEUR_CARTE))/(tailleFX);
 		}
 		else {
 			newCx =event.getX(); //newCx = ((event.getX()*tailleFX*(Carte.LARGEUR_CARTE/Fenetre.tailleFX)))/(Carte.LARGEUR_CARTE);
 		}
+
+		//on recupere les coordonnees en Y de la souris dans la carte
 		if((3*tailleFY/5)>=Carte.HAUTEUR_CARTE) {
 			newCy = ((event.getY())*Carte.HAUTEUR_CARTE)/((3*tailleFY/5));
 		}
+
 		else {
 			newCy = event.getY();//newCy = ((event.getY())*3*tailleFY/5)/(Carte.HAUTEUR_CARTE);
 		}
 
 		Observable lem;
+		//on parcourt les lemmings
 		for (int i =0;i<Carte.obs.size();i++){
 			lem = Carte.obs.get(i);
+			//si notre clique est dans un carre autour d'un lemming
 			if((newCy<lem.getY() && newCy>lem.getY() -2*Panneau.coeff) && ((newCx<lem.getX()+3/2*Panneau.coeff && newCx > lem.getX()-3/2*Panneau.coeff))){
+
 				if(typeCourant != lem.type){
+
+					if(lem.type==lemmingStop) {
+						Carte.map[lem.getX()][lem.getY()].type = typeAirInf;
+						Carte.map[lem.getX()][lem.getY()-1].type = typeAirInf;
+						Carte.map[lem.getX()][lem.getY()-2].type = typeAirInf;
+						Carte.map[lem.getX()][lem.getY()-3].type = typeAirInf;
+					}
 					//this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 					etatSouris=1;
 					if(typeCourant == lemmingParapluie){
@@ -594,27 +672,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 					if(this.ancienNum>=0) {
 						Carte.obs.get(i).type=typeCourant;
 					}
-
-					System.out.println("x souris : "+newCx);
-					System.out.println("y souris : "+newCy);
-					System.out.println("x souris fen: "+event.getX());
-					System.out.println("y souris fen: "+event.getY());
-					System.out.println("x lem : "+lem.getX());
-					System.out.println("y lem : "+lem.getY());
-					System.out.println("??????????");
 					break;
 				}
 			}
-			System.out.println("x souris map: "+newCx);
-			System.out.println("y souris map: "+newCy);
-			System.out.println("x souris fen: "+event.getX());
-			System.out.println("y souris fen: "+event.getY());
-			System.out.println("x lem : "+lem.getX());
-			System.out.println("y lem : "+lem.getY());
-			System.out.println("###########");
 		}
-
-
 	}
 
 	@Override
@@ -685,14 +746,17 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 	class BoutonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			puissance = Integer.parseInt(Tpuissance.getText());
-			angle = (double) ((Integer.parseInt(Tangle.getText()))*Math.PI/180); //on met en radian
-			Carte.obs.add(new Lemming(catapulteX,catapulteY,angle,puissance));
-			frame.dispose();
+			puissance = Integer.parseInt(Tpuissance.getText()); //on reccupere la puissance
+			if(0<=puissance&&puissance<=100) {
+				angle = (double) ((Integer.parseInt(Tangle.getText()))*Math.PI/180); //on reccupere l'angle et on convertie en radian
+				Carte.obs.add(new Lemming(catapulteX,catapulteY,angle,puissance*70/100)); //on tire le lemmings
+				frame.dispose(); //on ferme la fenetre
+			}
 		}
 	}
 
 	public void afficherTexteCmp(){
+		//on affiche tout les textes sous les boutons pour savoir le nombre d'objet utilisable
 		tPioche.setText("" + Carte.cmpPioche);
 		tParapluie.setText("" + Carte.cmpParapluie);
 		tEscalier.setText("" + Carte.cmpEscalier);
