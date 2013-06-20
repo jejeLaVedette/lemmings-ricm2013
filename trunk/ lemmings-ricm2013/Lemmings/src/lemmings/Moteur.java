@@ -28,7 +28,7 @@ public class Moteur implements Constantes {
 			int x = lem.getX();
 			int y = lem.getY();
 
-			// S'il est sur le point de sortie, +- une certaine tol�rance
+			// S'il est sur le point de sortie, +- une certaine tolerance
 			if(Math.abs(x-Carte.sortie.x)<(toleranceSortie/2) && Math.abs(y-Carte.sortie.y)<toleranceSortie) {
 				Carte.lemmingSauf++;
 				Carte.obs.remove(i);
@@ -43,18 +43,20 @@ public class Moteur implements Constantes {
 			// Analyse de l'environnement du lemming courant
 			String cond;
 
-			// Si pr�sence d'un plafond
-			if (Carte.map[x][y-1-coeff*3/4].isSol() && Carte.map[x-1][y-1-coeff*3/4].isSol() && Carte.map[x+1][y-1-coeff*3/4].isSol() )
+			// Si presence d'un plafond
+			if (Carte.map[x][y-1-coeff*3/4].isSol() && Carte.map[x-1][y-1-coeff*3/4].isSol() && Carte.map[x+1][y-1-coeff*3/4].isSol() ||
+				Carte.map[x][y].isSol())
+					
 			{       cond = "sol"; }
 
-			// Pr�sence d'un vide
+			// Presence d'un vide
 
 			else 
 				if( ( lem.getDirection()==gauche && Carte.map[x][y+1].isAir() ) ||
 						( lem.getDirection()==droite && Carte.map[x][y+1].isAir() )     ) 
 					cond = "vide";
 
-			// Pr�sence d'un mur
+			// Presence d'un mur
 				else if( (x==0 && lem.getDirection()==gauche) || 
 						(x==Carte.LARGEUR_CARTE-1 && lem.getDirection()==1) ||
 						(lem.getDirection()==gauche && Carte.map[x-1][y].isSol() && Carte.map[x-1][y-1].isSol() && Carte.map[x-1][y-2].isSol())||
@@ -140,7 +142,7 @@ public class Moteur implements Constantes {
 			}
 
 			if(aut == null) {
-				System.out.println("Mod�le d'automate introuvable !");
+				System.out.println("Modele d'automate introuvable !");
 				System.exit(1);
 			}
 
@@ -158,7 +160,7 @@ public class Moteur implements Constantes {
 				System.exit(1);
 			}
 
-			// On applique les actions associ�es
+			// On applique les actions associees
 			if (aut.listeTransitions.get(k).getActions() != null)
 			{
 				for(int l=0;l<aut.listeTransitions.get(k).getActions().size();l++) {
@@ -166,7 +168,7 @@ public class Moteur implements Constantes {
 				}
 			}
 
-			// On met � jour le champs condPrecedente et eventuellement la micro-action
+			// On met a jour le champs condPrecedente et eventuellement la micro-action
 			if(lem.getCondPrecedente()!=cond)
 				lem.setSousAction(0);
 			lem.setCondPrecedente(cond);
@@ -425,11 +427,11 @@ public class Moteur implements Constantes {
 
 	public static Point collisionTrajectoire (Point pCourant, Point pDest) {
 		int coeffDirecteur;
-		int yCourant =(int) pCourant.getY();
+		int yCourant = pCourant.y;
 		Point rep= new Point(0,0);
 		int i=0;
 
-		if(((int)pDest.getX() - pCourant.getX())!=0){
+		if((pDest.x - pCourant.x)!=0){
 			coeffDirecteur = (int)((pDest.getY() - pCourant.getY())/(pDest.getX() - pCourant.getX()));
 			int constante = pCourant.y - coeffDirecteur * pCourant.x;
 			i = (int)pCourant.getX();
@@ -486,7 +488,7 @@ public class Moteur implements Constantes {
 
 
 	public static boolean hasColision(double x,double y){
-		if ((int)x<0 || (int)x>Carte.LARGEUR_CARTE || (int)y<0 || (int)y>Carte.HAUTEUR_CARTE || Carte.map[(int)x][(int)y].isSol()){
+		if ((int)x<0 || (int)x>Carte.LARGEUR_CARTE-1 || (int)y<0 || (int)y>Carte.HAUTEUR_CARTE-1 || Carte.map[(int)x][(int)y].isSol()){
 			return true;
 		}
 		else
