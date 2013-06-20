@@ -4,7 +4,7 @@ public class Lemming extends Observable implements Constantes {
 	
 	protected int direction; /*
 	protected Trajectoire_physiqueV trajH;*/
-	protected Trajectoire_physiqueV trajV;
+	//protected Trajectoire_physiqueV trajV;
 	protected double angle ;
 	protected int puissance ;
 	protected trajectoireparaphysique trajH;
@@ -62,7 +62,11 @@ public class Lemming extends Observable implements Constantes {
 	public Lemming(int x,int y,double angle, int puissance) {
 		super(vx,vy);
 		super.type = lemmingCatapulte;
+		double anglerep=angle%2*Math.PI;
+		if((Math.PI/2>anglerep)&&(anglerep<3*Math.PI/2)){
 		this.direction = gauche;
+		}
+		else{this.direction=droite;}
 		this.puissance = puissance;
 		this.angle = angle ;
 		this.image = "Images/lemmingBaseDroite2.png";
@@ -83,16 +87,16 @@ public class Lemming extends Observable implements Constantes {
 		return trajH;
 	}
 
-	public Trajectoire_physiqueV getTrajV() {
+	/*public Trajectoire_physiqueV getTrajV() {
 		return trajV;
-	}
+	}*/
 
-	public void setTrajH(trajectoireparaphysique trajH) {
+	public void setTrajpara(trajectoireparaphysique trajH) {
 		this.trajH = trajH;
 	}
-
+/*
 	public void setTrajV(Trajectoire_physiqueV trajV) {
 		this.trajV = trajV;
 	}
-
+*/
 }

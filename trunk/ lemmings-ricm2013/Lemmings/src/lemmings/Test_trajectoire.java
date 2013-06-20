@@ -1,4 +1,8 @@
-package lemmings;
+/*
+ * 
+ * 
+ * Ancienne version
+ * package lemmings;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,4 +25,4 @@ public static void main(String[] args) throws IOException{
 		
 	}
 
-}
+}*/
