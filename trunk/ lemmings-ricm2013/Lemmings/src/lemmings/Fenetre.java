@@ -13,6 +13,7 @@ import java.awt.Point;
 
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -55,7 +56,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 	public static Panneau zone_map;
 	public static Panneau2 mini_map;
-	
+
 	public static JScrollPane scroll;
 
 	public static int tailleFX;
@@ -118,6 +119,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JMenuItem map3Detail;
 	private JMenuItem map4Detail;
 	private JMenuItem map5Detail;
+	private JCheckBoxMenuItem mnTrace;
 
 
 
@@ -312,7 +314,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
-		mnJouer = new JMenu("Jouer");
+		mnJouer = new JMenu("Jeu");
 		menuBar.add(mnJouer);
 
 		mnCarte = new JMenu("Carte");
@@ -321,6 +323,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mnJouer_1 = new JMenuItem("Nouveau Jeu");
 		mnJouer.add(mnJouer_1);
 		mnJouer_1.addActionListener(this);
+
+		mnTrace = new JCheckBoxMenuItem("Trace");
+		mnJouer.add(mnTrace);
+		mnTrace.addActionListener(this);
 
 		mnMap = new JMenu("map1");
 		mnCarte.add(mnMap);
@@ -400,7 +406,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 	public void mouseClicked(MouseEvent arg0) {
 		if(arg0.getSource()==zone_map) modifType(arg0);
-		
+
 		if(arg0.getSource()==bouton_Catapulte) {
 			if(Carte.cmpCatapulte < 0) tCatapulte.setText("0");
 			else {
@@ -440,14 +446,16 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		//on creer l'interface pour le chargement d'un fichier utilisateur
 		if(e.getSource()==chargement) FileChooser.createAndShowGUI();
-		
+
 		if(e.getSource()==bouton_pause) Jeu.play = false;
-		
+
 		if(e.getSource()==bouton_play) {
 			Jeu.play = true;
 			Jeu.accelerer = false;
 		}
 		
+		if(e.getSource()==mnTrace) Moteur.trace=!Moteur.trace;
+
 		if(e.getSource()==bouton_accelerer) Jeu.accelerer = true;
 
 		//on affiche une fenetre popup pour chaque "Detail" de toutes les maps

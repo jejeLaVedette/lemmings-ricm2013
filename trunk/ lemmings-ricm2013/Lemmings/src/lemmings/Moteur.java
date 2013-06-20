@@ -12,6 +12,8 @@ import javax.imageio.ImageIO;
 public class Moteur implements Constantes {
 
 	private static int relief=0;
+	
+	public static boolean trace = false;
 
 	public static void miseAJourObservables() throws IOException
 	{
@@ -26,7 +28,7 @@ public class Moteur implements Constantes {
 			int x = lem.getX();
 			int y = lem.getY();
 
-			// S'il est sur le point de sortie, +- une certaine tolÃ©rance
+			// S'il est sur le point de sortie, +- une certaine tolérance
 			if(Math.abs(x-Carte.sortie.x)<(toleranceSortie/2) && Math.abs(y-Carte.sortie.y)<toleranceSortie) {
 				Carte.lemmingSauf++;
 				Carte.obs.remove(i);
@@ -41,27 +43,27 @@ public class Moteur implements Constantes {
 			// Analyse de l'environnement du lemming courant
 			String cond;
 
-			// Si prÃ©sence d'un plafond
+			// Si présence d'un plafond
 			if (Carte.map[x][y-1-coeff*3/4].isSol() && Carte.map[x-1][y-1-coeff*3/4].isSol() && Carte.map[x+1][y-1-coeff*3/4].isSol() )
-			{	cond = "sol"; }
-				
-			// PrÃ©sence d'un vide
-			
+			{       cond = "sol"; }
+
+			// Présence d'un vide
+
 			else 
 				if( ( lem.getDirection()==gauche && Carte.map[x][y+1].isAir() ) ||
-					( lem.getDirection()==droite && Carte.map[x][y+1].isAir() )	) 
-				cond = "vide";
+						( lem.getDirection()==droite && Carte.map[x][y+1].isAir() )     ) 
+					cond = "vide";
 
-			// PrÃ©sence d'un mur
-			else if( (x==0 && lem.getDirection()==gauche) || 
-					(x==Carte.LARGEUR_CARTE-1 && lem.getDirection()==1) ||
-					(lem.getDirection()==gauche && Carte.map[x-1][y].isSol() && Carte.map[x-1][y-1].isSol() && Carte.map[x-1][y-2].isSol())||
-					(lem.getDirection()==droite && Carte.map[x+1][y].isSol() && Carte.map[x+1][y-1].isSol() && Carte.map[x+1][y-2].isSol())
-					) 
-			{	cond = "mur"; }
+			// Présence d'un mur
+				else if( (x==0 && lem.getDirection()==gauche) || 
+						(x==Carte.LARGEUR_CARTE-1 && lem.getDirection()==1) ||
+						(lem.getDirection()==gauche && Carte.map[x-1][y].isSol() && Carte.map[x-1][y-1].isSol() && Carte.map[x-1][y-2].isSol())||
+						(lem.getDirection()==droite && Carte.map[x+1][y].isSol() && Carte.map[x+1][y-1].isSol() && Carte.map[x+1][y-2].isSol())
+						) 
+				{       cond = "mur"; }
 
-			else 
-			{	cond = "sol"; }
+				else 
+				{       cond = "sol"; }
 
 
 			if (cond=="sol" && Carte.map[lem.getX()][lem.getY()+1].type == typeSolTrampoline) {
@@ -71,7 +73,7 @@ public class Moteur implements Constantes {
 				else
 					//lem.angle = Math.PI*3/8;
 					Carte.obs.add(new Lemming(lem.getX(),lem.getY()-1,Math.PI*3/8,30));
-				
+
 				Carte.obs.remove(i);
 			}
 
@@ -86,7 +88,7 @@ public class Moteur implements Constantes {
 							relief--;
 							if(Carte.map[x-1][y-2].isSol()) relief--;
 						}
-					}					
+					}                                       
 
 					if(Carte.map[x-1][y+1].isAir()) {
 						relief++;
@@ -128,7 +130,7 @@ public class Moteur implements Constantes {
 			}
 
 			System.out.println("etat:"+lem.getEtat()+" type:"+lem.getType()+" x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
-			
+
 			// Recherche de l'automate correspondant
 			Automate aut = null;
 			for(int m=0;m<Jeu.listeAutomates.size();m++) {
@@ -138,7 +140,7 @@ public class Moteur implements Constantes {
 			}
 
 			if(aut == null) {
-				System.out.println("ModÃ¨le d'automate introuvable !");
+				System.out.println("Modèle d'automate introuvable !");
 				System.exit(1);
 			}
 
@@ -152,11 +154,11 @@ public class Moteur implements Constantes {
 			}
 
 			if(k==aut.listeTransitions.size()) {
-				System.out.println("Automate nÂ°"+ aut.identifiant +" non-dÃ©terministe !");
+				System.out.println("Automate n°"+ aut.identifiant +" non-déterministe !");
 				System.exit(1);
 			}
 
-			// On applique les actions associÃ©es
+			// On applique les actions associées
 			if (aut.listeTransitions.get(k).getActions() != null)
 			{
 				for(int l=0;l<aut.listeTransitions.get(k).getActions().size();l++) {
@@ -164,7 +166,7 @@ public class Moteur implements Constantes {
 				}
 			}
 
-			// On met Ã  jour le champs condPrecedente et eventuellement la micro-action
+			// On met à jour le champs condPrecedente et eventuellement la micro-action
 			if(lem.getCondPrecedente()!=cond)
 				lem.setSousAction(0);
 			lem.setCondPrecedente(cond);
@@ -220,7 +222,7 @@ public class Moteur implements Constantes {
 			l.image = "Images/lemmingBaseGauche2.png";
 			l.setX(l.getX()-1);
 			l.setY(l.getY()+relief);
-		}			
+		}                       
 		else if(l.getDirection()==droite) {
 			l.setX(l.getX()+1);
 			l.setY(l.getY()+relief);
@@ -239,7 +241,7 @@ public class Moteur implements Constantes {
 			l.image = "Images/lemmingBaseDroite2.png";
 		}
 	}
-	
+
 
 	private static void tomber(Lemming l) {
 
@@ -249,7 +251,7 @@ public class Moteur implements Constantes {
 		else
 			l.setSousAction(l.getSousAction()+1);
 
-		l.setY(l.getY()+1);		
+		l.setY(l.getY()+1);             
 		l.image = "Images/tombe2.png";
 
 	}
@@ -299,24 +301,24 @@ public class Moteur implements Constantes {
 		Point pReel = Moteur.collisionTrajectoire(new Point(l.getX(),l.getY()), new Point((int)t.calculx(l.time),(int)t.calculy(l.time)));
 
 		if(hasColision(x,y)){
-		l.setX(pReel.x);
-		l.setY(pReel.y);
+			l.setX(pReel.x);
+			l.setY(pReel.y);
 		}
 		else{
-		l.setX((int)x);
-		l.setY((int)y);
+			l.setX((int)x);
+			l.setY((int)y);
 		}
 
 		l.setTime();
-		Carte.map[l.getX()][l.getY()].couleur = new Color(255,0,0);
+		if(trace) Carte.map[l.getX()][l.getY()].couleur = new Color(255,0,0);
 
 	}
 
 	private static void rebondirsol(Lemming l) {
 
-		
+
 		System.out.println("REBONDIR SO!!L");
-		
+
 		trajectoireparaphysique t= l.getTrajH();
 		Point traj=t.trajectoire(l.time);
 		Point trajprec=t.trajectoire(l.time-2*deltat);
@@ -329,20 +331,20 @@ public class Moteur implements Constantes {
 		l.setX((int)xp);
 		l.setY((int)yp);
 		t.calculcolision(x, y, l.getXp() , l.getYp(),l.getX(),l.getY() , l.getElasticite(),0.2, false);
-         
-		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 1){
- 			l.setTrajpara(t);
- 			System.out.println("x:"+l.getX()+" y"+l.getY()); 
- 			Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
- 			l.resetTime();
- 			voler(l);
- 		}
-         
-		
-	}
-private static void rebondirmur(Lemming l) {
 
-		
+		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 1){
+			l.setTrajpara(t);
+			System.out.println("x:"+l.getX()+" y"+l.getY()); 
+			if (trace) Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
+			l.resetTime();
+			voler(l);
+		}
+
+
+	}
+	private static void rebondirmur(Lemming l) {
+
+
 		System.out.println("REBONDIR MUR!!");
 		trajectoireparaphysique t= l.getTrajH() ;
 		Point traj=t.trajectoire(l.time);
@@ -356,20 +358,20 @@ private static void rebondirmur(Lemming l) {
 		l.setX((int)xp);
 		l.setY((int)yp);
 		t.calculcolision(x, y, l.getXp() , l.getYp(),l.getX(),l.getY() , l.getElasticite(),0.5, true);
-        
+
 		retourner(l);
 		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 10){
- 			l.setTrajpara(t);
- 			System.out.println("x:"+l.getX()+" y"+l.getY()); 
- 			Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
- 			l.resetTime();
- 			voler(l);
- 		}
-         
-		
+			l.setTrajpara(t);
+			System.out.println("x:"+l.getX()+" y"+l.getY()); 
+			if (trace) Carte.map[l.getX()][l.getY()].couleur = new Color(0,255,0);
+			l.resetTime();
+			voler(l);
+		}
+
+
 	}
-	
-		
+
+
 
 	private static void grimper(Lemming l) {
 		System.out.println("TOTO");
@@ -393,10 +395,10 @@ private static void rebondirmur(Lemming l) {
 		else
 			for(int i=0;i<(coeff/2);i++) {
 				Carte.map[x-i][y] = new Sol(new Color(150,0,0));
-			}	
+			}       
 
 	}
-	
+
 	private static void construireTrampoline(Lemming l) {
 		int x,y;
 		y = l.getY();
@@ -418,7 +420,7 @@ private static void rebondirmur(Lemming l) {
 		if(l.getSousAction()%delaiSousAction==0) 
 			construire(l);
 		if(l.getSousAction()%delaiSousAction==1)
-			marcher(l);		
+			marcher(l);             
 		l.setSousAction((l.getSousAction()+1)%(nbMarche*delaiSousAction));
 	}
 
@@ -485,11 +487,11 @@ private static void rebondirmur(Lemming l) {
 
 
 	public static boolean hasColision(double x,double y){
-		if (Carte.map[(int)x][(int)y].isSol()){
-		return true;
+		if ((int)x<0 || (int)x>Carte.LARGEUR_CARTE || (int)y<0 || (int)y>Carte.HAUTEUR_CARTE || Carte.map[(int)x][(int)y].isSol()){
+			return true;
 		}
 		else
-		return false;
+			return false;
 
-		}
+	}
 }
