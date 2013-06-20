@@ -11,21 +11,21 @@ import java.util.List;
 public class Jeu implements Constantes {
 
 	public static List<Automate>listeAutomates = new ArrayList<Automate>();
+	public static Thread playWave;
 
 	public static Fenetre f;
 	public static void main(String[] args) throws InterruptedException, IOException{
 
-		Carte.initCmp(0, 0, 0, 0, 0, 0, 0, 0);
+		Carte.initCmp(0, 0, 0, 10, 0, 0, 0, 0);
 
 		Jeu.initialiserJeu("Images/Carte2.png", 
-
 				"Images/Carte2.png",
 				"",
 				"Automates/automate.xml",
 				new Point(60,55), 
 				new Point(0,0), 
 				0);
-
+		
 		int wait = delaiPop + 1;
 
 		f = new Fenetre(tailleFenetreH,tailleFenetreV);
@@ -34,7 +34,7 @@ public class Jeu implements Constantes {
 		//f.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
 		//Carte.obs.add(new Lemming(70,150,lemmingCatapulte));
-		Carte.obs.add(new Lemming(360,150,Math.PI/4,100));
+		Carte.obs.add(new Lemming(150,150,Math.PI/3,50));
 		while(true) {
 
 			if(wait>delaiPop && Carte.getNbLemmings()!=0) {
@@ -62,8 +62,8 @@ public class Jeu implements Constantes {
 		listeAutomates.add(new AutoLemmingStop(5));
 		listeAutomates.add(new AutoLemmingCatapulte(5));
 
-		//Thread playWave=new AePlayWave(musique);
-		//playWave.start();
+		playWave = new AePlayWave(musique);
+		playWave.start();
 
 		Carte.charger(map,background);
 
