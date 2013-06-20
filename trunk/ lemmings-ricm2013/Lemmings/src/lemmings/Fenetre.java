@@ -443,23 +443,23 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		//on affiche une fenetre popup pour chaque "Detail" de toutes les maps
 		if(e.getSource()==mapDetail){
-			JOptionPane.showMessageDialog(null, "Map1\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/carte3.png"));
+			JOptionPane.showMessageDialog(null, "Map1\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/map1.png"));
 		}
 
 		if(e.getSource()==map2Detail){
-			JOptionPane.showMessageDialog(null, "Map2\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/map1.png"));
+			JOptionPane.showMessageDialog(null, "Map2\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/map2.png"));
 		}
 
 		if(e.getSource()==map3Detail){
-			JOptionPane.showMessageDialog(null, "Map3\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/Carte3.png"));
+			JOptionPane.showMessageDialog(null, "Map3\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/map3.png"));
 		}
 
 		if(e.getSource()==map4Detail){
-			JOptionPane.showMessageDialog(null, "Map4\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/carte4.png"));
+			JOptionPane.showMessageDialog(null, "Map4\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/map4.png"));
 		}
 
 		if(e.getSource()==map5Detail){
-			JOptionPane.showMessageDialog(null, "Map5\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/carte5.png"));
+			JOptionPane.showMessageDialog(null, "Map5\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Map Mario", 0, new ImageIcon("ImagesMenu/map5.png"));
 		}
 
 		//on charge la map
@@ -473,8 +473,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				Carte.initCmp(4, 20, 4, 0, 0, 0, 4, 0);
 				afficherTexteCmp();
 				//on charge la map avec les bon parametres
-				Jeu.initialiserJeu("Images/Carte4.png", 
-						"Images/Carte4.png", 
+				Jeu.initialiserJeu("Images/map1.png", 
+						"Images/map1.png", 
 						"Musiques/fairy_tail.wav", 
 						"Automates/automate.xml", 
 						new Point(60,55), 
@@ -495,7 +495,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				Carte.lemmingASauver=10;
 				Carte.initCmp(4, 4, 6, 0, 7, 0, 2, 0);
 				afficherTexteCmp();
-				Jeu.initialiserJeu("Images/map1.png", 
+				Jeu.initialiserJeu("Images/map2.png", 
 						"Images/mario.png", 
 						"", 
 						"Automates/automate.xml", 
@@ -517,8 +517,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				Carte.lemmingASauver=10;
 				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
 				afficherTexteCmp();
-				Jeu.initialiserJeu("Images/carte3.png", 
-						"Images/carte3.png", 
+				Jeu.initialiserJeu("Images/map3.png", 
+						"Images/map3.png", 
 						"", 
 						"Automates/automate.xml", 
 						new Point(60,55), 
@@ -538,8 +538,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				Carte.lemmingASauver=10;
 				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
 				afficherTexteCmp();
-				Jeu.initialiserJeu("Images/carte4.png", 
-						"Images/carte4.png", 
+				Jeu.initialiserJeu("Images/map4.png", 
+						"Images/map4.png", 
 						"", 
 						"Automates/automate.xml", 
 						new Point(60,55), 
@@ -560,8 +560,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				Carte.lemmingASauver=10;
 				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
 				afficherTexteCmp();
-				Jeu.initialiserJeu("Images/carte5.png", 
-						"Images/carte5.png", 
+				Jeu.initialiserJeu("Images/map5.png", 
+						"Images/map5.png", 
 						"", 
 						"Automates/automate.xml", 
 						new Point(60,55), 
@@ -712,7 +712,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_parapluie = new JButton(new ImageIcon(((new ImageIcon("Images/parapluie_ferme.jpg")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_escalier = new JButton(new ImageIcon(((new ImageIcon("Images/escalier.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_Catapulte = new JButton(new ImageIcon(((new ImageIcon("Images/Catapulte.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
-		bouton_trampoline = new JButton(new ImageIcon(((new ImageIcon("Images/escalade.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+		bouton_trampoline = new JButton(new ImageIcon(((new ImageIcon("Images/Trampoline.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_bombe = new JButton(new ImageIcon(((new ImageIcon("Images/bombe.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_stop = new JButton(new ImageIcon(((new ImageIcon("Images/lemming3.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_futur2 = new JButton(new ImageIcon(((new ImageIcon("Images/interrogation.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
