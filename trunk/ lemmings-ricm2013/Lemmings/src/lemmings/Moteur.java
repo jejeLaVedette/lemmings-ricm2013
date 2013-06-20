@@ -280,12 +280,9 @@ public class Moteur implements Constantes {
 
 	private static void voler(Lemming l) {
 		trajectoireparaphysique t = l.getTrajH();
-		//double x=t.calculx(l.time);
-		//double y=t.calculy(l.time);
 		Point traj=t.trajectoire(l.time);
 		double x=traj.getX();
 		double y=traj.getY();
-		//fin modif perso pour test
 		Point pReel = Moteur.collisionTrajectoire(new Point(l.getX(),l.getY()), new Point((int)t.calculx(l.time),(int)t.calculy(l.time)));
 
 		if(hasColision(x,y)){
@@ -307,19 +304,13 @@ public class Moteur implements Constantes {
 		
 		System.out.println("REBONDIR SO!!L");
 		
-		trajectoireparaphysique t= l.getTrajH() ;
-		//double x  = t.calculx(l.time);
-		//double y = t.calculy(l.time);
+		trajectoireparaphysique t= l.getTrajH();
 		Point traj=t.trajectoire(l.time);
 		Point trajprec=t.trajectoire(l.time-2*deltat);
 		double x=traj.getX();
 		double y=traj.getY();
 		double xp=trajprec.getX();
 		double yp=trajprec.getY();
-		//l.setXp(t.calculx(l.time -2*deltat));
-		//l.setYp(t.calculy(l.time -2*deltat));
-		//l.setX((int)t.calculx(l.time -2*deltat));
-		//l.setY((int)t.calculy(l.time -2*deltat));
 		l.setXp(xp);
 		l.setYp(yp);
 		l.setX((int)xp);
@@ -341,12 +332,6 @@ private static void rebondirmur(Lemming l) {
 		
 		System.out.println("REBONDIR MUR!!");
 		trajectoireparaphysique t= l.getTrajH() ;
-		//double x  = t.calculx(l.time);
-		//double y = t.calculy(l.time);
-		//l.setXp(t.calculx(l.time -2*deltat));
-		//l.setYp(t.calculy(l.time -2*deltat));
-		//l.setX((int)t.calculx(l.time -2*deltat));
-		//l.setY((int)t.calculy(l.time -2*deltat));
 		Point traj=t.trajectoire(l.time);
 		Point trajprec=t.trajectoire(l.time-2*deltat);
 		double x=traj.getX();
