@@ -1,5 +1,6 @@
 package lemmings;
 
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -35,8 +36,13 @@ public class Jeu implements Constantes {
 
 		//Carte.obs.add(new Lemming(70,150,lemmingCatapulte));
 
-		Carte.obs.add(new Lemming(150,150,Math.PI/4,70));
-		Carte.obs.add(new Lemming(150,160));
+		
+		Carte.obs.add(new Lemming(350,160));
+		Carte.map[370][164] = new Sol(new Color(0,255,255),typeSolTrampoline);
+		Carte.map[371][164] = new Sol(new Color(0,255,255),typeSolTrampoline);
+		Carte.map[372][164] = new Sol(new Color(0,255,255),typeSolTrampoline);
+		Carte.map[373][164] = new Sol(new Color(0,255,255),typeSolTrampoline);
+		Carte.map[374][164] = new Sol(new Color(0,255,255),typeSolTrampoline);
 
 		while(true) {
 
