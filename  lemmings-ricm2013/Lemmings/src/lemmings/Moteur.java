@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 public class Moteur implements Constantes {
 
 	private static int relief=0;
-	
+
 	public static boolean trace = false;
 
 	public static void miseAJourObservables() throws IOException
@@ -44,9 +44,12 @@ public class Moteur implements Constantes {
 			String cond;
 
 			// Si presence d'un plafond
-			if (Carte.map[x][y-1-coeff*3/4].isSol() && Carte.map[x-1][y-1-coeff*3/4].isSol() && Carte.map[x+1][y-1-coeff*3/4].isSol() 
-				/*Carte.map[x][y].isSol()*/)
-					
+			if (Carte.map[x][y-1-coeff*3/4].isSol() && Carte.map[x-1][y-1-coeff*3/4].isSol() && Carte.map[x+1][y-1-coeff*3/4].isSol() ||
+				x>4 && Carte.map[x-5][y].isSol() && Carte.map[x-4][y].isSol() && Carte.map[x-3][y].isSol() &&
+				Carte.map[x-2][y].isSol() && Carte.map[x][y].isSol() && Carte.map[x+1][y].isSol() &&
+				Carte.map[x+2][y].isSol() && Carte.map[x+3][y].isSol() && Carte.map[x+4][y].isSol()
+				&& Carte.map[x+5][y].isSol())
+
 			{       cond = "sol"; }
 
 			// Presence d'un vide
@@ -428,7 +431,7 @@ public class Moteur implements Constantes {
 			marcher(l);             
 		l.setSousAction((l.getSousAction()+1)%(nbMarche*delaiSousAction));
 	}
-	
+
 	private static void exploser(Lemming l) throws IOException {
 		double fi;
 		int x,y;
@@ -441,9 +444,9 @@ public class Moteur implements Constantes {
 					Carte.map[x][y] = new Air(new Color(arrierePlan.getRGB(x,y)));
 			}
 		}
-		
+
 		Carte.obs.remove(l);
-		
+
 	}
 
 	public static Point collisionTrajectoire (Point pCourant, Point pDest) {
