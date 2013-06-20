@@ -1,5 +1,7 @@
 package lemmings;
 
+import java.awt.Point;
+
 
 public class trajectoireparaphysique implements Constantes {
 
@@ -42,12 +44,12 @@ public class trajectoireparaphysique implements Constantes {
 	 }
 	 private double calculkx (){
 		
-		 double x= (1.0/2)*massevolair*hauteurlemmings*proflemmings*coefftraineelemming*this.Vx*0.6; 		 
+		 double x= (1.0/2)*massevolair*hauteurlemmings*proflemmings*coefftraineelemming*this.Vx*coefftrajvx; 		 
 		 return x;
 		 
 	 }
 	 private double calculky (){
-		 double y=(1.0/2)*massevolair*larglemmings*proflemmings*coefftraineelemming*this.Vy*0.6;
+		 double y=(1.0/2)*massevolair*larglemmings*proflemmings*coefftraineelemming*this.Vy*coefftrajvy;
 		 return y; 
 		 
 	 }
@@ -69,6 +71,13 @@ public class trajectoireparaphysique implements Constantes {
 		
 		 return ((double)this.base_y-((this.masse/this.calculky())*(this.Vy+((this.masse/this.calculky())*coeffgravite))*(1-Math.exp(-(this.calculky()/this.masse)*t))-((this.masse/this.calculky())*coeffgravite*t)));
 		 }
+	 }
+	 
+	 public Point trajectoire(double t)
+	 {
+		 Point rep=new Point(0,0);
+		 rep.setLocation(this.calculx(t), this.calculy(t));
+		 return rep;
 	 }
 	 
 	 //type= true->colision avec mur vertical

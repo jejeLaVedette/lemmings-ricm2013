@@ -1,6 +1,6 @@
 package lemmings;
 
-public abstract class Observable {
+public abstract class Observable implements Constantes {
 	
 	protected int type;
 	protected int x;
@@ -90,10 +90,12 @@ public abstract class Observable {
 		this.Yprec = vy;
 	}
 	public void setTime(){
-		time = time +0.1;
+		//time = time +0.1;
+		time=time+deltat;
 	}
 	public void resetTime(){
-		time=0.1;
+		//time=0.1;
+		time=deltat;
 	}
 
 	public int getImageCourante() {

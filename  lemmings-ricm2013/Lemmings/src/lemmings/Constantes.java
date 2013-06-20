@@ -53,9 +53,9 @@ public interface Constantes {
 	public final static int toleranceSortie = 10;
 	
 	// Constantes trajectoires
-	public final static  double coeffreductionx= 0.4;
-	public final static  double coeffreductiony= 0.2;
-	public final static  int coeffdecalagedirectrice = 30;
+	//public final static  double coeffreductionx= 0.4;
+	//public final static  double coeffreductiony= 0.2;
+	//public final static  int coeffdecalagedirectrice = 30;
 	public static int vx = 50;
 	public static int vy = 50;
 	public static double coeffgravite=9.8;
@@ -65,6 +65,8 @@ public interface Constantes {
 	public static double massevolair=1.184;
 	public static double masselemming=80;
 	public static double coefftraineelemming=1.05;
+	public static double coefftrajvx=0.6;
+	public static double coefftrajvy=0.6;	
 	public static double deltat=0.1;
 	
 	

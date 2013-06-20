@@ -275,13 +275,17 @@ public class Moteur implements Constantes {
 
 	private static void initTrajectoire(Lemming l) {
 		trajectoireparaphysique t=new trajectoireparaphysique(l.getX(),l.getY(),l.puissance,l.angle,1);
-		l.setTrajH(t);
+		l.setTrajpara(t);
 	}
 
 	private static void voler(Lemming l) {
 		trajectoireparaphysique t = l.getTrajH();
-		double x=t.calculx(l.time);
-		double y=t.calculy(l.time);
+		//double x=t.calculx(l.time);
+		//double y=t.calculy(l.time);
+		Point traj=t.trajectoire(l.time);
+		double x=traj.getX();
+		double y=traj.getY();
+		//fin modif perso pour test
 		Point pReel = Moteur.collisionTrajectoire(new Point(l.getX(),l.getY()), new Point((int)t.calculx(l.time),(int)t.calculy(l.time)));
 
 		if(hasColision(x,y)){
@@ -304,16 +308,26 @@ public class Moteur implements Constantes {
 		System.out.println("REBONDIR SO!!L");
 		
 		trajectoireparaphysique t= l.getTrajH() ;
-		double x  = t.calculx(l.time);
-		double y = t.calculy(l.time);
-		l.setXp(t.calculx(l.time -2*deltat));
-		l.setYp(t.calculy(l.time -2*deltat));
-		l.setX((int)t.calculx(l.time -2*deltat));
-		l.setY((int)t.calculy(l.time -2*deltat));
+		//double x  = t.calculx(l.time);
+		//double y = t.calculy(l.time);
+		Point traj=t.trajectoire(l.time);
+		Point trajprec=t.trajectoire(l.time-2*deltat);
+		double x=traj.getX();
+		double y=traj.getY();
+		double xp=trajprec.getX();
+		double yp=trajprec.getY();
+		//l.setXp(t.calculx(l.time -2*deltat));
+		//l.setYp(t.calculy(l.time -2*deltat));
+		//l.setX((int)t.calculx(l.time -2*deltat));
+		//l.setY((int)t.calculy(l.time -2*deltat));
+		l.setXp(xp);
+		l.setYp(yp);
+		l.setX((int)xp);
+		l.setY((int)yp);
 		t.calculcolision(x, y, l.getXp() , l.getYp(),l.getX(),l.getY() , l.getElasticite(),0.5, false);
          
 		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 1){
- 			l.setTrajH(t);
+ 			l.setTrajpara(t);
  			System.out.println("x:"+l.getX()+" y"+l.getY()); 
  			Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
  			l.resetTime();
@@ -327,17 +341,27 @@ private static void rebondirmur(Lemming l) {
 		
 		System.out.println("REBONDIR MUR!!");
 		trajectoireparaphysique t= l.getTrajH() ;
-		double x  = t.calculx(l.time);
-		double y = t.calculy(l.time);
-		l.setXp(t.calculx(l.time -2*deltat));
-		l.setYp(t.calculy(l.time -2*deltat));
-		l.setX((int)t.calculx(l.time -2*deltat));
-		l.setY((int)t.calculy(l.time -2*deltat));
+		//double x  = t.calculx(l.time);
+		//double y = t.calculy(l.time);
+		//l.setXp(t.calculx(l.time -2*deltat));
+		//l.setYp(t.calculy(l.time -2*deltat));
+		//l.setX((int)t.calculx(l.time -2*deltat));
+		//l.setY((int)t.calculy(l.time -2*deltat));
+		Point traj=t.trajectoire(l.time);
+		Point trajprec=t.trajectoire(l.time-2*deltat);
+		double x=traj.getX();
+		double y=traj.getY();
+		double xp=trajprec.getX();
+		double yp=trajprec.getY();
+		l.setXp(xp);
+		l.setYp(yp);
+		l.setX((int)xp);
+		l.setY((int)yp);
 		t.calculcolision(x, y, l.getXp() , l.getYp(),l.getX(),l.getY() , l.getElasticite(),0.5, true);
         
 		retourner(l);
 		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 10){
- 			l.setTrajH(t);
+ 			l.setTrajpara(t);
  			System.out.println("x:"+l.getX()+" y"+l.getY()); 
  			Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
  			l.resetTime();

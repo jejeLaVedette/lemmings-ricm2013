@@ -1,4 +1,4 @@
-package lemmings;
+/*package lemmings;
 import java.awt.Point;
 
 
@@ -111,3 +111,4 @@ public class Trajectoire_physiqueV implements Constantes {
 
 
 }
+*/

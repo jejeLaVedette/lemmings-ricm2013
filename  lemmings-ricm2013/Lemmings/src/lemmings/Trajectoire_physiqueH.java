@@ -1,4 +1,4 @@
-package lemmings;
+/*package lemmings;
 import java.awt.Point;
 public class Trajectoire_physiqueH implements Constantes {
 	private int base_x;
@@ -122,3 +122,4 @@ public class Trajectoire_physiqueH implements Constantes {
 	
 
 }
+*/
