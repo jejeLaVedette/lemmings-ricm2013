@@ -55,7 +55,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 	public static Panneau zone_map;
 	public static Panneau2 mini_map;
-
+	
 	public static JScrollPane scroll;
 
 	public static int tailleFX;
@@ -440,6 +440,15 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		//on creer l'interface pour le chargement d'un fichier utilisateur
 		if(e.getSource()==chargement) FileChooser.createAndShowGUI();
+		
+		if(e.getSource()==bouton_pause) Jeu.play = false;
+		
+		if(e.getSource()==bouton_play) {
+			Jeu.play = true;
+			Jeu.accelerer = false;
+		}
+		
+		if(e.getSource()==bouton_accelerer) Jeu.accelerer = true;
 
 		//on affiche une fenetre popup pour chaque "Detail" de toutes les maps
 		if(e.getSource()==mapDetail){
