@@ -3,17 +3,12 @@ package lemmings;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-
 import javax.swing.JPanel;
-import javax.swing.JViewport;
 
 public class Panneau2 extends JPanel implements Constantes { 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
-
-	//private Image perso;
+	
 	private int posX = 0;
 	private int posY = 0;
 	private int tailleRX;
@@ -25,15 +20,6 @@ public class Panneau2 extends JPanel implements Constantes {
 	private int coefRetrecissementy;
 
 	public Panneau2(int tailleFX, int tailleFY) {
-		//on test les x
-		/*if(tailleFX >= Carte.LARGEUR_CARTE) this.tailleRX = Fenetre.tailleFX/Carte.LARGEUR_CARTE;
-		else this.tailleRX = Carte.LARGEUR_CARTE/Fenetre.tailleFX;
-
-		//on test les y
-		if(coefFenetre*tailleFY>=Carte.HAUTEUR_CARTE) this.tailleRY = (int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE);
-		else this.tailleRY = (int) (Carte.HAUTEUR_CARTE/coefFenetre*Fenetre.tailleFY);
-
-		this.coefRetrecissement = 3;*/
 
 		if(tailleFX >= Carte.LARGEUR_CARTE) {
 			this.tailleRX = Fenetre.tailleFX/Carte.LARGEUR_CARTE;
@@ -41,7 +27,8 @@ public class Panneau2 extends JPanel implements Constantes {
 		}
 		else {
 			this.tailleRX = 1;
-			this.coefRetrecissementx = this.tailleRX*2+1;//*2 car la mini_map n'est que 1/2 de x de l'�cran et +1 pour prendre le pixel sup�rieur
+			// *2 car la mini_map n'est que 1/2 de x de l'ecran et +1 pour prendre le pixel superieur
+			this.coefRetrecissementx = this.tailleRX*2+1;
 		}
 
 		//on test les y
@@ -112,22 +99,5 @@ public class Panneau2 extends JPanel implements Constantes {
 
 
 	}
-
-
-	public int getPosX() {
-		return posX;
-	}
-
-	public void setPosX(int posX) {
-		this.posX = posX;
-	}
-
-	public int getPosY() {
-		return posY;
-	}
-
-	public void setPosY(int posY) {
-		this.posY = posY;
-	}    
 
 }
