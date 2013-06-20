@@ -49,9 +49,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private final JFrame frame = new JFrame("Reglage catapulte");
 	private JSplitPane split2, split3;
 	private int espacement_hori = 20;
+	private int espacement_text2 = 65;
 	private int espacement_text = 65;
 	private int typeCourant;
-	private int catapulteX = 100;
+	private int catapulteX = 70;
 	private int catapulteY = 150;
 
 	public static Panneau zone_map;
@@ -63,6 +64,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	public static int tailleFY;
 
 	public static int etatSouris;
+	
+	public static boolean musique=false;
 
 	//DECLARATION DE TOUT LES BOUTONS
 	private JButton bouton_creuse;
@@ -77,7 +80,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JButton bouton_pause;  
 	private JButton bouton_accelerer; 
 	private JButton bouton_recharger; 
-	private JButton bouton_lemmingSave;
 	private JButton bouton_suppr;
 	private JButton b2 = new JButton ("OK");
 
@@ -91,6 +93,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JLabel tStop;
 	private JLabel tFutur2;
 	private JLabel tLemmingSave;
+	private JLabel tLemmingSauver;
 
 	private int ancienNum;
 	private int puissance;
@@ -120,6 +123,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JMenuItem map4Detail;
 	private JMenuItem map5Detail;
 	private JCheckBoxMenuItem mnTrace;
+
+	private JMenu mnMusique;
+
+	private JCheckBoxMenuItem mnBoxSong;
 
 
 
@@ -194,31 +201,35 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		Component horizontalStrut_12 = Box.createHorizontalStrut(espacement_hori);
 		bouton_sup.add(horizontalStrut_12);
 
-		bouton_sup.add(bouton_lemmingSave);
+		//bouton_sup.add(bouton_lemmingSave);
+		//textSave.setLayout(new BoxLayout(text1, BoxLayout.LINE_AXIS));
+		bouton_sup.add(tLemmingSauver);
+
 
 
 
 		text1.setLayout(new BoxLayout(text1, BoxLayout.LINE_AXIS));
 
 		text1.add(tPioche);
-		Component horizontalStrut_t1 = Box.createHorizontalStrut(espacement_text);
+		Component horizontalStrut_t1 = Box.createHorizontalStrut(espacement_text2);
 		text1.add(horizontalStrut_t1);
 
 		text1.add(tParapluie);
-		Component horizontalStrut_t2 = Box.createHorizontalStrut(espacement_text);
+		Component horizontalStrut_t2 = Box.createHorizontalStrut(espacement_text2);
 		text1.add(horizontalStrut_t2);
 
 		text1.add(tEscalier);
-		Component horizontalStrut_t3 = Box.createHorizontalStrut(espacement_text);
+		Component horizontalStrut_t3 = Box.createHorizontalStrut(espacement_text2);
 		text1.add(horizontalStrut_t3);
 
 		text1.add(tCatapulte);
 
-		Component horizontalStrut_t11 = Box.createHorizontalStrut(espacement_text);
+		Component horizontalStrut_t11 = Box.createHorizontalStrut(75);
 		text1.add(horizontalStrut_t11);
 
 		text1.add(tLemmingSave);
-
+		Component horizontalStrut_t14 = Box.createHorizontalStrut(40);
+		text1.add(horizontalStrut_t14);
 
 
 		JPanel bouton_inf1 = new JPanel();
@@ -319,6 +330,12 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		mnCarte = new JMenu("Carte");
 		menuBar.add(mnCarte);
+		
+		mnMusique = new JMenu("Son");
+		menuBar.add(mnMusique);
+		mnBoxSong = new JCheckBoxMenuItem("Activer");
+		mnMusique.add(mnBoxSong);
+		mnBoxSong.addActionListener(this);
 
 		mnJouer_1 = new JMenuItem("Nouveau Jeu");
 		mnJouer.add(mnJouer_1);
@@ -455,6 +472,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			Jeu.play = true;
 			Jeu.accelerer = false;
 		}
+		
+		if(e.getSource()==mnBoxSong) Jeu.playWave.stop();
+
 		
 		if(e.getSource()==mnTrace) Moteur.trace=!Moteur.trace;
 
@@ -602,13 +622,13 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(e.getSource()==bouton_escalier) typeCourant = lemmingEscalier;
 		if(e.getSource()==bouton_trampoline) typeCourant = lemmingTrampoline;
 
-		//permet de tuer tout les lemmings et dit si on a gagnï¿½ ou non le jeu
+		//permet de tuer tout les lemmings et dit si on a gagne ou non le jeu
 		if(e.getSource()==bouton_suppr) {
 			String s; 
 			Carte.setNbLemmings(0);
 			Carte.obs.removeAll(Carte.obs);
-			if(Carte.lemmingSauf>Carte.lemmingASauver) s = "lemming(s) sauvï¿½(s) : "+ Carte.lemmingSauf+"\n Vous avez gagnï¿½!!";
-			else s = "lemming sauver : "+ Carte.lemmingSauf+"\n Vous avez perdu";
+			if(Carte.lemmingSauf>Carte.lemmingASauver) s = "lemming(s) sauvé(s) : "+ Carte.lemmingSauf+"\n Vous avez gagné!!";
+			else s = "lemming(s) sauvé(s) : "+ Carte.lemmingSauf+"\n Vous avez perdu";
 			JOptionPane.showMessageDialog(null, s);
 		}
 
@@ -732,7 +752,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_pause = new JButton(new ImageIcon(((new ImageIcon("Images/pause.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_accelerer = new JButton(new ImageIcon(((new ImageIcon("Images/accelerer.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_recharger = new JButton(new ImageIcon(((new ImageIcon("Images/recharger.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
-		bouton_lemmingSave = new JButton(new ImageIcon(((new ImageIcon("Images/sauver.jpg")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_suppr = new JButton(new ImageIcon(((new ImageIcon("Images/explosion.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 
 		tPioche = new JLabel(""+Carte.cmpPioche);
@@ -744,6 +763,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		tStop = new JLabel(""+Carte.cmpStop);
 		tFutur2 = new JLabel(""+Carte.cmpFutur2);
 		tLemmingSave = new JLabel(""+Carte.lemmingSauf);
+		tLemmingSauver = new JLabel("Lemmings sauvé(s):");
 
 		//MISE EN ATTENTE DES BOUTONS
 		bouton_creuse.addActionListener(this);
@@ -764,11 +784,13 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	class BoutonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			puissance = Integer.parseInt(Tpuissance.getText()); //on reccupere la puissance
-			if(0>puissance&&puissance<=100) {
+			System.out.println("########################################################");
+			//if(0>puissance&&puissance<=100) {
+				System.out.println("??????????????????????????????????????????????????????????????");
 				angle = (double) ((Integer.parseInt(Tangle.getText()))*Math.PI/180); //on reccupere l'angle et on convertie en radian
-				Carte.obs.add(new Lemming(catapulteX,catapulteY,angle,(puissance+1)*70/100)); //on tire le lemmings
+				Carte.obs.add(new Lemming(catapulteX,catapulteY,angle,puissance)); //on tire le lemmings
 				frame.dispose(); //on ferme la fenetre
-			}
+			//}
 		}
 	}
 
