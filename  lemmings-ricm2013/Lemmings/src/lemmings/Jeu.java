@@ -19,7 +19,7 @@ public class Jeu implements Constantes {
 	public static boolean accelerer = false;
 	public static void main(String[] args) throws InterruptedException, IOException{
 
-		Carte.initCmp(0, 0, 0, 10, 0, 0, 0, 0);
+		Carte.initCmp(10, 10, 10, 10, 10, 10, 10, 10);
 
 		Jeu.initialiserJeu("Images/Carte2.png", 
 				"Images/Carte2.png",
@@ -36,7 +36,7 @@ public class Jeu implements Constantes {
 
 		//f.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
-		//Carte.obs.add(new Lemming(70,150,lemmingCatapulte));
+		Carte.obs.add(new Lemming(70,150,Math.PI/4,50));
 
 
 		Carte.obs.add(new Lemming(350,160));
