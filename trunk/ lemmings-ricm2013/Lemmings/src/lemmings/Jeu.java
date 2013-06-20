@@ -19,16 +19,16 @@ public class Jeu implements Constantes {
 	public static boolean accelerer = false;
 	public static void main(String[] args) throws InterruptedException, IOException{
 
-		Carte.initCmp(10, 10, 10, 10, 10, 10, 10, 10);
+		Carte.initCmp(0, 0, 0, 0, 0, 0, 0, 0);
 
-		Jeu.initialiserJeu("Images/Carte2.png", 
-				"Images/Carte2.png",
+		Jeu.initialiserJeu("Images/depart.png", 
+				"Images/departbg.png",
 				"",
 				"Automates/automate.xml",
-				new Point(60,55), 
+				new Point(61,124), 
+				new Point(450,141),
 				new Point(0,0),
-				new Point(0,0),
-				0);
+				50);
 
 		int wait = delaiPop + 1;
 
@@ -37,15 +37,15 @@ public class Jeu implements Constantes {
 
 		//f.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
-		Carte.obs.add(new Lemming(70,150,Math.PI/4,50));
+		//Carte.obs.add(new Lemming(70,150,Math.PI/4,50));
 
 
-		Carte.obs.add(new Lemming(350,160));
-		Carte.map[370][164] = new Sol(new Color(0,255,255),typeSolTrampoline);
+		//Carte.obs.add(new Lemming(350,160));
+		/*Carte.map[370][164] = new Sol(new Color(0,255,255),typeSolTrampoline);
 		Carte.map[371][164] = new Sol(new Color(0,255,255),typeSolTrampoline);
 		Carte.map[372][164] = new Sol(new Color(0,255,255),typeSolTrampoline);
 		Carte.map[373][164] = new Sol(new Color(0,255,255),typeSolTrampoline);
-		Carte.map[374][164] = new Sol(new Color(0,255,255),typeSolTrampoline);
+		Carte.map[374][164] = new Sol(new Color(0,255,255),typeSolTrampoline);*/
 
 		while(true) {
 
