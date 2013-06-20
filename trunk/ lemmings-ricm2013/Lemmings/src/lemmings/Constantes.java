@@ -52,6 +52,7 @@ public interface Constantes {
 	public final static int delaiAttente = 40;
 	public final static int delaiPop = 50;
 	public final static int nbMarche = 15;
+	public final static int rayonBombe = 15;
 	public final static int delaiSousAction = 4;
 	public final static int toleranceSortie = 10;
 	

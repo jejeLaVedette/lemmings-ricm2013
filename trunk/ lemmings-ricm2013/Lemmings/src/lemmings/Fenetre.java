@@ -311,7 +311,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, zone_gauche, zone_droite);
 		//On place le deuxieme separateur
 		split2.setDividerLocation(tFX/2);
-		//On passe les deux precedents JSplitPane ï¿½ celui-ci
+		//On passe les deux precedents JSplitPane a celui-ci
 		split3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scroll, split2);
 		//On place le troisieme separateur
 		split3.setDividerLocation(3*tFY/5);
@@ -547,7 +547,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			try {
 				Jeu.playWave.stop();
 				Carte.lemmingASauver=10;
-				Carte.initCmp(2, 2, 2, 0, 0, 2, 2, 0);
+				Carte.initCmp(2, 2, 4, 0, 2, 2, 2, 0);
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/map3.png", 
 						"Images/map3bg.png", 
@@ -619,14 +619,15 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
 		if(e.getSource()==bouton_escalier) typeCourant = lemmingEscalier;
 		if(e.getSource()==bouton_trampoline) typeCourant = lemmingTrampoline;
+		if(e.getSource()==bouton_bombe) typeCourant = lemmingBombe;
 
 		//permet de tuer tout les lemmings et dit si on a gagne ou non le jeu
 		if(e.getSource()==bouton_suppr) {
 			String s; 
 			Carte.setNbLemmings(0);
 			Carte.obs.removeAll(Carte.obs);
-			if(Carte.lemmingSauf>Carte.lemmingASauver) s = "lemming(s) sauvé(s) : "+ Carte.lemmingSauf+"\n Vous avez gagné!!";
-			else s = "lemming(s) sauvé(s) : "+ Carte.lemmingSauf+"\n Vous avez perdu";
+			if(Carte.lemmingSauf>Carte.lemmingASauver) s = "lemming(s) sauve(s) : "+ Carte.lemmingSauf+"\n Vous avez gagne!!";
+			else s = "lemming(s) sauve(s) : "+ Carte.lemmingSauf+"\n Vous avez perdu";
 			JOptionPane.showMessageDialog(null, s);
 		}
 
@@ -704,6 +705,11 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						else tTrampoline.setText("" + Carte.cmpTrampoline);
 						this.ancienNum = Carte.cmpTrampoline;
 					}
+					if(typeCourant == lemmingBombe){
+						if(Carte.cmpBombe-- <= 0) tBombe.setText("0");
+						else tBombe.setText("" + Carte.cmpBombe);
+						this.ancienNum = Carte.cmpBombe;
+					}
 
 					if(this.ancienNum>=0) {
 						Carte.obs.get(i).type=typeCourant;
@@ -760,7 +766,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		tStop = new JLabel(""+Carte.cmpStop);
 		tFutur2 = new JLabel(""+Carte.cmpFutur2);
 		tLemmingSave = new JLabel(""+Carte.lemmingSauf);
-		tLemmingSauver = new JLabel("Lemmings sauvé(s):");
+		tLemmingSauver = new JLabel("Lemmings sauvï¿½(s):");
 
 		//MISE EN ATTENTE DES BOUTONS
 		bouton_creuse.addActionListener(this);
