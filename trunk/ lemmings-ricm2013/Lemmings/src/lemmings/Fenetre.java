@@ -54,6 +54,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private int typeCourant;
 	private int catapulteX = 70;
 	private int catapulteY = 150;
+	private Thread playSong;
+
 
 	public static Panneau zone_map;
 	public static Panneau2 mini_map;
@@ -528,7 +530,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/map2.png", 
 						"Images/map2bg.png", 
-						"", 
+						"Musiques/Mario.wav", 
 						"Automates/automate.xml", 
 						new Point(60,55), 
 						new Point(330,125), 
@@ -777,6 +779,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 	class BoutonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
+			playSong = new AePlayWave("Sons/explosion.wav");
+			playSong.start();
 			puissance = Integer.parseInt(Tpuissance.getText()); //on reccupere la puissance
 			if((0<= puissance)&&(puissance<=100) ) {
 				angle = (double) ((Integer.parseInt(Tangle.getText()))*Math.PI/180); //on reccupere l'angle et on convertie en radian
