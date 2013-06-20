@@ -65,9 +65,11 @@ public interface Constantes {
 	public static double massevolair=1.184;
 	public static double masselemming=80;
 	public static double coefftraineelemming=1.05;
-	public static double coefftrajvx=0.6;
-	public static double coefftrajvy=0.6;	
-	public static double deltat=0.1;
+	public static double coeffvxkx=0.9;
+	public static double coeffvyky=0.9;	
+	public static double coeffbondvx=1.2;
+	public static double coeffbondvy=0.8;
+	public static double deltat=0.2;
 	
 	
 }
