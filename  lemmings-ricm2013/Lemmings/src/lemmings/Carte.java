@@ -28,7 +28,7 @@ public class Carte implements Constantes {
 	public static ArrayList<Observable> obs = new ArrayList<Observable>();
 
 	//DECLARATION DES COMPTEURS DE TOUT LES OBJET
-	public static int cmpPioche,cmpParapluie,cmpEscalier,cmpCatapulte,cmpEscalade,cmpBombe,cmpStop,cmpFutur2,cmpLemmingSave;
+	public static int cmpPioche,cmpParapluie,cmpEscalier,cmpCatapulte,cmpTrampoline,cmpBombe,cmpStop,cmpFutur2,cmpLemmingSave;
 
 	public static void charger(String carte, String background) throws IOException {
 
@@ -99,12 +99,12 @@ public class Carte implements Constantes {
 		Carte.nbLemmings = nbLemmings;
 	}
 
-	public static void initCmp(int pioche, int parapluie, int escalier, int cata, int grimpeur, int bombe, int stop, int futur2) {
+	public static void initCmp(int pioche, int parapluie, int escalier, int cata, int trampoline, int bombe, int stop, int futur2) {
 		cmpPioche = pioche;
 		cmpParapluie = parapluie;
 		cmpEscalier = escalier;
 		cmpCatapulte = cata;  
-		cmpEscalade = grimpeur;  
+		cmpTrampoline = trampoline;  
 		cmpBombe = bombe;  
 		cmpStop = stop; 
 		cmpFutur2 = futur2; 
