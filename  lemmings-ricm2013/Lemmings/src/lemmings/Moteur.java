@@ -42,7 +42,7 @@ public class Moteur implements Constantes {
 			String cond;
 
 			if (Carte.map[x][y-1-coeff*3/4].isSol() && Carte.map[x-1][y-1-coeff*3/4].isSol() && Carte.map[x+1][y-1-coeff*3/4].isSol() )
-			{	cond = "sol"; System.out.println("SOL1");}
+			{	cond = "sol"; }
 					
 				
 			// Présence d'un vide
@@ -58,10 +58,10 @@ public class Moteur implements Constantes {
 					(lem.getDirection()==gauche && Carte.map[x-1][y].isSol() && Carte.map[x-1][y-1].isSol() && Carte.map[x-1][y-2].isSol())||
 					(lem.getDirection()==droite && Carte.map[x+1][y].isSol() && Carte.map[x+1][y-1].isSol() && Carte.map[x+1][y-2].isSol())
 					) 
-			{	cond = "mur"; System.out.println("MUR"); }
+			{	cond = "mur"; }
 
 			else 
-			{	cond = "sol"; System.out.println("SOL2"); }
+			{	cond = "sol"; }
 
 
 
@@ -118,8 +118,8 @@ public class Moteur implements Constantes {
 				continue;
 			}
 
-			System.out.println("etat:"+lem.getEtat()+" type:"+lem.getType()+" x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
-			System.out.println("Direction:"+lem.getDirection());
+			//System.out.println("etat:"+lem.getEtat()+" type:"+lem.getType()+" x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
+			
 			// Recherche de l'automate correspondant
 			Automate aut = null;
 			for(int m=0;m<Jeu.listeAutomates.size();m++) {
