@@ -131,7 +131,7 @@ public class Moteur implements Constantes {
 				continue;
 			}
 
-			System.out.println("etat:"+lem.getEtat()+" type:"+lem.getType()+" x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
+			//System.out.println("etat:"+lem.getEtat()+" type:"+lem.getType()+" x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
 
 			// Recherche de l'automate correspondant
 			Automate aut = null;
@@ -213,6 +213,8 @@ public class Moteur implements Constantes {
 			initTrajectoire(l);
 		else if(s.equals("initLemmingBase"))
 			initLemmingBase(l);
+		else if(s.equals("exploser"))
+			exploser(l);
 		else {
 			System.out.println("Action invalide !");
 			System.exit(1);
@@ -375,7 +377,6 @@ public class Moteur implements Constantes {
 
 
 	private static void grimper(Lemming l) {
-		System.out.println("TOTO");
 		l.setY(l.getY()-1);
 	}
 
@@ -404,16 +405,19 @@ public class Moteur implements Constantes {
 		int x,y;
 		y = l.getY();
 		x = l.getX();
-		if(l.direction==droite)
+		if(l.direction==droite) {
 			for(int i=0;i<(coeff);i++) {
 				if(Carte.map[x+i][y].isAir())
 					Carte.map[x+i][y] = new Sol(new Color(0,255,255));
 			}
-		else
+			Carte.map[x+coeff/2][y] = new Sol(new Color(0,255,255),typeSolTrampoline);
+		}
+		else {
 			for(int i=0;i<(coeff);i++) {
 				Carte.map[x-i][y] = new Sol(new Color(0,255,255));
 			}
-		Carte.map[x+coeff/2][y] = new Sol(new Color(0,255,255),typeSolTrampoline);
+			Carte.map[x-coeff/2][y] = new Sol(new Color(0,255,255),typeSolTrampoline);
+		}
 
 	}
 
@@ -423,6 +427,23 @@ public class Moteur implements Constantes {
 		if(l.getSousAction()%delaiSousAction==1)
 			marcher(l);             
 		l.setSousAction((l.getSousAction()+1)%(nbMarche*delaiSousAction));
+	}
+	
+	private static void exploser(Lemming l) throws IOException {
+		double fi;
+		int x,y;
+		BufferedImage arrierePlan=ImageIO.read(new File(Carte.background));
+		for(double rayon=0;rayon<rayonBombe;rayon++) {
+			for(fi=0;fi<2*Math.PI;fi+=0.001) {
+				x = l.getX() + (int)(rayon*Math.cos(fi));
+				y = l.getY() + (int)(rayon*Math.sin(fi));
+				if(x>=0 && x<Carte.LARGEUR_CARTE && y>=0 && y<Carte.HAUTEUR_CARTE)
+					Carte.map[x][y] = new Air(new Color(arrierePlan.getRGB(x,y)));
+			}
+		}
+		
+		Carte.obs.remove(l);
+		
 	}
 
 	public static Point collisionTrajectoire (Point pCourant, Point pDest) {
