@@ -46,7 +46,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JFormattedTextField Tpuissance = new JFormattedTextField(NumberFormat.getIntegerInstance());
 	private JLabel label = new JLabel("Entrez un angle :        ");
 	private JLabel label2 = new JLabel("Entrez une puissance (0-100) : ");
-	private final JFrame frame = new JFrame("Réglage catapulte");
+	private final JFrame frame = new JFrame("Rï¿½glage catapulte");
 	private JSplitPane split2, split3;
 	private int espacement_hori = 20;
 	private int espacement_text = 65;
@@ -302,7 +302,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, zone_gauche, zone_droite);
 		//On place le deuxieme separateur
 		split2.setDividerLocation(tFX/2);
-		//On passe les deux precedents JSplitPane à celui-ci
+		//On passe les deux precedents JSplitPane ï¿½ celui-ci
 		split3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scroll, split2);
 		//On place le troisieme separateur
 		split3.setDividerLocation(3*tFY/5);
@@ -333,7 +333,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mntmMap = new JMenuItem("Jouer");
 		mnMap.add(mntmMap);
 		mntmMap.addActionListener(this);
-		mapDetail = new JMenuItem("Détails");
+		mapDetail = new JMenuItem("Dï¿½tails");
 		mnMap.add(mapDetail);
 		mapDetail.addActionListener(this);
 
@@ -342,7 +342,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mntmMap2 = new JMenuItem("Jouer");
 		mnMap2.add(mntmMap2);
 		mntmMap2.addActionListener(this);
-		map2Detail = new JMenuItem("Détails");
+		map2Detail = new JMenuItem("Dï¿½tails");
 		mnMap2.add(map2Detail);
 		map2Detail.addActionListener(this);
 
@@ -351,7 +351,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mntmMap3 = new JMenuItem("Jouer");
 		mnMap3.add(mntmMap3);
 		mntmMap3.addActionListener(this);
-		map3Detail = new JMenuItem("Détail");
+		map3Detail = new JMenuItem("Dï¿½tail");
 		mnMap3.add(map3Detail);
 		map3Detail.addActionListener(this);
 
@@ -360,7 +360,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mntmMap4 = new JMenuItem("Jouer");
 		mnMap4.add(mntmMap4);
 		mntmMap4.addActionListener(this);
-		map4Detail = new JMenuItem("Détail");
+		map4Detail = new JMenuItem("Dï¿½tail");
 		mnMap4.add(map4Detail);
 		map4Detail.addActionListener(this);
 
@@ -369,7 +369,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mntmMap5 = new JMenuItem("Jouer");
 		mnMap5.add(mntmMap5);
 		mntmMap5.addActionListener(this);
-		map5Detail = new JMenuItem("Détail");
+		map5Detail = new JMenuItem("Dï¿½tail");
 		mnMap5.add(map5Detail);
 		map5Detail.addActionListener(this);
 
@@ -593,26 +593,26 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		//on affiche un message popup
 		if(e.getSource()==mntmRgle) {
-			String regle = "Le but du jeu est de sauver les lemmings. \n Pour ce faire, vous devez les ammener de la porte de sortie à la porte d'entrée. \n Evitez de gaspiller vos lemmings, ils ont tous leur importance";
+			String regle = "Le but du jeu est de sauver les lemmings. \n Pour ce faire, vous devez les ammener de la porte de sortie ï¿½la porte d'entrï¿½e. \n Evitez de gaspiller vos lemmings, ils ont tous leur importance";
 			JOptionPane.showMessageDialog(null, regle);
 		}
 
 
 		if(e.getSource()==mntmFermer) System.exit(0); //on ferme la fenetre et le jeu
 
-		//on prépare le changement du type du lemming en fonction du bouton clique
+		//on prï¿½pare le changement du type du lemming en fonction du bouton clique
 		if(e.getSource()==bouton_creuse) typeCourant = lemmingCreuseur; 
 		if(e.getSource()==bouton_parapluie) typeCourant = lemmingParapluie;
 		if(e.getSource()==bouton_stop) typeCourant = lemmingStop;
 		if(e.getSource()==bouton_escalier) typeCourant = lemmingEscalier;
 		if(e.getSource()==bouton_trampoline) typeCourant = lemmingTrampoline;
 
-		//permet de tuer tout les lemmings et dit si on a gagné ou non le jeu
+		//permet de tuer tout les lemmings et dit si on a gagnï¿½ ou non le jeu
 		if(e.getSource()==bouton_suppr) {
 			String s; 
 			Carte.setNbLemmings(0);
 			Carte.obs.removeAll(Carte.obs);
-			if(Carte.lemmingSauf>Carte.lemmingASauver) s = "lemming(s) sauvé(s) : "+ Carte.lemmingSauf+"\n Vous avez gagné!!";
+			if(Carte.lemmingSauf>Carte.lemmingASauver) s = "lemming(s) sauvï¿½(s) : "+ Carte.lemmingSauf+"\n Vous avez gagnï¿½!!";
 			else s = "lemming sauver : "+ Carte.lemmingSauf+"\n Vous avez perdu";
 			JOptionPane.showMessageDialog(null, s);
 		}
@@ -771,7 +771,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			puissance = Integer.parseInt(Tpuissance.getText()); //on reccupere la puissance
 			if(0<=puissance&&puissance<=100) {
 				angle = (double) ((Integer.parseInt(Tangle.getText()))*Math.PI/180); //on reccupere l'angle et on convertie en radian
-				Carte.obs.add(new Lemming(catapulteX,catapulteY,angle,puissance*70/100)); //on tire le lemmings
+				Carte.obs.add(new Lemming(catapulteX,catapulteY,angle,(puissance+1)*70/100)); //on tire le lemmings
 				frame.dispose(); //on ferme la fenetre
 			}
 		}
