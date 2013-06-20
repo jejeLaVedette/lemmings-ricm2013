@@ -12,9 +12,11 @@ import java.util.List;
 public class Jeu implements Constantes {
 
 	public static List<Automate>listeAutomates = new ArrayList<Automate>();
-	public static Thread playWave;
 
 	public static Fenetre f;
+	public static Thread playWave;
+	public static boolean play = true;
+	public static boolean accelerer = false;
 	public static void main(String[] args) throws InterruptedException, IOException{
 
 		Carte.initCmp(0, 0, 0, 10, 0, 0, 0, 0);
@@ -36,7 +38,7 @@ public class Jeu implements Constantes {
 
 		//Carte.obs.add(new Lemming(70,150,lemmingCatapulte));
 
-		
+
 		Carte.obs.add(new Lemming(350,160));
 		Carte.map[370][164] = new Sol(new Color(0,255,255),typeSolTrampoline);
 		Carte.map[371][164] = new Sol(new Color(0,255,255),typeSolTrampoline);
@@ -46,17 +48,25 @@ public class Jeu implements Constantes {
 
 		while(true) {
 
-			if(wait>delaiPop && Carte.getNbLemmings()!=0) {
-				Carte.popLemmings(lemmingBase);
-				wait = 0;
+			if(play){
+				if(wait>delaiPop && Carte.getNbLemmings()!=0) {
+					Carte.popLemmings(lemmingBase);
+					wait = 0;
+				}
+
+
+				Moteur.miseAJourObservables();
+				f.afficher();
+
+				if(Carte.getNbLemmings()!=0)
+					wait++;
+
+
 			}
+			
+			if(accelerer) Thread.sleep(delaiAttente/4);
+			else Thread.sleep(delaiAttente);
 
-			Moteur.miseAJourObservables();
-			Thread.sleep(delaiAttente);
-			f.afficher();
-
-			if(Carte.getNbLemmings()!=0)
-				wait++;
 		}
 
 
