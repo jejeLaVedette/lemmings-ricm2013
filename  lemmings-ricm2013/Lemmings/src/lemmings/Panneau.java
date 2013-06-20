@@ -17,8 +17,6 @@ public class Panneau extends JPanel implements Constantes{
 	private static final long serialVersionUID = 1L;
 
 	private Image perso;
-	private int posX = 0;
-	private int posY = 0;
 	private int tailleRX;
 	private int tailleRY;
 	public static double coefFenetre = 0.75;
@@ -34,10 +32,16 @@ public class Panneau extends JPanel implements Constantes{
 
 		System.out.println("tailleRX : "+tailleRX);
 		System.out.println("tailleRY : "+tailleRY);
+		
+		
+		
 	}
 
 	public void paintComponent(Graphics g)
 	{
+		int posX=0;
+		int posY=0;
+		
 		for(int i=0; i<Carte.HAUTEUR_CARTE; i++){
 
 			for(int j=0; j<Carte.LARGEUR_CARTE; j++){ 
@@ -48,21 +52,19 @@ public class Panneau extends JPanel implements Constantes{
 				// on avance en longueur
 				posX=posX+tailleRX;
 			}
-			//on se replace tout a gauche de l'écran
+			//on se replace tout a gauche de l'ï¿½cran
 			posX=0;
 			//et on diminue d'un rang en hauteur
 			posY=posY+tailleRY;
 		}
 
-		//si on repaint, on repart de 0
-		posX=0;
-		posY=0;
 
 		Observable o;
 		//on affiche les lemmings
-		for(int k =0;k<Carte.obs.size();k++){				
-			//perso = new ImageIcon(Carte.obs.get(k).image).getImage();
+		for(int k =0;k<Carte.obs.size();k++){	
 			o = Carte.obs.get(k);
+			//perso = new ImageIcon(Carte.obs.get(k).image).getImage();
+			
 			BufferedImage buffer;
 			try {
 				buffer = ImageIO.read(new File(o.image));
@@ -78,26 +80,14 @@ public class Panneau extends JPanel implements Constantes{
 				e.printStackTrace();
 			}
 
+
+
 		}
 
 
 	}
 
 
-	public int getPosX() {
-		return posX;
-	}
-
-	public void setPosX(int posX) {
-		this.posX = posX;
-	}
-
-	public int getPosY() {
-		return posY;
-	}
-
-	public void setPosY(int posY) {
-		this.posY = posY;
-	}    
+  
 
 }

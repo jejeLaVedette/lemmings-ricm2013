@@ -60,7 +60,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	public static Panneau zone_map;
 	public static Panneau2 mini_map;
 
-	private JScrollPane scroll;
+	public static JScrollPane scroll;
 
 	public static int tailleFX;
 	public static int tailleFY;
@@ -377,6 +377,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		});
 
 		this.setVisible(true);
+		
+		
 
 	}
 
