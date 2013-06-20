@@ -154,7 +154,7 @@ public class Moteur implements Constantes {
 			}
 
 			if(k==aut.listeTransitions.size()) {
-				System.out.println("Automate n�"+ aut.identifiant +" non-d�terministe !");
+				System.out.println("Automate n."+ aut.identifiant +" non-deterministe !");
 				System.exit(1);
 			}
 
@@ -291,7 +291,10 @@ public class Moteur implements Constantes {
 	private static void initTrajectoire(Lemming l) {
 		trajectoireparaphysique t=new trajectoireparaphysique(l.getX(),l.getY(),l.puissance,l.angle,1);
 		l.setTrajpara(t);
-		l.image = "Images/catapulte2.png";
+		if(l.getDirection()==droite)
+			l.image = "Images/catapulteDroite2.png";
+		else
+			l.image = "Images/catapulteGauche2.png";
 	}
 
 	private static void voler(Lemming l) {
