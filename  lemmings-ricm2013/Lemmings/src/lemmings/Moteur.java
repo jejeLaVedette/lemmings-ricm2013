@@ -41,9 +41,9 @@ public class Moteur implements Constantes {
 			// Analyse de l'environnement du lemming courant
 			String cond;
 
+			// Si présence d'un plafond
 			if (Carte.map[x][y-1-coeff*3/4].isSol() && Carte.map[x-1][y-1-coeff*3/4].isSol() && Carte.map[x+1][y-1-coeff*3/4].isSol() )
 			{	cond = "sol"; }
-					
 				
 			// Présence d'un vide
 			
@@ -64,7 +64,16 @@ public class Moteur implements Constantes {
 			{	cond = "sol"; }
 
 
-
+			if (cond=="sol" && Carte.map[lem.getX()][lem.getY()+1].type == typeSolTrampoline) {
+				if(lem.getDirection()==gauche)
+					//lem.angle = Math.PI*3/4;
+					Carte.obs.add(new Lemming(lem.getX(),lem.getY()-1,Math.PI*5/8,30));
+				else
+					//lem.angle = Math.PI*3/8;
+					Carte.obs.add(new Lemming(lem.getX(),lem.getY()-1,Math.PI*3/8,30));
+				
+				Carte.obs.remove(i);
+			}
 
 			// Calcul du relief
 			if(cond=="sol") {
@@ -118,7 +127,7 @@ public class Moteur implements Constantes {
 				continue;
 			}
 
-			//System.out.println("etat:"+lem.getEtat()+" type:"+lem.getType()+" x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
+			System.out.println("etat:"+lem.getEtat()+" type:"+lem.getType()+" x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
 			
 			// Recherche de l'automate correspondant
 			Automate aut = null;
@@ -192,6 +201,10 @@ public class Moteur implements Constantes {
 			grimper(l);
 		else if(s.equals("construireEscalier"))
 			construireEscalier(l);
+		else if(s.equals("construire"))
+			construire(l);
+		else if(s.equals("construireTrampoline"))
+			construireTrampoline(l);
 		else if(s.equals("initTrajectoire"))
 			initTrajectoire(l);
 		else if(s.equals("initLemmingBase"))
@@ -381,6 +394,23 @@ private static void rebondirmur(Lemming l) {
 			for(int i=0;i<(coeff/2);i++) {
 				Carte.map[x-i][y] = new Sol(new Color(150,0,0));
 			}	
+
+	}
+	
+	private static void construireTrampoline(Lemming l) {
+		int x,y;
+		y = l.getY();
+		x = l.getX();
+		if(l.direction==droite)
+			for(int i=0;i<(coeff);i++) {
+				if(Carte.map[x+i][y].isAir())
+					Carte.map[x+i][y] = new Sol(new Color(0,255,255));
+			}
+		else
+			for(int i=0;i<(coeff);i++) {
+				Carte.map[x-i][y] = new Sol(new Color(0,255,255));
+			}
+		Carte.map[x+coeff/2][y] = new Sol(new Color(0,255,255),typeSolTrampoline);
 
 	}
 

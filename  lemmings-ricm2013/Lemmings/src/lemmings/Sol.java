@@ -7,13 +7,19 @@ public class Sol extends Element implements Constantes {
 	private double elasticite;
 	
 	public Sol() {
-		super.type = 0;
+		super.type = typeSolInf;
 		this.elasticite = 0;
 		super.couleur = defautSol;
 	}
 	
 	public Sol(Color c) {
 		super.type = typeSolInf;
+		super.couleur = c;
+		this.elasticite = 0;
+	}
+	
+	public Sol(Color c, int type) {
+		super.type = type;
 		super.couleur = c;
 		this.elasticite = 0;
 	}

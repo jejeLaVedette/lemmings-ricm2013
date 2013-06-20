@@ -98,4 +98,30 @@
     <action>initLemmingBase</action>
    </transition>
  </automate>  
+	<automate nom = "Trampoline">
+   <transition etat="0" etatsuivant="1">
+    <condition>sol</condition>
+    <action>construireTrampoline</action>
+   </transition>
+   <transition etat="0" etatsuivant="1">
+    <condition>mur</condition>
+    <action>construireTrampoline</action>
+   </transition>
+   <transition etat="0" etatsuivant="1">
+    <condition>vide</condition>
+    <action>tomber</action>
+   </transition>
+	 <transition etat="1" etatsuivant="1">
+    <condition>vide</condition>
+    <action>initLemmingBase</action>
+   </transition>
+	 <transition etat="1" etatsuivant="1">
+    <condition>sol</condition>
+    <action>initLemmingBase</action>
+   </transition>
+	 <transition etat="1" etatsuivant="1">
+    <condition>mur</condition>
+    <action>initLemmingBase</action>
+   </transition>
+ </automate>  
 </open>
