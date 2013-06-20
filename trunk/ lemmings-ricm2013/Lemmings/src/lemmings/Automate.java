@@ -32,6 +32,8 @@ public static int nomVersIdentifiant (String nom) {
 		id = lemmingEscalier;
 	else if (nom.equals("Trampoline"))
 		id = lemmingTrampoline;
+	else if (nom.equals("Bombe"))
+		id = lemmingBombe;
 	else
 		id = 0;
     return id;
