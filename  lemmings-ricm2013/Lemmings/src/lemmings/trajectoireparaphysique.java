@@ -58,12 +58,12 @@ public class trajectoireparaphysique implements Constantes {
 
 	public double  calculy(double t){
 		if (this.Vy==0){ 	
-			return this.base_y;
+			this.Vy=0.00001;
 		}
-		else{
+		
 
 			return ((double)this.base_y-((this.masse/this.calculky())*(this.Vy+((this.masse/this.calculky())*coeffgravite))*(1-Math.exp(-(this.calculky()/this.masse)*t))-((this.masse/this.calculky())*coeffgravite*t)));
-		}
+		
 	}
 
 	public Point trajectoire(double t)
