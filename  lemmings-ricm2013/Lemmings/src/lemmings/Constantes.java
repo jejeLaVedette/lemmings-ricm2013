@@ -23,7 +23,7 @@ public interface Constantes {
 	public final static int bas =0;
 	public final static int droite = 1;
 	public final static int gauche = 0;
-	public final static int profondeurCreuser = 10;
+	public final static int profondeurCreuser = 15;
 	public final static int hauteurLetale = 40;
 	
 	// Constantes de la fenêtre
