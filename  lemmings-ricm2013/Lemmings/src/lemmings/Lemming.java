@@ -75,6 +75,22 @@ public class Lemming extends Observable implements Constantes {
 		super.y = y;
 	}
 	
+	public Lemming(int x,int y,double angle, int puissance, int type) {
+		super(vx,vy);
+		super.type = type;
+		double anglerep=angle%Math.PI;
+		if((Math.PI/2<anglerep)&&(anglerep<3*Math.PI/2)){
+		this.direction = gauche;
+		}
+		else{this.direction=droite;}
+		this.puissance = puissance;
+		this.angle = angle ;
+		this.image = "Images/lemmingBaseDroite2.png";
+		this.etat = etatInitial;
+		super.x = x;
+		super.y = y;
+	}
+	
 	public int getDirection() {
 		return direction;
 	}
