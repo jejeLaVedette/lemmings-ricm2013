@@ -52,8 +52,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private int espacement_text2 = 65;
 	private int espacement_text = 65;
 	private int typeCourant;
-	private int catapulteX = 70;
-	private int catapulteY = 150;
 	private Thread playSong;
 
 
@@ -796,7 +794,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			puissance = Integer.parseInt(Tpuissance.getText()); //on reccupere la puissance
 			if((0<= puissance)&&(puissance<=100) ) {
 				angle = (double) ((Integer.parseInt(Tangle.getText()))*Math.PI/180); //on reccupere l'angle et on convertie en radian
-				Carte.obs.add(new Lemming(catapulteX,catapulteY,angle,puissance)); //on tire le lemmings
+				Carte.obs.add(new Lemming(Carte.getCatapulte().x,Carte.getCatapulte().y,angle,puissance,lemmingCatabombe)); //on tire le lemmings
 				frame.dispose(); //on ferme la fenetre
 			}
 		}
