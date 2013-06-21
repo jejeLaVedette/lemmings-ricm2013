@@ -551,7 +551,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/map3.png", 
 						"Images/map3bg.png", 
-						"", 
+						"Musiques/Pac Man.wav", 
 						"Automates/automate.xml", 
 						new Point(19,27), 
 						new Point(842,138),
@@ -572,7 +572,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/map4.png", 
 						"Images/map4bg.png", 
-						"", 
+						"Musiques/Pirates des Caraibes.wav", 
 						"Automates/automate.xml", 
 						new Point(209,17), 
 						new Point(473,389),
@@ -594,7 +594,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/map5.png", 
 						"Images/map5bg.png", 
-						"", 
+						"Musiques/Invaders Must Die.wav", 
 						"Automates/automate.xml", 
 						new Point(36,164), 
 						new Point(473,84),
