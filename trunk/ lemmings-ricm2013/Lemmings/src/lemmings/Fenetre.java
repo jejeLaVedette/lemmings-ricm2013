@@ -331,7 +331,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		
 		mnMusique = new JMenu("Son");
 		menuBar.add(mnMusique);
-		mnBoxSong = new JCheckBoxMenuItem("Activer");
+		mnBoxSong = new JCheckBoxMenuItem("Désactiver");
 		mnMusique.add(mnBoxSong);
 		mnBoxSong.addActionListener(this);
 
