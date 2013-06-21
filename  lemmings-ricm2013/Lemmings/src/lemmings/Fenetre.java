@@ -577,7 +577,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						new Point(209,17), 
 						new Point(473,389),
 						new Point(36,356),
-						20);
+						10);
 
 
 			} catch (IOException ev) {
