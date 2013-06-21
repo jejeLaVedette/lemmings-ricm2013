@@ -64,7 +64,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	public static int tailleFY;
 
 	public static int etatSouris;
-	
+
 	public static boolean musique=false;
 
 	//DECLARATION DE TOUT LES BOUTONS
@@ -326,7 +326,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		mnCarte = new JMenu("Carte");
 		menuBar.add(mnCarte);
-		
+
 		mnMusique = new JMenu("Son");
 		menuBar.add(mnMusique);
 		mnBoxSong = new JCheckBoxMenuItem("D�sactiver");
@@ -455,12 +455,19 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		}
 	}
 
-	
+
 	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent e) {
 
 		//on creer l'interface pour le chargement d'un fichier utilisateur
-		if(e.getSource()==chargement) FileChooser.createAndShowGUI();
+		if(e.getSource()==chargement){
+			try {
+				new FileChooser();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 
 		if(e.getSource()==bouton_pause) Jeu.play = false;
 
@@ -468,10 +475,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			Jeu.play = true;
 			Jeu.accelerer = false;
 		}
-		
+
 		if(e.getSource()==mnBoxSong) Jeu.playWave.stop();
 
-		
+
 		if(e.getSource()==mnTrace) Moteur.trace=!Moteur.trace;
 
 		if(e.getSource()==bouton_accelerer) Jeu.accelerer = true;
@@ -507,7 +514,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				//on charge la map avec les bon parametres
 				Jeu.initialiserJeu("Images/map1.png", 
 						"Images/map1bg.png", 
-						"Musiques/fairy_tail.wav", 
+						"Musiques/Lemmings Soundtracks.wav", 
 						"Automates/automate.xml", 
 						new Point(60,55), 
 						new Point(330,125),
@@ -594,7 +601,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/map5.png", 
 						"Images/map5bg.png", 
-						"Musiques/Invaders Must Die.wav", 
+						"Musiques/Torchlight song.wav", 
 						"Automates/automate.xml", 
 						new Point(36,164), 
 						new Point(473,84),
