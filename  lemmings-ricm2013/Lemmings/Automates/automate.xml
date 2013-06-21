@@ -133,5 +133,15 @@
     <condition>any</condition>
     <action>initLemmingBase</action>
    </transition>
- </automate> 
+ </automate>
+	<automate nom = "CataBombe">
+   <transition etat="0" etatsuivant="1">
+    <condition>any</condition>
+    <action>exploser</action>
+   </transition>
+	 <transition etat="1" etatsuivant="1">
+    <condition>any</condition>
+    <action>initLemmingBase</action>
+   </transition>
+ </automate>  
 </open>
