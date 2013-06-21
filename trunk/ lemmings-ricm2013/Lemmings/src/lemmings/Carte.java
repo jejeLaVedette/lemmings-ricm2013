@@ -118,6 +118,11 @@ public class Carte implements Constantes {
 		cmpStop = stop; 
 		cmpFutur2 = futur2; 
 	}
+	
+	public static boolean estValide (int x, int y) {
+		if(x<0 || x>=Carte.LARGEUR_CARTE || y<0 || y>=Carte.HAUTEUR_CARTE) return false;
+		return true;
+	}
 
 
 }

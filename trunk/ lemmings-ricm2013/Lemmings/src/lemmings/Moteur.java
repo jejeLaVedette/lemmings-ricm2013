@@ -440,7 +440,7 @@ public class Moteur implements Constantes {
 			for(fi=0;fi<2*Math.PI;fi+=0.001) {
 				x = l.getX() + (int)(rayon*Math.cos(fi));
 				y = l.getY() + (int)(rayon*Math.sin(fi));
-				if(x>=0 && x<Carte.LARGEUR_CARTE && y>=0 && y<Carte.HAUTEUR_CARTE)
+				if(Carte.estValide(x, y))
 					Carte.map[x][y] = new Air(new Color(arrierePlan.getRGB(x,y)));
 			}
 		}
@@ -458,11 +458,11 @@ public class Moteur implements Constantes {
 		if((pDest.x - pCourant.x)!=0){
 			coeffDirecteur = (int)((pDest.getY() - pCourant.getY())/(pDest.getX() - pCourant.getX()));
 			int constante = pCourant.y - coeffDirecteur * pCourant.x;
-			i = (int)pCourant.getX();
-			if ((int)pCourant.getX() < pDest.getX()) {
+			i = pCourant.x;
+			if (pCourant.x < pDest.getX()) {
 				while (i< pDest.getX() ) {
 					yCourant = coeffDirecteur * i + constante;
-					if (i<0 || i>=Carte.LARGEUR_CARTE || Carte.map[i][yCourant].isSol()){
+					if (!Carte.estValide(i, yCourant) || Carte.map[i][yCourant].isSol()){
 						break; }
 					i++;
 				}
@@ -472,7 +472,7 @@ public class Moteur implements Constantes {
 			else {
 				while (i> pDest.x) {
 					yCourant = coeffDirecteur * i + constante;
-					if (i<0 || i>=Carte.LARGEUR_CARTE || Carte.map[i][yCourant].isSol()){
+					if (!Carte.estValide(i, yCourant) || Carte.map[i][yCourant].isSol()){
 
 						break;
 					}
@@ -483,25 +483,25 @@ public class Moteur implements Constantes {
 			}
 		}
 		else{
-			i=(int)pCourant.getY();
-			if ((int)pCourant.getY() < pDest.getY()){
+			i=pCourant.y;
+			if (pCourant.y < pDest.getY()){
 				while(i<pDest.getY()){
-					if (i<0 || i>=Carte.HAUTEUR_CARTE || Carte.map[(int)pCourant.getX()][i].isSol()){
+					if (!Carte.estValide(pCourant.x, i) || Carte.map[pCourant.x][i].isSol()){
 						break;
 					}
 					i++;
 				}
-				rep.x=(int)pCourant.getX();
+				rep.x=pCourant.x;
 				rep.y=i;
 			}
 			else{
 				while(i>pDest.getY()){
-					if (i<0 || i>=Carte.HAUTEUR_CARTE || Carte.map[(int)pCourant.getX()][i].isSol()){
+					if (!Carte.estValide(pCourant.x, i) || Carte.map[pCourant.x][i].isSol()){
 						break;
 					}
 					i--;
 				}
-				rep.x=(int)pCourant.getX();
+				rep.x=pCourant.x;
 				rep.y=i;
 			}
 
