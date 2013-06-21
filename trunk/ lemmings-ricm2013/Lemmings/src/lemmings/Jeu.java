@@ -81,6 +81,7 @@ public class Jeu implements Constantes {
 
 		listeAutomates.add(new AutoLemmingStop(5));
 		listeAutomates.add(new AutoLemmingCatapulte(5));
+		listeAutomates.add(new AutoLemmingCatabombe(5));
 		
 		//on reinitialise tout les compteurs
 		Carte.lemmingSauf=0;

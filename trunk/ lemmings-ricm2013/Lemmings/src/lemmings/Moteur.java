@@ -27,7 +27,7 @@ public class Moteur implements Constantes {
 
 			int x = lem.getX();
 			int y = lem.getY();
-
+			System.out.println("x: "+x+" y:"+y);
 			// S'il est sur le point de sortie, +- une certaine tolerance
 			if(Math.abs(x-Carte.sortie.x)<(toleranceSortie/2) && Math.abs(y-Carte.sortie.y)<toleranceSortie) {
 				Carte.lemmingSauf++;
@@ -35,7 +35,7 @@ public class Moteur implements Constantes {
 			}
 
 			// S'il est mort, et ben... il est mort !
-			if(lem.getY()==Carte.HAUTEUR_CARTE-1) {
+			if(y<1 || y>Carte.HAUTEUR_CARTE-2) {
 				Carte.obs.remove(i);
 				continue;
 			}
@@ -134,7 +134,7 @@ public class Moteur implements Constantes {
 				continue;
 			}
 
-			//System.out.println("etat:"+lem.getEtat()+" type:"+lem.getType()+" x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
+			System.out.println("id: "+i+" etat:"+lem.getEtat()+" type:"+lem.getType()+" x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
 
 			// Recherche de l'automate correspondant
 			Automate aut = null;
@@ -462,7 +462,7 @@ public class Moteur implements Constantes {
 			if ((int)pCourant.getX() < pDest.getX()) {
 				while (i< pDest.getX() ) {
 					yCourant = coeffDirecteur * i + constante;
-					if (Carte.map[i][yCourant].isSol()){
+					if (i<0 || i>=Carte.LARGEUR_CARTE || Carte.map[i][yCourant].isSol()){
 						break; }
 					i++;
 				}
@@ -472,7 +472,7 @@ public class Moteur implements Constantes {
 			else {
 				while (i> pDest.x) {
 					yCourant = coeffDirecteur * i + constante;
-					if (Carte.map[i][yCourant].isSol()){
+					if (i<0 || i>=Carte.LARGEUR_CARTE || Carte.map[i][yCourant].isSol()){
 
 						break;
 					}
@@ -486,7 +486,7 @@ public class Moteur implements Constantes {
 			i=(int)pCourant.getY();
 			if ((int)pCourant.getY() < pDest.getY()){
 				while(i<pDest.getY()){
-					if (Carte.map[(int)pCourant.getX()][i].isSol()){
+					if (i<0 || i>=Carte.HAUTEUR_CARTE || Carte.map[(int)pCourant.getX()][i].isSol()){
 						break;
 					}
 					i++;
@@ -496,7 +496,7 @@ public class Moteur implements Constantes {
 			}
 			else{
 				while(i>pDest.getY()){
-					if (Carte.map[(int)pCourant.getX()][i].isSol()){
+					if (i<0 || i>=Carte.HAUTEUR_CARTE || Carte.map[(int)pCourant.getX()][i].isSol()){
 						break;
 					}
 					i--;

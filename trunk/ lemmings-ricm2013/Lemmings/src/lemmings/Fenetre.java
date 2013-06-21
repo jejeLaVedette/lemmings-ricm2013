@@ -329,7 +329,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		
 		mnMusique = new JMenu("Son");
 		menuBar.add(mnMusique);
-		mnBoxSong = new JCheckBoxMenuItem("Désactiver");
+		mnBoxSong = new JCheckBoxMenuItem("Dï¿½sactiver");
 		mnMusique.add(mnBoxSong);
 		mnBoxSong.addActionListener(this);
 
@@ -568,15 +568,15 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			try {
 				Jeu.playWave.stop();
 				Carte.lemmingASauver=10;
-				Carte.initCmp(4, 4, 6, 0, 0, 0, 2, 0);
+				Carte.initCmp(0, 0, 0, 10, 0, 0, 10, 0);
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/map4.png", 
 						"Images/map4bg.png", 
 						"", 
 						"Automates/automate.xml", 
-						new Point(60,55), 
-						new Point(473,84),
-						new Point(0,0),
+						new Point(209,17), 
+						new Point(473,389),
+						new Point(36,356),
 						20);
 
 
