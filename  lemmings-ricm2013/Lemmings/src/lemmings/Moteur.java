@@ -27,7 +27,7 @@ public class Moteur implements Constantes {
 
 			int x = lem.getX();
 			int y = lem.getY();
-			System.out.println("x: "+x+" y:"+y);
+			
 			// S'il est sur le point de sortie, +- une certaine tolerance
 			if(Math.abs(x-Carte.sortie.x)<(toleranceSortie/2) && Math.abs(y-Carte.sortie.y)<toleranceSortie) {
 				Carte.lemmingSauf++;
@@ -134,7 +134,7 @@ public class Moteur implements Constantes {
 				continue;
 			}
 
-			System.out.println("id: "+i+" etat:"+lem.getEtat()+" type:"+lem.getType()+" x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
+			//System.out.println("id: "+i+" etat:"+lem.getEtat()+" type:"+lem.getType()+" x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
 
 			// Recherche de l'automate correspondant
 			Automate aut = null;

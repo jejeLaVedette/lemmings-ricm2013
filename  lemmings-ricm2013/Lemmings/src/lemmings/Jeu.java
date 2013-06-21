@@ -23,7 +23,7 @@ public class Jeu implements Constantes {
 
 		Jeu.initialiserJeu("Images/depart.png", 
 				"Images/departbg.png",
-				"",
+				"Musiques/Rayman.wav",
 				"Automates/automate.xml",
 				new Point(61,124), 
 				new Point(450,141),
