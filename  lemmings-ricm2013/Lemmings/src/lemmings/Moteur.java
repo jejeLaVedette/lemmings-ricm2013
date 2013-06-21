@@ -218,6 +218,8 @@ public class Moteur implements Constantes {
 			initLemmingBase(l);
 		else if(s.equals("exploser"))
 			exploser(l);
+		else if(s.equals(" "))
+		{}
 		else {
 			System.out.println("Action invalide !");
 			System.exit(1);

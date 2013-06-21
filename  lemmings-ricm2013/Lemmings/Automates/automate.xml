@@ -1,147 +1,287 @@
+
 <open>
  <automate nom = "Classique">
-   <transition etat="0" etatsuivant="0">
+   <transition etat="0" etatsuivant="0" >
     <condition>sol</condition>
     <action>marcher</action>
-   </transition>
-   <transition etat="0" etatsuivant="0">
+    </transition>
+   <transition etat="0" etatsuivant="0" >
     <condition>mur</condition>
     <action>retourner</action>
     <action>marcher</action>
-   </transition>
-   <transition etat="0" etatsuivant="1">
+    </transition>
+   <transition etat="0" etatsuivant="1" >
     <condition>vide</condition>
     <action>tomber</action>
-   </transition>
-	 <transition etat="1" etatsuivant="1">
+    </transition>
+   <transition etat="1" etatsuivant="1" >
     <condition>vide</condition>
     <action>tomber</action>
-   </transition>
-	 <transition etat="1" etatsuivant="0">
+    </transition>
+   <transition etat="1" etatsuivant="0" >
     <condition>sol</condition>
+    <action> </action>
    </transition>
-	 <transition etat="1" etatsuivant="0">
+   <transition etat="1" etatsuivant="0" >
     <condition>mur</condition>
+    <action> </action>
    </transition>
- </automate> 
+ </automate>
  <automate nom = "Parapluie">
-   <transition etat="0" etatsuivant="0">
+   <transition etat="0" etatsuivant="0" >
     <condition>sol</condition>
     <action>marcher</action>
-   </transition>
-   <transition etat="0" etatsuivant="0">
+    </transition>
+   <transition etat="0" etatsuivant="0" >
     <condition>mur</condition>
     <action>retourner</action>
     <action>marcher</action>
-   </transition>
-   <transition etat="0" etatsuivant="1">
+    </transition>
+   <transition etat="0" etatsuivant="1" >
     <condition>vide</condition>
     <action>tomberParapluie</action>
-   </transition>
-	 <transition etat="1" etatsuivant="1">
+    </transition>
+   <transition etat="1" etatsuivant="1" >
     <condition>vide</condition>
     <action>tomberParapluie</action>
-   </transition>
-	 <transition etat="1" etatsuivant="0">
+    </transition>
+   <transition etat="1" etatsuivant="0" >
     <condition>sol</condition>
+    <action> </action>
    </transition>
- </automate> 
+ </automate>
  <automate nom = "Creuseur">
-   <transition etat="0" etatsuivant="1">
+   <transition etat="0" etatsuivant="1" >
     <condition>sol</condition>
     <action>creuser</action>
-   </transition>
-   <transition etat="0" etatsuivant="1">
+    </transition>
+   <transition etat="0" etatsuivant="1" >
     <condition>mur</condition>
     <action>creuser</action>
-   </transition>
-   <transition etat="0" etatsuivant="1">
+    </transition>
+   <transition etat="0" etatsuivant="1" >
     <condition>vide</condition>
     <action>tomber</action>
-   </transition>
-	 <transition etat="1" etatsuivant="1">
-    <condition>vide</condition>
+    </transition>
+   <transition etat="1" etatsuivant="1" >
+    <condition>any</condition>
     <action>initLemmingBase</action>
-   </transition>
-	 <transition etat="1" etatsuivant="1">
-    <condition>sol</condition>
-    <action>initLemmingBase</action>
-   </transition>
-	 <transition etat="1" etatsuivant="1">
-    <condition>mur</condition>
-    <action>initLemmingBase</action>
-   </transition>
+    </transition>
  </automate>
-	<automate nom = "Escalier">
-   <transition etat="0" etatsuivant="1">
+ <automate nom = "Escalier">
+   <transition etat="0" etatsuivant="1" >
     <condition>sol</condition>
     <action>construireEscalier</action>
-   </transition>
-   <transition etat="0" etatsuivant="1">
+    </transition>
+   <transition etat="0" etatsuivant="1" >
     <condition>mur</condition>
     <action>construireEscalier</action>
-   </transition>
-   <transition etat="0" etatsuivant="1">
+    </transition>
+   <transition etat="0" etatsuivant="1" >
     <condition>vide</condition>
     <action>tomber</action>
-   </transition>
-	 <transition etat="1" etatsuivant="1">
-    <condition>vide</condition>
-    <action>initLemmingBase</action>
-   </transition>
-	 <transition etat="1" etatsuivant="1">
-    <condition>sol</condition>
-    <action>initLemmingBase</action>
-   </transition>
-	 <transition etat="1" etatsuivant="1">
-    <condition>mur</condition>
-    <action>initLemmingBase</action>
-   </transition>
- </automate>  
-	<automate nom = "Trampoline">
-   <transition etat="0" etatsuivant="1">
-    <condition>sol</condition>
-    <action>construireTrampoline</action>
-   </transition>
-   <transition etat="0" etatsuivant="1">
-    <condition>mur</condition>
-    <action>construireTrampoline</action>
-   </transition>
-   <transition etat="0" etatsuivant="1">
-    <condition>vide</condition>
-    <action>tomber</action>
-   </transition>
-	 <transition etat="1" etatsuivant="1">
-    <condition>vide</condition>
-    <action>initLemmingBase</action>
-   </transition>
-	 <transition etat="1" etatsuivant="1">
-    <condition>sol</condition>
-    <action>initLemmingBase</action>
-   </transition>
-	 <transition etat="1" etatsuivant="1">
-    <condition>mur</condition>
-    <action>initLemmingBase</action>
-   </transition>
- </automate>  
-	<automate nom = "Bombe">
-   <transition etat="0" etatsuivant="1">
-    <condition>any</condition>
-    <action>exploser</action>
-   </transition>
-	 <transition etat="1" etatsuivant="1">
+    </transition>
+   <transition etat="1" etatsuivant="1" >
     <condition>any</condition>
     <action>initLemmingBase</action>
+    </transition>
+ </automate>
+ <automate nom = "Catapulte">
+   <transition etat="0" etatsuivant="1" >
+    <condition>any</condition>
+    <action>initTrajectoire</action>
+    </transition>
+   <transition etat="1" etatsuivant="1" >
+    <condition>vide</condition>
+    <action>voler</action>
+    </transition>
+   <transition etat="2" etatsuivant="2" >
+    <condition>vide</condition>
+    <action>voler</action>
+    </transition>
+   <transition etat="3" etatsuivant="3" >
+    <condition>vide</condition>
+    <action>voler</action>
+    </transition>
+   <transition etat="4" etatsuivant="4" >
+    <condition>vide</condition>
+    <action>voler</action>
+    </transition>
+   <transition etat="5" etatsuivant="5" >
+    <condition>vide</condition>
+    <action>voler</action>
+    </transition>
+   <transition etat="7" etatsuivant="7" >
+    <condition>vide</condition>
+    <action>voler</action>
+    </transition>
+   <transition etat="1" etatsuivant="2" >
+    <condition>mur</condition>
+    <action>rebondirmur</action>
+    </transition>
+   <transition etat="2" etatsuivant="3" >
+    <condition>mur</condition>
+    <action>rebondirmur</action>
+    </transition>
+   <transition etat="5" etatsuivant="3" >
+    <condition>mur</condition>
+    <action>rebondirmur</action>
+    </transition>
+   <transition etat="1" etatsuivant="5" >
+    <condition>sol</condition>
+    <action>rebondirsol</action>
+    </transition>
+   <transition etat="5" etatsuivant="7" >
+    <condition>sol</condition>
+    <action>rebondirsol</action>
+    </transition>
+   <transition etat="2" etatsuivant="7" >
+    <condition>sol</condition>
+    <action>rebondirsol</action>
+    </transition>
+   <transition etat="6" etatsuivant="0" >
+    <condition>any</condition>
+    <action>initLemmingBase</action>
+    </transition>
+   <transition etat="3" etatsuivant="6" >
+    <condition>mur</condition>
+    <action> </action>
+   </transition>
+   <transition etat="7" etatsuivant="6" >
+    <condition>sol</condition>
+    <action> </action>
+   </transition>
+   <transition etat="7" etatsuivant="6" >
+    <condition>mur</condition>
+    <action> </action>
+   </transition>
+   <transition etat="3" etatsuivant="6" >
+    <condition>sol</condition>
+    <action> </action>
    </transition>
  </automate>
-	<automate nom = "CataBombe">
-   <transition etat="0" etatsuivant="1">
+ <automate nom = "Bloqueur">
+   <transition etat="0" etatsuivant="1" >
+    <condition>vide</condition>
+    <action>tomber</action>
+    </transition>
+   <transition etat="1" etatsuivant="1" >
+    <condition>vide</condition>
+    <action>tomber</action>
+    </transition>
+   <transition etat="1" etatsuivant="0" >
+    <condition>sol</condition>
+    <action> </action>
+   </transition>
+   <transition etat="0" etatsuivant="0" >
+    <condition>sol</condition>
+    <action>bloquer</action>
+    </transition>
+   <transition etat="0" etatsuivant="0" >
+    <condition>mur</condition>
+    <action>bloquer</action>
+    </transition>
+ </automate>
+ <automate nom = "Catabombe">
+   <transition etat="0" etatsuivant="1" >
+    <condition>any</condition>
+    <action>initTrajectoire</action>
+    </transition>
+   <transition etat="1" etatsuivant="1" >
+    <condition>vide</condition>
+    <action>voler</action>
+    </transition>
+   <transition etat="2" etatsuivant="2" >
+    <condition>vide</condition>
+    <action>voler</action>
+    </transition>
+   <transition etat="3" etatsuivant="3" >
+    <condition>vide</condition>
+    <action>voler</action>
+    </transition>
+   <transition etat="4" etatsuivant="4" >
+    <condition>vide</condition>
+    <action>voler</action>
+    </transition>
+   <transition etat="5" etatsuivant="5" >
+    <condition>vide</condition>
+    <action>voler</action>
+    </transition>
+   <transition etat="7" etatsuivant="7" >
+    <condition>vide</condition>
+    <action>voler</action>
+    </transition>
+   <transition etat="1" etatsuivant="2" >
+    <condition>mur</condition>
+    <action>rebondirmur</action>
+    </transition>
+   <transition etat="2" etatsuivant="3" >
+    <condition>mur</condition>
+    <action>rebondirmur</action>
+    </transition>
+   <transition etat="5" etatsuivant="3" >
+    <condition>mur</condition>
+    <action>rebondirmur</action>
+    </transition>
+   <transition etat="1" etatsuivant="5" >
+    <condition>sol</condition>
+    <action>rebondirsol</action>
+    </transition>
+   <transition etat="5" etatsuivant="7" >
+    <condition>sol</condition>
+    <action>rebondirsol</action>
+    </transition>
+   <transition etat="2" etatsuivant="7" >
+    <condition>sol</condition>
+    <action>rebondirsol</action>
+    </transition>
+   <transition etat="6" etatsuivant="0" >
     <condition>any</condition>
     <action>exploser</action>
+    </transition>
+   <transition etat="3" etatsuivant="6" >
+    <condition>mur</condition>
+    <action> </action>
    </transition>
-	 <transition etat="1" etatsuivant="1">
+   <transition etat="3" etatsuivant="6" >
+    <condition>sol</condition>
+    <action> </action>
+   </transition>
+   <transition etat="7" etatsuivant="6" >
+    <condition>sol</condition>
+    <action> </action>
+   </transition>
+   <transition etat="7" etatsuivant="6" >
+    <condition>mur</condition>
+    <action> </action>
+   </transition>
+ </automate>
+ <automate nom = "trampoline">
+   <transition etat="0" etatsuivant="1" >
+    <condition>mur</condition>
+    <action>construireTrampoline</action>
+    </transition>
+   <transition etat="0" etatsuivant="1" >
+    <condition>sol</condition>
+    <action>construireTrampoline</action>
+    </transition>
+   <transition etat="0" etatsuivant="1" >
+    <condition>vide</condition>
+    <action>tomber</action>
+    </transition>
+   <transition etat="1" etatsuivant="1" >
     <condition>any</condition>
     <action>initLemmingBase</action>
-   </transition>
- </automate>  
+    </transition>
+ </automate>
+ <automate nom = "Bombe">
+   <transition etat="0" etatsuivant="1" >
+    <condition>any</condition>
+    <action>exploser</action>
+    </transition>
+   <transition etat="1" etatsuivant="1" >
+    <condition>any</condition>
+    <action>initLemmingBase</action>
+    </transition>
+ </automate>
 </open>
