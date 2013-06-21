@@ -127,6 +127,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 	private JCheckBoxMenuItem mnBoxSong;
 
+	private JMenuItem mnAutomates;
+
 
 
 	public Fenetre(int tFX, int tFY) throws IOException {
@@ -340,6 +342,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mnTrace = new JCheckBoxMenuItem("Trace");
 		mnJouer.add(mnTrace);
 		mnTrace.addActionListener(this);
+		
+		mnAutomates = new JMenuItem("Chargement d'automates...");
+		mnJouer.add(mnAutomates);
+		mnAutomates.addActionListener(this);
 
 		mnMap = new JMenu("map1");
 		mnCarte.add(mnMap);
@@ -463,6 +469,15 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(e.getSource()==chargement){
 			try {
 				new FileChooser();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
+		if(e.getSource()==mnAutomates){
+			try {
+				new AutomatesChooser();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
