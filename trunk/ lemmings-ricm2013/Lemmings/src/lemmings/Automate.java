@@ -28,12 +28,16 @@ public static int nomVersIdentifiant (String nom) {
 		id = lemmingCreuseur;
 	else if (nom.equals("Escalier"))
 		id = lemmingEscalier;
-	else if (nom.equals("Trampoline"))
+	else if (nom.equals("trampoline"))
 		id = lemmingTrampoline;
 	else if (nom.equals("Bombe"))
 		id = lemmingBombe;
 	else if (nom.equals("Catabombe"))
 		id = lemmingCatabombe;
+	else if (nom.equals("Catapulte"))
+		id = lemmingCatapulte;
+	else if (nom.equals("Bloqueur"))
+		id = lemmingStop;
 	else
 		id = 0;
     return id;
