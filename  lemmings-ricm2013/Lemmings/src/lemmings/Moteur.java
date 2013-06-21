@@ -35,7 +35,7 @@ public class Moteur implements Constantes {
 			}
 
 			// S'il est mort, et ben... il est mort !
-			if(y<1 || y>Carte.HAUTEUR_CARTE-2) {
+			if(!Carte.estValide(x, y)) {
 				Carte.obs.remove(i);
 				continue;
 			}
@@ -44,6 +44,11 @@ public class Moteur implements Constantes {
 			String cond;
 
 			// Si presence d'un plafond
+			int inter = y-1-coeff*3/4;
+			if(!Carte.estValide(x-1, inter) || !Carte.estValide(x-1, inter)) {
+				Carte.obs.remove(i);
+				continue;
+			}
 			if (Carte.map[x][y-1-coeff*3/4].isSol() && Carte.map[x-1][y-1-coeff*3/4].isSol() && Carte.map[x+1][y-1-coeff*3/4].isSol() ||
 				x>4 && Carte.map[x-5][y].isSol() && Carte.map[x-4][y].isSol() && Carte.map[x-3][y].isSol() &&
 				Carte.map[x-2][y].isSol() && Carte.map[x][y].isSol() && Carte.map[x+1][y].isSol() &&
