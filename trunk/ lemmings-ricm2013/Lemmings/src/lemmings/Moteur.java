@@ -43,12 +43,14 @@ public class Moteur implements Constantes {
 			// Analyse de l'environnement du lemming courant
 			String cond;
 
-			// Si presence d'un plafond
+			
 			int inter = y-1-coeff*3/4;
-			if(!Carte.estValide(x-1, inter) || !Carte.estValide(x-1, inter)) {
+			if(!Carte.estValide(x-1, inter) || !Carte.estValide(x+1, inter) || !Carte.estValide(x, y+1)) {
 				Carte.obs.remove(i);
 				continue;
 			}
+			
+			// Si presence d'un plafond
 			if (Carte.map[x][y-1-coeff*3/4].isSol() && Carte.map[x-1][y-1-coeff*3/4].isSol() && Carte.map[x+1][y-1-coeff*3/4].isSol() ||
 				x>4 && Carte.map[x-5][y].isSol() && Carte.map[x-4][y].isSol() && Carte.map[x-3][y].isSol() &&
 				Carte.map[x-2][y].isSol() && Carte.map[x][y].isSol() && Carte.map[x+1][y].isSol() &&
