@@ -54,7 +54,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	public static int tailleFY;
 
 	public static int etatSouris;
-	
+
 	public static boolean musique=false;
 
 	//DECLARATION DE TOUT LES BOUTONS
@@ -191,20 +191,20 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		Component horizontalStrut_3 = Box.createHorizontalStrut(espacement_hori);
 		bouton_sup.add(horizontalStrut_3);
-		
+
 		bouton_sup.add(bouton_Catapulte);
 
 		Component horizontalStrut_4 = Box.createHorizontalStrut(50);
 		bouton_sup.add(horizontalStrut_4);
-		
+
 		bouton_sup.add(tPuissance);
-		
+
 		Component horizontalStrut_5 = Box.createHorizontalStrut(espacement_text);
 		bouton_sup.add(horizontalStrut_5);
-		
-		
+
+
 		text1.setLayout(new BoxLayout(text1, BoxLayout.LINE_AXIS));
-		
+
 		Component horizontalStrut_t6 = Box.createHorizontalStrut(30);
 		text1.add(horizontalStrut_t6);
 
@@ -223,15 +223,15 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		text1.add(tCatapulte);
 		Component horizontalStrut_t10 = Box.createHorizontalStrut(30);
 		text1.add(horizontalStrut_t10);
-		
+
 		slider2 = new JSlider();
 		slider2.setMaximum(100);
-	    slider2.setMinimum(0);
-	    slider2.setValue(50);
-	    slider2.setPaintTicks(true);
-	    slider2.setPaintLabels(true);
-	    slider2.setMinorTickSpacing(5);
-	    slider2.setMajorTickSpacing(20);
+		slider2.setMinimum(0);
+		slider2.setValue(50);
+		slider2.setPaintTicks(true);
+		slider2.setPaintLabels(true);
+		slider2.setMinorTickSpacing(5);
+		slider2.setMajorTickSpacing(20);
 		text1.add(slider2);
 
 
@@ -254,22 +254,22 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_inf1.add(horizontalStrut_13);
 
 		bouton_inf1.add(bouton_futur2);
-		
+
 		Component horizontalStrut_t14 = Box.createHorizontalStrut(65);//(espacement_text*3);
 		bouton_inf1.add(horizontalStrut_t14);
-		
+
 		bouton_inf1.add(tAngle);
-		
+
 		Component horizontalStrut_t15 = Box.createHorizontalStrut(espacement_text);//(espacement_text*3);
 		bouton_inf1.add(horizontalStrut_t15);
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
 		text2.setLayout(new BoxLayout(text2, BoxLayout.LINE_AXIS));
-		
+
 		Component horizontalStrut_t16 = Box.createHorizontalStrut(30);//(espacement_text*3);
 		text2.add(horizontalStrut_t16);
 
@@ -286,22 +286,22 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		text2.add(horizontalStrut_t19);
 
 		text2.add(tFutur2);
-		Component horizontalStrut_t20 = Box.createHorizontalStrut(30);//(espacement_text*3);
+		Component horizontalStrut_t20 = Box.createHorizontalStrut(30);
 		text2.add(horizontalStrut_t20);
-		
+
 
 		slider = new JSlider();
-		slider.setMaximum(100);
-	    slider.setMinimum(0);
-	    slider.setValue(50);
-	    slider.setPaintTicks(true);
-	    slider.setPaintLabels(true);
-	    slider.setMinorTickSpacing(5);
-	    slider.setMajorTickSpacing(20);
-	    text2.add(slider);
+		slider.setMaximum(90);
+		slider.setMinimum(0);
+		slider.setValue(50);
+		slider.setPaintTicks(true);
+		slider.setPaintLabels(true);
+		slider.setMinorTickSpacing(5);
+		slider.setMajorTickSpacing(10);
+		text2.add(slider);
 
-		
-		
+
+
 
 		JPanel bouton_inf2 = new JPanel();
 		//Idem pour cette ligne
@@ -320,13 +320,13 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_inf2.add(horizontalStrut_22);
 
 		bouton_inf2.add(bouton_suppr);
-		
+
 		Component horizontalStrut_23 = Box.createHorizontalStrut(40);
 		bouton_inf2.add(horizontalStrut_23);
-		
+
 		bouton_inf2.add(tLemmingSauver);
 		bouton_inf2.add(tLemmingSave);
-		
+
 		Component horizontalStrut_24 = Box.createHorizontalStrut(espacement_hori*2);
 		bouton_inf2.add(horizontalStrut_24);
 
@@ -364,7 +364,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		mnCarte = new JMenu("Carte");
 		menuBar.add(mnCarte);
-		
+
 		mnMusique = new JMenu("Son");
 		menuBar.add(mnMusique);
 		mnBoxSong = new JCheckBoxMenuItem("Desactiver");
@@ -378,12 +378,12 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mnTrace = new JCheckBoxMenuItem("Trace");
 		mnJouer.add(mnTrace);
 		mnTrace.addActionListener(this);
-		
+
 		mnAutomates = new JMenuItem("Chargement d'automates...");
 		mnJouer.add(mnAutomates);
 		mnAutomates.addActionListener(this);
-		
-		
+
+
 		mnMap = new JMenu("map1");
 		mnCarte.add(mnMap);
 		mntmMap = new JMenuItem("Jouer");
@@ -464,15 +464,22 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(arg0.getSource()==zone_map) modifType(arg0);
 
 		if(arg0.getSource()==bouton_Catapulte) {
-			playSong = new AePlayWave("Sons/explosion.wav");
-			playSong.start();
-			puissance = slider.getValue();//Integer.parseInt(Tpuissance.getText()); //on reccupere la puissance
-			angle = (double) slider2.getValue()*Math.PI/180;
-			Carte.obs.add(new Lemming(Carte.getCatapulte().x,Carte.getCatapulte().y,angle,puissance,lemmingCatabombe)); //on tire le lemmings
+			if(Carte.cmpCatapulte <= 0) tCatapulte.setText("0");
+			else {
+				tCatapulte.setText("" + Carte.cmpCatapulte);
+				playSong = new AePlayWave("Sons/explosion.wav");
+				playSong.start();
+				puissance = slider2.getValue()*71/100;//Integer.parseInt(Tpuissance.getText()); //on reccupere la puissance
+				angle = (double) slider.getValue()*Math.PI/180;
+				System.out.println("Coord x"+Carte.getCatapulte().x);
+				System.out.println("Coord y"+Carte.getCatapulte().y);
+				Carte.obs.add(new Lemming(Carte.getCatapulte().x,Carte.getCatapulte().y,angle,puissance,lemmingCatabombe)); //on tire le lemmings
+			}
+
 		}
 	}
 
-	
+
 	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent e) {
 
@@ -484,7 +491,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
-		
+
 		if(e.getSource()==mnAutomates){
 			try {
 				new AutomatesChooser();
@@ -500,33 +507,33 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			Jeu.play = true;
 			Jeu.accelerer = false;
 		}
-				
+
 		if(e.getSource()==mnBoxSong) Jeu.playWave.stop();
 
-		
+
 		if(e.getSource()==mnTrace) Moteur.trace=!Moteur.trace;
 
 		if(e.getSource()==bouton_accelerer) Jeu.accelerer = true;
 
 		//on affiche une fenetre popup pour chaque "Detail" de toutes les maps
 		if(e.getSource()==mapDetail){
-			JOptionPane.showMessageDialog(null, " Facile\n lemmings a sauver : 10 \n Pour bien debuter !", "Carte 1", 0, new ImageIcon("ImagesMenu/map1.png"));
+			JOptionPane.showMessageDialog(null, "Facile\n lemmings a sauver : 10 \n Pour bien debuter !", "Carte 1", 0, new ImageIcon("ImagesMenu/map1.png"));
 		}
 
 		if(e.getSource()==map2Detail){
-			JOptionPane.showMessageDialog(null, " Moyen\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Carte 2", 0, new ImageIcon("ImagesMenu/map2.png"));
+			JOptionPane.showMessageDialog(null, "Moyen\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Carte 2", 0, new ImageIcon("ImagesMenu/map2.png"));
 		}
 
 		if(e.getSource()==map3Detail){
-			JOptionPane.showMessageDialog(null, " Difficile\n lemmings a sauver : 10 \n Please insert coin", "Carte 3", 0, new ImageIcon("ImagesMenu/map3.png"));
+			JOptionPane.showMessageDialog(null, "Difficile\n lemmings a sauver : 10 \n Please insert coin", "Carte 3", 0, new ImageIcon("ImagesMenu/map3.png"));
 		}
 
 		if(e.getSource()==map4Detail){
-			JOptionPane.showMessageDialog(null, " Moyen\n lemmings a sauver : 10 \n Like a pirate!!", "Carte 4", 0, new ImageIcon("ImagesMenu/map4.png"));
+			JOptionPane.showMessageDialog(null, "Moyen\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Carte 4", 0, new ImageIcon("ImagesMenu/map4.png"));
 		}
 
 		if(e.getSource()==map5Detail){
-			JOptionPane.showMessageDialog(null, " Difficile\n lemmings a sauver : 10 \n Invaders must die", "Carte 5", 0, new ImageIcon("ImagesMenu/map5.png"));
+			JOptionPane.showMessageDialog(null, "Difficile\n lemmings a sauver : 10 \n Invaders must die", "Carte 5", 0, new ImageIcon("ImagesMenu/map5.png"));
 		}
 
 		//on charge la map
@@ -608,7 +615,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						"Automates/automate.xml", 
 						new Point(209,17), 
 						new Point(473,389),
-						new Point(36,356),
+						new Point(40,160),
 						10);
 
 
@@ -641,12 +648,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		//on affiche un message popup
 		if(e.getSource()==mntmRgle) {
-			String regle = " Le but du jeu est de sauver un certain nombre de lemmings predefinis pour chaque carte de jeu. \n" +
-					" Pour ce faire, vous devez les ammener de la porte d'entree à la porte de sortie. \n" +
-					" Avant de commencer une nouvelle carte, vous pouvez obtenir certaines informations grace au menu Carte-->MapX-->Details. \n"+
-					" Pour mener a bien votre mission, vous pourrez attribuer certaines actions (creuser, parapluie etc.) a vos lemmings mais attention ces actions sont limitees!! \n"+
-					" Pour finir la partie, cliquez sur le bouton en bas a droite \"explosion\" afin de savoir si vous avez gagne ou perdu. \n"+
-					" Evitez de gaspiller vos lemmings, ils ont tous leur importance!!";
+			String regle = "Le but du jeu est de sauver les lemmings. \n Pour ce faire, vous devez les ammener de la porte de sortie ï¿½la porte d'entrï¿½e. \n Evitez de gaspiller vos lemmings, ils ont tous leur importance";
 			JOptionPane.showMessageDialog(null, regle);
 		}
 
@@ -688,7 +690,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			newCx = ((event.getX()*Carte.LARGEUR_CARTE))/(tailleFX);
 		}
 		else {
-			newCx =event.getX();
+			newCx =event.getX(); //newCx = ((event.getX()*tailleFX*(Carte.LARGEUR_CARTE/Fenetre.tailleFX)))/(Carte.LARGEUR_CARTE);
 		}
 
 		//on recupere les coordonnees en Y de la souris dans la carte
@@ -697,7 +699,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		}
 
 		else {
-			newCy = event.getY();
+			newCy = event.getY();//newCy = ((event.getY())*3*tailleFY/5)/(Carte.HAUTEUR_CARTE);
 		}
 
 		Observable lem;
@@ -715,6 +717,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						Carte.map[lem.getX()][lem.getY()-2].type = typeAirInf;
 						Carte.map[lem.getX()][lem.getY()-3].type = typeAirInf;
 					}
+					//this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 					etatSouris=1;
 					if(typeCourant == lemmingParapluie){
 						if(Carte.cmpParapluie-- <= 0) tParapluie.setText("0");
@@ -785,12 +788,12 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 	private void initBoutons () {
 		bouton_creuse = new JButton(new ImageIcon(((new ImageIcon("Images/pioche.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
-		bouton_parapluie = new JButton(new ImageIcon(((new ImageIcon("Images/parapluie.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+		bouton_parapluie = new JButton(new ImageIcon(((new ImageIcon("Images/parapluie_ferme.jpg")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_escalier = new JButton(new ImageIcon(((new ImageIcon("Images/escalier.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_Catapulte = new JButton(new ImageIcon(((new ImageIcon("Images/Catapulte.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_trampoline = new JButton(new ImageIcon(((new ImageIcon("Images/Trampoline.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_bombe = new JButton(new ImageIcon(((new ImageIcon("Images/bombe.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
-		bouton_stop = new JButton(new ImageIcon(((new ImageIcon("Images/stop.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
+		bouton_stop = new JButton(new ImageIcon(((new ImageIcon("Images/lemming3.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_futur2 = new JButton(new ImageIcon(((new ImageIcon("Images/interrogation.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_play = new JButton(new ImageIcon(((new ImageIcon("Images/play.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_pause = new JButton(new ImageIcon(((new ImageIcon("Images/pause.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
