@@ -3,9 +3,7 @@ package lemmings;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -14,18 +12,17 @@ import java.awt.Point;
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JSlider;
 import javax.swing.JSplitPane;
 
 import java.awt.Component;
 import java.io.IOException;
-import java.text.NumberFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.Box;
@@ -40,16 +37,10 @@ import java.awt.event.MouseListener;
 public class Fenetre extends JFrame implements Constantes, MouseListener, ActionListener{
 
 	private static final long serialVersionUID = 1L;
-
-	private JPanel container = new JPanel();
-	private JFormattedTextField Tangle = new JFormattedTextField(NumberFormat.getIntegerInstance());
-	private JFormattedTextField Tpuissance = new JFormattedTextField(NumberFormat.getIntegerInstance());
-	private JLabel label = new JLabel("Entrez un angle :        ");
-	private JLabel label2 = new JLabel("Entrez une puissance (0-100) : ");
-	private final JFrame frame = new JFrame("Reglage catapulte");
 	private JSplitPane split2, split3;
 	private int espacement_hori = 20;
 	private int espacement_text2 = 65;
+	private int espacement_text_line2 = 70;
 	private int espacement_text = 65;
 	private int typeCourant;
 	private Thread playSong;
@@ -64,7 +55,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	public static int tailleFY;
 
 	public static int etatSouris;
-
+	
 	public static boolean musique=false;
 
 	//DECLARATION DE TOUT LES BOUTONS
@@ -80,7 +71,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JButton bouton_pause;  
 	private JButton bouton_accelerer; 
 	private JButton bouton_suppr;
-	private JButton b2 = new JButton ("OK");
 
 	//DECLARATION DE TOUT LES TEXTES DES COMPTEURS
 	private JLabel tPioche;
@@ -93,6 +83,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private JLabel tFutur2;
 	private JLabel tLemmingSave;
 	private JLabel tLemmingSauver;
+	private JLabel tPuissance;
+	private JLabel tAngle;
 
 	private int ancienNum;
 	private int puissance;
@@ -127,7 +119,11 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 	private JCheckBoxMenuItem mnBoxSong;
 
+	private JSlider slider;
+	private JSlider slider2;
+
 	private JMenuItem mnAutomates;
+
 
 
 
@@ -184,53 +180,60 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		bouton_sup.add(bouton_creuse);
 
-		Component horizontalStrut_3 = Box.createHorizontalStrut(espacement_hori);
-		bouton_sup.add(horizontalStrut_3);
+		Component horizontalStrut_1 = Box.createHorizontalStrut(espacement_hori);
+		bouton_sup.add(horizontalStrut_1);
 
 		bouton_sup.add(bouton_parapluie);
 
-		Component horizontalStrut_4 = Box.createHorizontalStrut(espacement_hori);
-		bouton_sup.add(horizontalStrut_4);
+		Component horizontalStrut_2 = Box.createHorizontalStrut(espacement_hori);
+		bouton_sup.add(horizontalStrut_2);
 
 		bouton_sup.add(bouton_escalier);
 
-		Component horizontalStrut_5 = Box.createHorizontalStrut(espacement_hori);
-		bouton_sup.add(horizontalStrut_5);
-
+		Component horizontalStrut_3 = Box.createHorizontalStrut(espacement_hori);
+		bouton_sup.add(horizontalStrut_3);
+		
 		bouton_sup.add(bouton_Catapulte);
 
-		Component horizontalStrut_12 = Box.createHorizontalStrut(espacement_hori);
-		bouton_sup.add(horizontalStrut_12);
-
-		//bouton_sup.add(bouton_lemmingSave);
-		//textSave.setLayout(new BoxLayout(text1, BoxLayout.LINE_AXIS));
-		bouton_sup.add(tLemmingSauver);
-
-
-
-
+		Component horizontalStrut_4 = Box.createHorizontalStrut(50);
+		bouton_sup.add(horizontalStrut_4);
+		
+		bouton_sup.add(tPuissance);
+		
+		Component horizontalStrut_5 = Box.createHorizontalStrut(espacement_text);
+		bouton_sup.add(horizontalStrut_5);
+		
+		
 		text1.setLayout(new BoxLayout(text1, BoxLayout.LINE_AXIS));
+		
+		Component horizontalStrut_t6 = Box.createHorizontalStrut(30);
+		text1.add(horizontalStrut_t6);
 
 		text1.add(tPioche);
-		Component horizontalStrut_t1 = Box.createHorizontalStrut(espacement_text2);
-		text1.add(horizontalStrut_t1);
+		Component horizontalStrut_t7 = Box.createHorizontalStrut(espacement_text_line2);
+		text1.add(horizontalStrut_t7);
 
 		text1.add(tParapluie);
-		Component horizontalStrut_t2 = Box.createHorizontalStrut(espacement_text2);
-		text1.add(horizontalStrut_t2);
+		Component horizontalStrut_t8 = Box.createHorizontalStrut(espacement_text_line2);
+		text1.add(horizontalStrut_t8);
 
 		text1.add(tEscalier);
-		Component horizontalStrut_t3 = Box.createHorizontalStrut(espacement_text2);
-		text1.add(horizontalStrut_t3);
+		Component horizontalStrut_t9 = Box.createHorizontalStrut(espacement_text_line2);
+		text1.add(horizontalStrut_t9);
 
 		text1.add(tCatapulte);
-
-		Component horizontalStrut_t11 = Box.createHorizontalStrut(75);
-		text1.add(horizontalStrut_t11);
-
-		text1.add(tLemmingSave);
-		Component horizontalStrut_t14 = Box.createHorizontalStrut(40);
-		text1.add(horizontalStrut_t14);
+		Component horizontalStrut_t10 = Box.createHorizontalStrut(30);
+		text1.add(horizontalStrut_t10);
+		
+		slider2 = new JSlider();
+		slider2.setMaximum(100);
+	    slider2.setMinimum(0);
+	    slider2.setValue(50);
+	    slider2.setPaintTicks(true);
+	    slider2.setPaintLabels(true);
+	    slider2.setMinorTickSpacing(5);
+	    slider2.setMajorTickSpacing(20);
+		text1.add(slider2);
 
 
 		JPanel bouton_inf1 = new JPanel();
@@ -238,43 +241,68 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_inf1.setLayout(new BoxLayout(bouton_inf1, BoxLayout.LINE_AXIS));
 		bouton_inf1.add(bouton_trampoline);
 
-		Component horizontalStrut_10 = Box.createHorizontalStrut(espacement_hori);
-		bouton_inf1.add(horizontalStrut_10);
+		Component horizontalStrut_11 = Box.createHorizontalStrut(espacement_hori);
+		bouton_inf1.add(horizontalStrut_11);
 
 		bouton_inf1.add(bouton_bombe);
 
-		Component horizontalStrut_7 = Box.createHorizontalStrut(espacement_hori);
-		bouton_inf1.add(horizontalStrut_7);
+		Component horizontalStrut_12 = Box.createHorizontalStrut(espacement_hori);
+		bouton_inf1.add(horizontalStrut_12);
 
 		bouton_inf1.add(bouton_stop);
 
-		Component horizontalStrut_8 = Box.createHorizontalStrut(espacement_hori);
-		bouton_inf1.add(horizontalStrut_8);
+		Component horizontalStrut_13 = Box.createHorizontalStrut(espacement_hori);
+		bouton_inf1.add(horizontalStrut_13);
 
 		bouton_inf1.add(bouton_futur2);
-
-
+		
+		Component horizontalStrut_t14 = Box.createHorizontalStrut(65);//(espacement_text*3);
+		bouton_inf1.add(horizontalStrut_t14);
+		
+		bouton_inf1.add(tAngle);
+		
+		Component horizontalStrut_t15 = Box.createHorizontalStrut(espacement_text);//(espacement_text*3);
+		bouton_inf1.add(horizontalStrut_t15);
+		
+		
+		
+		
+		
+		
 		text2.setLayout(new BoxLayout(text2, BoxLayout.LINE_AXIS));
-
-		Component horizontalStrut_tbonus = Box.createHorizontalStrut(espacement_text);
-		text2.add(horizontalStrut_tbonus);
+		
+		Component horizontalStrut_t16 = Box.createHorizontalStrut(30);//(espacement_text*3);
+		text2.add(horizontalStrut_t16);
 
 		text2.add(tTrampoline);
-		Component horizontalStrut_t4 = Box.createHorizontalStrut(espacement_text);
-		text2.add(horizontalStrut_t4);
+		Component horizontalStrut_t17 = Box.createHorizontalStrut(espacement_text_line2);
+		text2.add(horizontalStrut_t17);
 
 		text2.add(tBombe);
-		Component horizontalStrut_t5 = Box.createHorizontalStrut(espacement_text);
-		text2.add(horizontalStrut_t5);
+		Component horizontalStrut_t18 = Box.createHorizontalStrut(espacement_text_line2);
+		text2.add(horizontalStrut_t18);
 
 		text2.add(tStop);
-		Component horizontalStrut_t6 = Box.createHorizontalStrut(espacement_text);
-		text2.add(horizontalStrut_t6);
+		Component horizontalStrut_t19 = Box.createHorizontalStrut(espacement_text_line2);
+		text2.add(horizontalStrut_t19);
 
 		text2.add(tFutur2);
-		Component horizontalStrut_t7 = Box.createHorizontalStrut(espacement_text);
-		text2.add(horizontalStrut_t7);
+		Component horizontalStrut_t20 = Box.createHorizontalStrut(30);//(espacement_text*3);
+		text2.add(horizontalStrut_t20);
+		
 
+		slider = new JSlider();
+		slider.setMaximum(100);
+	    slider.setMinimum(0);
+	    slider.setValue(50);
+	    slider.setPaintTicks(true);
+	    slider.setPaintLabels(true);
+	    slider.setMinorTickSpacing(5);
+	    slider.setMajorTickSpacing(20);
+	    text2.add(slider);
+
+		
+		
 
 		JPanel bouton_inf2 = new JPanel();
 		//Idem pour cette ligne
@@ -285,14 +313,23 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_inf2.add(horizontalStrut);
 		bouton_inf2.add(bouton_pause);
 
-		Component horizontalStrut_1 = Box.createHorizontalStrut(espacement_hori);
-		bouton_inf2.add(horizontalStrut_1);
+		Component horizontalStrut_21 = Box.createHorizontalStrut(espacement_hori);
+		bouton_inf2.add(horizontalStrut_21);
 		bouton_inf2.add(bouton_accelerer);
 
-		Component horizontalStrut_2 = Box.createHorizontalStrut(espacement_hori);
-		bouton_inf2.add(horizontalStrut_2);
+		Component horizontalStrut_22 = Box.createHorizontalStrut(espacement_hori);
+		bouton_inf2.add(horizontalStrut_22);
 
 		bouton_inf2.add(bouton_suppr);
+		
+		Component horizontalStrut_23 = Box.createHorizontalStrut(40);
+		bouton_inf2.add(horizontalStrut_23);
+		
+		bouton_inf2.add(tLemmingSauver);
+		bouton_inf2.add(tLemmingSave);
+		
+		Component horizontalStrut_24 = Box.createHorizontalStrut(espacement_hori*2);
+		bouton_inf2.add(horizontalStrut_24);
 
 		//On positionne maintenant en colonne
 		zone_gauche.setLayout(new BoxLayout(zone_gauche, BoxLayout.PAGE_AXIS));
@@ -328,10 +365,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		mnCarte = new JMenu("Carte");
 		menuBar.add(mnCarte);
-
+		
 		mnMusique = new JMenu("Son");
 		menuBar.add(mnMusique);
-		mnBoxSong = new JCheckBoxMenuItem("Dï¿½sactiver");
+		mnBoxSong = new JCheckBoxMenuItem("Desactiver");
 		mnMusique.add(mnBoxSong);
 		mnBoxSong.addActionListener(this);
 
@@ -346,7 +383,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		mnAutomates = new JMenuItem("Chargement d'automates...");
 		mnJouer.add(mnAutomates);
 		mnAutomates.addActionListener(this);
-
+		
+		
 		mnMap = new JMenu("map1");
 		mnCarte.add(mnMap);
 		mntmMap = new JMenuItem("Jouer");
@@ -414,7 +452,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	public void afficher(){
 		//on rafraichi toute la map et on met a jour le nombre de lemming a sauver
 		scroll.repaint();
-		tLemmingSave.setText("" + Carte.lemmingSauf);
+		tLemmingSave.setText("" + Carte.lemmingSauf+"/"+Carte.lemmingASauver);
 		mini_map.repaint();
 		try {
 			Thread.sleep(10); // a une certaine vitesse --> 1000 = 1sec
@@ -427,53 +465,26 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(arg0.getSource()==zone_map) modifType(arg0);
 
 		if(arg0.getSource()==bouton_Catapulte) {
-			if(Carte.cmpCatapulte < 0) tCatapulte.setText("0");
-			else {
-				tCatapulte.setText("" + Carte.cmpCatapulte);
-
-				frame.setSize(400, 110);
-				frame.setResizable(false);
-				frame.setLocationRelativeTo(null);
-
-				container.setLayout(new BorderLayout());
-				JPanel top = new JPanel();       
-				Font police = new Font("Arial", Font.BOLD, 14);
-
-				Tangle.setFont(police);
-				Tangle.setPreferredSize(new Dimension(150, 30));
-				Tangle.setForeground(Color.BLUE);
-
-				Tpuissance.setFont(police);
-				Tpuissance.setPreferredSize(new Dimension(150, 30));
-				Tpuissance.setForeground(Color.BLUE);
-
-				b2.addActionListener(new BoutonListener());
-
-				top.add(label); 
-				top.add(Tangle);
-				top.add(label2);
-				top.add(Tpuissance);
-				top.add(b2);
-
-				frame.setContentPane(top);
-				frame.setVisible(true);
-			}
+			playSong = new AePlayWave("Sons/explosion.wav");
+			playSong.start();
+			puissance = slider.getValue();//Integer.parseInt(Tpuissance.getText()); //on reccupere la puissance
+			angle = (double) slider2.getValue()*Math.PI/180;
+			Carte.obs.add(new Lemming(Carte.getCatapulte().x,Carte.getCatapulte().y,angle,puissance,lemmingCatabombe)); //on tire le lemmings
 		}
 	}
 
-
+	
 	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent e) {
 
 		//on creer l'interface pour le chargement d'un fichier utilisateur
-		if(e.getSource()==chargement){
+		if(e.getSource()==chargement)
 			try {
 				new FileChooser();
-			} catch (IOException e1) {
+			} catch (IOException e2) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				e2.printStackTrace();
 			}
-		}
 		
 		if(e.getSource()==mnAutomates){
 			try {
@@ -482,7 +493,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		}
+		}		
 
 		if(e.getSource()==bouton_pause) Jeu.play = false;
 
@@ -490,33 +501,33 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			Jeu.play = true;
 			Jeu.accelerer = false;
 		}
-
+				
 		if(e.getSource()==mnBoxSong) Jeu.playWave.stop();
 
-
+		
 		if(e.getSource()==mnTrace) Moteur.trace=!Moteur.trace;
 
 		if(e.getSource()==bouton_accelerer) Jeu.accelerer = true;
 
 		//on affiche une fenetre popup pour chaque "Detail" de toutes les maps
 		if(e.getSource()==mapDetail){
-			JOptionPane.showMessageDialog(null, "Facile\n lemmings a sauver : 10 \n Pour bien debuter !", "Carte 1", 0, new ImageIcon("ImagesMenu/map1.png"));
+			JOptionPane.showMessageDialog(null, " Facile\n lemmings a sauver : 10 \n Pour bien debuter !", "Carte 1", 0, new ImageIcon("ImagesMenu/map1.png"));
 		}
 
 		if(e.getSource()==map2Detail){
-			JOptionPane.showMessageDialog(null, "Moyen\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Carte 2", 0, new ImageIcon("ImagesMenu/map2.png"));
+			JOptionPane.showMessageDialog(null, " Moyen\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Carte 2", 0, new ImageIcon("ImagesMenu/map2.png"));
 		}
 
 		if(e.getSource()==map3Detail){
-			JOptionPane.showMessageDialog(null, "Difficile\n lemmings a sauver : 10 \n Please insert coin", "Carte 3", 0, new ImageIcon("ImagesMenu/map3.png"));
+			JOptionPane.showMessageDialog(null, " Difficile\n lemmings a sauver : 10 \n Please insert coin", "Carte 3", 0, new ImageIcon("ImagesMenu/map3.png"));
 		}
 
 		if(e.getSource()==map4Detail){
-			JOptionPane.showMessageDialog(null, "Moyen\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Carte 4", 0, new ImageIcon("ImagesMenu/map4.png"));
+			JOptionPane.showMessageDialog(null, " Moyen\n lemmings a sauver : 10 \n Like a pirate!!", "Carte 4", 0, new ImageIcon("ImagesMenu/map4.png"));
 		}
 
 		if(e.getSource()==map5Detail){
-			JOptionPane.showMessageDialog(null, "Difficile\n lemmings a sauver : 10 \n Invaders must die", "Carte 5", 0, new ImageIcon("ImagesMenu/map5.png"));
+			JOptionPane.showMessageDialog(null, " Difficile\n lemmings a sauver : 10 \n Invaders must die", "Carte 5", 0, new ImageIcon("ImagesMenu/map5.png"));
 		}
 
 		//on charge la map
@@ -596,9 +607,9 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						"Images/map4bg.png", 
 						"Musiques/Pirates des Caraibes.wav", 
 						"Automates/automate.xml", 
-						new Point(207,8), 
-						new Point(346,192),
-						new Point(35,160),
+						new Point(209,17), 
+						new Point(473,389),
+						new Point(36,356),
 						10);
 
 
@@ -631,7 +642,12 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		//on affiche un message popup
 		if(e.getSource()==mntmRgle) {
-			String regle = "Le but du jeu est de sauver les lemmings. \n Pour ce faire, vous devez les ammener de la porte de sortie ï¿½la porte d'entrï¿½e. \n Evitez de gaspiller vos lemmings, ils ont tous leur importance";
+			String regle = " Le but du jeu est de sauver un certain nombre de lemmings predefinis pour chaque carte de jeu. \n" +
+					" Pour ce faire, vous devez les ammener de la porte d'entree à la porte de sortie. \n" +
+					" Avant de commencer une nouvelle carte, vous pouvez obtenir certaines informations grace au menu Carte-->MapX-->Details. \n"+
+					" Pour mener a bien votre mission, vous pourrez attribuer certaines actions (creuser, parapluie etc.) a vos lemmings mais attention ces actions sont limitees!! \n"+
+					" Pour finir la partie, cliquez sur le bouton en bas a droite \"explosion\" afin de savoir si vous avez gagne ou perdu. \n"+
+					" Evitez de gaspiller vos lemmings, ils ont tous leur importance!!";
 			JOptionPane.showMessageDialog(null, regle);
 		}
 
@@ -771,12 +787,12 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 	private void initBoutons () {
 		bouton_creuse = new JButton(new ImageIcon(((new ImageIcon("Images/pioche.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
-		bouton_parapluie = new JButton(new ImageIcon(((new ImageIcon("Images/parapluie_ferme.jpg")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
+		bouton_parapluie = new JButton(new ImageIcon(((new ImageIcon("Images/parapluie.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_escalier = new JButton(new ImageIcon(((new ImageIcon("Images/escalier.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_Catapulte = new JButton(new ImageIcon(((new ImageIcon("Images/Catapulte.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_trampoline = new JButton(new ImageIcon(((new ImageIcon("Images/Trampoline.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_bombe = new JButton(new ImageIcon(((new ImageIcon("Images/bombe.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
-		bouton_stop = new JButton(new ImageIcon(((new ImageIcon("Images/lemming3.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
+		bouton_stop = new JButton(new ImageIcon(((new ImageIcon("Images/stop.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_futur2 = new JButton(new ImageIcon(((new ImageIcon("Images/interrogation.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); 
 		bouton_play = new JButton(new ImageIcon(((new ImageIcon("Images/play.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
 		bouton_pause = new JButton(new ImageIcon(((new ImageIcon("Images/pause.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  
@@ -791,8 +807,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		tBombe = new JLabel(""+Carte.cmpBombe);
 		tStop = new JLabel(""+Carte.cmpStop);
 		tFutur2 = new JLabel(""+Carte.cmpFutur2);
-		tLemmingSave = new JLabel(""+Carte.lemmingSauf);
-		tLemmingSauver = new JLabel("Lemmings sauve(s):");
+		tLemmingSave = new JLabel(""+Carte.lemmingSauf+"/"+Carte.lemmingASauver);
+		tLemmingSauver = new JLabel("Lemming(s) sauve(s) : ");
+		tPuissance = new JLabel("Catapulte : Puissance ");
+		tAngle = new JLabel("Catapulte : Angle ");
 
 		//MISE EN ATTENTE DES BOUTONS
 		bouton_creuse.addActionListener(this);
@@ -807,19 +825,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		bouton_pause.addActionListener(this);
 		bouton_accelerer.addActionListener(this);
 		bouton_suppr.addActionListener(this);
-	}
-
-	class BoutonListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			playSong = new AePlayWave("Sons/explosion.wav");
-			playSong.start();
-			puissance = Integer.parseInt(Tpuissance.getText()); //on reccupere la puissance
-			if((0<= puissance)&&(puissance<=100) ) {
-				angle = (double) ((Integer.parseInt(Tangle.getText()))*Math.PI/180); //on reccupere l'angle et on convertie en radian
-				Carte.obs.add(new Lemming(Carte.getCatapulte().x,Carte.getCatapulte().y,angle,puissance,lemmingCatabombe)); //on tire le lemmings
-				frame.dispose(); //on ferme la fenetre
-			}
-		}
 	}
 
 	public void afficherTexteCmp(){
