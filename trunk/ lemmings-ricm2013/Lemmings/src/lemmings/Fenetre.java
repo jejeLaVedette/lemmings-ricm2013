@@ -39,7 +39,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private static final long serialVersionUID = 1L;
 	private JSplitPane split2, split3;
 	private int espacement_hori = 20;
-	private int espacement_text2 = 65;
 	private int espacement_text_line2 = 70;
 	private int espacement_text = 65;
 	private int typeCourant;
@@ -689,7 +688,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			newCx = ((event.getX()*Carte.LARGEUR_CARTE))/(tailleFX);
 		}
 		else {
-			newCx =event.getX(); //newCx = ((event.getX()*tailleFX*(Carte.LARGEUR_CARTE/Fenetre.tailleFX)))/(Carte.LARGEUR_CARTE);
+			newCx =event.getX();
 		}
 
 		//on recupere les coordonnees en Y de la souris dans la carte
@@ -698,7 +697,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		}
 
 		else {
-			newCy = event.getY();//newCy = ((event.getY())*3*tailleFY/5)/(Carte.HAUTEUR_CARTE);
+			newCy = event.getY();
 		}
 
 		Observable lem;
@@ -716,7 +715,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						Carte.map[lem.getX()][lem.getY()-2].type = typeAirInf;
 						Carte.map[lem.getX()][lem.getY()-3].type = typeAirInf;
 					}
-					//this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 					etatSouris=1;
 					if(typeCourant == lemmingParapluie){
 						if(Carte.cmpParapluie-- <= 0) tParapluie.setText("0");

@@ -2,7 +2,6 @@ package lemmings;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +15,6 @@ public class Panneau extends JPanel implements Constantes{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Image perso;
 	private int tailleRX;
 	private int tailleRY;
 	public static double coefFenetre = 0.75;
@@ -29,11 +27,6 @@ public class Panneau extends JPanel implements Constantes{
 		//on test les y
 		if(coefFenetre*tailleFY>=Carte.HAUTEUR_CARTE) this.tailleRY = (int)(coefFenetre*Fenetre.tailleFY/Carte.HAUTEUR_CARTE);
 		else this.tailleRY = 1;
-
-		System.out.println("tailleRX : "+tailleRX);
-		System.out.println("tailleRY : "+tailleRY);
-		
-		
 		
 	}
 
@@ -63,7 +56,6 @@ public class Panneau extends JPanel implements Constantes{
 		//on affiche les lemmings
 		for(int k =0;k<Carte.obs.size();k++){	
 			o = Carte.obs.get(k);
-			//perso = new ImageIcon(Carte.obs.get(k).image).getImage();
 			
 			BufferedImage buffer;
 			try {
