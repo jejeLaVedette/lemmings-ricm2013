@@ -548,10 +548,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						"Images/map1bg.png", 
 						"Musiques/Torchlight song.wav", 
 						"Automates/automate.xml", 
-						new Point(60,55), 
-						new Point(330,125),
+						new Point(4,167), 
 						new Point(0,0),
-						20);
+						new Point(56,118),
+						10);
 
 
 			} catch (IOException ev) {
