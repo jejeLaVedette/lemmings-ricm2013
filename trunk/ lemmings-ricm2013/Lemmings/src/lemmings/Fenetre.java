@@ -329,7 +329,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		Component horizontalStrut_24 = Box.createHorizontalStrut(espacement_hori*2);
 		bouton_inf2.add(horizontalStrut_24);
-
+		
 		//On positionne maintenant en colonne
 		zone_gauche.setLayout(new BoxLayout(zone_gauche, BoxLayout.PAGE_AXIS));
 		zone_gauche.add(bouton_sup);
@@ -517,7 +517,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		//on affiche une fenetre popup pour chaque "Detail" de toutes les maps
 		if(e.getSource()==mapDetail){
-			JOptionPane.showMessageDialog(null, " Facile\n lemmings a sauver : 10 \n Pour bien debuter !", "Carte 1", 0, new ImageIcon("ImagesMenu/map1.png"));
+			JOptionPane.showMessageDialog(null, " Facile\n Pas de lemmings à sauver \n Pour bien debuter !", "Carte 1", 0, new ImageIcon("ImagesMenu/map1.png"));
 		}
 
 		if(e.getSource()==map2Detail){
@@ -648,7 +648,6 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		//on affiche un message popup
 		if(e.getSource()==mntmRgle) {
-
 			String regle = "Le but du jeu est de sauver les lemmings. \n Pour ce faire, vous devez les ammener de la porte d'entree a la porte de sortie. \n " +
 					"Evitez de gaspiller vos lemmings, ils ont tous leur importance";
 
