@@ -541,7 +541,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			try {
 				Jeu.playWave.stop();
 				Carte.lemmingASauver=10;
-				Carte.initCmp(4, 20, 4, 0, 0, 0, 4, 0);
+				Carte.initCmp(20, 20, 20, 20, 20, 20, 20, 20);
 				afficherTexteCmp();
 				//on charge la map avec les bon parametres
 				Jeu.initialiserJeu("Images/map1.png", 
@@ -648,8 +648,10 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		//on affiche un message popup
 		if(e.getSource()==mntmRgle) {
+
 			String regle = "Le but du jeu est de sauver les lemmings. \n Pour ce faire, vous devez les ammener de la porte d'entree a la porte de sortie. \n " +
 					"Evitez de gaspiller vos lemmings, ils ont tous leur importance";
+
 			JOptionPane.showMessageDialog(null, regle);
 		}
 
@@ -663,7 +665,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		if(e.getSource()==bouton_escalier) typeCourant = lemmingEscalier;
 		if(e.getSource()==bouton_trampoline) typeCourant = lemmingTrampoline;
 		if(e.getSource()==bouton_bombe) typeCourant = lemmingBombe;
-
+		if(e.getSource()==bouton_futur2) typeCourant = lemmingPerso;
+		
 		//permet de tuer tout les lemmings et dit si on a gagne ou non le jeu
 		if(e.getSource()==bouton_suppr) {
 			String s; 
@@ -753,6 +756,11 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						else tBombe.setText("" + Carte.cmpBombe);
 						this.ancienNum = Carte.cmpBombe;
 					}
+					if(typeCourant == lemmingPerso){
+						if(Carte.cmpFutur2-- <= 0) tFutur2.setText("0");
+						else tFutur2.setText("" + Carte.cmpFutur2);
+						this.ancienNum = Carte.cmpFutur2;
+					}
 
 					if(this.ancienNum>=0) {
 						Carte.obs.get(i).type=typeCourant;
@@ -810,7 +818,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		tStop = new JLabel(""+Carte.cmpStop);
 		tFutur2 = new JLabel(""+Carte.cmpFutur2);
 		tLemmingSave = new JLabel(""+Carte.lemmingSauf+"/"+Carte.lemmingASauver);
-		tLemmingSauver = new JLabel("Lemming(s) sauve(s) : ");
+		tLemmingSauver = new JLabel("Sauvé(s) : ");
 		tPuissance = new JLabel("Catapulte : Puissance ");
 		tAngle = new JLabel("Catapulte : Angle ");
 

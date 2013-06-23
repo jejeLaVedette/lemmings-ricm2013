@@ -28,7 +28,7 @@ public class AutomatesChooser extends JPanel  {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
         	
         	File file = fc.getSelectedFile();
-            System.out.println("le fichier automate demandé est : "+file.getAbsolutePath());
+        	AutomateHandler.initAutomates(file.getAbsolutePath());
             
         }
     }

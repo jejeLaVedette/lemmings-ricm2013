@@ -47,6 +47,7 @@ public interface Constantes {
 	public final static int lemmingTrampoline = 7;
 	public final static int lemmingBombe = 8;
 	public final static int lemmingCatabombe = 9;
+	public final static int lemmingPerso = 10;
 	
 	// Constantes de Jeu
 

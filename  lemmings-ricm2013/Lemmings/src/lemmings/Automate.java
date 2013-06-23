@@ -38,6 +38,8 @@ public static int nomVersIdentifiant (String nom) {
 		id = lemmingCatapulte;
 	else if (nom.equals("Bloqueur"))
 		id = lemmingStop;
+	else if (nom.equals("Perso"))
+		id = lemmingPerso;
 	else
 		id = 0;
     return id;
