@@ -614,7 +614,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						"Musiques/Pirates des Caraibes.wav", 
 						"Automates/automate.xml", 
 						new Point(209,17), 
-						new Point(473,389),
+						new Point(346,192),
 						new Point(40,160),
 						30);
 
