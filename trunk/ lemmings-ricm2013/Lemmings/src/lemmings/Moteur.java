@@ -330,7 +330,7 @@ public class Moteur implements Constantes {
 		}
 
 		l.setTime();
-		if(trace) Carte.map[l.getX()][l.getY()].couleur = new Color(255,0,0);
+		if(trace && Carte.estValide(l.getX(), l.getY())) Carte.map[l.getX()][l.getY()].couleur = new Color(255,0,0);
 
 	}
 
@@ -352,7 +352,7 @@ public class Moteur implements Constantes {
 		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 1){
 			l.setTrajpara(t);
 			System.out.println("x:"+l.getX()+" y"+l.getY()); 
-			if (trace) Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
+			if (trace && Carte.estValide(l.getX(), l.getY())) Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
 			l.resetTime();
 			voler(l);
 		}
@@ -378,7 +378,7 @@ public class Moteur implements Constantes {
 		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 1){
 			l.setTrajpara(t);
 			System.out.println("x:"+l.getX()+" y"+l.getY()); 
-			if (trace) Carte.map[l.getX()][l.getY()].couleur = new Color(0,255,0);
+			if (trace && Carte.estValide(l.getX(), l.getY())) Carte.map[l.getX()][l.getY()].couleur = new Color(0,255,0);
 			l.resetTime();
 			voler(l);
 		}

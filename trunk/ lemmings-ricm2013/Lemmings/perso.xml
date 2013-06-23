@@ -1,0 +1,45 @@
+
+<open>
+ <automate nom = "Perso">
+   <transition etat="0" etatsuivant="1" >
+    <condition>sol</condition>
+    <action>construireEscalier</action>
+    </transition>
+   <transition etat="0" etatsuivant="1" >
+    <condition>mur</condition>
+    <action>construireEscalier</action>
+    </transition>
+   <transition etat="0" etatsuivant="0" >
+    <condition>vide</condition>
+    <action>tomber</action>
+    </transition>
+	 <transition etat="1" etatsuivant="2" >
+    <condition>sol</condition>
+    <action>construireEscalier</action>
+    </transition>
+   <transition etat="1" etatsuivant="2" >
+    <condition>mur</condition>
+    <action>construireEscalier</action>
+    </transition>
+   <transition etat="1" etatsuivant="1" >
+    <condition>vide</condition>
+    <action>tomber</action>
+    </transition>
+	 <transition etat="2" etatsuivant="3" >
+    <condition>sol</condition>
+    <action>construireTrampoline</action>
+    </transition>
+   <transition etat="2" etatsuivant="3" >
+    <condition>mur</condition>
+    <action>construireTrampoline</action>
+    </transition>
+   <transition etat="2" etatsuivant="2" >
+    <condition>vide</condition>
+    <action>tomber</action>
+    </transition>
+	<transition etat="3" etatsuivant="0" >
+    <condition>any</condition>
+    <action>initLemmingBase</action>
+    </transition>
+ </automate>
+</open>
