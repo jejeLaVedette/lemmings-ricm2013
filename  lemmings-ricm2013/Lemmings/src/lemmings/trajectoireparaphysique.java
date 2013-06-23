@@ -73,12 +73,12 @@ public class trajectoireparaphysique implements Constantes {
 	}
 	
 	private double calculkx (){
-		double x= (1.0/2)*massevolair*this.surfx*this.coefftrainee*this.vx*coeffvxkx; 		 
+		double x= (1.0/2)*massevolair*this.surfx*this.coefftrainee*this.Vx*coeffvxkx; 		 
 		return x;
 
 	}
 	private double calculky (){
-		double y=(1.0/2)*massevolair*this.surfy*this.coefftrainee*this.vy*coeffvyky;
+		double y=(1.0/2)*massevolair*this.surfy*this.coefftrainee*this.Vy*coeffvyky;
 		return y; 
 
 	}
