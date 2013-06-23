@@ -30,17 +30,47 @@ public class FileChooser extends JPanel  {
             File file = fc.getSelectedFile();
             
             Jeu.playWave.stop();
-			Carte.lemmingASauver=10;
-			Carte.initCmp(10, 10, 10, 10, 10, 10, 10, 10);
+						
 			
-			Jeu.initialiserJeu(file.getAbsolutePath(), 
-					file.getAbsolutePath().substring(0, file.getAbsolutePath().length()-4)+"bg.png", 
-					"", 
-					"Automates/automate.xml", 
-					new Point(60,55), 
-					new Point(330,125),
-					new Point(0,0),
-					20);
+			String[] tab,entree,sortie,catapulte;
+			int nbLem,aSauve;
+			
+			// On lit les informations du fichier texte
+			try{
+				InputStream ips=new FileInputStream(file.getAbsolutePath().substring(0, file.getAbsolutePath().length()-4)+".txt"); 
+				InputStreamReader ipsr=new InputStreamReader(ips);
+				BufferedReader br=new BufferedReader(ipsr);
+				String ligne;
+				
+				nbLem = Integer.valueOf(br.readLine());
+				aSauve = Integer.valueOf(br.readLine());
+				entree = br.readLine().split(" ");
+				sortie = br.readLine().split(" ");
+				catapulte = br.readLine().split(" ");
+				tab = br.readLine().split(" ");
+				
+				Carte.lemmingASauver=aSauve;
+				Carte.initCmp(Integer.valueOf(tab[0]), Integer.valueOf(tab[1]), Integer.valueOf(tab[2]), 
+						Integer.valueOf(tab[3]), Integer.valueOf(tab[4]), Integer.valueOf(tab[5]), Integer.valueOf(tab[6]), Integer.valueOf(tab[7]));
+				
+				Jeu.initialiserJeu(file.getAbsolutePath(), 
+						file.getAbsolutePath().substring(0, file.getAbsolutePath().length()-4)+"bg.png", 
+						"", 
+						"Automates/automate.xml", 
+						new Point(Integer.valueOf(entree[0]),Integer.valueOf(entree[1])),
+						new Point(Integer.valueOf(sortie[0]),Integer.valueOf(sortie[1])),
+						new Point(Integer.valueOf(catapulte[0]),Integer.valueOf(catapulte[1])),
+						nbLem);
+				
+				br.close(); 
+			}		
+			catch (Exception e){
+				System.out.println(e.toString());
+			}
+			
+			
+			
+			
         }
     }
 }

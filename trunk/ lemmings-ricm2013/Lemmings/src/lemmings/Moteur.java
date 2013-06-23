@@ -426,7 +426,8 @@ public class Moteur implements Constantes {
 		}
 		else {
 			for(int i=0;i<(coeff);i++) {
-				Carte.map[x-i][y] = new Sol(new Color(0,255,255));
+				if (Carte.estValide(x-i, y))
+					Carte.map[x-i][y] = new Sol(new Color(0,255,255));
 			}
 			Carte.map[x-coeff/2][y] = new Sol(new Color(0,255,255),typeSolTrampoline);
 		}
