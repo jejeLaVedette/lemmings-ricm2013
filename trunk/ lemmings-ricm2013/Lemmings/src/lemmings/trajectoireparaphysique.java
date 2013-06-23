@@ -11,11 +11,12 @@ public class trajectoireparaphysique implements Constantes {
 	private double Vy;
 	private double masse;
 	private double coefftrainee;
-	private double prof;
-	private double haut;
-	private double large;
+	private double surfx;
+	private double surfy;
+	
 
-
+//Constructeur prenant en parametre les coordonnées du point de départ,les composantes vx/vy de la vitesse
+// et le type de l'objet dont la trajectoire sera calculée
 	public trajectoireparaphysique(int bx, int by,double vecx,double vecy,int type){
 		this.base_x=bx;
 		this.base_y=by;
@@ -24,16 +25,14 @@ public class trajectoireparaphysique implements Constantes {
 		switch(type){
 		case 1:
 			this.masse=masselemming;
-			this.prof=proflemmings;
-			this.haut=hauteurlemmings;
-			this.large=larglemmings;
+			this.surfx=proflemmings*hauteurlemmings;
+			this.surfy=proflemmings*larglemmings;
 			this.coefftrainee=coefftraineelemming;
 			break;
 		default:
 			this.masse=masselemming;
-			this.prof=proflemmings;
-			this.haut=hauteurlemmings;
-			this.large=larglemmings;
+			this.surfx=proflemmings*hauteurlemmings;
+			this.surfy=proflemmings*larglemmings;
 			this.coefftrainee=coefftraineelemming;
 			break;
 		}
@@ -41,7 +40,8 @@ public class trajectoireparaphysique implements Constantes {
 	}
 
 
-
+//Constructeur prenant en parametre les coordonnées du point de départ,la norme et l'angle par rapport
+	//a l horizontale du vecteur vitesse,et le type de l'objet dont la trajectoire sera calculée.
 	public trajectoireparaphysique(int bx, int by,int norme,double angle,int type){
 		this.base_x=bx;
 		this.base_y=by;
@@ -50,16 +50,14 @@ public class trajectoireparaphysique implements Constantes {
 		switch(type){
 		case 1:
 			this.masse=masselemming;
-			this.prof=proflemmings;
-			this.haut=hauteurlemmings;
-			this.large=larglemmings;
+			this.surfx=proflemmings*hauteurlemmings;
+			this.surfy=proflemmings*larglemmings;
 			this.coefftrainee=coefftraineelemming;
 			break;
 		default:
 			this.masse=masselemming;
-			this.prof=proflemmings;
-			this.haut=hauteurlemmings;
-			this.large=larglemmings;
+			this.surfx=proflemmings*hauteurlemmings;
+			this.surfy=proflemmings*larglemmings;
 			this.coefftrainee=coefftraineelemming;
 			break;
 		}
@@ -73,13 +71,14 @@ public class trajectoireparaphysique implements Constantes {
 		return this.Vy;
 
 	}
+	
 	private double calculkx (){
-		double x= (1.0/2)*massevolair*this.haut*this.prof*this.coefftrainee*this.Vx*coeffvxkx; 		 
+		double x= (1.0/2)*massevolair*this.surfx*this.coefftrainee*this.vx*coeffvxkx; 		 
 		return x;
 
 	}
 	private double calculky (){
-		double y=(1.0/2)*massevolair*this.large*this.prof*this.coefftrainee*this.Vy*coeffvyky;
+		double y=(1.0/2)*massevolair*this.surfy*this.coefftrainee*this.vy*coeffvyky;
 		return y; 
 
 	}
@@ -95,13 +94,15 @@ public class trajectoireparaphysique implements Constantes {
 
 	public double  calculy(double t){
 		if (this.Vy==0){ 	
-			this.Vy=0.00001;
+			return this.base_y-1;
 		}
 
 
 		return ((double)this.base_y-((this.masse/this.calculky())*(this.Vy+((this.masse/this.calculky())*coeffgravite))*(1-Math.exp(-(this.calculky()/this.masse)*t))-((this.masse/this.calculky())*coeffgravite*t)));
 
 	}
+	
+	
 
 	public Point trajectoire(double t)
 	{
@@ -112,20 +113,20 @@ public class trajectoireparaphysique implements Constantes {
 
 	//type= true->colision avec mur vertical
 
-	public void calculcolision(double xcoli,double ycoli,double xprec,double yprec,double xbase,double ybase,double coeff1,double coeff2,boolean type){
+	public void calculcolision(double xcal,double ycal,double xprec,double yprec,double xcoli,double ycoli,double coeff1,double coeff2,boolean type){
 
 
 		if(!type){
-			this.Vx=(coeffbondvx*(xcoli-xprec)/(2*deltat));
-			this.Vy= (-(ycoli-yprec)/(2*deltat));
+			this.Vx=(coeffbondvx*(xcal-xprec)/(2*deltat));
+			this.Vy= (-(ycal-yprec)/(2*deltat));
 		}
 		else{
-			this.Vx=(coeffbondvy*(xcoli-xprec)/(2*deltat));
-			this.Vy= (-(ycoli-yprec)/(2*deltat));
+			this.Vx=(coeffbondvy*(xcal-xprec)/(2*deltat));
+			this.Vy= (-(ycal-yprec)/(2*deltat));
 		}
 
-		this.base_x=(int)xbase;
-		this.base_y=(int)ybase ;
+		this.base_x=(int)xcoli;
+		this.base_y=(int)ycoli ;
 		double x=this.Vx;
 		double y=this.Vy;
 		double elastot=coeff1+coeff2;
