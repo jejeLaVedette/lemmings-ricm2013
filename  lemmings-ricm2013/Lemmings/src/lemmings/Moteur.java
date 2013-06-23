@@ -375,7 +375,7 @@ public class Moteur implements Constantes {
 		t.calculcolision(x, y, l.getXp() , l.getYp(),l.getX(),l.getY() , l.getElasticite(),0.5, true);
 
 		retourner(l);
-		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 10){
+		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 1){
 			l.setTrajpara(t);
 			System.out.println("x:"+l.getX()+" y"+l.getY()); 
 			if (trace) Carte.map[l.getX()][l.getY()].couleur = new Color(0,255,0);
