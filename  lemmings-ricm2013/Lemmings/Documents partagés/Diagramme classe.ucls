@@ -1,182 +1,233 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="lemmings.Air" project="Lemmings" file="/Lemmings/src/lemmings/Air.java" 
+  <class id="1" language="java" name="lemmings.AePlayWave" project="Lemmings" 
+    file="/Lemmings/src/lemmings/AePlayWave.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="682" y="618"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="2" language="java" name="lemmings.AePlayWave.Position" project="Lemmings" 
+    file="/Lemmings/src/lemmings/AePlayWave.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="657" y="748"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="3" language="java" name="lemmings.Air" project="Lemmings" file="/Lemmings/src/lemmings/Air.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="237" y="352"/>    
+    <position height="-1" width="-1" x="797" y="255"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="lemmings.AutoLemmingBasique" project="Lemmings" 
-    file="/Lemmings/src/lemmings/AutoLemmingBasique.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="650" y="154"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="3" language="java" name="lemmings.AutoLemmingParapluie" project="Lemmings" 
-    file="/Lemmings/src/lemmings/AutoLemmingParapluie.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="654" y="68"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="4" language="java" name="lemmings.AutoLemmingStop" project="Lemmings" 
-    file="/Lemmings/src/lemmings/AutoLemmingStop.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="652" y="233"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="lemmings.Automate" project="Lemmings" file="/Lemmings/src/lemmings/Automate.java" 
+  <class id="4" language="java" name="lemmings.Automate" project="Lemmings" file="/Lemmings/src/lemmings/Automate.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="406" y="113"/>    
+    <position height="-1" width="-1" x="519" y="345"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="lemmings.Bouton" project="Lemmings" file="/Lemmings/src/lemmings/Bouton.java" 
+  <class id="5" language="java" name="lemmings.AutomateHandler" project="Lemmings" 
+    file="/Lemmings/src/lemmings/AutomateHandler.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="804" y="507"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="lemmings.AutomatesChooser" project="Lemmings" 
+    file="/Lemmings/src/lemmings/AutomatesChooser.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="648" y="502"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="lemmings.Bouton" project="Lemmings" file="/Lemmings/src/lemmings/Bouton.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1363" y="170"/>    
+    <position height="-1" width="-1" x="98" y="150"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="lemmings.Carte" project="Lemmings" file="/Lemmings/src/lemmings/Carte.java" 
+  <class id="8" language="java" name="lemmings.Carte" project="Lemmings" file="/Lemmings/src/lemmings/Carte.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1352" y="478"/>    
+    <position height="-1" width="-1" x="159" y="631"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="lemmings.Element" project="Lemmings" file="/Lemmings/src/lemmings/Element.java" 
+  <interface id="9" language="java" name="lemmings.Constantes" project="Lemmings" 
+    file="/Lemmings/src/lemmings/Constantes.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="123" y="298"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="10" language="java" name="lemmings.Element" project="Lemmings" file="/Lemmings/src/lemmings/Element.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="169" y="83"/>    
+    <position height="-1" width="-1" x="783" y="164"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="lemmings.Fenetre" project="Lemmings" file="/Lemmings/src/lemmings/Fenetre.java" 
+  <class id="11" language="java" name="lemmings.Fenetre" project="Lemmings" file="/Lemmings/src/lemmings/Fenetre.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="406" y="364"/>    
+    <position height="-1" width="-1" x="1222" y="186"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="lemmings.Jeu" project="Lemmings" file="/Lemmings/src/lemmings/Jeu.java" 
+  <class id="12" language="java" name="lemmings.FileChooser" project="Lemmings" 
+    file="/Lemmings/src/lemmings/FileChooser.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="875" y="126"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="lemmings.Jeu" project="Lemmings" file="/Lemmings/src/lemmings/Jeu.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="392" y="599"/>    
+    <position height="-1" width="-1" x="123" y="545"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="lemmings.Lemming" project="Lemmings" file="/Lemmings/src/lemmings/Lemming.java" 
+  <class id="14" language="java" name="lemmings.Lemming" project="Lemmings" file="/Lemmings/src/lemmings/Lemming.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="638" y="435"/>    
+    <position height="-1" width="-1" x="670" y="225"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="lemmings.Moteur" project="Lemmings" file="/Lemmings/src/lemmings/Moteur.java" 
+  <class id="15" language="java" name="lemmings.Main" project="Lemmings" file="/Lemmings/src/lemmings/Main.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="120" y="696"/>    
+    <position height="-1" width="-1" x="770" y="27"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="lemmings.Observable" project="Lemmings" 
+  <class id="16" language="java" name="lemmings.Moteur" project="Lemmings" file="/Lemmings/src/lemmings/Moteur.java" 
+    binary="false" corner="BOTTOM_LEFT">    
+    <position height="-1" width="-1" x="224" y="565"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="lemmings.Observable" project="Lemmings" 
     file="/Lemmings/src/lemmings/Observable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="617" y="717"/>    
+    <position height="-1" width="-1" x="659" y="134"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="lemmings.Panneau" project="Lemmings" file="/Lemmings/src/lemmings/Panneau.java" 
+  <class id="18" language="java" name="lemmings.Panneau" project="Lemmings" file="/Lemmings/src/lemmings/Panneau.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1036" y="452"/>    
+    <position height="-1" width="-1" x="1177" y="278"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="lemmings.Sol" project="Lemmings" file="/Lemmings/src/lemmings/Sol.java" 
+  <class id="19" language="java" name="lemmings.Panneau2" project="Lemmings" file="/Lemmings/src/lemmings/Panneau2.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="74" y="341"/>    
+    <position height="-1" width="-1" x="1299" y="298"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="lemmings.Trajectoire_physiqueH" project="Lemmings" 
-    file="/Lemmings/src/lemmings/Trajectoire_physiqueH.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="824" y="734"/>    
+  <class id="20" language="java" name="lemmings.Porte" project="Lemmings" file="/Lemmings/src/lemmings/Porte.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="68" y="64"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="lemmings.Transition" project="Lemmings" 
+  <class id="21" language="java" name="lemmings.Sol" project="Lemmings" file="/Lemmings/src/lemmings/Sol.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="897" y="258"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="lemmings.trajectoireparaphysique" project="Lemmings" 
+    file="/Lemmings/src/lemmings/trajectoireparaphysique.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1056" y="723"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="lemmings.Transition" project="Lemmings" 
     file="/Lemmings/src/lemmings/Transition.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1004" y="126"/>    
+    <position height="-1" width="-1" x="391" y="337"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <generalization id="18">    
+  <class id="24" language="java" name="lemmings.TransitionHandler" project="Lemmings" 
+    file="/Lemmings/src/lemmings/TransitionHandler.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="245" y="384"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="25">    
     <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="TARGET" refId="10"/>  
   </generalization>  
-  <generalization id="19">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="13"/>  
+  <generalization id="26">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="17"/>  
   </generalization>  
-  <generalization id="20">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <generalization id="21">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <generalization id="22">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <generalization id="23">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="5"/>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="10"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     accessors="true" visibility="true">    

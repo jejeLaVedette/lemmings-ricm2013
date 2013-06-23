@@ -39,8 +39,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 	private static final long serialVersionUID = 1L;
 	private JSplitPane split2, split3;
 	private int espacement_hori = 20;
-	private int espacement_text_line2 = 70;
-	private int espacement_text = 65;
+	private int espacement_text_line2 = 65;
+	private int espacement_text = 60;
 	private int typeCourant;
 	private Thread playSong;
 
@@ -194,7 +194,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		bouton_sup.add(bouton_Catapulte);
 
-		Component horizontalStrut_4 = Box.createHorizontalStrut(50);
+		Component horizontalStrut_4 = Box.createHorizontalStrut(30);
 		bouton_sup.add(horizontalStrut_4);
 
 		bouton_sup.add(tPuissance);
@@ -255,7 +255,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		bouton_inf1.add(bouton_futur2);
 
-		Component horizontalStrut_t14 = Box.createHorizontalStrut(65);//(espacement_text*3);
+		Component horizontalStrut_t14 = Box.createHorizontalStrut(45);//(espacement_text*3);
 		bouton_inf1.add(horizontalStrut_t14);
 
 		bouton_inf1.add(tAngle);
@@ -321,7 +321,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		bouton_inf2.add(bouton_suppr);
 
-		Component horizontalStrut_23 = Box.createHorizontalStrut(40);
+		Component horizontalStrut_23 = Box.createHorizontalStrut(10);
 		bouton_inf2.add(horizontalStrut_23);
 
 		bouton_inf2.add(tLemmingSauver);
@@ -517,23 +517,23 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		//on affiche une fenetre popup pour chaque "Detail" de toutes les maps
 		if(e.getSource()==mapDetail){
-			JOptionPane.showMessageDialog(null, "Facile\n lemmings a sauver : 10 \n Pour bien debuter !", "Carte 1", 0, new ImageIcon("ImagesMenu/map1.png"));
+			JOptionPane.showMessageDialog(null, " Facile\n lemmings a sauver : 10 \n Pour bien debuter !", "Carte 1", 0, new ImageIcon("ImagesMenu/map1.png"));
 		}
 
 		if(e.getSource()==map2Detail){
-			JOptionPane.showMessageDialog(null, "Moyen\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Carte 2", 0, new ImageIcon("ImagesMenu/map2.png"));
+			JOptionPane.showMessageDialog(null, " Moyen\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Carte 2", 0, new ImageIcon("ImagesMenu/map2.png"));
 		}
 
 		if(e.getSource()==map3Detail){
-			JOptionPane.showMessageDialog(null, "Difficile\n lemmings a sauver : 10 \n Please insert coin", "Carte 3", 0, new ImageIcon("ImagesMenu/map3.png"));
+			JOptionPane.showMessageDialog(null, " Difficile\n lemmings a sauver : 10 \n Please insert coin", "Carte 3", 0, new ImageIcon("ImagesMenu/map3.png"));
 		}
 
 		if(e.getSource()==map4Detail){
-			JOptionPane.showMessageDialog(null, "Moyen\n lemmings a sauver : 10 \n every gooo Mariooo!!", "Carte 4", 0, new ImageIcon("ImagesMenu/map4.png"));
+			JOptionPane.showMessageDialog(null, " Moyen\n lemmings a sauver : 10 \n Like a pirates!", "Carte 4", 0, new ImageIcon("ImagesMenu/map4.png"));
 		}
 
 		if(e.getSource()==map5Detail){
-			JOptionPane.showMessageDialog(null, "Difficile\n lemmings a sauver : 10 \n Invaders must die", "Carte 5", 0, new ImageIcon("ImagesMenu/map5.png"));
+			JOptionPane.showMessageDialog(null, " Difficile\n lemmings a sauver : 10 \n Invaders must die", "Carte 5", 0, new ImageIcon("ImagesMenu/map5.png"));
 		}
 
 		//on charge la map
@@ -546,7 +546,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 				//on charge la map avec les bon parametres
 				Jeu.initialiserJeu("Images/map1.png", 
 						"Images/map1bg.png", 
-						"Musiques/Lemmings Soundtracks.wav", 
+						"Musiques/Torchlight song.wav", 
 						"Automates/automate.xml", 
 						new Point(60,55), 
 						new Point(330,125),
@@ -616,7 +616,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 						new Point(209,17), 
 						new Point(473,389),
 						new Point(40,160),
-						10);
+						30);
 
 
 			} catch (IOException ev) {
@@ -629,11 +629,11 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			try {
 				Jeu.playWave.stop();
 				Carte.lemmingASauver=10;
-				Carte.initCmp(10, 10, 10, 10, 10, 10, 10, 10);
+				Carte.initCmp(0, 0, 0, 0, 10, 0, 3, 0);
 				afficherTexteCmp();
 				Jeu.initialiserJeu("Images/map5.png", 
 						"Images/map5bg.png", 
-						"Musiques/Torchlight song.wav", 
+						"Musiques/Invaders Must Die.wav", 
 						"Automates/automate.xml", 
 						new Point(36,164), 
 						new Point(473,84),
@@ -648,7 +648,8 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 
 		//on affiche un message popup
 		if(e.getSource()==mntmRgle) {
-			String regle = "Le but du jeu est de sauver les lemmings. \n Pour ce faire, vous devez les ammener de la porte de sortie �la porte d'entr�e. \n Evitez de gaspiller vos lemmings, ils ont tous leur importance";
+			String regle = "Le but du jeu est de sauver les lemmings. \n Pour ce faire, vous devez les ammener de la porte d'entree a la porte de sortie. \n " +
+					"Evitez de gaspiller vos lemmings, ils ont tous leur importance";
 			JOptionPane.showMessageDialog(null, regle);
 		}
 
@@ -690,7 +691,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 			newCx = ((event.getX()*Carte.LARGEUR_CARTE))/(tailleFX);
 		}
 		else {
-			newCx =event.getX(); //newCx = ((event.getX()*tailleFX*(Carte.LARGEUR_CARTE/Fenetre.tailleFX)))/(Carte.LARGEUR_CARTE);
+			newCx =event.getX();
 		}
 
 		//on recupere les coordonnees en Y de la souris dans la carte
@@ -699,7 +700,7 @@ public class Fenetre extends JFrame implements Constantes, MouseListener, Action
 		}
 
 		else {
-			newCy = event.getY();//newCy = ((event.getY())*3*tailleFY/5)/(Carte.HAUTEUR_CARTE);
+			newCy = event.getY();
 		}
 
 		Observable lem;
