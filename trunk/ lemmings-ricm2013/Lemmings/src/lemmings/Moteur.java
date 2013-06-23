@@ -106,7 +106,6 @@ public class Moteur implements Constantes {
 						relief++;
 						if(Carte.map[x-1][y+2].isAir()) {
 							relief++;
-							//if(Carte.map[x-1][y+2].type>=typeAirInf && Carte.map[x-1][y+2].type<=typeAirSup) relief++;
 						}
 					}
 				}
@@ -123,7 +122,6 @@ public class Moteur implements Constantes {
 						relief++;
 						if(Carte.map[x+1][y+2].isAir()) {
 							relief++;
-							//if(Carte.map[x+1][y+2].type>=typeAirInf && Carte.map[x+1][y+2].type<=typeAirSup) relief++;
 						}
 					}
 
@@ -140,8 +138,6 @@ public class Moteur implements Constantes {
 				tomber(lem);
 				continue;
 			}
-
-			//System.out.println("id: "+i+" etat:"+lem.getEtat()+" type:"+lem.getType()+" x: "+lem.getX()+ " y:"+lem.getY()+" relief: "+relief + " cond:"+cond);
 
 			// Recherche de l'automate correspondant
 			Automate aut = null;
@@ -351,7 +347,6 @@ public class Moteur implements Constantes {
 
 		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 1){
 			l.setTrajpara(t);
-			System.out.println("x:"+l.getX()+" y"+l.getY()); 
 			if (trace && Carte.estValide(l.getX(), l.getY())) Carte.map[l.getX()][l.getY()].couleur = new Color(0,0,255);
 			l.resetTime();
 			voler(l);
@@ -377,7 +372,6 @@ public class Moteur implements Constantes {
 		retourner(l);
 		if (Math.sqrt(t.getVx()*t.getVx() +t.getVy()*t.getVy()) > 1){
 			l.setTrajpara(t);
-			System.out.println("x:"+l.getX()+" y"+l.getY()); 
 			if (trace && Carte.estValide(l.getX(), l.getY())) Carte.map[l.getX()][l.getY()].couleur = new Color(0,255,0);
 			l.resetTime();
 			voler(l);
